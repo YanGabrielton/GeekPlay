@@ -1,0 +1,59 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+body{
+
+    background-color: white;
+    background: linear-gradient(to right,#e2e2e2,#c9d6ff);/*Mudar a cor dos lados quando for alternar*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.container{
+    background-color: white; /*Cor do Container*/
+    border-radius: 30px;
+    box-shadow: 0px 5px 15px rgb(245, 0, 0);
+position: relative;
+overflow: hidden; /**/
+width: 768px; /*Largura do container*/
+max-width: 100%;
+min-height: 480px; /*Altura do Container*/
+
+}
+.container p{
+font-size: 14px;
+line-height: 20px;
+letter-spacing: 0.3px;
+margin: 20px 0;
+
+}
+.container span{
+
+    font-size: 12px;
+
+}
+.container a{
+    color: #f80000;
+    font-size: 13px;
+    text-decoration: none;
+    margin: 15px 0 10px;
+}
+.container button{
+    background-color: black;
+    color: white;
+    font-size: 12px;
+    padding: 10px 45px;/*altura e largura do botao*/
+    border: 1px solid transparent;
+    font-weight: 600; /*Cor da forte*/
+    letter-spacing: 0.5px; /*espaçamento de letra por letra*/
+    border-radius: 8px;
+    cursor:wait; /*Alternar a animação do botão ao colocar o mouse em cima*/
+    text-transform: uppercase;/*Transformar o texto para caixa alta ou tudo Maisculo*/
+    margin-top: 10px;
+}

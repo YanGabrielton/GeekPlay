@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeekPlay</title>
+    <link rel="stylesheet" href="../Estilos/Cadastro.css">
+</head>
+
+<body>
+    <div class="container" id="container">
+        <div class="formulario-container">
+            <form class="telaCadastro" action="">
+                <h1>Cadastrar</h1>
+                <span>Ou use seu gmail para Registro</span>
+                <label for="">Nome:</label>
+                <input type="nome" id="nome" name="nome" placeholder="Digite Nome" required> <br>
+                <label for="">Senha:</label>
+                <label for="">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Digite Seu Login" required> <br>
+                <label for="">Senha:</label>
+                <input type="password" id="password" name="password" placeholder="Digite Sua Senha" required>
+                <button>Cadastrar</button>
+            </form>
+
+        </div>
+        <div class="formulario-container">
+            <form class="telaCadastro" action="">
+                <h1>Entrar</h1>
+                <span>Ou use seu gmail para Registro</span>
+                <label for="">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Digite Seu Login" required> <br>
+                <label for="">Senha:</label>
+                <input type="password" id="password" name="password" placeholder="Digite Sua Senha" required><br>
+                <a href="#">Esqueceu sua Senha ?</a>
+                <button>Entrar</button>
+            </form>
+
+
+        </div>
+        <!-- A classe alternar fica dentro do container para mover os itens dentro dela de um
+        lado para o outro -->
+        <div class="alternar-container">
+            <div class="alternar">
+                <div class="alternar-painel-esquerdo">
+                    <h1>Seja BemVindo</h1>
+                    <p>Insira Seus Dados Pessoais para Navegar no nosso site</p>
+                    <button class="esconder" id="login">Entrar</button>
+                </div>
+                <div class="alternar-painel-direito">
+                    <h1>Seja BemVindo</h1>
+                    <p>Registre Seus Dados Pessoais para Navegar no nosso site</p>
+                    <button class="esconder" id="registrar">Cadastrar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>
