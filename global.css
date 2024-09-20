@@ -1,0 +1,129 @@
+body{
+    width:100%;
+    margin:0;
+    padding:0;
+    background-image: url(../img/GEEKPLAY_Planos.gif);
+}
+
+.logo-menu{
+    margin-top:0.5rem;
+}
+
+.logo-rodape{
+    width:400px;
+    height: auto;
+    margin-top:1rem;
+}
+
+.border-menu{
+    border-bottom: 2px solid red;
+    margin-bottom:4rem;
+}
+
+.menu {
+    height: 3rem;
+    margin-top:1rem;
+    float: right;
+}
+
+
+.menu ul {
+    height: 3rem;
+    margin-top:1rem;
+}
+
+.menu li {
+    margin-top:0.75rem;
+    display:inline-block;
+    list-style-type: none;
+    margin-left:1rem;
+}
+
+.menu li a{
+    color: #fff;
+    list-style-type: none;
+    margin-top:0.5rem;
+    text-transform: uppercase;
+    font-size: 1.05rem;
+}
+
+.titulo{
+    color: #f00;  
+    font-size: 2rem;
+    font-style: italic;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.planos h4 {
+  color: #fff;  
+  font-size: 3rem;
+}
+
+.planos span {
+    color: #fff;  
+    font-size: 2.25rem;
+    font-weight: 400;
+}
+
+.planos span::before {
+   content: "________";
+   color: transparent;
+   bottom:1.5rem;
+   margin-right: 0.5rem;
+   position: relative;
+   border-bottom: 1px solid #fff;
+  }
+
+.planos span::after {
+   content: "________";
+   color: transparent;
+   bottom:1.5rem;
+   margin-left: 0.5rem;
+   position: relative;
+   border-bottom: 1px solid #fff;
+}
+
+.planos:nth-child(2){
+    min-height: 773px;
+    margin-top:50px;
+}
+
+.planos{
+    color: #fff;
+    min-height: 573px;
+    margin-top:300px;
+    
+    background: linear-gradient(
+        196.86deg,
+        rgba(27, 16, 16, 1) 0%,
+        rgba(255, 0, 0, 1) 69.95564103126526%,
+        rgba(79, 34, 34, 1) 85.1681113243103%,
+        rgba(153, 153, 153, 1) 100%
+      );
+      position: relative;
+}
+
+.botao:hover {
+    color: #000000;
+    text-decoration: none;
+}
+
+.botao {
+    background: #b94343;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: #b94343;
+    border-width: 3px;
+    width: 276px;
+    height: 43.94px;
+    position: relative;
+
+    color: #000000;
+    text-align: left;
+    font-family: "Inter-Bold", sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+
+    padding:8px 18px;    
+}
