@@ -19,7 +19,7 @@ p, li {
 /* Barra de nav */
 
 header, .navbar {
-    background-color: rgb(0, 0, 0);
+    background-color: black;
 
 }
 
@@ -48,7 +48,7 @@ header, .navbar {
 }
 
 #navbar-links a:hover {
-    color: rgb(253, 253, 253);
+    color: rgb(255, 0, 0);
 }
 
 
@@ -219,26 +219,76 @@ footer {
     text-align: center;
     justify-content: center;
     padding: 30px;
-
+    font-size: 20px;
 }
 .Rodape {
     color: rgb(255, 255, 255);
     font-size: 14px;
-    font-size: 20px;
-}
-.rodape{
-    color: rgb(255, 255, 255);
-    font-size: 14px;
-    font-size: 20px;
-}
-
-/* Fim do footer*/
-
-/*Inicio Main */
-#container-fluid {
-    padding: 0;
 }
 
 /*Fim do Main*/
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Filmes css*/
