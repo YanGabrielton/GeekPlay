@@ -21,6 +21,9 @@ p, li {
 
 header, .navbar {
     background-color: black;
+   
+    outline : 1px solid #950000;
+    
 
 }
 
@@ -49,7 +52,7 @@ header, .navbar {
 }
 
 #navbar-links a:hover {
-    color: rgb(253, 253, 253);
+    color: rgb(255, 0, 0);
 }
 
 
@@ -220,10 +223,75 @@ footer {
     justify-content: center;
     padding: 30px;
     font-size: 20px;
+    outline : 1px solid #950000;
 }
 .Rodape {
     color: rgb(255, 255, 255);
     font-size: 14px;
+    
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Filmes css*/
