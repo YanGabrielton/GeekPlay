@@ -11,7 +11,6 @@ body {
 .container {
     padding: 70px 0;
 }
-/* Cor da letra Footer*/
 p, li {
     color: rgb(255, 0, 0);
     font-size: 14px;
@@ -21,6 +20,7 @@ p, li {
 
 header, .navbar {
     background-color: black;
+    outline : 1px solid #950000;
 
 }
 
@@ -49,7 +49,7 @@ header, .navbar {
 }
 
 #navbar-links a:hover {
-    color: rgb(253, 253, 253);
+    color: rgb(255, 0, 0);
 }
 
 
@@ -61,6 +61,7 @@ header, .navbar {
 .navbar-expand-lg .navbar-nav .nav-link {
     padding: 1rem .8rem;
     }
+
 
 /* slider */
 
@@ -209,7 +210,7 @@ header, .navbar {
    
 }
 
-/* footer */
+/* Inicio do footer */
 
 footer {
     background-color: black;
@@ -220,10 +221,111 @@ footer {
     justify-content: center;
     padding: 30px;
     font-size: 20px;
+    outline : 1px solid #950000;
 }
 .Rodape {
     color: rgb(255, 255, 255);
     font-size: 14px;
+    
+}
+
+/*Fim do Main*/
+
+
+/* Inicio css filmes*/
+input[type="text"]{
+    width: 500px;
+    padding: 12px 20px;
+    margin: 8px ;
+    justify-content: center;
+text-decoration: none;
+    border: none;
+  
+    border-radius: 40px;
+    
+}
+.centralizarSearch{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+
+    
+    width: 100%;
+}
+
+.movie{
+    width: 300px;
+}
+
+.movie img{
+    width: 100%;
+
 }
 
 
+/*10:43*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Filmes css*/
