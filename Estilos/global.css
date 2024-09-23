@@ -233,8 +233,39 @@ footer {
 
 
 /* Inicio css filmes*/
+input[type="text"]{
+    width: 500px;
+    padding: 12px 20px;
+    margin: 8px ;
+    justify-content: center;
+text-decoration: none;
+    border: none;
+  
+    border-radius: 40px;
+    
+}
+.centralizarSearch{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+
+    
+    width: 100%;
+}
+
+.movie{
+    width: 300px;
+}
+
+.movie img{
+    width: 100%;
+
+}
 
 
+/*10:43*/
 
 
 
