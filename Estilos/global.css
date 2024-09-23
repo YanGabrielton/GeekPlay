@@ -20,6 +20,7 @@ p, li {
 
 header, .navbar {
     background-color: black;
+    outline : 1px solid #950000;
 
 }
 
@@ -220,10 +221,12 @@ footer {
     justify-content: center;
     padding: 30px;
     font-size: 20px;
+    outline : 1px solid #950000;
 }
 .Rodape {
     color: rgb(255, 255, 255);
     font-size: 14px;
+    
 }
 
 /*Fim do Main*/
