@@ -2,6 +2,8 @@
 body {
     font-family: 'Roboto', sans-serif;
     background-color: black;
+    padding: 0;
+    margin: 0;
 }
 
 .row {
@@ -103,8 +105,7 @@ header, .navbar {
 .main-btn {
     text-transform: uppercase;
     font-family: bold;
-    
-    margin-right: 840px;
+    margin-right: 1100px;
     padding: 10px 20px;
     transition: .5s;
     text-decoration: none;
@@ -112,13 +113,13 @@ header, .navbar {
     width: 182px;
     height: 36px;
     border-radius: 0px 20px;
-    border: 1px solid #BF5943;
-    background: #E27B41;
+    border: 1px solid #ff2f00;
+    background: #f50101;
 }
 
 .main-btn:hover{
     text-decoration: none;
-    color: #E27B41;
+    color: #ff0000;
     background-color: transparent;
     border-color: rgb(255, 255, 255);
 }
@@ -168,8 +169,9 @@ header, .navbar {
 #mainSlider  #title-anime{
     font-size: 70px;
 
-    
-    font-family: Mohave;
+    font-weight: bold;
+    font-style: italic;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: left;
     margin-bottom: 20px;
     color: #ffffff;
@@ -249,10 +251,18 @@ header, .navbar {
 
 }
 
+.btn-primary {
+    background-color: #C80000;
+    border: #C80000;
+}
+
 .btn-primary:hover {
     background-color: transparent;
     color: red;
     border: red 1 solid;
+    transition:.5s;
+    text-decoration: none;
+   
 
 }
 
@@ -263,17 +273,20 @@ header, .navbar {
 }
 
 
-/* recommendation section*/
+/* recommendation title*/
 
 .piperecommend {
     position: flex;
     justify-content: right;
     width: 50%;
     color: red;
+ 
+    margin-bottom: 50px;
 }
 
 .piperecommend:after {
     content: 'TALVEZ VOCÊ GOSTE';
+
     font-size: 34px;
     font-family: sans-serif;
     font-weight: bold;
@@ -284,39 +297,54 @@ header, .navbar {
 
 /* Recomendation bleach screen */
 
+
 #title-recomendation {
-    font-size: 50px;
+    font-size: 54px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-weight: bold;
-    text-align: left;
-    margin-bottom: 20px;
-    color: #ffffff;
-    font-family: Mohave;
+    color: white;
+    margin-bottom: 30px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    transition:.5s;
-    
 }
 
 
 #text-recomendation {
-
-    font-size: 24px;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    margin-left: 45px;
+    width: 596px;
     text-align: left;
-    margin-bottom: 20px;
-    color: #ffffff;
-    font-family: Mohave;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    transition:.5s;
+    filter: drop-shadow(1);
+    filter: brightness(80%);
+    color: white;
+}
+
+.text-recommend {
+    position: absolute;
+    top: 80%; 
+    transform: translate(-50%, -50%); 
+    color: white; 
+}
+
+.recomendation-section {
+    display: flex;
+}
+
+.recomend-rightwing {
+    flex: 2; 
+    position: relative;
+    padding-right: 20px; /* Espaçamento entre as colunas */
 }
 
 .container-imagerecomend {
     position: relative;
-    display: inline-block;
 }
 
 .recommend-image {
-    width: 100%; 
-    height: auto; 
-    
+    width: 1200px;
+    height: 575px;
+    flex-shrink: 0;
 }
 
 .text-recommend {
@@ -325,9 +353,193 @@ header, .navbar {
     left: 50%; 
     transform: translate(-50%, -50%); 
     color: white; 
-    text-align: center; 
-    padding: 10px; 
-    border-radius: 5px;
+}
 
+.recomend-wingleft {
+    flex: 1;
+    position: relative;
+    
+
+}
+
+
+.container-images-recommend {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.container-images-recommend div {
+    flex: 1; 
+    margin: 0 5px; 
+}
+
+.container-images-recommend img {
+    width: 100%; 
+    height: auto; 
+} 
+
+.img01 img, .img02 img, .img03 img, .img04 img {
+    width: 127px;
+    height: 575px;
+    flex-shrink: 0;
+    filter: brightness(60%);
+    filter: drop-shadow(1);
+    transition: filter 0.3s; /* Transição suave */
+}
+
+.img01:hover img, .img02:hover img, .img03:hover img, .img04:hover img {
+    filter: brightness(100%);
+}
+
+/* btn-primary btn-recommend */
+
+.container-button {
+    display: flex;
+    justify-content: center; /* Centraliza os botões */
+    margin-top: 20px; /* Espaço acima dos botões */
+}
+
+.btn-assistir, .btn-add-list {
+    display: inline-block; /* Coloca os botões juntos */
+    font-size: 18px; 
+    font-weight: bold;
+    border-radius: 180px;
+    background: #C80000;
+    color: white; 
+    padding: 10px 20px;
+    margin: 0 10px; /* Espaçamento entre os botões */
+    margin-top: 20px;
+    text-decoration: none; /* Remove o sublinhado */
+  
+    transition: background-color 0.3s; /* Transição suave */
+}
+
+.btn-assistir:hover, .btn-add-list:hover {
+    background-color: transparent; 
+    color: rgb(255, 0, 0); 
+    cursor: pointer;
+    filter: brightness(90%);
+  
+}
+
+
+/* (Title)Continue Assistindo */
+
+.main-title-toppage {
+    font-size: 36px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: bold;
+    color: rgb(255, 0, 0);
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+
+.pipecontinue {
+    position: flex;
+    justify-content: right;
+    width: 50%;
+    color: red;
+ 
+    margin-bottom: 25px;
+}
+
+.pipecontinue:after {
+    content: 'CONTINUE ASSISTINDO';
+    font-size: 34px;
+    font-family: sans-serif;
+    font-weight: bold;
+    color: white;
+}
+
+
+/* Continue Assistindo Screen */
+
+.row {
+    display: flex; /* Habilita o uso de flexbox */
+    flex-wrap: wrap; /* Permite que os itens se ajustem em múltiplas linhas */
+}
+
+.card-watching {
+    flex: 1; /* Permite que os cards ocupem o espaço disponível */
+    margin: 10px; /* Adiciona espaçamento entre os cards */
+}
+
+
+
+.card-body-continue {
+    margin-bottom: 40px;
+    margin-right: 10px;
+    position: relative;
+    width: 229px;
+    height: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+
+.play-btn-and-texts {
+    position: absolute;
+    bottom: 10px; /* Coloca os textos mais próximos da parte inferior */
+    left: 50%;
+    transform: translateX(-50%); 
+    text-align: center;
+    color: white; 
+}
+
+.btn-play {
+  display: inline-block;
+  font-size: 24px;
+    margin-bottom: 25px;   
+    width: 42px;
+    height: 42px;
+    background-size: cover;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-play:hover{
+    filter: brightness(100%);
+    
+    transition: background-color 0.3s;
+    transition: filter 0.3s;
+
+    /* Permite que o botão seja redimensionado quando hoverado */
+    transform: scale(1.1);
+    transition: transform 0.3s;
+    transition: box-shadow 0.3s;
+    transition: color 0.3s;
+
+}
+
+
+#card-title{
+    margin-bottom: 5px;
+    font-size: 18px;
+    font-weight: bold;
+   
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    
+
+}
+
+#card-text{
+        font-weight: 400;
+        filter: brightness(75%);
+        color: white;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        margin-bottom: 10px;
+        font-size: 14px;
+        white-space: nowrap; /* Impede quebra de linha */
+}
+
+
+.card-img-top-continue {
+    filter: brightness(55%);
 }
 

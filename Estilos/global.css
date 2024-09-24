@@ -225,13 +225,13 @@ footer {
 .Rodape {
     color: rgb(255, 255, 255);
     
-    font-size: 20px;
+    font-size: 10px;
     
 }
-.rodape{
+.paragrafo_rodape{
     text-decoration: none;
     color: white;
-    font-size: 20px;
+    font-size: 10px;
 
 }
 /*Fim do footer*/
@@ -285,6 +285,7 @@ footer {
     position:relative;
     top: 200px;
     left: -270px;
+    width: 100%;
     justify-content:left;
 }
 .img_fundo{
@@ -325,6 +326,7 @@ footer {
 }
 
 .retangulo_Sobre{
+    
     border: 2px solid rgb(255, 255, 255);
     width: 150px;
     height: 60px;
@@ -342,63 +344,44 @@ footer {
 }
 .retangulo_1 {
   border-style: solid;
-  border-color: #5b5b5b;
+  border-color: #5d5d5d;
   border-width: 2px;
-  height: 347px;
+  height: 350px;
   width: 3000px;
   margin-top: 30%;
 }
+
 .retangulo_Filme{
-    background: rgba(4, 4, 4, 0.45);
-  border-style: solid;
-  border-color: rgba(28, 26, 26, 0.65);
-  border-width: 4px;
-  width: 285px;
+   
+  width: 295px;
   height: 347px;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  margin-top:-26%;
+  margin-top: 2px;
   margin-left: 100px;
 }
+.retangulo_Mangas{
+ 
+    width: 285px;
+    height: 347px;
+    margin-top: -27%;
+    margin-left: 500px;
+  
+  }
 .retangulo_Anime{
-    background: rgba(4, 4, 4, 0.45);
-  border-style: solid;
-  border-color: rgba(28, 26, 26, 0.65);
   border-width: 4px;
-  width: 285px;
+  width: 284px;
   height: 347px;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  margin-top:-27%;
+  margin-top:-26%;
   margin-left: 900px;
 }
-.retangulo_Mangas{
-  background: rgba(4, 4, 4, 0.45); 
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  border-style: solid;
-  border-color: rgba(28, 26, 26, 0.65);
-  border-width: 4px;
-  width: 285px;
-  height: 347px;
-  margin-top: -27%;
-  margin-left: 500px;
-
-}
-.retangulo_2{
-    border-style: solid;
-    border-color: #5b5b5b;
-    border-width: 2px;
-    height: 247px;
-    width: 3000px;
-    margin-top: 30%;
-
-}
 .titulo_filme{
+    display: flex;
     color: white;
     text-align: left;
     font-family: "Literata-Bold", sans-serif;
     font-size: 25px;
     font-weight: 700;
     position: relative;
-    top: 15px;
+    top: 30px;
     left: 60px;
 }
 .paragrafo_filme_1{
@@ -408,17 +391,19 @@ footer {
     font-size: 18px;
     font-weight: 500;
     position: relative;
-    top: 30px;
+    top: 40px;
     left: 10px;
+    display: flex;
 }
 .paragrafo_filme_2{
+    display: flex;
        color: white;
     text-align: left;
     font-family: "Literata-Regular", sans-serif;
     font-size: 18px;
     font-weight: 500;
     position: relative;
-    top: 30px;
+    top: 40px;
     left: 10px;
 }
 .icone_Filme{
@@ -427,23 +412,17 @@ footer {
     right: 15px;
     font-size: 30px;
     color: white;
-    margin-top: -210%
-}
-.icone_anime{
-    top: 10px;
-    right: 15px;
-    font-size: 30px;
-    color: white;
-    margin-top: -210%
+    margin-top: -160%;
 }
 .icone_manga{
     top: 10px;
     right: 15px;
     font-size: 30px;
     color: white;
-    margin-top: -210%
+    margin-top: -170%;
 }
 .titulo_Manga{
+    display: flex;
     color: white;
     text-align: left;
     font-family: "Literata-Bold", sans-serif;
@@ -463,6 +442,7 @@ footer {
     position: relative;
     top: 30px;
     left: 10px;
+    display: flex;
 }
 
 .paragrafo_manga_2{
@@ -474,6 +454,14 @@ footer {
     position: relative;
     top: 30px;
     left: 10px;
+    display: flex;
+}
+.icone_anime{
+    
+    right: 15px;
+    font-size: 30px;
+    color: white;
+    margin-top: -170%;
 }
 .titulo_Anime{
     color: white;
@@ -484,6 +472,7 @@ footer {
     position: relative;
     top: 15px;
     left: 60px;
+    display: flex;
 }
 
 .paragrafo_anime_1{
@@ -495,6 +484,7 @@ footer {
     position: relative;
     top: 30px;
     left: 10px;
+    display: flex;
 }
 
 .paragrafo_anime_2{
@@ -506,11 +496,116 @@ footer {
     position: relative;
     top: 30px;
     left: 10px;
+    display: flex;
+}
+.retangulo_2{
+    border-style: solid;
+    border-color: #5b5b5b;
+    border-width: 2px;
+    height: 647px;
+    width: 3000px;
+    margin-top: 10%;
+    display: flex;
+}
+
+.Titulo_FILME{
+    color: rgb(255, 0, 0);
+    text-align: left;
+    font-family: "Kreon", serif;
+    font-optical-sizing: auto;
+    font-size: 50px;
+    font-weight: 700;
+    position: relative;
+    top: 120px;
+    left: 60px;
+    display: flex;
+}
+.paragrafo_FILME{
+    color: rgb(255, 255, 255);
+    text-align: left;
+    font-family: "Literata-Regular", sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    position: relative;
+    top: 240px;
+    left: -130px;
+    display: flex;
+}
+/*Imagens FILMES*/
+.img_filme_1{
+    position: relative;
+    left: 140px;
+ 
+}
+.img_filme_2{
+    position: relative;
+    left: 140px;
+ 
+}
+.img_filme_3{
+    position: relative;
+    left: 140px;
+
+}
+.img_filme_4{
+    position: relative;
+    left: 140px;
+}
+.GENEROS_DISPONIVEIS{
+    color: white;
+    text-align: center;
+    font-family: "Literata-Regular", sans-serif;
+    font-size: 20px;
+    position: relative;
+    height: 435px;
+    top: 500px;
+    right: 850%;
+
 }
 
 
+.retangulo_3{
+    border-style: solid;
+    border-color: #5b5b5b;
+    border-width: 2px;
+    height: 747px;
+    width: 3000px;
+    margin-top: 10%;
+}
+.Titulo_ANIME{
+    color: rgb(255, 0, 0);
+    text-align: left;
+    font-family: "Kreon", serif;
+    font-optical-sizing: auto;
+    font-size: 50px;
+    font-weight: 700;
+    position: relative;
+    top: 120px;
+    left: 60px;
+    display: flex;
+}
 
-
+.PARA_ANIME{
+    color: rgb(255, 255, 255);
+    text-align: left;
+    font-family: "Literata-Regular", sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    position: absolute;
+    top: 240px;
+    left: -130px;
+    display: flex;
+}
+.GENEROS {
+    color: white;
+    text-align: center;
+    font-family: "Literata-Regular", sans-serif;
+    font-size: 20px;
+    position: relative;
+    height: 435px;
+    top: 500px;
+    right: 850%;
+}
 /*Fim do Main*/
 
 
