@@ -220,52 +220,133 @@ footer {
     text-align: center;
     justify-content: center;
     padding: 30px;
-    font-size: 20px;
     outline : 1px solid #950000;
 }
 .Rodape {
     color: rgb(255, 255, 255);
     font-size: 14px;
+    font-size: 20px;
     
+}
+.rodape{
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+
+}
+/*Fim do footer*/
+
+/*Inicio do Main*/
+
+#container-img{
+    background-image: url('/img/Anime\ index\ 1.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 100vh;
+    padding: 0;
+
+}
+.animes-filmes-e-muito-mais {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Literata-Bold", sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  position: relative;
+  height: 435px;
+}
+.Texto_bem-vindo{
+    color: #ffffff;
+    text-align: left;
+    font-family: "Literata-Bold", sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    position: absolute;
+    top: 190px;
+    left: 30px;
+}
+.Texto_Animes{
+    color: #ffffff;
+    text-align: left;
+    font-family: "Literata-Bold", sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    position: absolute;
+    top: 160px;
+    left:30px;
+}
+.Texto_sobre{
+    color: #ffffff;
+    text-align: left;
+    font-family: "Literata-Bold", sans-serif;
+    font-size: 30px;
+    font-weight: 500;
+    position:relative;
+    top: 200px;
+    left: -270px;
+    justify-content:left;
+}
+.img_fundo{
+    background-image: url('/img/Img Fundo index.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    width: 300%;
+    height: 800px;
+    margin-left: -300px;
+
+}
+.img_logo img{
+    background-repeat: no-repeat;
+    position:absolute;
+    width: 50%;
+    height: 100%;
+    margin-top: -550px;
+    right: 10px;
+}
+.retangulo_Planos{
+    border: 2px solid rgb(255, 255, 255);
+    width: 150px;
+    height: 60px;
+    margin: 10px;
+    padding: 15px;
+    position: absolute;
+    margin-top: 10%;
+    text-align: center;
+    color: #ff0000;
+    font-family: "Podkova", serif;
+    font-optical-sizing: auto;
+    font-size: 130%;
+
+
+
+
+}
+
+.retangulo_Sobre{
+    border: 2px solid rgb(255, 255, 255);
+    width: 150px;
+    height: 60px;
+    margin: 10px;
+    padding: 15px;
+    position: absolute;
+    margin-top: 10%;
+    left: 30%;
+    text-align: center;
+    color: #ff0000;
+    font-family: "Podkova", serif;
+    font-optical-sizing: auto;
+    font-size: 130%;
+
 }
 
 /*Fim do Main*/
 
 
 /* Inicio css filmes*/
-input[type="text"]{
-    width: 500px;
-    padding: 12px 20px;
-    margin: 8px ;
-    justify-content: center;
-text-decoration: none;
-    border: none;
-  
-    border-radius: 40px;
-    
-}
-.centralizarSearch{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    
-
-    
-    width: 100%;
-}
-
-.movie{
-    width: 300px;
-}
-
-.movie img{
-    width: 100%;
-
-}
 
 
-/*10:43*/
 
 
 
