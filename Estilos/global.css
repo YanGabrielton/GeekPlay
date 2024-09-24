@@ -224,14 +224,14 @@ footer {
 }
 .Rodape {
     color: rgb(255, 255, 255);
-    font-size: 14px;
-    font-size: 20px;
+    
+    font-size: 10px;
     
 }
-.rodape{
+.paragrafo_rodape{
     text-decoration: none;
     color: white;
-    font-size: 20px;
+    font-size: 10px;
 
 }
 /*Fim do footer*/
@@ -340,14 +340,259 @@ footer {
     font-size: 130%;
 
 }
+.retangulo_1 {
+  border-style: solid;
+  border-color: #5d5d5d;
+  border-width: 2px;
+  height: 350px;
+  width: 3000px;
+  margin-top: 30%;
+}
+
+.retangulo_Filme{
+   
+  border-style: solid;
+  border-color: rgba(21, 20, 20, 0.65);
+  border-width: 4px;
+  border-top:none;
+  border-bottom: none;
+  width: 295px;
+  height: 347px;
+  box-shadow: -10px 0px 10px -10px rgba(0, 0, 0, 0.5)
+  10px 0px 10px -10px rgba(0, 0, 0, 0.5);
+  margin-top: 1px;
+  margin-left: 100px;
+}
+.retangulo_Mangas{
+ 
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    border-style: solid;
+    border-color: rgba(21, 20, 20, 0.65);
+    border-width: 4px;
+    border-top:none;
+    border-bottom: none;
+    box-shadow: -10px 0px 10px -10px rgba(0, 0, 0, 0.5)
+    10px 0px 10px -10px rgba(0, 0, 0, 0.5);
+    width: 285px;
+    height: 347px;
+    margin-top: -27%;
+    margin-left: 500px;
+  
+  }
+.retangulo_Anime{
+ 
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.65);
+  border-top:none;
+  border-bottom: none;
+  border-width: 4px;
+  width: 285px;
+  height: 347px;
+  box-shadow: -10px 0px 10px -10px rgba(0, 0, 0, 0.5)
+  10px 0px 10px -10px rgba(0, 0, 0, 0.5);
+  margin-top:-26%;
+  margin-left: 900px;
+}
+.titulo_filme{
+    color: white;
+    text-align: left;
+    font-family: "Literata-Bold", sans-serif;
+    font-size: 25px;
+    font-weight: 700;
+    position: relative;
+    top: 15px;
+    left: 60px;
+}
+.paragrafo_filme_1{
+    color: white;
+    text-align: left;
+    font-family: "Literata-Regular", sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    position: relative;
+    top: 30px;
+    left: 10px;
+}
+.paragrafo_filme_2{
+       color: white;
+    text-align: left;
+    font-family: "Literata-Regular", sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    position: relative;
+    top: 30px;
+    left: 10px;
+}
+.icone_Filme{
+    
+    top: 10px;
+    right: 15px;
+    font-size: 30px;
+    color: white;
+    margin-top: -170%;
+}
+.icone_anime{
+    
+    right: 15px;
+    font-size: 30px;
+    color: white;
+    margin-top: -180%;
+}
+.icone_manga{
+    top: 10px;
+    right: 15px;
+    font-size: 30px;
+    color: white;
+    margin-top: -180%;
+}
+.titulo_Manga{
+    color: white;
+    text-align: left;
+    font-family: "Literata-Bold", sans-serif;
+    font-size: 25px;
+    font-weight: 700;
+    position: relative;
+    top: 15px;
+    left: 60px;
+}
+
+.paragrafo_manga_1{
+    color: white;
+    text-align: left;
+    font-family: "Literata-Regular", sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    position: relative;
+    top: 30px;
+    left: 10px;
+}
+
+.paragrafo_manga_2{
+    color: white;
+    text-align: left;
+    font-family: "Literata-Regular", sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    position: relative;
+    top: 30px;
+    left: 10px;
+}
+.titulo_Anime{
+    color: white;
+    text-align: left;
+    font-family: "Literata-Bold", sans-serif;
+    font-size: 25px;
+    font-weight: 700;
+    position: relative;
+    top: 15px;
+    left: 60px;
+}
+
+.paragrafo_anime_1{
+    color: white;
+    text-align: left;
+    font-family: "Literata-Regular", sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    position: relative;
+    top: 30px;
+    left: 10px;
+}
+
+.paragrafo_anime_2{
+    color: white;
+    text-align: left;
+    font-family: "Literata-Regular", sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    position: relative;
+    top: 30px;
+    left: 10px;
+}
+.retangulo_2{
+    border-style: solid;
+    border-color: #5b5b5b;
+    border-width: 2px;
+    height: 247px;
+    width: 3000px;
+    margin-top: 30%;
+
+}
+
+
 
 /*Fim do Main*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* Inicio css filmes*/
 
 
-
+input[type="text"]{
+    width: 500px;
+    padding: 12px 20px;
+    margin: 8px ;
+    justify-content: center;
+text-decoration: none;
+    border: none;
+  
+    border-radius: 40px;
+    
+}
+.centralizarSearch{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+    
+    width: 100%;
+}
+.movie{
+    width: 300px;
+}
+.movie img{
+    width: 100%;
+}
 
 
 
