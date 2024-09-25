@@ -21,6 +21,8 @@ p, li {
 header, .navbar {
     background-color: black;
     outline : 1px solid #950000;
+  
+
 
 }
 
@@ -215,7 +217,7 @@ header, .navbar {
 footer {
     background-color: black;
     bottom: 0;
-    position: fixed;
+    /*Tirei o position:Fixed*/
     width: 100%;
     text-align: center;
     justify-content: center;
@@ -886,7 +888,6 @@ input[type="text"]{
     justify-content: center;
 text-decoration: none;
     border: none;
-  
     border-radius: 40px;
     
 }
@@ -895,7 +896,6 @@ text-decoration: none;
     justify-content: center;
     align-items: center;
     text-align: center;
-    
     margin-right: -5%;
     width: 100%;
 }
@@ -915,6 +915,8 @@ position: relative;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    padding-bottom: 2rem; /* Adiciona espaço no final da página */
+    padding-top: 4rem; /* Adiciona espaço no topo da página */
 }
 
 
@@ -928,12 +930,15 @@ letter-spacing: 0.5px;
 }
 .movie-info h3{
     margin-top: 0;
+    white-space: nowrap; /* impede que o texto quebre em várias linhas */
+    overflow: hidden; /* esconde o texto que ultrapassa o contêiner */
+    text-overflow: ellipsis; /* adiciona reticências ao texto que ultrapassa o contêiner */
 }
 .movie-info span{
     padding: .25rem 0.5rem; /*altura e largura*/
     border-radius: 3px;
     font-weight: bold;
-    background-color: darkcyan;
+    background-color: darkcyan; /*cor da caixa da avaliação*/
 }
 .movie-info span.green{
     color:lightgreen

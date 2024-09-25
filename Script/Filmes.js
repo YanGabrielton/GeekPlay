@@ -2,8 +2,12 @@ const API_KEY= 'api_key=5e6bffe0291551af5a19b5bb46bc276a'; /*MEU CODIGO DA API M
 const BASE_URL= 'https://api.themoviedb.org/3';
 const API_URL= BASE_URL +'/discover/movie?include_adult=false&include_video=true&language=pt-br&page=1&sort_by=popularity.desc&'+API_KEY;
 const IMG_URL= 'https://image.tmdb.org/t/p/w500'
+const mainFilme = document.getElementById('mainFilme'); /*com isso estou pegando o id da Main do qual é ID="mainFilme"*/
 
+const searchURL= BASE_URL +'/search/movie?'+API_KEY; /*criando variavel para receber a url da documentação Search do MovieDB*/ 
 
+const form= document.getElementById('form');
+const search= document.getElementById('search');
 
 
 
@@ -32,11 +36,15 @@ function pegarFilmes(url){
 /*função para mostrar os filmes na tela*/
 
 function mostrarFilmes(data){
+
+
+  mainFilme.innerHTML='';
 data.forEach(movie=>{                               
   const{title,poster_path,vote_average,overview}=movie;
   const MovieEl = document.createElement('div');
   MovieEl.classList.add('movie');
-  MovieEl.innerHtml= `<img src="${IMG_URL+poster_path}" alt="${title}">
+  MovieEl.innerHTML= `
+  <img src="${IMG_URL+poster_path}" alt="${title}">
         
   <div class="movie-info">
       <h3>${title}</h3>
@@ -45,12 +53,38 @@ data.forEach(movie=>{
   <div class="descricao">
       <h3>Resumo</h3>
       ${overview};
-  </div>`
+  </div>
+  
+  `
+  mainFilme.appendChild(MovieEl);
 })
 
 }
+/*fazendo a parte da avalização para automaticamente mudar a cor de acordo com o rating*/ 
+function getColor(vote){
+  if(vote>=8){
+    return 'green';
+  }else if(vote>=5){
+    return 'orange';
+  
+  }else{
+    return'red';
+  }
+}
 
 
+
+form.addEventListener('submit', (pesquisa) =>{
+pesquisa.preventDefault();
+
+const searchTerm= search.value.trim();
+if(searchTerm){
+  pegarFilmes(searchURL+'&query='+searchTerm)  /** aqui vc coloca o searchURL para fazer a busca**/
+}else{
+   pegarFilmes(API_URL);              // location.reload(); /** caso não tenha uma pesquisa ele atualiza a pagina. porem vou usar outro comando**/
+}
+
+})
 
 
 
