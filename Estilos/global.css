@@ -728,6 +728,7 @@ letter-spacing: 0.5px;
     max-height:100% ;
     transform: translateY(101%) /*parte da transição, animação de aparecer oresumo,
     com isso o 101% faz ele desaparecer*/;
+    transition: transform 0.3s ease-in;
 
 }
 
