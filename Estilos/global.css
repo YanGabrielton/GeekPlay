@@ -315,8 +315,10 @@ footer {
 }
 .retangulo_Planos p {
     border: 2px solid rgb(255, 255, 255);
-    width: 150px;
-    height: 60px;
+    width: 256px;
+    height: 54px;
+    position: relative;
+    overflow: visible;
     margin: 15px;
     padding: 15px;
     position: relative;
@@ -330,8 +332,10 @@ footer {
 }
 .retangulo_teste p {
     border: 2px solid rgb(255, 255, 255);
-    width: 150px;
-    height: 60px;
+    width: 256px;
+    height: 54px;
+    position: relative;
+    overflow: visible;
     margin: 15px;
     padding: 15px;
     position: relative;
@@ -340,8 +344,8 @@ footer {
     text-align: center;
     color: #ff0000;
     font-family: "Podkova", serif;
-
     font-size: 22px;
+    font-weight: 700;
 
 }
 .retangulo_1 {
@@ -1256,7 +1260,6 @@ margin-top: 55px;
     width: 100%;
     max-width: 15000px;
     margin-top: 10px;
-    opacity: 0.2;
 }
 .Titulo_sobre_nos{
     font-family: "Kreon", serif;
@@ -1397,12 +1400,10 @@ o tranlateY(0)*/
 .movie:hover .descricao{
     transform: translateY(0);
 }
+ @media  (min-width: 700px) {
 
-@media screen and (max-width: 768px) {
-    
-    
+  }
 
-}
 
 
 
