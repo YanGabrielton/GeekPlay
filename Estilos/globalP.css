@@ -201,3 +201,10 @@ body{
         position: relative;
     }
 }
+
+.payWith{
+    background-image: url("../img/pay-with.png");
+    background-position: right;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
