@@ -246,29 +246,19 @@ footer {
     height: 100vh;
     padding: 0;;
 }
-.col-md-4_anime{
-    background-color: rgba(0, 0, 0, 0.6);
-    padding: 20px;
-    border-radius: 10px;
-    display:flex;
-    position: absolute;
-    width: 250px;
-    margin-left: 10%;
-    margin-top: -100px;
-
-}
 /*texto Animes,filmes e muito mais*/
 .Texto_Animes{
     color: #ffffff;
     text-align: left;
-    position:relative;
     font-family: "Literata-Bold", sans-serif;
-    font-size: 30px;
+    font-size: 40px;
     font-weight: 700;
     position: absolute;
-    top: 160px;
-    margin-left:-450px;
-    margin-top: -50px ;
+    top: 190px;
+    left: 30px;
+    margin-left: 40px;
+    margin-top: -90px;
+    display: flex;
 }
 /*texto de bem-vindo*/
 .Texto_bem-vindo{
@@ -280,7 +270,7 @@ footer {
     position: absolute;
     top: 190px;
     left: 30px;
-    margin-left:-460px;
+    margin-left: 40px;
     margin-top: -50px;
     display: flex;
 }
@@ -288,13 +278,15 @@ footer {
     color: #ffffff;
     text-align: left;
     font-family: "Literata-Bold", sans-serif;
-    font-size: 30px;
-    font-weight: 500;
+    font-size: 39px;
+    font-weight: 700;
     position: absolute;
-    height: 500px;
-    width: 450px;
-    margin-top: 220px;
-    margin-left:-450px;
+    top: 190px;
+    left: 30px;
+    margin-left: 40px;
+    margin-top: 10px;
+    display: flex;
+    width: 1000px;
 }
 .img_fundo{
     background-image: url('/img/Img\ Fundo\ index.png');
@@ -723,11 +715,11 @@ footer {
     position: absolute;
     top: 150px;
     left: 630px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    display:grid;
+    grid-template-columns: 100px 100px 125px 100px 100px;
+    gap: 10px;
     margin-top: 3200px;
-    margin-left: -190px;
+    margin-left: -290px;
 }
 .retan_1 {
     border: 2px solid #FF6B00;
@@ -839,7 +831,6 @@ footer {
     text-align: center;
     color: #ff0000;
     font-family: "Podkova", serif;
-
     font-size: 22px;
 
 }
@@ -877,13 +868,14 @@ footer {
     font-size: 30px;
     font-weight: 700;
     position: absolute;
+    
     top: 150px;
     left: 630px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    display:grid;
+    grid-template-columns: 100px 100px 125px 100px 100px;
+    gap: 10px;
     margin-top: 2400px;
-    margin-left: 400px;
+    margin-left: 300px;
 }
 
 .retan_1_anime {
@@ -1030,10 +1022,12 @@ footer {
     top: 150px;
     left: 630px;
     display:grid;
+    grid-template-columns: 100px 100px 125px 100px 100px;
+    gap: 10px;
     flex-direction: row;
     flex-wrap: wrap;
     margin-top: 1600px;
-    margin-left: -190px;
+    margin-left: -300px;
 }
 
 .retan_1_filme{
@@ -1173,10 +1167,6 @@ footer {
     font-family: "Podkova", serif;
     font-size: 22px;
 }
-
-
-
-
 /*diferenciais*/
 .Diferenciais{
 color:#fff;
@@ -1184,38 +1174,57 @@ margin-top: 55px;
 }
 .Titulos_SERVIÇOS{
     font-family: "Kreon", serif;
-    color:#950000;
+    color:#ffffff;
+    font-size: 32px;
 }
 .retangulo_diferencial_1{
     color:#fff;
     font-size: 20px;
     font-family: "Kreon", serif;
+    
 }
 .Retangulo_diferencial_1{
-border: 2px solid #950000;
-width: 300px;
-height: 300px;
-background-color: black;
-margin-left: 50px;
+    background: linear-gradient(
+        196.86deg,
+        rgba(27, 16, 16, 1) 0%,
+        rgba(255, 0, 0, 1) 69.95564103126526%,
+        rgba(79, 34, 34, 1) 85.1681113243103%,
+        rgb(0, 0, 0) 100%
+      );
+      width: 256px;
+      height: 347px;
+      position: relative;
+      margin-bottom: 15px;
+      left: 50px;
 }
 .Titulos_DOWNLOADS_OFFLINE{
     font-family: "Kreon", serif;
-    color:#950000;
+    color:#ffffff;
+    font-size: 32px;
 }
 .retangulo_diferencial_2{
     color:#fff;
-    font-size: 19px;
+    font-size: 15px;
     font-family: "Kreon", serif;
 }
 .Retangulo_diferencial_2{
-    border: 2px solid #950000;
-    width: 300px;
-    height: 300px;
-    background-color: black;
+    background: linear-gradient(
+        196.86deg,
+        rgba(27, 16, 16, 1) 0%,
+        rgba(255, 0, 0, 1) 69.95564103126526%,
+        rgba(79, 34, 34, 1) 85.1681113243103%,
+        rgb(0, 0, 0) 100%
+      );
+      width: 256px;
+      height: 347px;
+      position: relative;
+      margin-bottom: 15px;
+      left: 70px;
 }
 .Titulos_MANGAS{
     font-family: "Kreon", serif;
-    color:#950000;
+    color:#ffffff;
+    font-size: 32px;
 }
 .retangulo_diferencial_3{
     color:#fff;
@@ -1223,25 +1232,43 @@ margin-left: 50px;
     font-family: "Kreon", serif;
 }
 .Retangulo_diferencial_3{
-    border: 2px solid #950000;
-    width: 300px;
-    height: 300px;
-    background-color: black;
+    background: linear-gradient(
+        196.86deg,
+        rgba(27, 16, 16, 1) 0%,
+        rgba(255, 0, 0, 1) 69.95564103126526%,
+        rgba(79, 34, 34, 1) 85.1681113243103%,
+        rgb(0, 0, 0) 100%
+      );
+      width: 256px;
+      height: 347px;
+      position: relative;
+      margin-bottom: 15px;
+      left: 90px;
 }
 .Titulos_STREAMING_EM_4K{
     font-family: "Kreon", serif;
-    color:#950000;
+    color:#ffffff;
+    font-size: 32px;
 }
 .retangulo_diferencial_4{
     color:#fff;
     font-size: 18px;
     font-family: "Kreon", serif;
+    gap: 10px;
 }
 .Retangulo_diferencial_4{
-    border: 2px solid #950000;
-    width: 300px;
-    height: 300px;
-    background-color: black;
+    background: linear-gradient(
+        196.86deg,
+        rgba(27, 16, 16, 1) 0%,
+        rgba(255, 0, 0, 1) 69.95564103126526%,
+        rgba(79, 34, 34, 1) 85.1681113243103%,
+        rgb(0, 0, 0) 100%
+      );
+      width: 256px;
+      height: 347px;
+      position: relative;
+      margin-bottom: 15px;
+      left: 110px;
     
 }
 
@@ -1264,14 +1291,27 @@ margin-left: 50px;
     color:#ffffff;
     font-size: 35px;
     
+    
 }
 .Sobre{
     color: #950000;
     font-family: "Kreon", serif;
+    margin-bottom: 25px;
+    margin-top: 25px;
 }
 .Redes{
     color: #ffffff;
     font-family: "Kreon", serif;
+    
+}
+.insta{
+    margin:0 10px;
+}
+.git{
+    margin:0 10px;
+}
+.discord{
+    margin:0 10px;
 }
 /*Fim do Main*/
 
@@ -1382,6 +1422,11 @@ o tranlateY(0)*/
     transform: translateY(0);
 }
 
+@media screen and (max-width: 768px) {
+    
+    
+
+}
 
 
 
