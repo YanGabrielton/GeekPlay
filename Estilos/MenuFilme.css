@@ -1,5 +1,6 @@
 *{
     box-sizing: border-box;
+    
 }
 body{
     margin: 0;
@@ -27,4 +28,35 @@ header nav a {
     border-radius: 5px;
     transition: background-color 0.3s;
 }
-
+.footerFilmes {
+    background-color: black;
+    bottom: 0;
+   
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    padding: 30px;
+    outline : 1px solid #950000;
+}
+.rodapeFilmes {
+    color: rgb(255, 255, 255);
+    
+    font-size: 10px;
+    
+}
+footer {
+    background-color: black;
+    bottom: 0;
+   
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    padding: 30px;
+    outline : 1px solid #950000;
+}
+.rodapeFilmes {
+    color: rgb(255, 255, 255);
+    
+    font-size: 10px;
+    
+}
