@@ -215,8 +215,7 @@ header, .navbar {
 
 footer {
     background-color: black;
-    bottom: 0;
-    position: fixed;
+    bottom: 0; 
     width: 100%;
     text-align: center;
     justify-content: center;
@@ -239,14 +238,6 @@ footer {
 
 /*Inicio do Main*/
 
-#container{
-    background-image: url('/img/Anime\ index\ 1.png');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    height: 100vh;
-    padding: 0;;
-}
 /*texto Animes,filmes e muito mais*/
 .Texto_Animes{
     color: #ffffff;
@@ -1400,10 +1391,6 @@ o tranlateY(0)*/
 .movie:hover .descricao{
     transform: translateY(0);
 }
- @media  (min-width: 700px) {
-
-  }
-
 
 
 
