@@ -10,3 +10,6 @@ https://www.workana.com/en/job/site-de-filmes-online-com-api-totalmente-automati
 
 netacad.com site cursos
 
+
+
+https://www.youtube.com/watch?v=hd2B7XQAFls react curso
