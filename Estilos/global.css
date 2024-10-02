@@ -281,7 +281,7 @@ footer {
     width: 1000px;
 }
 .img_fundo{
-    background-image: url('/img/Img\ Fundo\ index.png');
+    background-image: url('../img/Img\ Fundo\ index.png');
     background-repeat: no-repeat;
     background-attachment: scroll;
     background-size: cover;
