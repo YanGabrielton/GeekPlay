@@ -247,7 +247,7 @@ footer {
     top: 50px;
     width: 100%;
     height: 600px;
-    left: 2px;
+    left: 45px;
 
 }
 .Capa_one_pirce {
@@ -258,7 +258,7 @@ footer {
     top: 550px;
     width: 100%;
     height: 100%;
-    left: 50px;
+    left: 90px;
 }
 .titulo_one_pirce{
     color: #ffffff;
@@ -277,11 +277,12 @@ footer {
 .Divisao{
     background: #d9d9d9;
     height: 50px;
-    width: 3600px;
+    width: 4500px;
     position: absolute;
     top: 950px;
-    left: 0px;
+    left: 45px;
 }
+/* Inicio Mangas */
 .Manga_one_pirce_1{
     background-image: url('../img/mangas/one\ piece\ manga\ 1.png');
     background-repeat: no-repeat;
