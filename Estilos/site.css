@@ -543,3 +543,435 @@ header, .navbar {
     filter: brightness(55%);
 }
 
+
+.container-profile-screen {
+    display: flex;
+    flex-direction: column; /* Mantenha como coluna para telas pequenas */  
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding-top: 20px; /* Espaçamento superior para o título */
+}
+
+#quero-assistir-txt {
+    color: #FFF;
+    font-family: Roboto;
+    font-size: 35px;
+    font-style: italic;
+    font-weight: 700;
+    line-height: normal;
+    
+  
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-align: left; /* Centraliza o texto */
+    margin-right: 500px; 
+}
+
+#ultimas-noticias-txt{
+    color: #FFF;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin-right: 350px; 
+    text-align: left;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+}
+
+.content-container {
+    display: flex; 
+    flex-direction: row; /* Coloca as seções em linha */
+    width: 100%;
+    justify-content: space-between; /* Centraliza as seções */
+    flex-wrap: wrap;
+    border: #FFF solid 1px;
+
+}
+
+
+
+
+
+
+
+
+ .news-right-screen {
+    width: 50%; /* Cada seção ocupa metade da largura */
+    
+    height: auto;
+    border: #fff solid 1px;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+}
+
+.choose-left-screen {
+    width: 50%;
+    height: auto;
+    border: #fff solid 1px;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+}
+
+
+
+.left-section-slider-choose {
+    width: 100%;
+    height: 588px;
+
+}
+
+.choose-left-screen img {
+    width: 100%;
+    height: 588px;
+    
+    margin-top: 30px;
+    object-fit: cover;
+    margin: 0 105px;
+
+  
+}
+
+/* img slider services */
+ 
+.item-service img {
+    filter: brightness(85%);
+}
+
+
+
+
+
+
+.right-profile-screen {
+    width: 100%;
+
+}
+
+
+/* slider choose */
+
+.slider-choose {
+    width: 100%;
+    height: 588px;
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.list-choose {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    display: flex;
+    width: max-content;
+    transition: 1s;
+    display: flex;
+    transition: left 1.0s;
+    
+}
+
+.list-choose img {
+        overflow: hidden;
+        width: 100%; /* Alterado de 588px para 100% */
+        height: 100%;
+        object-fit: cover; /* Isso deve ajudar a manter a proporção da imagem */
+        
+}
+
+.buttons-choose {
+    position: absolute;
+    top: 45%;
+    left: 5%;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+  
+}
+
+.buttons-choose button:hover {
+    background-color: rgb(192, 192, 192);
+}
+
+
+.buttons-choose button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: transparent;
+    color: rgb(255, 255, 255);
+    border: none;
+    font-family: monospace;
+    font-weight: bold;
+
+}
+
+.dots {
+    position: absolute;
+    bottom: 10px;
+    color: white;
+    left: 0;
+    width: 100%;
+
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.slider-news .dots li {
+    width: 25px; 
+    height: 25px;
+    background-color: gray; 
+    border-radius: 50%; 
+    display: inline-block;
+    margin: 0 5px;
+    transition: transform 0.3s, background-color 0.3s; 
+}
+
+.slider-news .dots li.active {
+    background-color: rgb(255, 0, 0); 
+    transform: scale(1.2); 
+}
+.item-service {
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+ 
+    }
+
+
+.btn-choose-anime {
+    position: absolute; 
+    bottom: 10px; 
+    left: 60%; 
+    top: 90%;
+    
+    width: 170px;
+    height: 40px;
+    flex-shrink: 0;
+
+    border: 2px solid #FA0000;
+    background-color: transparent;
+    color: #FA0000;
+    
+    cursor: pointer;
+    z-index: 10;    
+    text-align: center;
+    font-family: fantasy;
+}
+
+
+.btn-choose-anime:hover {
+    background-color: #FF0000;
+    color: white;
+}
+
+
+/*container news text */
+
+.list-news{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    width: max-content;
+    transition: 1s;
+    display: flex;
+    transition: left 1.0s;
+}
+
+
+.slider-news {
+    width: 100%;
+    height: 596px;
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.item-news {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.item-news img {
+    width: 100%; 
+    height: 100%;
+    filter: brightness(75%);
+    object-fit: cover;
+    transition: 0.3s;
+
+    
+}
+
+
+
+.text-news{
+    font-size: 1.0rem;
+    text-align: center;
+    margin-top: 20px;
+    font-weight: normal;
+    text-decoration: none;
+    filter: brightness(75%);
+    transition: 0.3s;
+    color: white;
+    
+}
+
+
+.title-news {
+    font-size: 1.55rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.item-news {
+
+    position: relative; 
+    overflow: hidden; 
+    height: 100%;
+}
+
+.container-news-text {
+    position: absolute; /* Posiciona sobre a imagem */
+    bottom: 20px; 
+    left: 23%; 
+    top: 20%;
+    transform: translateX(-50%); /* Ajusta para centralizar */
+    width: 239px;
+    height: 309px;
+    color: white;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background: rgba(217, 217, 217, 0.10);
+
+
+
+    padding: 10px; /* Espaçamento interno */
+    border-radius: 5px; /* Bordas arredondadas */
+    text-align: center; /* Centraliza o texto */
+}
+
+
+
+ #new-news {
+    filter: brightness(55%);
+
+ }
+
+
+/* Minha lista*/
+
+.main-title-mylist {
+    display: flex;
+    color: #ff0000;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.pipe-mylist::after{
+    content: 'Minha Lista'; 
+    color: rgb(255, 255, 255);
+    margin: 0px;
+}
+
+.pipe-myanime{
+    margin: 0px 15px 0px 15px;
+    display: flex;
+    color: #ff0000;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.pipe-myanime::after{
+    
+    content: 'Animes Favoritos'; 
+    color: rgb(255, 255, 255);
+    margin: 0 5px;
+}
+
+#card-title-favorite {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.options-favorite {
+    display: flex;
+   
+    
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    justify-content: space-between;
+
+  
+}
+
+#card-text-favorite-anime {
+
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+#card-text-favorite-manga{
+    margin-left: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+
+}
+
+#card-text-favorite-manga:hover {
+    color: rgb(255, 0, 0);
+    cursor: pointer;
+    text-transform: underline;
+}
+
+#card-text-favorite-anime:hover {
+    color: rgb(255, 0, 0);
+    cursor: pointer;
+    text-transform: underline;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
