@@ -3,6 +3,12 @@ body {
     font-family: 'Roboto', sans-serif;
     overflow-x: hidden;
     background-color: black;
+    width: 100%;
+    min-height: 100vh;
+    background: url('../img/Space.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+    
 }
 
 .row {
@@ -110,29 +116,6 @@ header, .navbar {
     border-color: rgb(255, 255, 255);
 }
 
-.carousel-indicators {
-    text-decoration: none;
-}
-
-.carousel-indicators .active {
-    background-color: #f96565;
-}
-
-#imgbleach {
-    filter: brightness(70%);
-}
-
-#imgjujutsu {
-    filter: brightness(60%);
-}
-
-#imgkimetsu {
-    filter: brightness(50%);
-}
-
-#imgonepiece {
-    filter: brightness(70%);
-}
 
 /* about, slider */
 #mainSlider #japanese-title {
@@ -197,7 +180,7 @@ footer {
     width: 100%;
     text-align: center;
     justify-content: center;
-    padding: 30px;
+    padding: 5px;
     outline: 1px solid #950000;
     display: flex;
     flex-direction: column;

@@ -238,8 +238,8 @@ header, .navbar {
 }
  
 .card {
-    background-color: rgba(0, 0, 0, 0.8);
-    color: white;
+    background-color: rgb(255, 255, 255);
+    color: rgb(253, 253, 253);
     padding: 20px;
     display: flex;
     
@@ -252,7 +252,7 @@ header, .navbar {
 }
 
 .btn-primary {
-    background-color: #C80000;
+    background-color: #a30000;
     border: #C80000;
 }
 
@@ -860,7 +860,7 @@ header, .navbar {
     height: 309px;
     color: white;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    background: rgba(217, 217, 217, 0.10);
+    background: rgba(219, 212, 212, 0.1);
 
 
 
@@ -959,19 +959,10 @@ header, .navbar {
     text-transform: underline;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.my-3 {
+    margin-left: 760px;
+}
+.btn-primeiro{
+    margin-left: 840px;
+    
+}

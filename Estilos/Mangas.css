@@ -18,7 +18,39 @@ p, li {
 }
 
 /* Barra de nav */
+.search {
+    position: relative;
+    width: 400px;
+    height: 2.5rem;
+    right: -600px;
+}
 
+.search input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    color: #720404;
+    background: transparent;
+    border: 1 solid rgba(177, 2, 2, 0.575);
+    outline: none;
+    border-radius: 0.25rem;
+    padding: 0 0.625rem 0 2.8125rem !important;
+    backdrop-filter: blur(0.625rem);
+}
+.search input::placeholder {
+    color: #fff;
+}
+
+.search i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0.625rem;
+    padding-right: 0.625rem;
+    color: #fff;
+}
 header, .navbar {
     background-color: black;
     outline : 1px solid #950000;
@@ -31,7 +63,7 @@ header, .navbar {
 }
 
 #logo {
-    width: 125px;
+    width: 165px;
 }
 
 .navbar-brand {
@@ -62,6 +94,53 @@ header, .navbar {
 .navbar-expand-lg .navbar-nav .nav-link {
     padding: 1rem .8rem;
     }
+
+    
+/* Cards apresentação ANIMES */
+
+.container-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 30px;
+
+    
+}
+ 
+.card {
+    background-color: rgb(245, 243, 243);
+    color: rgb(253, 253, 253);
+    padding: 20px;
+    display: flex;
+    
+}
+
+.card-body {
+    flex-grow: 1;
+    padding-left: 20px;
+
+}
+
+.btn-primary {
+    background-color: #a30000;
+    border: #C80000;
+}
+
+.btn-primary:hover {
+    background-color: transparent;
+    color: red;
+    border: red 1 solid;
+    transition:.5s;
+    text-decoration: none;
+   
+
+}
+
+.container-card .btn-primary{
+    border: #fff 1 solid;
+
+
+}
 
 
 /* slider */
@@ -236,183 +315,10 @@ footer {
 }
 /*Fim do footer*/
 
-/* Inicio main */
-
-.fundo_one_pirce {
-    background-image: url('../img/mangas/fundo\ one\ piece\ manga.png');
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-    background-size: cover;
-    position: absolute;
-    top: 50px;
-    width: 100%;
-    height: 600px;
-    left: 45px;
-
+.my-3 {
+    margin-left: 760px;
 }
-.Capa_one_pirce {
-    background-image: url('../img/mangas/capa\ one\ piece\ manga.png');
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-    position: absolute;
-    top: 550px;
-    width: 100%;
-    height: 100%;
-    left: 90px;
-}
-.titulo_one_pirce{
-    color: #ffffff;
-  text-align: left;
-  font-family: "Inter-Black", sans-serif;
-  top: 50px;
-}
-.Titulo_One{
-    color: #ffffff;
-  text-align: left;
-  font-family: "Inter-Black", sans-serif;
-  font-size: 35px;
-  font-weight: 900;
-  top: 50px;
-}
-.Divisao{
-    background: #d9d9d9;
-    height: 50px;
-    width: 4500px;
-    position: absolute;
-    top: 950px;
-    left: 45px;
-}
-/* Inicio Mangas */
-.Manga_one_pirce_1{
-    background-image: url('../img/mangas/one\ piece\ manga\ 1.png');
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-    background-size:contain;
-    position: absolute;
-    top: 1100px;
-    width: 300px;
-    height: 300px;
-    left: 150px;
-}
-.Manga_one_pirce_2{
-    background-image: url('../img/mangas/one\ piece\ manga\ 2.png ');
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-    background-size:contain;
-    position: absolute;
-    top: 1100px;
-    width: 300px;
-    height: 300px;
-    left: 450px;
-}
-.Manga_one_pirce_3{
-    background-image: url('../img/mangas/one\ piece\ manga\ 3.png');
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-    background-size: contain;
-    position: absolute;
-    top: 1100px;
-    width: 300px;
-    height: 300px;
-    left: 800px;
-}
-.Manga_one_pirce_4{
-    background-image: url('../img/mangas/one\ piece\ manga\ 4.png');
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-    background-size: contain;
-    position: absolute;
-    top: 1100px;
-    width: 300px;
-    height: 300px;
-    left: 1200px;
-}
-.Manga_one_pirce_5{
-    background-image: url('../img/mangas/one\ piece\ manga\ 5.png');
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-    background-size: contain;
-    position: absolute;
-    top: 1100px;
-    width: 300px;
-    height: 300px;
-    left: 1600px;
-}
-.Manga_one_pirce_6{
-    background-image: url('../img/mangas/one\ piece\ manga\ 6.png');
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-    background-size: contain;
-    position: absolute;
-    top: 1300px;
-    width: 300px;
-    height: 300px;
-    left: 2000px;
-}
-.Manga_one_pirce_7{
-    background-image: url('../img/mangas/one\ piece\ manga\ 7.png');
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-    background-size: contain;
-    position: absolute;
-    top: 1100px;
-    width: 300px;
-    height: 300px;
-    left: 2400px;
-
-}
-.Manga_one_pirce_8{
-    background-image: url('../img/mangas/one\ piece\ manga\ 8.png');
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-    background-size: contain;
-    position: absolute;
-    top: 1100px;
-    width: 300px;
-    height: 300px;
-    left: 2800px;
-}
-.Manga_one_pirce_9{
-    background-image: url('../img/mangas/one\ piece\ manga\ 9.png');
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-    background-size: contain;
-    position: absolute;
-    top: 1100px;
-    width: 300px;
-    height: 300px;
-    left: 3200px;
-}
-.Manga_one_pirce_10{
-    background-image: url('../img/mangas/one\ piece\ manga\ 10.png');
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-    background-size: contain;
-    position: absolute;
-    top: 1100px;
-    width: 300px;
-    height: 300px;
-    left: 3600px;
-}
-.Manga_one_pirce_11{
-    background-image: url('../img/mangas/one\ piece\ manga\ 11.png');
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-    background-size: contain;
-    position: absolute;
-    top: 1100px;
-    width: 300px;
-    height: 300px;
-    left: 4000px;
-}
-.Manga_one_pirce_12{
-    background-image: url('../img/mangas/one\ piece\ manga\ 12.png');
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-    background-size: contain;
-    position: absolute;
-    top: 1300px;
-    width: 300px;
-    height: 300px;
-    left: 4400px;
+.btn-primeiro{
+    margin-left: 840px;
+    
 }

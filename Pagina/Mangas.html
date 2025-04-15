@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="./Estilos/global.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../Estilos/globalP.css">    
     <script src="../Script/menuMobile.js" defer></script>
+    <script src="https://kit.fontawesome.com/6b1738a4a2.js" crossorigin="anonymous"></script>
     
  <!--Google Fonts-->
  <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -48,12 +48,17 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
+                <div class="input-group mb-3">
+                    <input type="text" id="barraPesquisa" class="form-control" placeholder="Buscar mangá...">
+                    <button class="btn btn-outline-secondary" id="btnBuscar" type="button">Buscar</button>
+                  </div>
+                  
+
             <div class="collapse navbar-collapse justify-content-end" id="navbar-links">
                 <div class="navbar-nav">
                     <a href="../index.html" class="nav-item nav-link" id="home-menu">Home</a>
                     <a href="../Pagina/Animeindex.html" class="nav-item nav-link" id="anime-menu">Animes</a>
-                    <a href="../Pagina/planos.html" class="nav-item nav-link" id="services-menu">Serviços</a>
-                    <a href="#" class="nav-item nav-link" id="contact-menu">Contato</a>
+                    <a href="../Pagina/sobre.html" class="nav-item nav-link" id="services-menu">Sobre</a>
                     <a href="../Pagina/Filmes.html" class="nav-item nav-link" id="contact-menu">Filme</a>
                     <a href="../Pagina/Login.html" class="nav-item nav-link" id="contact-menu">Manga</a>
                     <a href="../Pagina/Login.html" class="nav-item nav-link" id="contact-menu">Login</a>
@@ -62,34 +67,155 @@
         </nav>
     </div>
 </header>
+<!--Carrossel main-->
+
+
+
 <main>
-<div class="container">
+    <div class="container-fluid">
+        <div id="mainSlider" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-bs-target="#mainSlider" data-bs-slide-to="0" class="active"></li>
+                <li data-bs-target="#mainSlider" data-bs-slide-to="1" ></li>
+                <li data-bs-target="#mainSlider" data-bs-slide-to="2"></li>
+                <li data-bs-target="#mainSlider" data-bs-slide-to="3"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img id="imgjujutsu" src="../img/telas de fundo carosel/Sung Jin-Woo.jpg" class="d-block w-100" alt="JUJUTSU KAISEN">
+                    <div class="carousel-caption d-none d-md-block">   
+                        <h3 id="japanese-title">呪術廻戦</h3>
+                        <h2 id="title-anime">TOP 1 MANHWA</h2>
+                        <h3 id="type-streaming">SOLO LEVELING</h3>
+                        <h3 id="type-streaming">MANHWA</h3>
+                        
+                      
+                    </div> 
+                </div>
+
+                <div class="carousel-item">
+                    <img id="imgbleach" src="../img/telas de fundo carosel//baixados (10).jpg" class="d-block w-100" alt="BLEACH">
+                    <div class="carousel-caption d-none d-md-block">   
+                        <h3 id="japanese-title">ブリーチ</h3>
+                        <h2 id="title-anime">TOP 2 MANHWA</h2>
+                        <h3 id="type-streaming">THE BEGINNG AFTHER THE END</h3>
+                        <h3 id="type-streaming">MANHWA</h3>
+                       
+
+                    </div> 
+                </div>
+
+                <div class="carousel-item">
+                    <img id="imgonepiece" src="../img/telas de fundo carosel/20250107-solo-leveling-ragnarok-ovicio.webp " class="d-block w-100" alt="ONE PIECE">
+                    <div class="carousel-caption d-none d-md-block">   
+                        <h3 id="japanese-title">ワンピース</h3>
+                        <h2 id="title-anime">TOP 3 MANHWA</h2>
+                        <h3 id="type-streaming">SOLO LEVELING RAGNAROK</h3>
+                        <h3 id="type-streaming">MANHWA</h3>
+                        
+                    </div> 
+                </div>
+                <div class="carousel-item">
+                    <img id="imgkimetsu" src="../img/telas de fundo carosel/멸망 이후의 세계 _ The World After the Fall.jpg" class="d-block w-100" alt="KIMETSU NO YAIBA">
+                    <div class="carousel-caption d-none d-md-block">   
+                        <h3 id="japanese-title">鬼滅の刃</h3>
+                        <h2 id="title-anime">TOP 4 MANHWA</h2>
+                        <h3 id="type-streaming">THE WORLD AFTHER THE FALL</h3>
+                        <h3 id="type-streaming">MANHWA</h3>
+                 
+                    </div> 
+                </div>
+                
+        </div>
+
+
+        <!--Início - Anterior e próximo slide-->
+        <a class="carousel-control-prev" role="button" data-bs-slide="prev" data-bs-target="#mainSlider">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+        </a>
+          <a class="carousel-control-next"  role="button" data-bs-slide="next" data-bs-target="#mainSlider">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Próximo</span>
+          </a>
+
+</div>
+<!--Border para separar-->
+<div class="border-title"></div>
+
+<!--Início-->
+<div class="main-title-toppage">
+    <h1 class="pipe">| </h1>
+ </div>
+
+
+
+
+<!--Select / carrossel / apresentação de streamings (ANIMES)-->
+
+<div class="container-fluid">
+<div class="row">
+    <div class="container-card">
+        <div class="row">
+            <div class="row" id="manga-cards-container">
+            <div class="col-sm-12 col-md-6 col-lg-3">
+                <div class="card">
+                    <img src="../img/cartaz manhwa/95aca51e-949f-4e60-a81f-2dd3f63250ff.jpg" class="card-img-top" alt="KIMETSU NO YAIBA">
+                    <div class="card-body">
+                        <h5 class="card-title">THE WORLD AFTHER THE FALL</h5>
+                        <p class="card-text">MANHWA</p>
+                        <a href="#" class="btn btn-primary">Ler</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<div>
+
+<!--Border para separar-->
+<div class="border-title"></div>
+
+
+<!---Recomendation Title-->
+
+<div class="main-title-toppage">
+    <h1 class="piperecommend">| </h1>
+</div>
+
+<!-- Filtro e Paginação -->
+ 
+<div class="Container-botoes">
+    
+   
+    <!-- Controles de página numérica -->
+    <div id="pagination" class="my-3"></div>
+    <div class="Botoes">
+        <button id="btnAnterior" class="btn-primeiro">Anterior</button>
+        <button id="btnProxima" class="btn-segunto">Próxima</button>
+      </div>
+      
+  
+</div>
+  
+  <!-- Loader -->
+  <div id="loader" class="text-center my-4" style="display: none;">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Carregando...</span>
+    </div>
+  </div>
+  
+  <!-- Container dos cards -->
+  <div class="container-fluid">
     <div class="row">
-        <div class="col-md-4_manga">
-            <!-- imagens -->
-        <div class="fundo_one_pirce"><img></div>
-        <div class="Capa_one_pirce"><img></div>
-</div>
-<!-- textos -->
-<div class="titulo_one_pirce">
-    <h1 calss="Titulo_One">One Pirce</h1>
-</div>
-<div class="Divisao"></div>
-<div class="Manga_one_pirce_1"><img></div>
-<div class="Manga_one_pirce_2"><img></div>
-<div class="Manga_one_pirce_3"><img></div>
-<div class="Manga_one_pirce_4"><img></div>
-<div class="Manga_one_pirce_5"><img></div>
-<div class="Manga_one_pirce_6"><img></div>
-<div class="Manga_one_pirce_7"><img></div>
-<div class="Manga_one_pirce_8"><img></div>
-<div class="Manga_one_pirce_9"><img></div>
-<div class="Manga_one_pirce_10"><img></div>
-<div class="Manga_one_pirce_11"><img></div>
-<div class="Manga_one_pirce_12"><img></div>
+      <div class="container-card">
+        <div class="row" id="manga-cards-container">
+          <!-- Cards aparecerão aqui -->
+        </div>
+      </div>
+    </div>
+  </div>
+ 
 
-
-</main>
+<script src="../Script/Manga.js" defer></script>
 
 </body>
 </html>
