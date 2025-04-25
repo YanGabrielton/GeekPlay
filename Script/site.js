@@ -1,22 +1,114 @@
-// ---------------- VARIÁVEIS GLOBAIS ----------------
+let list = document.querySelector('.slider-choose .list-choose');
+let items = list.querySelectorAll('.slider-choose .list-choose .item-service')
+let dots = document.querySelectorAll('.slider-choose .dots li');
+let prev = document.getElementById('prev');
+let next = document.getElementById('next');
 
-// Variável que controla a página atual
+let active = 0;
+let lengthItems = items.length - 1;
+
+/*ITEM NEWS */
+
+
+
+
+next.onclick = function(){
+    
+    if(active + 1 > lengthItems){
+        active = 0;
+    }else {
+        active = active + 1;    
+    }
+
+
+
+    reloadSlider();
+
+}
+
+prev.onclick = function(){
+    if(active - 1 < 0){
+        active = lengthItems;
+    }else
+    {
+        active = active - 1;
+    }
+ 
+    reloadSlider();
+
+}
+
+
+
+
+function reloadSlider() {
+    let checkLeft = items[active].offsetLeft;
+    list.style.left = -checkLeft + 'px';
+
+
+
+    let lastActiveDot = document.querySelector('.slider-choose .dots li.active');
+    lastActiveDot.classList.remove('active');
+
+    dots[active].classList.add('active');
+
+}
+
+dots.forEach((li, key) => {
+    li.addEventListener('click', function() {
+        active = key;
+        reloadSlider();
+    });
+});
+
+
+/* Carrosel news */
+
+// Carrossel 2
+
+let listNews = document.querySelector('.slider-news .list-news');
+let itemNews = listNews.querySelectorAll('.item-news');
+let dotsNews = document.querySelectorAll('.slider-news .dots li');
+let prevNews = document.getElementById('prev-news');
+let nextNews = document.getElementById('next-news');
+
+let activeNews = 0;
+
+nextNews.onclick = function() {
+    activeNews = (activeNews + 1) % itemNews.length; // Looping para o início
+    reloadNewsSlider();
+}
+
+prevNews.onclick = function() {
+    activeNews = (activeNews - 1 + itemNews.length) % itemNews.length // Looping para o fim
+    reloadNewsSlider();
+}
+
+function reloadNewsSlider() {
+    let checkLeft = itemNews[activeNews].offsetLeft;
+    listNews.style.left = -checkLeft + 'px';
+
+    let lastActiveDotNews = document.querySelector('.slider-news .dots li.active');
+    if (lastActiveDotNews) {
+        lastActiveDotNews.classList.remove('active');
+    }
+
+    dotsNews[activeNews].classList.add('active');
+}
+
+dotsNews.forEach((li, key) => {
+    li.addEventListener('click', function() {
+        activeNews = key;
+        reloadNewsSlider();
+    });
+});
+
 let paginaAtual = 1;
-
-// Variável que armazena o filtro de tipo selecionado (ex: "tv", "movie", etc.)
-let tipoFiltro = "";
-
-// Variável para armazenar o termo de busca digitado na barra de pesquisa
+let tipoFiltro = ""; // Ex: 'TV', 'Movie', etc.
 let termoBusca = "";
 
-/**
- * Função principal para buscar e exibir os animes da API Jikan.
- * Esta função monta a URL com base na página, filtro e termo de busca,
- * realiza a requisição, renderiza os cards e atualiza a navegação numérica.
- * @param {number} pagina - Página atual a ser exibida.
- * @param {string} tipo - Filtro para tipo de anime (ex: "tv", "movie").
- * @param {string} busca - Termo de busca para filtrar os títulos.
- */
+// ---------------- FUNÇÃO PRINCIPAL ----------------
+
 async function fetchAnimes(pagina = 1, tipo = "", busca = "") {
   try {
     const container = document.getElementById('anime-cards-container');
@@ -27,14 +119,12 @@ async function fetchAnimes(pagina = 1, tipo = "", busca = "") {
     container.innerHTML = '';
 
     let url = `https://api.jikan.moe/v4/anime?page=${pagina}`;
-
     if (busca) {
       url += `&q=${encodeURIComponent(busca)}`;
     }
 
     const response = await fetch(url);
     if (!response.ok) throw new Error('Erro ao buscar dados da API');
-
     const data = await response.json();
 
     const paginationInfo = data.pagination;
@@ -71,9 +161,9 @@ async function fetchAnimes(pagina = 1, tipo = "", busca = "") {
               <div>
                 <h5 class="card-title">${anime.title}</h5>
                 <p class="card-text">${anime.type || 'Anime'}</p>
-                <p class="card-text"><strong>Nota:</strong> ${anime.score || 'N/A'}</p>
+                <p class="card-text"><strong>Nota:</strong> ${anime.score ?? 'N/A'}</p>
               </div>
-              <a href="${anime.url}" target="_blank" class="btn btn-primary mt-2">Ver mais</a>
+              <a href="${anime.url}" target="_blank" class="btn btn-primary mt-2">Assistir</a>
             </div>
           </div>
         `;
@@ -90,27 +180,19 @@ async function fetchAnimes(pagina = 1, tipo = "", busca = "") {
   }
 }
 
+// ---------------- PAGINAÇÃO ----------------
+
 function updatePagination(totalPages, hasNextPage) {
   const paginationContainer = document.getElementById('pagination');
   paginationContainer.innerHTML = '';
 
   const btnAnterior = document.getElementById('btnAnterior');
-  if (paginaAtual <= 1) {
-    btnAnterior.style.opacity = '0.5';
-    btnAnterior.style.pointerEvents = 'none';
-  } else {
-    btnAnterior.style.opacity = '1';
-    btnAnterior.style.pointerEvents = 'auto';
-  }
+  btnAnterior.style.opacity = paginaAtual <= 1 ? '0.5' : '1';
+  btnAnterior.style.pointerEvents = paginaAtual <= 1 ? 'none' : 'auto';
 
   const btnProxima = document.getElementById('btnProxima');
-  if (!hasNextPage) {
-    btnProxima.style.opacity = '0.5';
-    btnProxima.style.pointerEvents = 'none';
-  } else {
-    btnProxima.style.opacity = '1';
-    btnProxima.style.pointerEvents = 'auto';
-  }
+  btnProxima.style.opacity = hasNextPage ? '1' : '0.5';
+  btnProxima.style.pointerEvents = hasNextPage ? 'auto' : 'none';
 
   if (paginaAtual !== 1) {
     const btnPrimeira = document.createElement('button');
@@ -133,7 +215,6 @@ function updatePagination(totalPages, hasNextPage) {
   const maxButtons = 5;
   let startPage = Math.max(paginaAtual - Math.floor(maxButtons / 2), 2);
   let endPage = startPage + maxButtons - 1;
-
   if (endPage >= totalPages) {
     endPage = totalPages - 1;
     startPage = Math.max(endPage - maxButtons + 1, 2);
@@ -143,9 +224,7 @@ function updatePagination(totalPages, hasNextPage) {
     const btnPage = document.createElement('button');
     btnPage.className = 'btn btn-light mx-1';
     btnPage.textContent = i;
-    if (i === paginaAtual) {
-      btnPage.classList.add('active');
-    }
+    if (i === paginaAtual) btnPage.classList.add('active');
     btnPage.addEventListener('click', () => {
       paginaAtual = i;
       fetchAnimes(paginaAtual, tipoFiltro, termoBusca);
@@ -195,3 +274,4 @@ document.getElementById('btnBuscar').addEventListener('click', () => {
 // ---------------- CHAMADA INICIAL ----------------
 
 fetchAnimes();
+
