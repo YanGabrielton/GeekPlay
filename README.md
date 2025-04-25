@@ -84,6 +84,6 @@ __________________________________________________________________
 
 - João Pedro Silva do Prado 
 - Yan Gabriel
-- Matheus 
-- Igor
-- Andy
+- Matheus Aparecido Santos Silva
+- Iago do Nascimento Castro
+- Andy Eduardo Blanco 
