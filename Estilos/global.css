@@ -1,370 +1,516 @@
-/* Importa a fonte Poppins do Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-/* Configurações globais */
 body {
     margin: 0;
-    background-color: #000; /* fundo preto */
-    color: #eee; /* texto claro */
+    /* Remove as margens padrão do body */
+    background-color: #000;
+    /* Define o fundo da página como preto */
+    color: #eee;
+    /* Define a cor do texto como cinza claro */
     font-family: Poppins;
-    font-size: 16px;
+    /* Define a fonte principal como Poppins */
+    font-size: 1.5rem;
+    /* Define o tamanho da fonte como 1.5rem */
 }
 
-/* Posiçoes dos icones  */
 header {
     position: absolute;
-    top:0;
+    /* Coloca o cabeçalho em posição absoluta */
+    top: 0;
+    /* Posiciona o cabeçalho no topo da página */
     left: 0;
+    /* Alinha o cabeçalho à esquerda */
     width: 100%;
-    display:flex;
+    /* Largura do cabeçalho ocupa toda a largura da tela */
+    display: flex;
+    /* Usando Flexbox para organizar os itens */
     justify-content: space-between;
+    /* Espaça os itens de forma igual entre o logo e a navegação */
     align-items: center;
-    
+    /* Centraliza os itens verticalmente */
 }
 
 .logo {
-    font-size: 40px;
+    font-size: 2.5rem;
+    /* Define o tamanho da fonte do logo */
     color: #0c0c0c;
-    letter-spacing: 1px;
+    /* Define a cor do logo como um cinza escuro */
+    letter-spacing: 0.0625rem;
+    /* Espaço entre as letras */
     font-weight: 800;
-    margin-top: 80px;
-    margin-right: 90px;
-    
+    /* Define o peso da fonte como negrito */
+    margin-top: 5rem;
+    /* Margem superior de 5rem */
+    margin-right: 5.625rem;
+    /* Margem à direita de 5.625rem */
 }
+
 .nav {
     color: #870303;
+    /* Cor do texto da navegação */
     display: flex;
+    /* Usando Flexbox para alinhar os itens da navegação */
 }
+
 .nav li {
     list-style-type: none;
-    margin: 0 10px;
+    /* Remove os marcadores das listas */
+    margin: 0 0.625rem;
+    /* Define a margem horizontal entre os itens */
 }
 
 .nav li a {
     color: #fff;
+    /* Cor dos links na navegação */
     text-decoration: none;
+    /* Remove a decoração de texto (underline) */
     font-weight: 500;
-    letter-spacing: 1px;
-    cursor:pointer;
+    /* Peso da fonte */
+    letter-spacing: 0.0625rem;
+    /* Espaço entre as letras */
+    cursor: pointer;
+    /* Define o cursor como pointer ao passar sobre o link */
     transition: 0.3s;
+    /* Transição suave ao passar o mouse */
 }
 
 .nav li:hover a {
     color: var(--primary);
-
+    /* Altera a cor ao passar o mouse sobre o link */
 }
-/* Inicio do footer */
 
 footer {
     background-color: black;
-    bottom: 0; 
+    /* Cor de fundo do rodapé */
+    bottom: 0;
+    /* Posiciona o rodapé na parte inferior */
     width: 100%;
+    /* O rodapé ocupa toda a largura da tela */
     text-align: center;
+    /* Alinha o conteúdo do rodapé ao centro */
     justify-content: center;
-    padding: 30px;
-    outline : 1px solid #950000;
+    /* Centraliza os itens no rodapé */
+    padding: 1.875rem;
+    /* Define o preenchimento interno */
+    outline: 0.0625rem solid #950000;
+    /* Adiciona uma borda fina de cor vermelha */
 }
+
 .Rodape {
     color: rgb(255, 255, 255);
-    
-    font-size: 10px;
-    
+    /* Cor do texto no rodapé */
+    font-size: 0.625rem;
+    /* Tamanho da fonte pequeno */
 }
-.paragrafo_rodape{
-    text-decoration: none;
-    color: white;
-    font-size: 10px;
 
+.paragrafo_rodape {
+    text-decoration: none;
+    /* Remove decoração de texto (underline) */
+    color: white;
+    /* Cor do texto no rodapé */
+    font-size: 0.625rem;
+    /* Tamanho da fonte pequeno */
 }
-/*Fim do footer*/
-/* Remove sublinhado dos links */
+
 a {
     text-decoration: none;
+    /* Remove a decoração de texto dos links */
 }
 
-/* Cabeçalho (menu superior) */
 header {
-    width: 1600px;
+    width: 100rem;
+    /* Largura do cabeçalho maior */
     max-width: 100%;
+    /* O cabeçalho não pode ultrapassar 100% da largura da tela */
     margin: auto;
-    height: 50px;
+    /* Centraliza o cabeçalho */
+    height: 3.125rem;
+    /* Define a altura do cabeçalho */
     display: flex;
+    /* Flexbox para layout */
     align-items: center;
+    /* Centraliza os itens verticalmente */
     position: relative;
+    /* Define a posição como relativa */
     z-index: 100;
+    /* Define a camada do cabeçalho acima de outros elementos */
 }
 
-
-/* ====================== Carrossel ====================== */
 .carousel {
     height: 100vh;
-    margin-top: -50px;
+    /* Altura do carrossel ocupa 100% da altura da tela */
+    margin-top: -3.125rem;
+    /* Margin negativa para sobrepor o cabeçalho */
     width: 100vw;
+    /* Largura do carrossel ocupa 100% da largura da tela */
     overflow: hidden;
+    /* Esconde o conteúdo fora da área do carrossel */
     position: relative;
+    /* Posição relativa para controle do layout */
 }
+
 .carousel .list .item {
     width: 100%;
+    /* Largura dos itens do carrossel ocupa 100% */
     height: 100%;
+    /* Altura dos itens ocupa 100% */
     position: absolute;
+    /* Posiciona os itens de forma absoluta */
     inset: 0;
+    /* Posiciona o item nas bordas */
 }
+
 .carousel .list .item img {
     width: 100%;
+    /* As imagens ocupam 100% da largura */
     height: 100%;
-    object-fit: cover; /* imagem cobre toda a área */
+    /* As imagens ocupam 100% da altura */
+    object-fit: cover;
+    /* Faz a imagem cobrir a área do item sem distorção */
 }
+
 .carousel .list .item .content {
     position: absolute;
+    /* Posição absoluta para o conteúdo */
     top: 20%;
-    width: 1140px;
+    /* Desloca o conteúdo para baixo */
+    width: 71.25rem;
+    /* Largura do conteúdo do carrossel */
     max-width: 80%;
+    /* Largura máxima do conteúdo */
     left: 50%;
+    /* Centraliza o conteúdo */
     transform: translateX(-50%);
-    padding-right: 30%;
+    /* Ajusta para garantir o centro */
+    padding-right: 18.75%;
+    /* Preenchimento à direita */
     box-sizing: border-box;
+    /* Conta o preenchimento e bordas no cálculo de largura */
     color: #fff;
-    text-shadow: 0 5px 10px #0004; /* sombra no texto */
+    /* Cor do texto no conteúdo */
+    text-shadow: 0 0.3125rem 0.625rem #0004;
+    /* Sombra para o texto */
 }
+
 .carousel .list .item .author {
     font-weight: bold;
-    letter-spacing: 10px;
+    /* Define a fonte do autor como negrito */
+    letter-spacing: 0.625rem;
+    /* Espaço entre as letras */
 }
+
 .carousel .list .item .title,
 .carousel .list .item .topic {
-    font-size: 5em;
+    font-size: 5rem;
+    /* Tamanho grande da fonte para título e tópico */
     font-weight: bold;
+    /* Define os títulos como negritos */
     line-height: 1.3em;
+    /* Controla o espaçamento entre as linhas */
 }
+
 .carousel .list .item .topic {
     color: #f1683a;
+    /* Cor laranja para o tópico */
 }
+
 .carousel .list .item .buttons {
     display: grid;
-    grid-template-columns: repeat(2, 130px);
-    grid-template-rows: 40px;
-    gap: 5px;
-    margin-top: 20px;
+    /* Usando Grid para organizar os botões */
+    grid-template-columns: repeat(2, 8.125rem);
+    /* Dois botões por linha */
+    grid-template-rows: 2.5rem;
+    /* Altura fixa para as linhas */
+    gap: 0.3125rem;
+    /* Espaçamento entre os botões */
+    margin-top: 1.25rem;
+    /* Margem superior */
 }
+
 .carousel .list .item .buttons button {
     border: none;
+    /* Remove bordas dos botões */
     background-color: #eee;
-    letter-spacing: 3px;
+    /* Cor de fundo dos botões */
+    letter-spacing: 0.1875rem;
+    /* Espaço entre as letras */
     font-family: Poppins;
+    /* Define a fonte dos botões */
     font-weight: 500;
-}
-.carousel .list .item .buttons button:nth-child(2) {
-    background-color: transparent;
-    border: 1px solid #fff;
-    color: #eee;
+    /* Peso da fonte */
 }
 
-/* ====================== Miniaturas ====================== */
 .thumbnail {
     position: absolute;
-    bottom: 50px;
+    /* Posição absoluta para as miniaturas */
+    bottom: 3.125rem;
+    /* Distância da parte inferior da tela */
     left: 50%;
+    /* Centraliza as miniaturas horizontalmente */
     width: max-content;
+    /* Largura automática baseada no conteúdo */
     z-index: 100;
+    /* Define a camada das miniaturas sobre outros elementos */
     display: flex;
-    gap: 20px;
+    /* Exibe as miniaturas em linha */
+    gap: 1.25rem;
+    /* Espaçamento entre as miniaturas */
 }
+
 .thumbnail .item {
-    width: 150px;
-    height: 220px;
+    width: 9.375rem;
+    /* Largura das miniaturas */
+    height: 13.75rem;
+    /* Altura das miniaturas */
     flex-shrink: 0;
+    /* Impede que as miniaturas encolham */
     position: relative;
+    /* Posição relativa para o conteúdo dentro das miniaturas */
 }
+
 .thumbnail .item img {
     width: 100%;
+    /* A imagem ocupa toda a largura da miniatura */
     height: 100%;
+    /* A imagem ocupa toda a altura da miniatura */
     object-fit: cover;
-    border-radius: 20px;
+    /* Faz com que a imagem cubra a área sem distorção */
+    border-radius: 1.25rem;
+    /* Bordas arredondadas para as miniaturas */
 }
+
 .thumbnail .item .content {
     color: #fff;
+    /* Cor do texto dentro das miniaturas */
     position: absolute;
-    bottom: 10px;
-    left: 10px;
-    right: 10px;
+    /* Posição absoluta dentro da miniatura */
+    bottom: 0.625rem;
+    /* Distância do conteúdo à parte inferior da miniatura */
+    left: 0.625rem;
+    /* Distância do conteúdo à esquerda da miniatura */
+    right: 0.625rem;
+    /* Distância do conteúdo à direita da miniatura */
 }
+
 .thumbnail .item .content .title {
     font-weight: 500;
+    /* Peso da fonte do título */
 }
+
 .thumbnail .item .content .description {
     font-weight: 300;
+    /* Peso da fonte para a descrição */
 }
 
-/* ====================== Setas de navegação ====================== */
 .arrows {
     position: absolute;
+    /* Posição absoluta para as setas de navegação */
     top: 80%;
+    /* Alinha as setas a 80% da altura do carrossel */
     right: 52%;
+    /* Desloca as setas um pouco para a direita */
     z-index: 100;
-    width: 300px;
+    /* Define a camada das setas acima de outros elementos */
+    width: 18.75rem;
+    /* Largura das setas */
     max-width: 30%;
+    /* Largura máxima das setas */
     display: flex;
-    gap: 10px;
+    /* Exibe as setas em linha */
+    gap: 0.625rem;
+    /* Espaçamento entre as setas */
     align-items: center;
+    /* Alinha as setas verticalmente */
 }
+
 .arrows button {
-    width: 40px;
-    height: 40px;
+    width: 2.5rem;
+    /* Largura do botão de seta */
+    height: 2.5rem;
+    /* Altura do botão de seta */
     border-radius: 50%;
+    /* Define os botões com bordas arredondadas */
     background-color: #eee4;
+    /* Cor de fundo do botão */
     border: none;
+    /* Remove a borda do botão */
     color: #fff;
+    /* Cor do texto do botão */
     font-family: monospace;
+    /* Define a fonte dos botões */
     font-weight: bold;
-    transition: .5s;
+    /* Peso da fonte do botão */
+    transition: 0.5s;
+    /* Transição suave ao passar o mouse */
 }
+
 .arrows button:hover {
     background-color: #fff;
+    /* Altera a cor de fundo ao passar o mouse */
     color: #000;
+    /* Altera a cor do texto ao passar o mouse */
 }
 
-/* ====================== Animações ====================== */
-
-/* Slide atual no topo */
 .carousel .list .item:nth-child(1) {
     z-index: 1;
+    /* Coloca o primeiro item no topo */
 }
 
-/* Animação do conteúdo do primeiro slide */
 .carousel .list .item:nth-child(1) .content .author,
 .carousel .list .item:nth-child(1) .content .title,
 .carousel .list .item:nth-child(1) .content .topic,
 .carousel .list .item:nth-child(1) .content .des,
 .carousel .list .item:nth-child(1) .content .buttons {
-    transform: translateY(50px);
-    filter: blur(20px);
+    transform: translateY(3.125rem);
+    /* Move o conteúdo para baixo */
+    filter: blur(1.25rem);
+    /* Aplica um desfoque no conteúdo */
     opacity: 0;
-    animation: showContent .5s 1s linear 1 forwards;
+    /* Torna o conteúdo invisível */
+    animation: showContent 0.5s 1s linear 1 forwards;
+    /* Animação de exibição do conteúdo */
 }
+
 @keyframes showContent {
     to {
         transform: translateY(0);
+        /* Move o conteúdo de volta para sua posição original */
         filter: blur(0);
+        /* Remove o desfoque */
         opacity: 1;
+        /* Torna o conteúdo visível */
     }
 }
-/* Definindo delays individuais */
-.carousel .list .item:nth-child(1) .content .title { animation-delay: 1.2s!important; }
-.carousel .list .item:nth-child(1) .content .topic { animation-delay: 1.4s!important; }
-.carousel .list .item:nth-child(1) .content .des   { animation-delay: 1.6s!important; }
-.carousel .list .item:nth-child(1) .content .buttons { animation-delay: 1.8s!important; }
 
-/* Animação ao clicar "next" */
-.carousel.next .list .item:nth-child(1) img {
-    width: 150px;
-    height: 220px;
-    position: absolute;
-    bottom: 50px;
-    left: 50%;
-    border-radius: 30px;
-    animation: showImage .5s linear 1 forwards;
+.carousel .list .item:nth-child(1) .content .title {
+    animation-delay: 1.2s !important;
+    /* Atraso na animação do título */
 }
+
+.carousel .list .item:nth-child(1) .content .topic {
+    animation-delay: 1.4s !important;
+    /* Atraso na animação do tópico */
+}
+
+.carousel .list .item:nth-child(1) .content .des {
+    animation-delay: 1.6s !important;
+    /* Atraso na animação da descrição */
+}
+
+.carousel .list .item:nth-child(1) .content .buttons {
+    animation-delay: 1.8s !important;
+    /* Atraso na animação dos botões */
+}
+
+.carousel.next .list .item:nth-child(1) img {
+    width: 9.375rem;
+    /* Largura inicial da imagem ao clicar "next" */
+    height: 13.75rem;
+    /* Altura inicial da imagem */
+    position: absolute;
+    /* Posição absoluta da imagem */
+    bottom: 3.125rem;
+    /* Distância da imagem à parte inferior */
+    left: 50%;
+    /* Alinha a imagem ao centro */
+    border-radius: 1.875rem;
+    /* Bordas arredondadas */
+    animation: showImage 0.5s linear 1 forwards;
+    /* Animação de exibição da imagem */
+}
+
 @keyframes showImage {
     to {
         bottom: 0;
+        /* Move a imagem para o topo */
         left: 0;
+        /* Alinha a imagem à esquerda */
         width: 100%;
+        /* Aumenta a largura para 100% */
         height: 100%;
+        /* Aumenta a altura para 100% */
         border-radius: 0;
+        /* Remove as bordas arredondadas */
     }
 }
+
 .carousel.next .thumbnail .item:nth-last-child(1) {
     overflow: hidden;
-    animation: showThumbnail .5s linear 1 forwards;
+    /* Oculta a parte da miniatura que está fora do seu contorno */
+    animation: showThumbnail 0.5s linear 1 forwards;
+    /* Animação de exibição da miniatura */
 }
-.carousel.prev .list .item img {
-    z-index: 100;
-}
+
 @keyframes showThumbnail {
     from {
         width: 0;
+        /* Começa com largura 0 */
         opacity: 0;
-    }
-}
-.carousel.next .thumbnail {
-    animation: effectNext .5s linear 1 forwards;
-}
-@keyframes effectNext {
-    from {
-        transform: translateX(150px);
+        /* Começa invisível */
     }
 }
 
-/* Barra de tempo */
-.carousel .time {
-    position: absolute;
-    z-index: 1000;
-    width: 0%;
-    height: 3px;
-    background-color: #f1683a;
-    left: 0;
-    top: 0;
-}
-.carousel.next .time,
-.carousel.prev .time {
-    animation: runningTime 3s linear 1 forwards;
-}
-@keyframes runningTime {
-    from { width: 100% }
-    to { width: 0 }
+.carousel.prev .list .item img {
+    z-index: 100;
+    /* Coloca a imagem anterior no topo */
 }
 
-/* Ao clicar "prev" */
-.carousel.prev .list .item:nth-child(2) {
-    z-index: 2;
-}
-.carousel.prev .list .item:nth-child(2) img {
-    animation: outFrame 0.5s linear 1 forwards;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-}
 @keyframes outFrame {
     to {
-        width: 150px;
-        height: 220px;
-        bottom: 50px;
+        width: 9.375rem;
+        /* Reduz a largura da imagem */
+        height: 13.75rem;
+        /* Reduz a altura da imagem */
+        bottom: 3.125rem;
+        /* Coloca a imagem mais para baixo */
         left: 50%;
-        border-radius: 20px;
+        /* Alinha a imagem ao centro */
+        border-radius: 1.25rem;
+        /* Bordas arredondadas */
     }
 }
+
 .carousel.prev .thumbnail .item:nth-child(1) {
     overflow: hidden;
+    /* Oculta a parte da miniatura que sai da área */
     opacity: 0;
-    animation: showThumbnail .5s linear 1 forwards;
+    /* Torna a miniatura invisível */
+    animation: showThumbnail 0.5s linear 1 forwards;
+    /* Animação de exibição da miniatura */
 }
+
 .carousel.next .arrows button,
 .carousel.prev .arrows button {
     pointer-events: none;
+    /* Desabilita a interação com os botões durante a transição */
 }
 
-/* Conteúdo saindo na transição para o slide anterior */
 .carousel.prev .list .item:nth-child(2) .content .author,
 .carousel.prev .list .item:nth-child(2) .content .title,
 .carousel.prev .list .item:nth-child(2) .content .topic,
 .carousel.prev .list .item:nth-child(2) .content .des,
 .carousel.prev .list .item:nth-child(2) .content .buttons {
-    animation: contentOut 1.5s linear 1 forwards!important;
+    animation: contentOut 1.5s linear 1 forwards !important;
+    /* Animação de saída do conteúdo */
 }
+
 @keyframes contentOut {
     to {
-        transform: translateY(-150px);
-        filter: blur(20px);
+        transform: translateY(-9.375rem);
+        /* Move o conteúdo para cima */
+        filter: blur(1.25rem);
+        /* Aplica um desfoque no conteúdo */
         opacity: 0;
+        /* Torna o conteúdo invisível */
     }
 }
 
-/* Responsividade */
-@media screen and (max-width: 678px) {
+@media screen and (max-width: 42.25rem) {
     .carousel .list .item .content {
         padding-right: 0;
+        /* Remove o preenchimento à direita em telas pequenas */
     }
+
     .carousel .list .item .content .title {
-        font-size: 30px;
+        font-size: 1.875rem;
+        /* Reduz o tamanho da fonte do título em telas pequenas */
     }
 }
