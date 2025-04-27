@@ -1,32 +1,55 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet');
+*{
     margin: 0;
-    /* Remove as margens padrão do body */
-    background-color: #000;
-    /* Define o fundo da página como preto */
-    color: #eee;
-    /* Define a cor do texto como cinza claro */
-    font-family: Poppins;
-    /* Define a fonte principal como Poppins */
-    font-size: 1.5rem;
-    /* Define o tamanho da fonte como 1.5rem */
+    padding: 0;
+    box-sizing: border-box;
 }
+
+:ROOT {
+    --primary: #ff3700;
+    --ColorBody:#150030;
+    --CorHeaderFooter:rgb(0, 0, 0);
+}
+/* Fundo */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--ColorBody);
+}
+
+
 
 header {
     position: absolute;
-    /* Coloca o cabeçalho em posição absoluta */
     top: 0;
-    /* Posiciona o cabeçalho no topo da página */
     left: 0;
-    /* Alinha o cabeçalho à esquerda */
     width: 100%;
-    /* Largura do cabeçalho ocupa toda a largura da tela */
     display: flex;
-    /* Usando Flexbox para organizar os itens */
     justify-content: space-between;
-    /* Espaça os itens de forma igual entre o logo e a navegação */
     align-items: center;
-    /* Centraliza os itens verticalmente */
+    padding: 1.875rem 6.25rem;
+    z-index: 10;
 }
+/* Inicio do footer */
+
+footer {
+    background-color: var(--CorHeaderFooter);
+    bottom: 0; 
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    padding: 1.875rem;
+    outline: 0.0625rem solid #792929;
+}
+.Rodape {
+    color: rgb(255, 255, 255);
+    font-size: 0.625rem;
+}
+.paragrafo_rodape{
+    text-decoration: none;
+    color: white;
+    font-size: 0.625rem;
+}
+/*Fim do footer*/
 
 .logo {
     font-size: 2.5rem;
