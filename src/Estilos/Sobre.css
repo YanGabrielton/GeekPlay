@@ -1,0 +1,307 @@
+/* Gerais */
+body {
+    font-family: 'Roboto', sans-serif;
+    overflow-x: hidden;
+    background-color: black;
+    width: 100%;
+    min-height: 100vh;
+    background: url('../img/Space.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+    
+}
+
+.row {
+    margin: 0;
+}
+
+.container {
+    padding: 70px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+p, li {
+    color: rgb(255, 0, 0);
+    font-size: 14px;
+}
+
+/* Barra de nav */
+header, .navbar {
+    background-color: black;
+    outline: 1px solid #950000;
+}
+
+#nav-container {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+#logo {
+    width: 125px;
+}
+
+.navbar-brand {
+    padding: 0;
+    color: white;
+}
+
+.navbar-brand:hover {
+    color: white;
+}
+
+#navbar-links a {
+    color: #fff;
+    cursor: pointer;
+}
+
+#navbar-links a:hover {
+    color: rgb(255, 0, 0);
+}
+
+#navbar-links a .active {
+    color: rgb(255, 0, 0);
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+    padding: 1rem .8rem;
+}
+
+/* slider */
+#mainSlider .carousel-inner, #mainSlider .carousel-item {
+    height: 90vh;
+}
+
+#mainSlider .carousel-caption {
+    top: 30%;
+}
+
+#mainSlider .carousel-caption h2 {
+    font-size: 50px;
+    margin-bottom: 30px;
+}
+
+#mainSlider .carousel-caption h3 {
+    font-size: 22px;
+    font-weight: 300;
+    margin-bottom: 100px;
+    color: white;
+}
+
+.main-btn a {
+    color: black;
+    text-decoration: none;
+    transition: .5s;
+}
+
+.main-btn {
+    text-transform: uppercase;
+    font-family: bold;
+    margin-right: 840px;
+    padding: 10px 20px;
+    transition: .5s;
+    text-decoration: none;
+    color: white;
+    width: 182px;
+    height: 36px;
+    border-radius: 0px 20px;
+    border: 1px solid #BF5943;
+    background: #E27B41;
+}
+
+.main-btn:hover {
+    text-decoration: none;
+    color: #E27B41;
+    background-color: transparent;
+    border-color: rgb(255, 255, 255);
+}
+
+
+/* about, slider */
+#mainSlider #japanese-title {
+    font-size: 60px;
+    text-align: left;
+    margin-bottom: 20px;
+    color: #E27B41;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    transition: .5s;
+}
+
+#mainSlider #title-anime {
+    font-size: 80px;
+    font-family: Mohave;
+    text-align: left;
+    margin-bottom: 20px;
+    color: #ffffff;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    transition: .5s;
+}
+
+#mainSlider #type-streaming {
+    font-size: 60px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-align: left;
+    margin-bottom: 20px;
+    color: hsl(0, 0%, 100%);
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#mainSlider .carousel-control-prev {
+    position: absolute;
+}
+
+#mainSlider .carousel-control-next {
+    position: absolute;
+}
+
+.pipe {
+    display: flex;
+    justify-content: right;
+    width: 50%;
+    margin-right: 20px;
+    margin-top: 50px;
+    color: red;
+}
+
+.pipe:after {
+    content: 'GeekPlay';
+    font-size: 44px;
+    font-weight: bold;
+    color: white;
+}
+
+/* Inicio do footer */
+footer {
+    background-color: black;
+    bottom: 0 !important;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    padding: 5px;
+    outline: 1px solid #950000;
+    display: flex;
+    flex-direction: column;
+    margin: 3.75rem 0 0 0 !important;
+}
+
+.Rodape {
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+}
+
+.paragrafo_rodape {
+    text-decoration: none;
+    color: white;
+    font-size: 15px;
+}
+
+/* Fim do footer */
+
+/* Inicio */
+
+/* img */
+.Geek {
+    width: 30%;
+    height: 30%;
+    margin-left: 32%;
+    display: flex;
+    flex-direction: column;
+    position: static;
+    
+}
+
+.sobre_nos {
+    font-size: 1.25rem; /* 20px */
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    margin-top: 2%;
+}
+
+/* logo lateral */
+.geekplay {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: rgb(109, 21, 21);
+    margin-left: 2%;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px 0;
+    }
+    .main-btn {
+        margin-right: 0;
+        width: 100%;
+    }
+    .Geek {
+        width: 100%;
+        height: auto;
+        margin-left: 0;
+    }
+}
+/* texto */
+.paragrafo_s {
+    color: white;
+    font-size: 1.563rem; /* 25px */
+    margin-top: 0.625rem; /* 10px */
+    text-align: justify;
+    padding: 1.25rem; /* 20px */
+    margin-left: 1%;
+    display: flex;
+    flex-direction: column;
+}
+
+.contato {
+    font-size: 1.25rem; /* 20px */
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    margin-top: 2%;
+    text-align: center;
+}
+
+.nosso-email {
+    color: rgb(141, 22, 22);
+    font-size: 1.125rem; /* 18px */
+    margin-top: 0.625rem; /* 10px */
+}
+
+.nosso-telefone {
+    color: rgb(114, 23, 23);
+    font-size: 1.125rem; /* 18px */
+    margin-top: 0.625rem; /* 10px */
+    text-align: center;
+}
+
+.gmail {
+    color: white;
+    text-decoration: none;
+    font-size: 1.125rem; /* 18px */
+    text-align: center;
+}
+
+.Telefone {
+    color: white;
+    text-decoration: none;
+    font-size: 1.125rem; /* 18px */
+    text-align: center;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .paragrafo_s {
+        font-size: 1.25rem; /* 20px */
+        padding: 1rem; /* 16px */
+        margin-left: 0;
+    }
+    .contato {
+        font-size: 1rem; /* 16px */
+    }
+    .nosso-email, .nosso-telefone, .gmail, .Telefone {
+        font-size: 1rem; /* 16px */
+    }
+}
