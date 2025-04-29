@@ -6,8 +6,8 @@
   :root{
     --FooterheaderBg:rgb(0, 0, 0);
     --FooterHeaderText:#fcfbfb;
-    --navbarBg: #000000;
-    --navbarText: #ffffff;
+    --CorHoverNav:rgb(245, 5, 5);
+  
     
     
   
@@ -18,6 +18,30 @@
     margin: 0;
     padding: 0;
   }
+  .bg-footerCor {
+    background-color: var(--FooterheaderBg) !important;
+  }
+  
+  .text-HeaderCor {
+    color: var(--FooterHeaderText) !important;
+  }
+  
+  /* Corrige os links do menu que o Bootstrap ignora */
+  .navbar .nav-link {
+    color: var(--FooterHeaderText) !important;
+  }
+  
+  .navbar .nav-link:hover,
+  .navbar .nav-link:focus {
+    color: var(--CorHoverNav) !important;
+  }
+  
+  /* Destaque para a página ativa */
+  .navbar .nav-item.active .nav-link {
+    font-weight: bold;
+    border-bottom: 2px solid var(--FooterHeaderText);
+  }
+  
   
   .bg-navbarCustom {
     background-color: var(--navbarBg) ;
@@ -88,7 +112,7 @@
   .bg-footerCor{
     background-color: var(--FooterheaderBg) ;
   }
-  .text-HeaderCor {
+  .text-muted {
     color: var(--FooterHeaderText) ;
   }
   
