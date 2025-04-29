@@ -17,28 +17,38 @@
 
   <!-- NAVBAR PRETO -->
   <header>
-    <nav class="navbar navbar-expand-lg  bg-footerCor  fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="../index.html">
+    <nav class="navbar navbar-expand-lg bg-footerCor fixed-top">
+      <div class="container-fluid px-4">
+  
+        <!-- Logo à esquerda -->
+        <a class="navbar-brand me-auto" href="../index.html">
           <img id="logo" src="../assets/img/carroselmain-anime/logoGeekPlay.png" alt="Logo Geek Play" style="height:40px;">
         </a>
+  
+        <!-- Botão do menu responsivo -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
           data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Alternar navegação">
           <span class="navbar-toggler-icon"></span>
         </button>
-
-        <div class="collapse navbar-collapse justify-content-end " id="mainNav">
+  
+        <!-- Menu colapsável todo à direita -->
+        <div class="collapse navbar-collapse justify-content-end" id="mainNav">
+  
+          <!-- Barra de busca -->
           <form class="d-flex me-3" id="form">
             <input id="search" class="form-control" type="search" placeholder="Buscar Filme..." aria-label="Search">
             <button class="btn btn-outline-light ms-2" type="submit">Buscar</button>
           </form>
-          <ul class="navbar-nav mb-2 mb-lg-0 ">
-            <li class="nav-item "><a class="nav-link" href="../index.html">Home</a></li>
+  
+          <!-- Links de navegação -->
+          <ul class="navbar-nav mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
             <li class="nav-item"><a class="nav-link" href="./Anime.html">Animes</a></li>
             <li class="nav-item active"><a class="nav-link" href="./Filmes.html">Filmes</a></li>
             <li class="nav-item"><a class="nav-link" href="./Mangas.html">Mangás</a></li>
             <li class="nav-item"><a class="nav-link" href="./Login.html">Login</a></li>
           </ul>
+  
         </div>
       </div>
     </nav>
@@ -77,7 +87,7 @@
       </div>
       <hr class="border-secondary">
       <div class="d-flex justify-content-center py-2 ">
-        <small class="text-muted ">&copy; 2025 Geek Play. Todos os direitos reservados.</small>
+        <small class="text-HeaderCor ">&copy; 2025 Geek Play. Todos os direitos reservados.</small>
       </div>
     </div>
   </footer>

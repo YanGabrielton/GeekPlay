@@ -42,13 +42,7 @@
     border-bottom: 2px solid var(--FooterHeaderText);
   }
   
-  
-  .bg-navbarCustom {
-    background-color: var(--navbarBg) ;
-  }
-  .text-navbarCustom {
-    color: var(--navbarText) ;
-  }
+ 
   
   
   input#search {
