@@ -7,13 +7,9 @@
     --FooterheaderBg:rgb(0, 0, 0);
     --FooterHeaderText:#fcfbfb;
     --CorHoverNav:rgb(245, 5, 5);
-  
-    
-    
-  
+
   }
   
-
   body {
     margin: 0;
     padding: 0;
@@ -41,9 +37,6 @@
     font-weight: bold;
     border-bottom: 2px solid var(--FooterHeaderText);
   }
-  
- 
-  
   
   input#search {
     max-width: 25rem; /*400px*/

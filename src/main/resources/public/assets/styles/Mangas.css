@@ -132,7 +132,6 @@ header, .navbar {
     border: red 1 solid;
     transition:.5s;
     text-decoration: none;
-   
 
 }
 
@@ -142,13 +141,10 @@ header, .navbar {
 
 }
 
-
 /* slider */
 
-
-
 #mainSlider .carousel-inner, #mainSlider .carousel-item {
-     height: 90vh;
+ height: 90vh;
 
 }
 
@@ -286,8 +282,7 @@ header, .navbar {
     font-size: 44px;
     font-weight: bold;
 
-    color: white;
-   
+    color: white; 
 }
 
 /* Inicio do footer */
