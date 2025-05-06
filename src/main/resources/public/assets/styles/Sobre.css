@@ -16,14 +16,14 @@ body {
 }
 
 .container {
-    padding: 70px 0;
+    padding: 4.375rem 0; /* 70px */
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 p, li {
     color: rgb(255, 0, 0);
-    font-size: 14px;
+    font-size: 0.875rem; /* 14px */
 }
 
 /* Barra de nav */
@@ -38,7 +38,7 @@ header, .navbar {
 }
 
 #logo {
-    width: 125px;
+    width: 7.813rem;/* 125px */
 }
 
 .navbar-brand {
@@ -77,14 +77,14 @@ header, .navbar {
 }
 
 #mainSlider .carousel-caption h2 {
-    font-size: 50px;
-    margin-bottom: 30px;
+    font-size: 3.125rem; /* 50px */
+    margin-bottom: 1.875rem; /* 30px */
 }
 
 #mainSlider .carousel-caption h3 {
-    font-size: 22px;
-    font-weight: 300;
-    margin-bottom: 100px;
+    font-size: 1.375rem; /* 22px */
+    font-weight: 300; 
+    margin-bottom: 6.25rem; /* 100px */
     color: white;
 }
 
@@ -97,15 +97,15 @@ header, .navbar {
 .main-btn {
     text-transform: uppercase;
     font-family: bold;
-    margin-right: 840px;
-    padding: 10px 20px;
+    margin-right: 52.5rem; /* 840px */
+    padding: 0.625rem 1.25rem; /* 10px 20px */
     transition: .5s;
     text-decoration: none;
     color: white;
-    width: 182px;
-    height: 36px;
-    border-radius: 0px 20px;
-    border: 1px solid #BF5943;
+    width: 11.375rem; /* 182px */
+    height: 32.25rem; /* 36px */
+    border-radius: 0px 1.25rem; /* 20px */
+    border: 1px solid #BF5943; 
     background: #E27B41;
 }
 
@@ -119,9 +119,9 @@ header, .navbar {
 
 /* about, slider */
 #mainSlider #japanese-title {
-    font-size: 60px;
+    font-size: 3.75rem; /* 60px */
     text-align: left;
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem; /* 20px */
     color: #E27B41;
     font-weight: bold;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
@@ -129,10 +129,10 @@ header, .navbar {
 }
 
 #mainSlider #title-anime {
-    font-size: 80px;
+    font-size: 5rem; /* 80px */
     font-family: Mohave;
     text-align: left;
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem; /* 20px */
     color: #ffffff;
     font-weight: bold;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
@@ -140,10 +140,10 @@ header, .navbar {
 }
 
 #mainSlider #type-streaming {
-    font-size: 60px;
+    font-size: 3.75rem; /* 60px */
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     text-align: left;
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem; /* 20px */
     color: hsl(0, 0%, 100%);
     font-weight: bold;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
@@ -161,14 +161,14 @@ header, .navbar {
     display: flex;
     justify-content: right;
     width: 50%;
-    margin-right: 20px;
-    margin-top: 50px;
+    margin-right: 1.25rem; /* 50px */
+    margin-top: 3.125rem; /* 20px */
     color: red;
 }
 
 .pipe:after {
     content: 'GeekPlay';
-    font-size: 44px;
+    font-size: 2.75rem; /* 44px */
     font-weight: bold;
     color: white;
 }
@@ -229,21 +229,6 @@ footer {
     margin-left: 2%;
 }
 
-/* Media Queries */
-@media (max-width: 768px) {
-    .container {
-        padding: 20px 0;
-    }
-    .main-btn {
-        margin-right: 0;
-        width: 100%;
-    }
-    .Geek {
-        width: 100%;
-        height: auto;
-        margin-left: 0;
-    }
-}
 /* texto */
 .paragrafo_s {
     color: white;
@@ -289,6 +274,23 @@ footer {
     text-decoration: none;
     font-size: 1.125rem; /* 18px */
     text-align: center;
+}
+
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px 0;
+    }
+    .main-btn {
+        margin-right: 0;
+        width: 100%;
+    }
+    .Geek {
+        width: 100%;
+        height: auto;
+        margin-left: 0;
+    }
 }
 
 /* Media Queries */
