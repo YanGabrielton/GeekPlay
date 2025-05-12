@@ -11,7 +11,7 @@ body{
 
 .logo-rodape{
     width:100%;
-    max-width: 400px;
+    max-width: 25rem; /* 400px  */
     height: auto;
     margin-top:1rem;
 }
@@ -29,8 +29,8 @@ body{
 
 .borda{
     border-bottom: 1px solid #fff;
-    border-radius:8px;
-    padding: 10px 20px;
+    border-radius: 0.5rem; /* 8px  */
+    padding: 0.625rem 1.25rem; /* 10px */
 }
 
 .menu ul {
@@ -88,14 +88,14 @@ body{
   }
 
 .planos:nth-child(2){
-    min-height: 773px;
+    min-height: 48.3125rem; /* 773px  */
     margin-top:2rem;
 }
 
 .planos{
     color: #fff;
-    min-height: 573px;
-    margin-top:300px;
+    min-height: 35.8125rem; /* 573px */
+    margin-top: 18.75rem; /* 300px */
     
     background: linear-gradient(
         196.86deg,
@@ -114,22 +114,21 @@ body{
 
 .botao {
     background: #b94343;
-    border-radius: 10px;
+    border-radius: 0.625rem; /* 10px */
     border-style: solid;
     border-color: #b94343;
-    border-width: 3px;
-    width: 276px;
-    height: 43.94px;
+    border-width: 0.1875rem; /* 3px */
+    width: 17.25rem; /* 276px */
+    height: 2.74625rem; /* 43.94px  */
     position: relative;
-
     color: #000000;
     text-align: left;
     font-family: "Inter-Bold", sans-serif;
-    font-size: 20px;
+    font-size: 1.25rem; /* 20px */
     font-weight: 700;
-
-    padding:8px 18px;    
+    padding: 0.5rem 1.125rem; /* 8px , 18px  */
 }
+
 
 .planos span {
     color: #fff;
@@ -140,16 +139,15 @@ body{
     position: relative;
 }
 
-@media screen and (max-width: 768px) {
-    
-    .planos{
-        margin-top:2rem;
+@media screen and (max-width: 48rem) { /* 768px  */
+    .planos {
+        margin-top: 2rem;
     }
 
-    .planos:nth-child(2){
-        min-height: 573px;
+    .planos:nth-child(2) {
+        min-height: 35.8125rem; /* 573px  */
     }
-
+}
     .menu {
         float: inherit;
         text-align: center;
@@ -200,7 +198,6 @@ body{
         margin-top: -2rem;
         position: relative;
     }
-}
 
 .payWith{
     background-image: url("../img/pay-with.png");
