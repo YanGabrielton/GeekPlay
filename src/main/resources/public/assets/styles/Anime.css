@@ -985,3 +985,75 @@ footer a:hover {
     color: #ff4d4d;
     /* vermelho claro ao passar o mouse */
 }
+/* Responsividade das imagens do carrossel */
+.carousel-item img {
+    width: 100%;
+    height: 60vh; /* altura padrão */
+    object-fit: cover;
+}
+    @media (max-width: 768px) {
+        #logo {
+          width: 120px; /* Reduzindo o tamanho do logo */
+        }
+  
+        .carousel-caption {
+          font-size: 14px;
+        }
+  
+        .carousel-inner img {
+          height: 250px; /* Ajustando a altura das imagens */
+        }
+  
+        .input-group {
+          width: 100%;
+          margin-top: 10px;
+        }
+  
+        .main-btn {
+          font-size: 12px;
+        }
+  
+        .footer .container {
+          padding: 0 15px;
+        }
+  
+        .footer h5 {
+          font-size: 16px;
+        }
+      }
+  
+      /* Responsividade para tablets */
+      @media (max-width: 1024px) {
+        .carousel-caption h2 {
+          font-size: 18px;
+        }
+  
+        .carousel-inner img {
+          height: 350px;
+        }
+  
+        .input-group {
+          width: 90%;
+        }
+  
+        .main-btn {
+          font-size: 14px;
+        }
+      }
+  
+      /* Responsividade para desktops */
+      @media (min-width: 1025px) {
+        .carousel-inner img {
+          height: 500px;
+        }
+  
+        .main-title-toppage h1 {
+          font-size: 3rem;
+        }
+  
+        .main-btn {
+          font-size: 16px;
+        }
+      }
+    }
+  
