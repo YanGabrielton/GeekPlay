@@ -11,13 +11,12 @@ html,body {
 }
 
 .container {
-    padding: 70px 0;
+    padding: padding 4.375rem 0; /*  70px */
 }
-
 p,
 li {
     color: red;
-    font-size: 14px;
+    font-size:  0.875rem; /*  14px  */
 }
 
 /* Barra de nav */
@@ -34,7 +33,7 @@ header,
 }
 
 #logo {
-    width: 125px;
+    width: 7.8125rem; /* 125px  */
 }
 
 .navbar-brand {
@@ -84,14 +83,14 @@ header,
 }
 
 #mainSlider .carousel-caption h2 {
-    font-size: 50px;
-    margin-bottom: 30px;
+    font-size: 3.125rem; /* 50px */
+    margin-bottom: 1.875rem; /* 30px */
 }
 
 #mainSlider .carousel-caption h3 {
-    font-size: 22px;
+    font-size: 1.375rem; /* 22px  */
     font-weight: 300;
-    margin-bottom: 100px;
+    margin-bottom: 6.25rem; /* 100px */
     color: white;
 }
 
@@ -104,14 +103,14 @@ header,
 .main-btn {
     text-transform: uppercase;
     font-family: bold;
-    margin-right: 1100px;
-    padding: 10px 20px;
+    margin-right: 68.75rem; /* 1100px  */
+    padding: 0.625rem 1.25rem; /* 10px 20px*/
     transition: .5s;
     text-decoration: none;
     color: white;
-    width: 182px;
-    height: 36px;
-    border-radius: 0px 20px;
+    width: 11.375rem; /* 182px*/
+    height: 2.25rem; /* de 36px  */
+    border-radius: 0 1.25rem; /* 0px 20px */
     border: 1px solid #ff2f00;
     background: #f50101;
 }
@@ -155,39 +154,37 @@ header,
 
 
 #mainSlider #japanese-title {
-    font-size: 50px;
-
+    font-size: 3.125rem; /*  50px */
     text-align: left;
-    margin-bottom: 20px;
-    color: #E27B41;
-    font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    transition: .5s;
+    margin-bottom: 1.25rem; /*  20px  */
+    color: #E27B41; 
+    font-weight: bold; 
+    text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.5); /*  2px e 4px  */
+    transition: .5s; 
 }
 
 #mainSlider #title-anime {
-    font-size: 70px;
-
-    font-weight: bold;
-    font-style: italic;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    text-align: left;
-    margin-bottom: 20px;
-    color: #ffffff;
-    font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    transition: .5s;
+    font-size: 4.375rem; /*  70px  */
+    font-weight: bold; 
+    font-style: italic; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    text-align: left; 
+    margin-bottom: 1.25rem; /* 20px  */
+    color: #ffffff; 
+    text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.5); /* 2px e 4px */
+    transition: .5s; 
 }
 
+CSS
 
 #mainSlider #type-streaming {
-    font-size: 60px;
+    font-size: 3.75rem; /* 60px */
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     text-align: left;
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem; /* 20p */
     color: hsl(0, 0%, 100%);
     font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.5); /* 2px e 4px */
 }
 
 #mainSlider .carousel-control-prev {
@@ -202,27 +199,24 @@ header,
 /* Main Top Title */
 
 .border-title {
-    border-bottom: 1px solid rgb(255, 255, 255);
-    margin-bottom: 50px;
+    border-bottom: 0.0625rem solid rgb(255, 255, 255); /* 1px  */
+    margin-bottom: 3.125rem; /* 50px */
 }
-
 
 .pipe {
     position: flex;
     justify-content: right;
     width: 50%;
-    margin-right: 20px;
-    margin-top: 50px;
+    margin-right: 1.25rem; /* 20px  */
+    margin-top: 3.125rem; /* 50px  */
     color: red;
 }
 
 .pipe:After {
     content: 'Animes';
-    font-size: 44px;
+    font-size: 2.75rem; /* 44px  */
     font-weight: bold;
-
     color: white;
-
 }
 
 /* Cards apresentação ANIMES */
@@ -231,23 +225,19 @@ header,
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-top: 30px;
-
-
+    margin-top: 1.875rem; /* 30px  */
 }
 
 .card {
     background-color: rgb(255, 255, 255);
     color: rgb(253, 253, 253);
-    padding: 20px;
+    padding: 1.25rem; /* 20px  */
     display: flex;
-
 }
 
 .card-body {
     flex-grow: 1;
-    padding-left: 20px;
-
+    padding-left: 1.25rem; /* 20px */
 }
 
 .btn-primary {
@@ -278,39 +268,36 @@ header,
     justify-content: right;
     width: 50%;
     color: red;
-
-    margin-bottom: 50px;
+    margin-bottom: 3.125rem; /* 50px */
 }
 
 .piperecommend:after {
     content: 'TALVEZ VOCÊ GOSTE';
-
-    font-size: 34px;
+    font-size: 2.125rem; /* 34px */
     font-family: sans-serif;
     font-weight: bold;
     color: white;
 }
 
-
 /* Recomendation bleach screen */
 
 #title-recomendation {
-    font-size: 54px;
+    font-size: 3.375rem; /* 54px */
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-weight: bold;
     color: white;
-    margin-bottom: 30px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 1.875rem; /* 30px  */
+    text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.5); /* 2px */
 }
 
 #text-recomendation {
-    font-size: 20px;
+    font-size: 1.25rem; /* 20px */
     font-weight: 700;
-    margin-bottom: 40px;
-    margin-left: 45px;
-    width: 596px;
+    margin-bottom: 2.5rem; /* 40px*/
+    margin-left: 2.8125rem; /* 45px */
+    width: 37.25rem; /* 596px*/
     text-align: left;
-    filter: drop-shadow(1);
+    filter: drop-shadow(1); 
     filter: brightness(80%);
     color: white;
 }
@@ -329,7 +316,7 @@ header,
 .recomend-rightwing {
     flex: 2;
     position: relative;
-    padding-right: 20px;
+    padding-right: 1.25rem; /* 20px  */
     /* Espaçamento entre as colunas */
 }
 
@@ -338,8 +325,8 @@ header,
 }
 
 .recommend-image {
-    width: 1200px;
-    height: 575px;
+    width: 75rem; /* 1200px  */
+    height: 35.9375rem; /* 575px */
     flex-shrink: 0;
 }
 
@@ -361,12 +348,12 @@ header,
 .container-images-recommend {
     display: flex;
     justify-content: space-between;
-    margin-top: 30px;
+    margin-top: 1.875rem; /* 30px */
 }
 
 .container-images-recommend div {
     flex: 1;
-    margin: 0 5px;
+    margin: 0 0.3125rem; /* 5px */
 }
 
 .container-images-recommend img {
@@ -378,11 +365,11 @@ header,
 .img02 img,
 .img03 img,
 .img04 img {
-    width: 127px;
-    height: 575px;
+    width: 7.9375rem; /* 127px */
+    height: 35.9375rem; /* 575px */
     flex-shrink: 0;
     filter: brightness(60%);
-    filter: drop-shadow(1);
+    filter: drop-shadow(1); 
     transition: filter 0.3s;
     /* Transição suave */
 }
@@ -400,7 +387,7 @@ header,
     display: flex;
     justify-content: center;
     /* Centraliza os botões */
-    margin-top: 20px;
+    margin-top: 1.25rem;
     /* Espaço acima dos botões */
 }
 
@@ -408,18 +395,17 @@ header,
 .btn-add-list {
     display: inline-block;
     /* Coloca os botões juntos */
-    font-size: 18px;
+    font-size: 1.125rem; /* 18px  */
     font-weight: bold;
-    border-radius: 180px;
+    border-radius: 11.25rem; /* 180px  */
     background: #C80000;
     color: white;
-    padding: 10px 20px;
-    margin: 0 10px;
+    padding: 0.625rem 1.25rem; /* 10px  */
+    margin: 0 0.625rem;
     /* Espaçamento entre os botões */
-    margin-top: 20px;
+    margin-top: 1.25rem;
     text-decoration: none;
     /* Remove o sublinhado */
-
     transition: background-color 0.3s;
     /* Transição suave */
 }
@@ -436,27 +422,25 @@ header,
 /* (Title)Continue Assistindo */
 
 .main-title-toppage {
-    font-size: 36px;
+    font-size: 2.25rem; /* 36px */
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-weight: bold;
     color: rgb(255, 0, 0);
-    margin-bottom: 30px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 1.875rem; /* 30px  */
+    text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.5); /* 2px  */
 }
-
 
 .pipecontinue {
     position: flex;
     justify-content: right;
     width: 50%;
     color: red;
-
-    margin-bottom: 25px;
+    margin-bottom: 1.5625rem; /* 25px*/
 }
 
 .pipecontinue:after {
     content: 'CONTINUE ASSISTINDO';
-    font-size: 34px;
+    font-size: 2.125rem; /* 34px  */
     font-family: sans-serif;
     font-weight: bold;
     color: white;
@@ -473,16 +457,16 @@ header,
 .card-watching {
     flex: 1;
     /* Permite que os cards ocupem o espaço disponível */
-    margin: 10px;
+    margin: 0.625rem;
     /* Adiciona espaçamento entre os cards */
 }
 
 .card-body-continue {
-    margin-bottom: 40px;
-    margin-right: 10px;
+    margin-bottom: 2.5rem; /* 40px  */
+    margin-right: 0.625rem; /* 10px */
     position: relative;
-    width: 229px;
-    height: 220px;
+    width: 14.3125rem; /* 229px  */
+    height: 13.75rem; /* 220px  */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -492,7 +476,7 @@ header,
 
 .play-btn-and-texts {
     position: absolute;
-    bottom: 10px;
+    bottom: 0.625rem;
     /* Coloca os textos mais próximos da parte inferior */
     left: 50%;
     transform: translateX(-50%);
@@ -502,15 +486,14 @@ header,
 
 .btn-play {
     display: inline-block;
-    font-size: 24px;
-    margin-bottom: 25px;
-    width: 42px;
-    height: 42px;
+    font-size: 1.5rem; /* 24px  */
+    margin-bottom: 1.5625rem; /* 25px  */
+    width: 2.625rem; /* 42px  */
+    height: 2.625rem; /* 42px  */
     background-size: cover;
     border: none;
     cursor: pointer;
 }
-
 .btn-play:hover {
     filter: brightness(100%);
     transition: background-color 0.3s;
@@ -523,20 +506,24 @@ header,
 }
 
 #card-title {
-    margin-bottom: 5px;
-    font-size: 18px;
+    margin-bottom: 0.3125rem; /* 5px */
+    font-size: 1.125rem; /* 18px  */
     font-weight: bold;
     color: white;
+<<<<<<< HEAD
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+=======
+    text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.5); /* 2px e 4px */
+>>>>>>> 46e88f4da2fd05d6b0ca7ff1b8f1658a3247fca4
 }
 
 #card-text {
     font-weight: 400;
     filter: brightness(75%);
     color: white;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    margin-bottom: 10px;
-    font-size: 14px;
+    text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.5); /* 2px e 4px */
+    margin-bottom: 0.625rem; /* 10px  */
+    font-size: 0.875rem; /* 14px */
     white-space: nowrap;
     /* Impede quebra de linha */
 }
@@ -551,28 +538,32 @@ header,
     /* Mantenha como coluna para telas pequenas */
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.8);
-    padding-top: 20px;
+    padding-top: 1.25rem;   /* 20px */
     /* Espaçamento superior para o título */
 }
 #quero-assistir-txt {
     color: #FFF;
     font-family: Roboto;
-    font-size: 35px;
+    font-size: 2.1875rem; /* 35px  */
     font-style: italic;
     font-weight: 700;
     line-height: normal;
+<<<<<<< HEAD
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+=======
+    text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.5); /* 2px, 2px e 4px */
+>>>>>>> 46e88f4da2fd05d6b0ca7ff1b8f1658a3247fca4
     text-align: left;
     /* Centraliza o texto */
-    margin-right: 500px;
+    margin-right: 31.25rem; /* 500px */
 }
 
 #ultimas-noticias-txt {
     color: #FFF;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    margin-right: 350px;
+    margin-right: 21.875rem; /* 350px  */
     text-align: left;
-    font-size: 30px;
+    font-size: 1.875rem; /* 30px  */
     font-style: normal;
     font-weight: 900;
     line-height: normal;
@@ -586,46 +577,64 @@ header,
     justify-content: space-between;
     /* Centraliza as seções */
     flex-wrap: wrap;
-    border: #FFF solid 1px;
-
+    border: #FFF solid 0.0625rem; /* 1px  */
 }
 
 .news-right-screen {
     width: 50%;
     /* Cada seção ocupa metade da largura */
     height: auto;
+<<<<<<< HEAD
     border: #fff solid 1px;
+=======
+    border: #fff solid 0.0625rem; /* 1px  */
+>>>>>>> 46e88f4da2fd05d6b0ca7ff1b8f1658a3247fca4
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 1.25rem; /* 20px  */
     text-align: center;
 }
 
 .choose-left-screen {
     width: 50%;
     height: auto;
+<<<<<<< HEAD
     border: #fff solid 1px;
+=======
+    border: #fff solid 0.0625rem; /* 1px  */
+>>>>>>> 46e88f4da2fd05d6b0ca7ff1b8f1658a3247fca4
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 1.25rem; /* 20px */
     text-align: center;
 }
 
 .left-section-slider-choose {
     width: 100%;
+<<<<<<< HEAD
     height: 588px;
+=======
+    height: 36.75rem; /* 588px  */
+>>>>>>> 46e88f4da2fd05d6b0ca7ff1b8f1658a3247fca4
 }
 
 .choose-left-screen img {
     width: 100%;
+<<<<<<< HEAD
     height: 588px;
     margin-top: 30px;
     object-fit: cover;
     margin: 0 105px;
+=======
+    height: 36.75rem; /* 588px  */
+    margin-top: 1.875rem; /* 30px  */
+    object-fit: cover;
+    margin: 0 6.5625rem; /* 105px  */
+>>>>>>> 46e88f4da2fd05d6b0ca7ff1b8f1658a3247fca4
 }
 /* img slider services */
 .item-service img {
@@ -640,7 +649,7 @@ header,
 
 .slider-choose {
     width: 100%;
-    height: 588px;
+    height: 36.75rem; /* 588px*/
     margin: auto;
     position: relative;
     overflow: hidden;
@@ -681,20 +690,19 @@ header,
 }
 
 .buttons-choose button {
-    width: 50px;
-    height: 50px;
+    width: 3.125rem; /* 50px  */
+    height: 3.125rem; /* 50px  */
     border-radius: 50%;
     background-color: transparent;
     color: rgb(255, 255, 255);
     border: none;
     font-family: monospace;
     font-weight: bold;
-
 }
 
 .dots {
     position: absolute;
-    bottom: 10px;
+    bottom: 0.625rem; /* 10px  */
     color: white;
     left: 0;
     width: 100%;
@@ -705,15 +713,14 @@ header,
 }
 
 .slider-news .dots li {
-    width: 25px;
-    height: 25px;
+    width: 1.5625rem; /* 25px  */
+    height: 1.5625rem; /* 25px  */
     background-color: gray;
     border-radius: 50%;
     display: inline-block;
-    margin: 0 5px;
+    margin: 0 0.3125rem; /* 5px  */
     transition: transform 0.3s, background-color 0.3s;
 }
-
 .slider-news .dots li.active {
     background-color: rgb(255, 0, 0);
     transform: scale(1.2);
@@ -730,11 +737,16 @@ header,
 
 .btn-choose-anime {
     position: absolute;
-    bottom: 10px;
+    bottom: 0.625rem; /* 10px  */
     left: 60%;
     top: 90%;
+<<<<<<< HEAD
     width: 170px;
     height: 40px;
+=======
+    width: 10.625rem; /* 170px  */
+    height: 2.5rem; /* 40px  */
+>>>>>>> 46e88f4da2fd05d6b0ca7ff1b8f1658a3247fca4
     flex-shrink: 0;
     border: 2px solid #FA0000;
     background-color: transparent;
@@ -767,7 +779,7 @@ header,
 
 .slider-news {
     width: 100%;
-    height: 596px;
+    height: 37.25rem; /* 596px */
     margin: auto;
     position: relative;
     overflow: hidden;
@@ -792,7 +804,7 @@ header,
 .text-news {
     font-size: 1.0rem;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 1.25rem; /* 20px */
     font-weight: normal;
     text-decoration: none;
     filter: brightness(75%);
@@ -817,19 +829,23 @@ header,
 .container-news-text {
     position: absolute;
     /* Posiciona sobre a imagem */
-    bottom: 20px;
+    bottom: 1.25rem; /* 20px  */
     left: 23%;
     top: 20%;
     transform: translateX(-50%);
     /* Ajusta para centralizar */
-    width: 239px;
-    height: 309px;
+    width: 14.9375rem; /* 239px  */
+    height: 19.3125rem; /* 309px  */
     color: white;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background: rgba(219, 212, 212, 0.1);
+<<<<<<< HEAD
     padding: 10px;
+=======
+    padding: 0.625rem;
+>>>>>>> 46e88f4da2fd05d6b0ca7ff1b8f1658a3247fca4
     /* Espaçamento interno */
-    border-radius: 5px;
+    border-radius: 0.3125rem;
     /* Bordas arredondadas */
     text-align: center;
     /* Centraliza o texto */
@@ -844,9 +860,9 @@ header,
 .main-title-mylist {
     display: flex;
     color: #ff0000;
-    font-size: 30px;
+    font-size: 1.875rem; /* 30px */
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem; /* 20px */
 }
 
 .pipe-mylist::after {
@@ -856,25 +872,25 @@ header,
 }
 
 .pipe-myanime {
-    margin: 0px 15px 0px 15px;
+    margin: 0rem 0.9375rem 0rem 0.9375rem; /* 15px  */
     display: flex;
     color: #ff0000;
-    font-size: 30px;
+    font-size: 1.875rem; /* 30px  */
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem; /* 20px  */
 }
 
 .pipe-myanime::after {
     content: 'Animes Favoritos';
     color: rgb(255, 255, 255);
-    margin: 0 5px;
+    margin: 0 0.3125rem; /* 5px */
 }
 
 #card-title-favorite {
-    font-size: 18px;
+    font-size: 1.125rem; /* 18px  */
     font-weight: bold;
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 0.625rem; /* 10px  */
 }
 
 .options-favorite {
@@ -886,19 +902,23 @@ header,
 }
 
 #card-text-favorite-anime {
+<<<<<<< HEAD
     font-size: 16px;
+=======
+    font-size: 1rem; /* 16px  */
+>>>>>>> 46e88f4da2fd05d6b0ca7ff1b8f1658a3247fca4
     font-weight: bold;
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 0.625rem; /* 10px */
     cursor: pointer;
 }
 
 #card-text-favorite-manga {
-    margin-left: 15px;
-    font-size: 16px;
+    margin-left: 0.9375rem; /* 15px  */
+    font-size: 1rem; /* 16px */
     font-weight: bold;
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 0.625rem; /* 10px  */
     cursor: pointer;
 }
 
@@ -915,11 +935,20 @@ header,
 }
 
 .my-3 {
-    margin-left: 760px;
+    margin-left: 47.5rem; /* 760px  */
 }
 
 .btn-primeiro {
+<<<<<<< HEAD
     margin-left: 840px;
+=======
+    margin-left: 52.5rem; /* 840px  */
+}
+
+footer a:hover {
+    color: #ff4d4d;
+    /* vermelho claro ao passar o mouse */
+>>>>>>> 46e88f4da2fd05d6b0ca7ff1b8f1658a3247fca4
 }
 /* Responsividade das imagens do carrossel */
 .carousel-item img {

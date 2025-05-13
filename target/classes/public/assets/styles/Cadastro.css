@@ -17,47 +17,45 @@ body{
     height: 100vh;
 }
 
-.container{
+.container {
     background-color: white; /*Cor do Container*/
-    border-radius: 30px;
-    box-shadow: 0px 5px 15px rgb(245, 0, 0);
-position: relative;
-overflow: hidden; /**/
-width: 7068px; /*Largura do container*/
-max-width: 50%;
-min-height: 780px; /*Altura do Container*/
-
+    border-radius: 1.875rem; /* 30px */
+    box-shadow: 0px 0.3125rem 0.9375rem rgb(245, 0, 0); /* 5px, 15px */
+    position: relative;
+    overflow: hidden; /**/
+    width: 441.75rem; /* 7068px */
+    max-width: 50%;
+    min-height: 48.75rem; /* 780px */
 }
-.container p{
-font-size: 14px;
-line-height: 20px;
-letter-spacing: 0.3px;
-margin: 20px 0;
-
+.container p {
+    font-size: 0.875rem; /* 14px  */
+    line-height: 1.25rem; /* 20px  */
+    letter-spacing: 0.01875rem; /* 0.3px */
+    margin: 1.25rem 0; /* 20px  */
 }
-.container span{
 
-    font-size: 12px;
-
+.container span {
+    font-size: 0.75rem; /* 12px */
 }
-.container a{
+.container a {
     color: #000000;
-    font-size: 13px;
+    font-size: 0.8125rem; /* 13px  */
     text-decoration: none;
-    margin: 15px 0 10px;
+    margin: 0.9375rem 0 0.625rem; /* 15px , 10px  */
 }
-.container button{
+
+.container button {
     background-color: rgb(255, 0, 0);
     color: white;
-    font-size: 12px;
-    padding: 10px 45px;/*altura e largura do botao*/
-    border: 1px solid transparent;
+    font-size: 0.75rem; /* 12px  */
+    padding: 0.625rem 2.8125rem; /* 10px, 45px */
+    border: 0.0625rem solid transparent; /* 1px  */
     font-weight: 600; /*Cor da forte*/
-    letter-spacing: 0.5px; /*espaçamento de letra por letra*/
-    border-radius: 8px;
-    cursor:pointer; /*Alternar a animação do botão ao colocar o mouse em cima*/
-    text-transform: uppercase;/*Transformar o texto para caixa alta ou tudo Maisculo*/
-    margin-top: 10px;
+    letter-spacing: 0.03125rem; /* 0.5px */
+    border-radius: 0.5rem; /* 8px */
+    cursor: pointer; /*Alternar a animação do botão ao colocar o mouse em cima*/
+    text-transform: uppercase; /*Transformar o texto para caixa alta ou tudo Maisculo*/
+    margin-top: 0.625rem; /* 10px  */
 }
 .container button.hidden{
     background-color: transparent;
@@ -70,19 +68,19 @@ margin: 20px 0;
     align-items:center;
     justify-content: center; /*centraliza o formulario no meio da div container*/
     flex-direction: column;
-    padding: 0 40px;
-    height:100%;
-}
-.container input{
-    background-color: #eee;
-    border: none; /*tira a borda do input deixando sem margem*/
-    margin: 8px 0; /*distanciamento entre os inputs de login,senha*/
-    padding: 10px 15px; /*o tamanho do input*/
-    font-size: 13px;
-    border-radius: 8px;
-     width: 100%; /*faz com que ele ocupe 100% do tamanho da div container*/
-    outline: none; /* ele cria uma linha ao redor do elemento input, no caso estou deixando sem linha*/
-
+    padding: 0 2.5rem; /* 40px */
+    height: 100%;
+    }
+    
+    .container input {
+        background-color: #eee;
+        border: none; /*tira a borda do input deixando sem margem*/
+        margin: 0.5rem 0; /*distanciamento entre os inputs de login,senha*/
+        padding: 0.625rem 0.9375rem; /*o tamanho do input*/
+        font-size: 0.8125rem; /* 13px  */
+        border-radius: 0.5rem; /* 8px  */
+        width: 100%; /*faz com que ele ocupe 100% do tamanho da div container*/
+        outline: none; /* ele cria uma linha ao redor do elemento input, no caso estou deixando sem linha*/
     }
     input[type="email"]{
         background-position: right;
@@ -182,7 +180,7 @@ align-items: center;
     position: absolute;
     width: 50%;
     height: 100%;
-    padding: 0 38px; /*espaçamento*/
+    padding: 0 2.375rem; /* 38px */
 text-align: center;
 top: 0;
 transform: translateX(0);
