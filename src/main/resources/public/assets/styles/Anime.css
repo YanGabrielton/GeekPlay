@@ -1,9 +1,9 @@
 /* Gerais */
-body {
+html,body {
     font-family: 'Roboto', sans-serif;
     background-color: black;
-    padding: 0;
-    margin: 0;
+    overflow-x: hidden;
+    max-width: 100%;
 }
 
 .row {
@@ -462,9 +462,7 @@ header,
     color: white;
 }
 
-
 /* Continue Assistindo Screen */
-
 .row {
     display: flex;
     /* Habilita o uso de flexbox */
@@ -479,7 +477,6 @@ header,
     /* Adiciona espaçamento entre os cards */
 }
 
-
 .card-body-continue {
     margin-bottom: 40px;
     margin-right: 10px;
@@ -492,7 +489,6 @@ header,
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.8);
 }
-
 
 .play-btn-and-texts {
     position: absolute;
@@ -517,28 +513,21 @@ header,
 
 .btn-play:hover {
     filter: brightness(100%);
-
     transition: background-color 0.3s;
     transition: filter 0.3s;
-
     /* Permite que o botão seja redimensionado quando hoverado */
     transform: scale(1.1);
     transition: transform 0.3s;
     transition: box-shadow 0.3s;
     transition: color 0.3s;
-
 }
-
 
 #card-title {
     margin-bottom: 5px;
     font-size: 18px;
     font-weight: bold;
-
     color: white;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-
-
 }
 
 #card-text {
@@ -552,11 +541,9 @@ header,
     /* Impede quebra de linha */
 }
 
-
 .card-img-top-continue {
     filter: brightness(55%);
 }
-
 
 .container-profile-screen {
     display: flex;
@@ -567,7 +554,6 @@ header,
     padding-top: 20px;
     /* Espaçamento superior para o título */
 }
-
 #quero-assistir-txt {
     color: #FFF;
     font-family: Roboto;
@@ -575,8 +561,6 @@ header,
     font-style: italic;
     font-weight: 700;
     line-height: normal;
-
-
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     text-align: left;
     /* Centraliza o texto */
@@ -609,10 +593,8 @@ header,
 .news-right-screen {
     width: 50%;
     /* Cada seção ocupa metade da largura */
-
     height: auto;
     border: #fff solid 1px;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -625,7 +607,6 @@ header,
     width: 50%;
     height: auto;
     border: #fff solid 1px;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -637,31 +618,22 @@ header,
 .left-section-slider-choose {
     width: 100%;
     height: 588px;
-
 }
 
 .choose-left-screen img {
     width: 100%;
     height: 588px;
-
     margin-top: 30px;
     object-fit: cover;
     margin: 0 105px;
-
-
 }
-
 /* img slider services */
-
 .item-service img {
     filter: brightness(85%);
 }
 
-
-
 .right-profile-screen {
     width: 100%;
-
 }
 
 /* slider choose */
@@ -684,7 +656,6 @@ header,
     transition: 1s;
     display: flex;
     transition: left 1.0s;
-
 }
 
 .list-choose img {
@@ -694,7 +665,6 @@ header,
     height: 100%;
     object-fit: cover;
     /* Isso deve ajudar a manter a proporção da imagem */
-
 }
 
 .buttons-choose {
@@ -704,13 +674,11 @@ header,
     width: 90%;
     display: flex;
     justify-content: space-between;
-
 }
 
 .buttons-choose button:hover {
     background-color: rgb(192, 192, 192);
 }
-
 
 .buttons-choose button {
     width: 50px;
@@ -730,7 +698,6 @@ header,
     color: white;
     left: 0;
     width: 100%;
-
     margin: 0;
     padding: 0;
     display: flex;
@@ -753,7 +720,6 @@ header,
 }
 
 .item-service {
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -762,33 +728,27 @@ header,
 
 }
 
-
 .btn-choose-anime {
     position: absolute;
     bottom: 10px;
     left: 60%;
     top: 90%;
-
     width: 170px;
     height: 40px;
     flex-shrink: 0;
-
     border: 2px solid #FA0000;
     background-color: transparent;
     color: #FA0000;
-
     cursor: pointer;
     z-index: 10;
     text-align: center;
     font-family: fantasy;
 }
 
-
 .btn-choose-anime:hover {
     background-color: #FF0000;
     color: white;
 }
-
 
 /*container news text */
 
@@ -804,7 +764,6 @@ header,
     display: flex;
     transition: left 1.0s;
 }
-
 
 .slider-news {
     width: 100%;
@@ -828,8 +787,6 @@ header,
     filter: brightness(75%);
     object-fit: cover;
     transition: 0.3s;
-
-
 }
 
 .text-news {
@@ -843,7 +800,6 @@ header,
     color: white;
 
 }
-
 
 .title-news {
     font-size: 1.55rem;
@@ -871,9 +827,6 @@ header,
     color: white;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background: rgba(219, 212, 212, 0.1);
-
-
-
     padding: 10px;
     /* Espaçamento interno */
     border-radius: 5px;
@@ -882,14 +835,10 @@ header,
     /* Centraliza o texto */
 }
 
-
-
 #new-news {
     filter: brightness(55%);
 
 }
-
-
 /* Minha lista*/
 
 .main-title-mylist {
@@ -916,7 +865,6 @@ header,
 }
 
 .pipe-myanime::after {
-
     content: 'Animes Favoritos';
     color: rgb(255, 255, 255);
     margin: 0 5px;
@@ -931,18 +879,13 @@ header,
 
 .options-favorite {
     display: flex;
-
-
     align-items: center;
     text-align: center;
     width: 100%;
     justify-content: space-between;
-
-
 }
 
 #card-text-favorite-anime {
-
     font-size: 16px;
     font-weight: bold;
     text-align: center;
@@ -957,7 +900,6 @@ header,
     text-align: center;
     margin-bottom: 10px;
     cursor: pointer;
-
 }
 
 #card-text-favorite-manga:hover {
@@ -978,12 +920,6 @@ header,
 
 .btn-primeiro {
     margin-left: 840px;
-
-}
-
-footer a:hover {
-    color: #ff4d4d;
-    /* vermelho claro ao passar o mouse */
 }
 /* Responsividade das imagens do carrossel */
 .carousel-item img {
@@ -991,69 +927,285 @@ footer a:hover {
     height: 60vh; /* altura padrão */
     object-fit: cover;
 }
-    @media (max-width: 768px) {
-        #logo {
-          width: 120px; /* Reduzindo o tamanho do logo */
-        }
+  /* ========== RESPONSIVIDADE GERAL ========== */
+@media (max-width: 1199.98px) {
+    /* Ajustes para tablets na horizontal */
+  }
   
-        .carousel-caption {
-          font-size: 14px;
-        }
-  
-        .carousel-inner img {
-          height: 250px; /* Ajustando a altura das imagens */
-        }
-  
-        .input-group {
-          width: 100%;
-          margin-top: 10px;
-        }
-  
-        .main-btn {
-          font-size: 12px;
-        }
-  
-        .footer .container {
-          padding: 0 15px;
-        }
-  
-        .footer h5 {
-          font-size: 16px;
-        }
-      }
-  
-      /* Responsividade para tablets */
-      @media (max-width: 1024px) {
-        .carousel-caption h2 {
-          font-size: 18px;
-        }
-  
-        .carousel-inner img {
-          height: 350px;
-        }
-  
-        .input-group {
-          width: 90%;
-        }
-  
-        .main-btn {
-          font-size: 14px;
-        }
-      }
-  
-      /* Responsividade para desktops */
-      @media (min-width: 1025px) {
-        .carousel-inner img {
-          height: 500px;
-        }
-  
-        .main-title-toppage h1 {
-          font-size: 3rem;
-        }
-  
-        .main-btn {
-          font-size: 16px;
-        }
-      }
+  @media (max-width: 991.98px) {
+    /* Ajustes para tablets na vertical */
+    .navbar-collapse {
+      background-color: rgba(0, 0, 0, 0.95);
+      padding: 15px;
+      margin-top: 10px;
+      border-radius: 5px;
     }
+    
+    .input-group {
+      margin: 10px 0;
+      width: 100%;
+      max-width: 100%;
+    }
+    
+    .carousel-caption {
+      bottom: 15%;
+    }
+    
+    #title-anime {
+      font-size: 2rem;
+    }
+    
+    #japanese-title {
+      font-size: 1.2rem;
+    }
+    
+    .main-btn {
+      padding: 8px 16px;
+      font-size: 0.9rem;
+    }
+  }
+  
+  @media (max-width: 767.98px) {
+    /* Ajustes para celulares grandes */
+    #logo {
+      height: 30px;
+    }
+    
+    .carousel-caption {
+      bottom: 10%;
+    }
+    
+    #title-anime {
+      font-size: 1.5rem;
+    }
+    
+    #japanese-title, #type-streaming {
+      font-size: 1rem;
+    }
+    
+    .main-btn {
+      padding: 6px 12px;
+      font-size: 0.8rem;
+    }
+    
+    .container-card {
+      padding: 0 10px;
+    }
+    
+    .navbar-nav {
+      text-align: center;
+    }
+    
+    .navbar-nav .nav-item {
+      margin: 5px 0;
+    }
+  }
+  @media (max-width: 575.98px) {
+    /* Ajustes para celulares pequenos */
+    .navbar-brand {
+      margin-right: 0;
+    }
+    
+    .carousel-caption {
+      bottom: 5%;
+    }
+    
+    #title-anime {
+      font-size: 1.2rem;
+    }
+    
+    #japanese-title {
+      font-size: 0.9rem;
+    }
+    
+    #type-streaming {
+      font-size: 0.8rem;
+    }
+    
+    .main-btn {
+      padding: 5px 10px;
+      font-size: 0.7rem;
+    }
+    
+    .border-title {
+      margin: 10px 0;
+    }
+    
+    .main-title-toppage h1 {
+      font-size: 1.5rem;
+    }
+    
+    .Botoes .btn {
+      padding: 5px 10px;
+      font-size: 0.8rem;
+    }
+  }
+  
+  /* ========== NAVBAR RESPONSIVA ========== */
+  .navbar-toggler {
+    padding: 0.25rem 0.5rem;
+  }
+  
+  .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(255, 255, 255, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    width: 1.2em;
+    height: 1.2em;
+  }
+  
+  /* ========== CARROSSEL RESPONSIVO ========== */
+  .carousel-item img {
+    height: auto;
+    min-height: 300px;
+    object-fit: cover;
+  }
+  
+  @media (max-width: 991.98px) {
+    .carousel-item img {
+      min-height: 250px;
+    }
+  }
+  
+  @media (max-width: 767.98px) {
+    .carousel-item img {
+      min-height: 200px;
+    }
+  }
+  
+  /* Mostrar controles do carrossel em mobile */
+  @media (max-width: 767.98px) {
+    .carousel-control-prev,
+    .carousel-control-next {
+      display: flex;
+    }
+  }
+  
+  /* ========== CARDS RESPONSIVOS ========== */
+  @media (max-width: 1199.98px) {
+    .anime-card {
+      flex: 0 0 33.333%;
+      max-width: 33.333%;
+    }
+  }
+  
+  @media (max-width: 991.98px) {
+    .anime-card {
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
+  }
+  
+  @media (max-width: 575.98px) {
+    .anime-card {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  }
+  
+  /* ========== BOTÕES E FORMULÁRIOS ========== */
+  @media (max-width: 767.98px) {
+    #barraPesquisa {
+      font-size: 0.9rem;
+    }
+    
+    #btnBuscar {
+      padding: 6px 12px;
+      font-size: 0.9rem;
+    }
+    
+    .Botoes {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .Botoes .btn {
+      width: 100%;
+      max-width: 200px;
+      margin: 5px 0;
+    }
+  }
+  
+  /* ========== AJUSTES ESPECÍFICOS ========== */
+  @media (max-width: 767.98px) {
+    .d-none.d-md-block {
+      display: block !important;
+    }
+    
+    .carousel-indicators {
+      bottom: 5px;
+    }
+    
+    .carousel-indicators li {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+  }
+     /* SOLUÇÃO DEFINITIVA PARA O CORTE DA IMAGEM */
+@media (max-width: 767px) {
+    .carousel-inner {
+      overflow: visible !important; /* Permite que a imagem vaze o container */
+    }
+    .carousel-item {
+      height: auto !important;
+      padding-top: 20px; /* Espaço acima da imagem */
+    }
+
+    .carousel-item img {
+      width: 100% !important;
+      height: auto !important;
+      max-height: 60vh !important; /* Controla a altura máxima */
+      object-fit: contain !important; /* Garante que toda a imagem seja visível */
+      object-position: center bottom !important; /* Alinha pela base */
+      margin-top: 15%; /* Empurra a imagem para baixo */
+      transform: translateY(10%); /* Ajuste fino de posição */
+    }
+    /* Ajuste específico para os controles */
+    .carousel-control-prev, 
+    .carousel-control-next {
+      top: 40% !important; /* Reposiciona os botões */
+    }
+  }
+
+ /* ========== FOOTER RESPONSIVO ========== */
+ @media (max-width: 767.98px) {
+    footer .row {
+      flex-direction: column;
+      text-align: center;
+    }
+    
+    footer .col-md-4 {
+      margin-bottom: 20px;
+    }
+    
+    footer .text-md-end {
+      text-align: center !important;
+    }
+    
+    footer ul {
+      padding-left: 0;
+      list-style-type: none;
+    }
+    
+    footer li {
+      margin-bottom: 8px;
+    }
+  }
+
+
+  
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
   
