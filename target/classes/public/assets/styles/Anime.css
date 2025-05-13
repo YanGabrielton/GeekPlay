@@ -1,0 +1,1015 @@
+/* Gerais */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: black;
+    padding: 0;
+    margin: 0;
+}
+
+.row {
+    margin: 0;
+}
+
+.container {
+    padding: padding 4.375rem 0; /*  70px */
+}
+p,
+li {
+    color: red;
+    font-size:  0.875rem; /*  14px  */
+}
+
+/* Barra de nav */
+
+header,
+.navbar {
+    background-color: black;
+
+}
+
+#nav-container {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+#logo {
+    width: 7.8125rem; /* 125px  */
+}
+
+.navbar-brand {
+    padding: 0;
+    color: white;
+}
+
+.navbar-brand:hover {
+    color: white;
+
+}
+
+#navbar-links a {
+    color: #fff;
+    cursor: pointer;
+}
+
+#navbar-links a:hover {
+    color: rgb(255, 0, 0);
+}
+
+
+#navbar-links a .active {
+    color: rgb(255, 0, 0);
+}
+
+
+.navbar-expand-lg .navbar-nav .nav-link {
+    padding: 1rem .8rem;
+}
+
+#anime-menu:active {
+    color: red;
+}
+
+/* slider */
+
+
+#mainSlider .carousel-inner,
+#mainSlider .carousel-item {
+    height: 90vh;
+
+}
+
+#mainSlider .carousel-caption {
+    top: 30%;
+}
+
+#mainSlider .carousel-caption h2 {
+    font-size: 3.125rem; /* 50px */
+    margin-bottom: 1.875rem; /* 30px */
+}
+
+#mainSlider .carousel-caption h3 {
+    font-size: 1.375rem; /* 22px  */
+    font-weight: 300;
+    margin-bottom: 6.25rem; /* 100px */
+    color: white;
+}
+
+.main-btn a {
+    color: black;
+    text-decoration: none;
+    transition: .5s;
+}
+
+.main-btn {
+    text-transform: uppercase;
+    font-family: bold;
+    margin-right: 68.75rem; /* 1100px  */
+    padding: 0.625rem 1.25rem; /* 10px 20px*/
+    transition: .5s;
+    text-decoration: none;
+    color: white;
+    width: 11.375rem; /* 182px*/
+    height: 2.25rem; /* de 36px  */
+    border-radius: 0 1.25rem; /* 0px 20px */
+    border: 1px solid #ff2f00;
+    background: #f50101;
+}
+
+.main-btn:hover {
+    text-decoration: none;
+    color: #ff0000;
+    background-color: transparent;
+    border-color: rgb(255, 255, 255);
+}
+
+
+.carousel-indicators {
+    text-decoration: none;
+    list-style: none;
+}
+
+.carousel-indicators .active {
+    background-color: #f96565;
+
+}
+
+#imgbleach {
+    filter: brightness(70%);
+}
+
+#imgjujutsu {
+    filter: brightness(60%);
+}
+
+#imgkimetsu {
+    filter: brightness(40%);
+}
+
+#imgonepiece {
+    filter: brightness(40%);
+}
+
+
+/* about, slider */
+
+
+#mainSlider #japanese-title {
+    font-size: 3.125rem; /*  50px */
+    text-align: left;
+    margin-bottom: 1.25rem; /*  20px  */
+    color: #E27B41; 
+    font-weight: bold; 
+    text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.5); /*  2px e 4px  */
+    transition: .5s; 
+}
+
+#mainSlider #title-anime {
+    font-size: 4.375rem; /*  70px  */
+    font-weight: bold; 
+    font-style: italic; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    text-align: left; 
+    margin-bottom: 1.25rem; /* 20px  */
+    color: #ffffff; 
+    text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.5); /* 2px e 4px */
+    transition: .5s; 
+}
+
+CSS
+
+#mainSlider #type-streaming {
+    font-size: 3.75rem; /* 60px */
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-align: left;
+    margin-bottom: 1.25rem; /* 20p */
+    color: hsl(0, 0%, 100%);
+    font-weight: bold;
+    text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.5); /* 2px e 4px */
+}
+
+#mainSlider .carousel-control-prev {
+    position: absolute;
+}
+
+
+#mainSlider .carousel-control-next {
+    position: absolute;
+}
+
+/* Main Top Title */
+
+.border-title {
+    border-bottom: 0.0625rem solid rgb(255, 255, 255); /* 1px  */
+    margin-bottom: 3.125rem; /* 50px */
+}
+
+.pipe {
+    position: flex;
+    justify-content: right;
+    width: 50%;
+    margin-right: 1.25rem; /* 20px  */
+    margin-top: 3.125rem; /* 50px  */
+    color: red;
+}
+
+.pipe:After {
+    content: 'Animes';
+    font-size: 2.75rem; /* 44px  */
+    font-weight: bold;
+    color: white;
+}
+
+/* Cards apresentação ANIMES */
+
+.container-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 1.875rem; /* 30px  */
+}
+
+.card {
+    background-color: rgb(255, 255, 255);
+    color: rgb(253, 253, 253);
+    padding: 1.25rem; /* 20px  */
+    display: flex;
+}
+
+.card-body {
+    flex-grow: 1;
+    padding-left: 1.25rem; /* 20px */
+}
+
+.btn-primary {
+    background-color: #a30000;
+    border: #C80000;
+}
+
+.btn-primary:hover {
+    background-color: transparent;
+    color: red;
+    border: red 1 solid;
+    transition: .5s;
+    text-decoration: none;
+
+
+}
+
+.container-card .btn-primary {
+    border: #fff 1 solid;
+
+
+}
+
+/* recommendation title*/
+
+.piperecommend {
+    position: flex;
+    justify-content: right;
+    width: 50%;
+    color: red;
+    margin-bottom: 3.125rem; /* 50px */
+}
+
+.piperecommend:after {
+    content: 'TALVEZ VOCÊ GOSTE';
+    font-size: 2.125rem; /* 34px */
+    font-family: sans-serif;
+    font-weight: bold;
+    color: white;
+}
+
+/* Recomendation bleach screen */
+
+#title-recomendation {
+    font-size: 3.375rem; /* 54px */
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 1.875rem; /* 30px  */
+    text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.5); /* 2px */
+}
+
+#text-recomendation {
+    font-size: 1.25rem; /* 20px */
+    font-weight: 700;
+    margin-bottom: 2.5rem; /* 40px*/
+    margin-left: 2.8125rem; /* 45px */
+    width: 37.25rem; /* 596px*/
+    text-align: left;
+    filter: drop-shadow(1); 
+    filter: brightness(80%);
+    color: white;
+}
+
+.text-recommend {
+    position: absolute;
+    top: 80%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+.recomendation-section {
+    display: flex;
+}
+
+.recomend-rightwing {
+    flex: 2;
+    position: relative;
+    padding-right: 1.25rem; /* 20px  */
+    /* Espaçamento entre as colunas */
+}
+
+.container-imagerecomend {
+    position: relative;
+}
+
+.recommend-image {
+    width: 75rem; /* 1200px  */
+    height: 35.9375rem; /* 575px */
+    flex-shrink: 0;
+}
+
+.text-recommend {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+.recomend-wingleft {
+    flex: 1;
+    position: relative;
+
+
+}
+
+.container-images-recommend {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.875rem; /* 30px */
+}
+
+.container-images-recommend div {
+    flex: 1;
+    margin: 0 0.3125rem; /* 5px */
+}
+
+.container-images-recommend img {
+    width: 100%;
+    height: auto;
+}
+
+.img01 img,
+.img02 img,
+.img03 img,
+.img04 img {
+    width: 7.9375rem; /* 127px */
+    height: 35.9375rem; /* 575px */
+    flex-shrink: 0;
+    filter: brightness(60%);
+    filter: drop-shadow(1); 
+    transition: filter 0.3s;
+    /* Transição suave */
+}
+
+.img01:hover img,
+.img02:hover img,
+.img03:hover img,
+.img04:hover img {
+    filter: brightness(100%);
+}
+
+/* btn-primary btn-recommend */
+
+.container-button {
+    display: flex;
+    justify-content: center;
+    /* Centraliza os botões */
+    margin-top: 1.25rem;
+    /* Espaço acima dos botões */
+}
+
+.btn-assistir,
+.btn-add-list {
+    display: inline-block;
+    /* Coloca os botões juntos */
+    font-size: 1.125rem; /* 18px  */
+    font-weight: bold;
+    border-radius: 11.25rem; /* 180px  */
+    background: #C80000;
+    color: white;
+    padding: 0.625rem 1.25rem; /* 10px  */
+    margin: 0 0.625rem;
+    /* Espaçamento entre os botões */
+    margin-top: 1.25rem;
+    text-decoration: none;
+    /* Remove o sublinhado */
+    transition: background-color 0.3s;
+    /* Transição suave */
+}
+
+.btn-assistir:hover,
+.btn-add-list:hover {
+    background-color: transparent;
+    color: rgb(255, 0, 0);
+    cursor: pointer;
+    filter: brightness(90%);
+
+}
+
+/* (Title)Continue Assistindo */
+
+.main-title-toppage {
+    font-size: 2.25rem; /* 36px */
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: bold;
+    color: rgb(255, 0, 0);
+    margin-bottom: 1.875rem; /* 30px  */
+    text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.5); /* 2px  */
+}
+
+.pipecontinue {
+    position: flex;
+    justify-content: right;
+    width: 50%;
+    color: red;
+    margin-bottom: 1.5625rem; /* 25px*/
+}
+
+.pipecontinue:after {
+    content: 'CONTINUE ASSISTINDO';
+    font-size: 2.125rem; /* 34px  */
+    font-family: sans-serif;
+    font-weight: bold;
+    color: white;
+}
+
+
+/* Continue Assistindo Screen */
+
+.row {
+    display: flex;
+    /* Habilita o uso de flexbox */
+    flex-wrap: wrap;
+    /* Permite que os itens se ajustem em múltiplas linhas */
+}
+
+.card-watching {
+    flex: 1;
+    /* Permite que os cards ocupem o espaço disponível */
+    margin: 0.625rem;
+    /* Adiciona espaçamento entre os cards */
+}
+
+.card-body-continue {
+    margin-bottom: 2.5rem; /* 40px  */
+    margin-right: 0.625rem; /* 10px */
+    position: relative;
+    width: 14.3125rem; /* 229px  */
+    height: 13.75rem; /* 220px  */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.play-btn-and-texts {
+    position: absolute;
+    bottom: 0.625rem;
+    /* Coloca os textos mais próximos da parte inferior */
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: white;
+}
+
+.btn-play {
+    display: inline-block;
+    font-size: 1.5rem; /* 24px  */
+    margin-bottom: 1.5625rem; /* 25px  */
+    width: 2.625rem; /* 42px  */
+    height: 2.625rem; /* 42px  */
+    background-size: cover;
+    border: none;
+    cursor: pointer;
+}
+.btn-play:hover {
+    filter: brightness(100%);
+
+    transition: background-color 0.3s;
+    transition: filter 0.3s;
+
+    /* Permite que o botão seja redimensionado quando hoverado */
+    transform: scale(1.1);
+    transition: transform 0.3s;
+    transition: box-shadow 0.3s;
+    transition: color 0.3s;
+
+}
+
+#card-title {
+    margin-bottom: 0.3125rem; /* 5px */
+    font-size: 1.125rem; /* 18px  */
+    font-weight: bold;
+    color: white;
+    text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.5); /* 2px e 4px */
+}
+
+#card-text {
+    font-weight: 400;
+    filter: brightness(75%);
+    color: white;
+    text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.5); /* 2px e 4px */
+    margin-bottom: 0.625rem; /* 10px  */
+    font-size: 0.875rem; /* 14px */
+    white-space: nowrap;
+    /* Impede quebra de linha */
+}
+
+
+.card-img-top-continue {
+    filter: brightness(55%);
+}
+
+
+.container-profile-screen {
+    display: flex;
+    flex-direction: column;
+    /* Mantenha como coluna para telas pequenas */
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding-top: 1.25rem;   /* 20px */
+    /* Espaçamento superior para o título */
+}
+
+#quero-assistir-txt {
+    color: #FFF;
+    font-family: Roboto;
+    font-size: 2.1875rem; /* 35px  */
+    font-style: italic;
+    font-weight: 700;
+    line-height: normal;
+    text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.5); /* 2px, 2px e 4px */
+    text-align: left;
+    /* Centraliza o texto */
+    margin-right: 31.25rem; /* 500px */
+}
+
+#ultimas-noticias-txt {
+    color: #FFF;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin-right: 21.875rem; /* 350px  */
+    text-align: left;
+    font-size: 1.875rem; /* 30px  */
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+}
+
+.content-container {
+    display: flex;
+    flex-direction: row;
+    /* Coloca as seções em linha */
+    width: 100%;
+    justify-content: space-between;
+    /* Centraliza as seções */
+    flex-wrap: wrap;
+    border: #FFF solid 0.0625rem; /* 1px  */
+}
+
+.news-right-screen {
+    width: 50%;
+    /* Cada seção ocupa metade da largura */
+    height: auto;
+    border: #fff solid 0.0625rem; /* 1px  */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1.25rem; /* 20px  */
+    text-align: center;
+}
+
+.choose-left-screen {
+    width: 50%;
+    height: auto;
+    border: #fff solid 0.0625rem; /* 1px  */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1.25rem; /* 20px */
+    text-align: center;
+}
+
+.left-section-slider-choose {
+    width: 100%;
+    height: 36.75rem; /* 588px  */
+}
+
+.choose-left-screen img {
+    width: 100%;
+    height: 36.75rem; /* 588px  */
+    margin-top: 1.875rem; /* 30px  */
+    object-fit: cover;
+    margin: 0 6.5625rem; /* 105px  */
+}
+
+/* img slider services */
+
+.item-service img {
+    filter: brightness(85%);
+}
+
+
+
+.right-profile-screen {
+    width: 100%;
+
+}
+
+/* slider choose */
+
+.slider-choose {
+    width: 100%;
+    height: 36.75rem; /* 588px*/
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.list-choose {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    display: flex;
+    width: max-content;
+    transition: 1s;
+    display: flex;
+    transition: left 1.0s;
+
+}
+
+.list-choose img {
+    overflow: hidden;
+    width: 100%;
+    /* Alterado de 588px para 100% */
+    height: 100%;
+    object-fit: cover;
+    /* Isso deve ajudar a manter a proporção da imagem */
+
+}
+
+.buttons-choose {
+    position: absolute;
+    top: 45%;
+    left: 5%;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.buttons-choose button:hover {
+    background-color: rgb(192, 192, 192);
+}
+
+
+.buttons-choose button {
+    width: 3.125rem; /* 50px  */
+    height: 3.125rem; /* 50px  */
+    border-radius: 50%;
+    background-color: transparent;
+    color: rgb(255, 255, 255);
+    border: none;
+    font-family: monospace;
+    font-weight: bold;
+}
+
+.dots {
+    position: absolute;
+    bottom: 0.625rem; /* 10px  */
+    color: white;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.slider-news .dots li {
+    width: 1.5625rem; /* 25px  */
+    height: 1.5625rem; /* 25px  */
+    background-color: gray;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 0.3125rem; /* 5px  */
+    transition: transform 0.3s, background-color 0.3s;
+}
+.slider-news .dots li.active {
+    background-color: rgb(255, 0, 0);
+    transform: scale(1.2);
+}
+
+.item-service {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+}
+
+
+.btn-choose-anime {
+    position: absolute;
+    bottom: 0.625rem; /* 10px  */
+    left: 60%;
+    top: 90%;
+    width: 10.625rem; /* 170px  */
+    height: 2.5rem; /* 40px  */
+    flex-shrink: 0;
+
+    border: 2px solid #FA0000;
+    background-color: transparent;
+    color: #FA0000;
+
+    cursor: pointer;
+    z-index: 10;
+    text-align: center;
+    font-family: fantasy;
+}
+
+
+.btn-choose-anime:hover {
+    background-color: #FF0000;
+    color: white;
+}
+
+
+/*container news text */
+
+.list-news {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    width: max-content;
+    transition: 1s;
+    display: flex;
+    transition: left 1.0s;
+}
+
+
+.slider-news {
+    width: 100%;
+    height: 37.25rem; /* 596px */
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.item-news {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.item-news img {
+    width: 100%;
+    height: 100%;
+    filter: brightness(75%);
+    object-fit: cover;
+    transition: 0.3s;
+
+
+}
+
+.text-news {
+    font-size: 1.0rem;
+    text-align: center;
+    margin-top: 1.25rem; /* 20px */
+    font-weight: normal;
+    text-decoration: none;
+    filter: brightness(75%);
+    transition: 0.3s;
+    color: white;
+
+}
+
+
+.title-news {
+    font-size: 1.55rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.item-news {
+
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+}
+
+.container-news-text {
+    position: absolute;
+    /* Posiciona sobre a imagem */
+    bottom: 1.25rem; /* 20px  */
+    left: 23%;
+    top: 20%;
+    transform: translateX(-50%);
+    /* Ajusta para centralizar */
+    width: 14.9375rem; /* 239px  */
+    height: 19.3125rem; /* 309px  */
+    color: white;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background: rgba(219, 212, 212, 0.1);
+    padding: 0.625rem;
+    /* Espaçamento interno */
+    border-radius: 0.3125rem;
+    /* Bordas arredondadas */
+    text-align: center;
+    /* Centraliza o texto */
+}
+
+
+
+#new-news {
+    filter: brightness(55%);
+
+}
+
+
+/* Minha lista*/
+
+.main-title-mylist {
+    display: flex;
+    color: #ff0000;
+    font-size: 1.875rem; /* 30px */
+    font-weight: bold;
+    margin-bottom: 1.25rem; /* 20px */
+}
+
+.pipe-mylist::after {
+    content: 'Minha Lista';
+    color: rgb(255, 255, 255);
+    margin: 0px;
+}
+
+.pipe-myanime {
+    margin: 0rem 0.9375rem 0rem 0.9375rem; /* 15px  */
+    display: flex;
+    color: #ff0000;
+    font-size: 1.875rem; /* 30px  */
+    font-weight: bold;
+    margin-bottom: 1.25rem; /* 20px  */
+}
+
+.pipe-myanime::after {
+    content: 'Animes Favoritos';
+    color: rgb(255, 255, 255);
+    margin: 0 0.3125rem; /* 5px */
+}
+
+#card-title-favorite {
+    font-size: 1.125rem; /* 18px  */
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 0.625rem; /* 10px  */
+}
+
+.options-favorite {
+    display: flex;
+
+
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    justify-content: space-between;
+
+
+}
+
+#card-text-favorite-anime {
+    font-size: 1rem; /* 16px  */
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 0.625rem; /* 10px */
+    cursor: pointer;
+}
+
+#card-text-favorite-manga {
+    margin-left: 0.9375rem; /* 15px  */
+    font-size: 1rem; /* 16px */
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 0.625rem; /* 10px  */
+    cursor: pointer;
+}
+
+#card-text-favorite-manga:hover {
+    color: rgb(255, 0, 0);
+    cursor: pointer;
+    text-transform: underline;
+}
+
+#card-text-favorite-anime:hover {
+    color: rgb(255, 0, 0);
+    cursor: pointer;
+    text-transform: underline;
+}
+
+.my-3 {
+    margin-left: 47.5rem; /* 760px  */
+}
+
+.btn-primeiro {
+    margin-left: 52.5rem; /* 840px  */
+}
+
+footer a:hover {
+    color: #ff4d4d;
+    /* vermelho claro ao passar o mouse */
+}
+/* Responsividade das imagens do carrossel */
+.carousel-item img {
+    width: 100%;
+    height: 60vh; /* altura padrão */
+    object-fit: cover;
+}
+    @media (max-width: 768px) {
+        #logo {
+          width: 120px; /* Reduzindo o tamanho do logo */
+        }
+  
+        .carousel-caption {
+          font-size: 14px;
+        }
+  
+        .carousel-inner img {
+          height: 250px; /* Ajustando a altura das imagens */
+        }
+  
+        .input-group {
+          width: 100%;
+          margin-top: 10px;
+        }
+  
+        .main-btn {
+          font-size: 12px;
+        }
+  
+        .footer .container {
+          padding: 0 15px;
+        }
+  
+        .footer h5 {
+          font-size: 16px;
+        }
+      }
+  
+      /* Responsividade para tablets */
+      @media (max-width: 1024px) {
+        .carousel-caption h2 {
+          font-size: 18px;
+        }
+  
+        .carousel-inner img {
+          height: 350px;
+        }
+  
+        .input-group {
+          width: 90%;
+        }
+  
+        .main-btn {
+          font-size: 14px;
+        }
+      }
+  
+      /* Responsividade para desktops */
+      @media (min-width: 1025px) {
+        .carousel-inner img {
+          height: 500px;
+        }
+  
+        .main-title-toppage h1 {
+          font-size: 3rem;
+        }
+  
+        .main-btn {
+          font-size: 16px;
+        }
+      }
+    }
+  
