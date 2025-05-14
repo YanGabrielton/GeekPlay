@@ -939,16 +939,13 @@ CSS
 }
 
 .btn-primeiro {
-<<<<<<< HEAD
     margin-left: 840px;
-=======
     margin-left: 52.5rem; /* 840px  */
 }
 
 footer a:hover {
     color: #ff4d4d;
     /* vermelho claro ao passar o mouse */
->>>>>>> 46e88f4da2fd05d6b0ca7ff1b8f1658a3247fca4
 }
 /* Responsividade das imagens do carrossel */
 .carousel-item img {
@@ -1219,7 +1216,103 @@ footer a:hover {
       margin-bottom: 8px;
     }
   }
-
+/* ========== PAGINAÇÃO RESPONSIVA ========== */
+#pagination {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin: 20px 0;
+  }
+  
+  #pagination button {
+    min-width: 40px;
+    height: 40px;
+    padding: 0 10px;
+    margin: 0 2px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    color: #333;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  #pagination button:hover {
+    background-color: #f0f0f0;
+  }
+  
+  #pagination button.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+  }
+  
+  /* Ajustes para telas pequenas */
+  @media (max-width: 767.98px) {
+    #pagination {
+      gap: 3px;
+    }
+    
+    #pagination button {
+      min-width: 35px;
+      height: 35px;
+      padding: 0 8px;
+      font-size: 0.85rem;
+    }
+  }
+  
+  /* Garante que os botões não quebrem em linhas */
+  @media (max-width: 575.98px) {
+    #pagination {
+      overflow-x: auto;
+      white-space: nowrap;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      padding-bottom: 10px;
+    }
+    
+    #pagination::-webkit-scrollbar {
+      height: 5px;
+    }
+    
+    #pagination::-webkit-scrollbar-thumb {
+      background-color: rgba(0,0,0,0.2);
+      border-radius: 10px;
+    }
+    
+    #pagination button {
+      min-width: 30px;
+      height: 30px;
+      padding: 0 5px;
+      font-size: 0.8rem;
+      display: inline-block;
+      float: none;
+    }
+  }
+  
+  /* Ajuste para os botões de navegação (Anterior/Próxima) */
+  .Botoes {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+  }
+  
+  .Botoes .btn {
+    min-width: 100px;
+  }
+  
+  @media (max-width: 767.98px) {
+    .Botoes {
+      gap: 10px;
+    }
+    
+    .Botoes .btn {
+      min-width: 80px;
+      padding: 5px 10px;
+    }
+  }
 
   
 
