@@ -1,6 +1,7 @@
 package geekplay.model;
 
 import jakarta.persistence.*;
+import java.math.BigDecimal; // Import adicionado
 import java.time.LocalDateTime;
 
 @Entity
@@ -12,7 +13,7 @@ public class Doacao {
     private int id;
     
     @Column(nullable = false, precision = 10, scale = 2)
-    private double valor;
+    private BigDecimal valor; // Alterado de double para BigDecimal
     
     @Column(name = "data_doacao", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime dataDoacao;
@@ -21,16 +22,16 @@ public class Doacao {
     @JoinColumn(name = "usuario")
     private Usuario usuario;
     
-    // Construtores, getters e setters
+    // Construtores
     public Doacao() {}
     
-    public Doacao(double valor, Usuario usuario) {
+    public Doacao(BigDecimal valor, Usuario usuario) { // Atualizado para BigDecimal
         this.valor = valor;
         this.usuario = usuario;
         this.dataDoacao = LocalDateTime.now();
     }
     
-    public Doacao(double valor) {
+    public Doacao(BigDecimal valor) { // Atualizado para BigDecimal
         this.valor = valor;
         this.dataDoacao = LocalDateTime.now();
     }
@@ -38,26 +39,33 @@ public class Doacao {
     // Getters e Setters
     public int getId() { 
         return id;
-     }
-    public void setId(int id) {
-         this.id = id; 
-        }
-    public double getValor() { 
-        return valor;
-     }
-    public void setValor(double valor) { 
-        this.valor = valor; 
     }
+    
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    public BigDecimal getValor() { // Retorno alterado para BigDecimal
+        return valor;
+    }
+    
+    public void setValor(BigDecimal valor) { // Parâmetro alterado para BigDecimal
+        this.valor = valor;
+    }
+    
     public LocalDateTime getDataDoacao() {
-         return dataDoacao; 
-        }
+        return dataDoacao;
+    }
+    
     public void setDataDoacao(LocalDateTime dataDoacao) {
-         this.dataDoacao = dataDoacao;
-         }
+        this.dataDoacao = dataDoacao;
+    }
+    
     public Usuario getUsuario() {
-         return usuario; 
-        }
+        return usuario;
+    }
+    
     public void setUsuario(Usuario usuario) {
-         this.usuario = usuario; 
-        }
+        this.usuario = usuario;
+    }
 }

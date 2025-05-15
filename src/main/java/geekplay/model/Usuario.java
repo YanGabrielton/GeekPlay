@@ -82,4 +82,5 @@ public class Usuario {
     public void setDoacoes(List<Doacao> doacoes) {
          this.doacoes = doacoes;
          }
+         
 }

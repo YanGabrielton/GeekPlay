@@ -1,2 +1,7 @@
+geekplay\model\Favorito.class
+geekplay\model\TipoItem.class
 geekplay\App.class
-geekplay\util\Database.class
+geekplay\model\Doacao.class
+geekplay\util\HibernateUtil.class
+geekplay\dao\UsuarioDao.class
+geekplay\model\Usuario.class

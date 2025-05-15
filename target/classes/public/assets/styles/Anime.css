@@ -1,17 +1,9 @@
 /* Gerais */
-<<<<<<< HEAD
-body {
-    font-family: 'Roboto', sans-serif;
-    background-color: black;
-    padding: 0;
-    margin: 0;
-=======
 html,body {
     font-family: 'Roboto', sans-serif;
     background-color: black;
     overflow-x: hidden;
     max-width: 100%;
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
 }
 
 .row {
@@ -19,22 +11,12 @@ html,body {
 }
 
 .container {
-<<<<<<< HEAD
     padding: padding 4.375rem 0; /*  70px */
 }
 p,
 li {
     color: red;
     font-size:  0.875rem; /*  14px  */
-=======
-    padding: 70px 0;
-}
-
-p,
-li {
-    color: red;
-    font-size: 14px;
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
 }
 
 /* Barra de nav */
@@ -51,11 +33,7 @@ header,
 }
 
 #logo {
-<<<<<<< HEAD
     width: 7.8125rem; /* 125px  */
-=======
-    width: 125px;
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
 }
 
 .navbar-brand {
@@ -105,7 +83,6 @@ header,
 }
 
 #mainSlider .carousel-caption h2 {
-<<<<<<< HEAD
     font-size: 3.125rem; /* 50px */
     margin-bottom: 1.875rem; /* 30px */
 }
@@ -114,16 +91,6 @@ header,
     font-size: 1.375rem; /* 22px  */
     font-weight: 300;
     margin-bottom: 6.25rem; /* 100px */
-=======
-    font-size: 50px;
-    margin-bottom: 30px;
-}
-
-#mainSlider .carousel-caption h3 {
-    font-size: 22px;
-    font-weight: 300;
-    margin-bottom: 100px;
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
     color: white;
 }
 
@@ -136,7 +103,6 @@ header,
 .main-btn {
     text-transform: uppercase;
     font-family: bold;
-<<<<<<< HEAD
     margin-right: 68.75rem; /* 1100px  */
     padding: 0.625rem 1.25rem; /* 10px 20px*/
     transition: .5s;
@@ -145,16 +111,6 @@ header,
     width: 11.375rem; /* 182px*/
     height: 2.25rem; /* de 36px  */
     border-radius: 0 1.25rem; /* 0px 20px */
-=======
-    margin-right: 1100px;
-    padding: 10px 20px;
-    transition: .5s;
-    text-decoration: none;
-    color: white;
-    width: 182px;
-    height: 36px;
-    border-radius: 0px 20px;
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
     border: 1px solid #ff2f00;
     background: #f50101;
 }
@@ -198,7 +154,6 @@ header,
 
 
 #mainSlider #japanese-title {
-<<<<<<< HEAD
     font-size: 3.125rem; /*  50px */
     text-align: left;
     margin-bottom: 1.25rem; /*  20px  */
@@ -230,41 +185,6 @@ CSS
     color: hsl(0, 0%, 100%);
     font-weight: bold;
     text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.5); /* 2px e 4px */
-=======
-    font-size: 50px;
-
-    text-align: left;
-    margin-bottom: 20px;
-    color: #E27B41;
-    font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    transition: .5s;
-}
-
-#mainSlider #title-anime {
-    font-size: 70px;
-
-    font-weight: bold;
-    font-style: italic;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    text-align: left;
-    margin-bottom: 20px;
-    color: #ffffff;
-    font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    transition: .5s;
-}
-
-
-#mainSlider #type-streaming {
-    font-size: 60px;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    text-align: left;
-    margin-bottom: 20px;
-    color: hsl(0, 0%, 100%);
-    font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
 }
 
 #mainSlider .carousel-control-prev {
@@ -279,45 +199,24 @@ CSS
 /* Main Top Title */
 
 .border-title {
-<<<<<<< HEAD
     border-bottom: 0.0625rem solid rgb(255, 255, 255); /* 1px  */
     margin-bottom: 3.125rem; /* 50px */
 }
 
-=======
-    border-bottom: 1px solid rgb(255, 255, 255);
-    margin-bottom: 50px;
-}
-
-
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
 .pipe {
     position: flex;
     justify-content: right;
     width: 50%;
-<<<<<<< HEAD
     margin-right: 1.25rem; /* 20px  */
     margin-top: 3.125rem; /* 50px  */
-=======
-    margin-right: 20px;
-    margin-top: 50px;
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
     color: red;
 }
 
 .pipe:After {
     content: 'Animes';
-<<<<<<< HEAD
     font-size: 2.75rem; /* 44px  */
     font-weight: bold;
     color: white;
-=======
-    font-size: 44px;
-    font-weight: bold;
-
-    color: white;
-
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
 }
 
 /* Cards apresentação ANIMES */
@@ -326,36 +225,19 @@ CSS
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-<<<<<<< HEAD
     margin-top: 1.875rem; /* 30px  */
-=======
-    margin-top: 30px;
-
-
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
 }
 
 .card {
     background-color: rgb(255, 255, 255);
     color: rgb(253, 253, 253);
-<<<<<<< HEAD
     padding: 1.25rem; /* 20px  */
     display: flex;
-=======
-    padding: 20px;
-    display: flex;
-
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
 }
 
 .card-body {
     flex-grow: 1;
-<<<<<<< HEAD
     padding-left: 1.25rem; /* 20px */
-=======
-    padding-left: 20px;
-
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
 }
 
 .btn-primary {
@@ -386,28 +268,17 @@ CSS
     justify-content: right;
     width: 50%;
     color: red;
-<<<<<<< HEAD
     margin-bottom: 3.125rem; /* 50px */
-=======
-
-    margin-bottom: 50px;
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
 }
 
 .piperecommend:after {
     content: 'TALVEZ VOCÊ GOSTE';
-<<<<<<< HEAD
     font-size: 2.125rem; /* 34px */
-=======
-
-    font-size: 34px;
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
     font-family: sans-serif;
     font-weight: bold;
     color: white;
 }
 
-<<<<<<< HEAD
 /* Recomendation bleach screen */
 
 #title-recomendation {
@@ -427,28 +298,6 @@ CSS
     width: 37.25rem; /* 596px*/
     text-align: left;
     filter: drop-shadow(1); 
-=======
-
-/* Recomendation bleach screen */
-
-#title-recomendation {
-    font-size: 54px;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-weight: bold;
-    color: white;
-    margin-bottom: 30px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-#text-recomendation {
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 40px;
-    margin-left: 45px;
-    width: 596px;
-    text-align: left;
-    filter: drop-shadow(1);
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
     filter: brightness(80%);
     color: white;
 }
@@ -467,11 +316,7 @@ CSS
 .recomend-rightwing {
     flex: 2;
     position: relative;
-<<<<<<< HEAD
     padding-right: 1.25rem; /* 20px  */
-=======
-    padding-right: 20px;
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
     /* Espaçamento entre as colunas */
 }
 
@@ -480,13 +325,8 @@ CSS
 }
 
 .recommend-image {
-<<<<<<< HEAD
     width: 75rem; /* 1200px  */
     height: 35.9375rem; /* 575px */
-=======
-    width: 1200px;
-    height: 575px;
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
     flex-shrink: 0;
 }
 
@@ -508,20 +348,12 @@ CSS
 .container-images-recommend {
     display: flex;
     justify-content: space-between;
-<<<<<<< HEAD
     margin-top: 1.875rem; /* 30px */
-=======
-    margin-top: 30px;
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
 }
 
 .container-images-recommend div {
     flex: 1;
-<<<<<<< HEAD
     margin: 0 0.3125rem; /* 5px */
-=======
-    margin: 0 5px;
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
 }
 
 .container-images-recommend img {
@@ -533,19 +365,11 @@ CSS
 .img02 img,
 .img03 img,
 .img04 img {
-<<<<<<< HEAD
     width: 7.9375rem; /* 127px */
     height: 35.9375rem; /* 575px */
     flex-shrink: 0;
     filter: brightness(60%);
     filter: drop-shadow(1); 
-=======
-    width: 127px;
-    height: 575px;
-    flex-shrink: 0;
-    filter: brightness(60%);
-    filter: drop-shadow(1);
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
     transition: filter 0.3s;
     /* Transição suave */
 }
@@ -563,11 +387,7 @@ CSS
     display: flex;
     justify-content: center;
     /* Centraliza os botões */
-<<<<<<< HEAD
     margin-top: 1.25rem;
-=======
-    margin-top: 20px;
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
     /* Espaço acima dos botões */
 }
 
@@ -575,7 +395,6 @@ CSS
 .btn-add-list {
     display: inline-block;
     /* Coloca os botões juntos */
-<<<<<<< HEAD
     font-size: 1.125rem; /* 18px  */
     font-weight: bold;
     border-radius: 11.25rem; /* 180px  */
@@ -587,20 +406,6 @@ CSS
     margin-top: 1.25rem;
     text-decoration: none;
     /* Remove o sublinhado */
-=======
-    font-size: 18px;
-    font-weight: bold;
-    border-radius: 180px;
-    background: #C80000;
-    color: white;
-    padding: 10px 20px;
-    margin: 0 10px;
-    /* Espaçamento entre os botões */
-    margin-top: 20px;
-    text-decoration: none;
-    /* Remove o sublinhado */
-
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
     transition: background-color 0.3s;
     /* Transição suave */
 }
@@ -617,7 +422,6 @@ CSS
 /* (Title)Continue Assistindo */
 
 .main-title-toppage {
-<<<<<<< HEAD
     font-size: 2.25rem; /* 36px */
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-weight: bold;
@@ -626,49 +430,23 @@ CSS
     text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.5); /* 2px  */
 }
 
-=======
-    font-size: 36px;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-weight: bold;
-    color: rgb(255, 0, 0);
-    margin-bottom: 30px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
 .pipecontinue {
     position: flex;
     justify-content: right;
     width: 50%;
     color: red;
-<<<<<<< HEAD
     margin-bottom: 1.5625rem; /* 25px*/
-=======
-
-    margin-bottom: 25px;
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
 }
 
 .pipecontinue:after {
     content: 'CONTINUE ASSISTINDO';
-<<<<<<< HEAD
     font-size: 2.125rem; /* 34px  */
-=======
-    font-size: 34px;
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
     font-family: sans-serif;
     font-weight: bold;
     color: white;
 }
 
-<<<<<<< HEAD
-
 /* Continue Assistindo Screen */
-
-=======
-/* Continue Assistindo Screen */
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
 .row {
     display: flex;
     /* Habilita o uso de flexbox */
@@ -679,28 +457,16 @@ CSS
 .card-watching {
     flex: 1;
     /* Permite que os cards ocupem o espaço disponível */
-<<<<<<< HEAD
     margin: 0.625rem;
-=======
-    margin: 10px;
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
     /* Adiciona espaçamento entre os cards */
 }
 
 .card-body-continue {
-<<<<<<< HEAD
     margin-bottom: 2.5rem; /* 40px  */
     margin-right: 0.625rem; /* 10px */
     position: relative;
     width: 14.3125rem; /* 229px  */
     height: 13.75rem; /* 220px  */
-=======
-    margin-bottom: 40px;
-    margin-right: 10px;
-    position: relative;
-    width: 229px;
-    height: 220px;
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -710,11 +476,7 @@ CSS
 
 .play-btn-and-texts {
     position: absolute;
-<<<<<<< HEAD
     bottom: 0.625rem;
-=======
-    bottom: 10px;
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
     /* Coloca os textos mais próximos da parte inferior */
     left: 50%;
     transform: translateX(-50%);
@@ -724,42 +486,23 @@ CSS
 
 .btn-play {
     display: inline-block;
-<<<<<<< HEAD
     font-size: 1.5rem; /* 24px  */
     margin-bottom: 1.5625rem; /* 25px  */
     width: 2.625rem; /* 42px  */
     height: 2.625rem; /* 42px  */
-=======
-    font-size: 24px;
-    margin-bottom: 25px;
-    width: 42px;
-    height: 42px;
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
     background-size: cover;
     border: none;
     cursor: pointer;
 }
-<<<<<<< HEAD
-.btn-play:hover {
-    filter: brightness(100%);
-
-    transition: background-color 0.3s;
-    transition: filter 0.3s;
-
-=======
-
 .btn-play:hover {
     filter: brightness(100%);
     transition: background-color 0.3s;
     transition: filter 0.3s;
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
     /* Permite que o botão seja redimensionado quando hoverado */
     transform: scale(1.1);
     transition: transform 0.3s;
     transition: box-shadow 0.3s;
     transition: color 0.3s;
-<<<<<<< HEAD
-
 }
 
 #card-title {
@@ -767,59 +510,37 @@ CSS
     font-size: 1.125rem; /* 18px  */
     font-weight: bold;
     color: white;
-    text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.5); /* 2px e 4px */
-=======
-}
-
-#card-title {
-    margin-bottom: 5px;
-    font-size: 18px;
-    font-weight: bold;
-    color: white;
+<<<<<<< HEAD
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
+=======
+    text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.5); /* 2px e 4px */
+>>>>>>> 46e88f4da2fd05d6b0ca7ff1b8f1658a3247fca4
 }
 
 #card-text {
     font-weight: 400;
     filter: brightness(75%);
     color: white;
-<<<<<<< HEAD
     text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.5); /* 2px e 4px */
     margin-bottom: 0.625rem; /* 10px  */
     font-size: 0.875rem; /* 14px */
-=======
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    margin-bottom: 10px;
-    font-size: 14px;
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
     white-space: nowrap;
     /* Impede quebra de linha */
 }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
 .card-img-top-continue {
     filter: brightness(55%);
 }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
 .container-profile-screen {
     display: flex;
     flex-direction: column;
     /* Mantenha como coluna para telas pequenas */
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.8);
-<<<<<<< HEAD
     padding-top: 1.25rem;   /* 20px */
     /* Espaçamento superior para o título */
 }
-
 #quero-assistir-txt {
     color: #FFF;
     font-family: Roboto;
@@ -827,40 +548,22 @@ CSS
     font-style: italic;
     font-weight: 700;
     line-height: normal;
+<<<<<<< HEAD
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+=======
     text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.5); /* 2px, 2px e 4px */
+>>>>>>> 46e88f4da2fd05d6b0ca7ff1b8f1658a3247fca4
     text-align: left;
     /* Centraliza o texto */
     margin-right: 31.25rem; /* 500px */
-=======
-    padding-top: 20px;
-    /* Espaçamento superior para o título */
-}
-#quero-assistir-txt {
-    color: #FFF;
-    font-family: Roboto;
-    font-size: 35px;
-    font-style: italic;
-    font-weight: 700;
-    line-height: normal;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    text-align: left;
-    /* Centraliza o texto */
-    margin-right: 500px;
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
 }
 
 #ultimas-noticias-txt {
     color: #FFF;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-<<<<<<< HEAD
     margin-right: 21.875rem; /* 350px  */
     text-align: left;
     font-size: 1.875rem; /* 30px  */
-=======
-    margin-right: 350px;
-    text-align: left;
-    font-size: 30px;
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
     font-style: normal;
     font-weight: 900;
     line-height: normal;
@@ -874,12 +577,7 @@ CSS
     justify-content: space-between;
     /* Centraliza as seções */
     flex-wrap: wrap;
-<<<<<<< HEAD
     border: #FFF solid 0.0625rem; /* 1px  */
-=======
-    border: #FFF solid 1px;
-
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
 }
 
 .news-right-screen {
@@ -887,19 +585,15 @@ CSS
     /* Cada seção ocupa metade da largura */
     height: auto;
 <<<<<<< HEAD
-    border: #fff solid 0.0625rem; /* 1px  */
-=======
     border: #fff solid 1px;
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
+=======
+    border: #fff solid 0.0625rem; /* 1px  */
+>>>>>>> 46e88f4da2fd05d6b0ca7ff1b8f1658a3247fca4
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-<<<<<<< HEAD
     padding: 1.25rem; /* 20px  */
-=======
-    padding: 20px;
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
     text-align: center;
 }
 
@@ -907,75 +601,55 @@ CSS
     width: 50%;
     height: auto;
 <<<<<<< HEAD
-    border: #fff solid 0.0625rem; /* 1px  */
-=======
     border: #fff solid 1px;
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
+=======
+    border: #fff solid 0.0625rem; /* 1px  */
+>>>>>>> 46e88f4da2fd05d6b0ca7ff1b8f1658a3247fca4
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-<<<<<<< HEAD
     padding: 1.25rem; /* 20px */
-=======
-    padding: 20px;
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
     text-align: center;
 }
 
 .left-section-slider-choose {
     width: 100%;
 <<<<<<< HEAD
-    height: 36.75rem; /* 588px  */
-=======
     height: 588px;
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
+=======
+    height: 36.75rem; /* 588px  */
+>>>>>>> 46e88f4da2fd05d6b0ca7ff1b8f1658a3247fca4
 }
 
 .choose-left-screen img {
     width: 100%;
 <<<<<<< HEAD
-    height: 36.75rem; /* 588px  */
-    margin-top: 1.875rem; /* 30px  */
-    object-fit: cover;
-    margin: 0 6.5625rem; /* 105px  */
-}
-
-/* img slider services */
-
-=======
     height: 588px;
     margin-top: 30px;
     object-fit: cover;
     margin: 0 105px;
+=======
+    height: 36.75rem; /* 588px  */
+    margin-top: 1.875rem; /* 30px  */
+    object-fit: cover;
+    margin: 0 6.5625rem; /* 105px  */
+>>>>>>> 46e88f4da2fd05d6b0ca7ff1b8f1658a3247fca4
 }
 /* img slider services */
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
 .item-service img {
     filter: brightness(85%);
 }
 
-<<<<<<< HEAD
-
-
 .right-profile-screen {
     width: 100%;
-
-=======
-.right-profile-screen {
-    width: 100%;
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
 }
 
 /* slider choose */
 
 .slider-choose {
     width: 100%;
-<<<<<<< HEAD
     height: 36.75rem; /* 588px*/
-=======
-    height: 588px;
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
     margin: auto;
     position: relative;
     overflow: hidden;
@@ -991,10 +665,6 @@ CSS
     transition: 1s;
     display: flex;
     transition: left 1.0s;
-<<<<<<< HEAD
-
-=======
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
 }
 
 .list-choose img {
@@ -1004,10 +674,6 @@ CSS
     height: 100%;
     object-fit: cover;
     /* Isso deve ajudar a manter a proporção da imagem */
-<<<<<<< HEAD
-
-=======
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
 }
 
 .buttons-choose {
@@ -1017,45 +683,26 @@ CSS
     width: 90%;
     display: flex;
     justify-content: space-between;
-<<<<<<< HEAD
-
-=======
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
 }
 
 .buttons-choose button:hover {
     background-color: rgb(192, 192, 192);
 }
 
-<<<<<<< HEAD
-
 .buttons-choose button {
     width: 3.125rem; /* 50px  */
     height: 3.125rem; /* 50px  */
-=======
-.buttons-choose button {
-    width: 50px;
-    height: 50px;
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
     border-radius: 50%;
     background-color: transparent;
     color: rgb(255, 255, 255);
     border: none;
     font-family: monospace;
     font-weight: bold;
-<<<<<<< HEAD
-=======
-
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
 }
 
 .dots {
     position: absolute;
-<<<<<<< HEAD
     bottom: 0.625rem; /* 10px  */
-=======
-    bottom: 10px;
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
     color: white;
     left: 0;
     width: 100%;
@@ -1066,7 +713,6 @@ CSS
 }
 
 .slider-news .dots li {
-<<<<<<< HEAD
     width: 1.5625rem; /* 25px  */
     height: 1.5625rem; /* 25px  */
     background-color: gray;
@@ -1075,27 +721,12 @@ CSS
     margin: 0 0.3125rem; /* 5px  */
     transition: transform 0.3s, background-color 0.3s;
 }
-=======
-    width: 25px;
-    height: 25px;
-    background-color: gray;
-    border-radius: 50%;
-    display: inline-block;
-    margin: 0 5px;
-    transition: transform 0.3s, background-color 0.3s;
-}
-
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
 .slider-news .dots li.active {
     background-color: rgb(255, 0, 0);
     transform: scale(1.2);
 }
 
 .item-service {
-<<<<<<< HEAD
-
-=======
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1104,53 +735,33 @@ CSS
 
 }
 
-<<<<<<< HEAD
-
 .btn-choose-anime {
     position: absolute;
     bottom: 0.625rem; /* 10px  */
     left: 60%;
     top: 90%;
-    width: 10.625rem; /* 170px  */
-    height: 2.5rem; /* 40px  */
-    flex-shrink: 0;
-
-    border: 2px solid #FA0000;
-    background-color: transparent;
-    color: #FA0000;
-
-=======
-.btn-choose-anime {
-    position: absolute;
-    bottom: 10px;
-    left: 60%;
-    top: 90%;
+<<<<<<< HEAD
     width: 170px;
     height: 40px;
+=======
+    width: 10.625rem; /* 170px  */
+    height: 2.5rem; /* 40px  */
+>>>>>>> 46e88f4da2fd05d6b0ca7ff1b8f1658a3247fca4
     flex-shrink: 0;
     border: 2px solid #FA0000;
     background-color: transparent;
     color: #FA0000;
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
     cursor: pointer;
     z-index: 10;
     text-align: center;
     font-family: fantasy;
 }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
 .btn-choose-anime:hover {
     background-color: #FF0000;
     color: white;
 }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
 /*container news text */
 
 .list-news {
@@ -1166,16 +777,9 @@ CSS
     transition: left 1.0s;
 }
 
-<<<<<<< HEAD
-
 .slider-news {
     width: 100%;
     height: 37.25rem; /* 596px */
-=======
-.slider-news {
-    width: 100%;
-    height: 596px;
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
     margin: auto;
     position: relative;
     overflow: hidden;
@@ -1195,21 +799,12 @@ CSS
     filter: brightness(75%);
     object-fit: cover;
     transition: 0.3s;
-<<<<<<< HEAD
-
-
-=======
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
 }
 
 .text-news {
     font-size: 1.0rem;
     text-align: center;
-<<<<<<< HEAD
     margin-top: 1.25rem; /* 20px */
-=======
-    margin-top: 20px;
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
     font-weight: normal;
     text-decoration: none;
     filter: brightness(75%);
@@ -1218,10 +813,6 @@ CSS
 
 }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
 .title-news {
     font-size: 1.55rem;
     font-weight: bold;
@@ -1238,67 +829,40 @@ CSS
 .container-news-text {
     position: absolute;
     /* Posiciona sobre a imagem */
-<<<<<<< HEAD
     bottom: 1.25rem; /* 20px  */
-=======
-    bottom: 20px;
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
     left: 23%;
     top: 20%;
     transform: translateX(-50%);
     /* Ajusta para centralizar */
-<<<<<<< HEAD
     width: 14.9375rem; /* 239px  */
     height: 19.3125rem; /* 309px  */
     color: white;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background: rgba(219, 212, 212, 0.1);
+<<<<<<< HEAD
+    padding: 10px;
+=======
     padding: 0.625rem;
+>>>>>>> 46e88f4da2fd05d6b0ca7ff1b8f1658a3247fca4
     /* Espaçamento interno */
     border-radius: 0.3125rem;
-=======
-    width: 239px;
-    height: 309px;
-    color: white;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    background: rgba(219, 212, 212, 0.1);
-    padding: 10px;
-    /* Espaçamento interno */
-    border-radius: 5px;
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
     /* Bordas arredondadas */
     text-align: center;
     /* Centraliza o texto */
 }
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
 #new-news {
     filter: brightness(55%);
 
 }
-<<<<<<< HEAD
-
-
-=======
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
 /* Minha lista*/
 
 .main-title-mylist {
     display: flex;
     color: #ff0000;
-<<<<<<< HEAD
     font-size: 1.875rem; /* 30px */
     font-weight: bold;
     margin-bottom: 1.25rem; /* 20px */
-=======
-    font-size: 30px;
-    font-weight: bold;
-    margin-bottom: 20px;
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
 }
 
 .pipe-mylist::after {
@@ -1308,27 +872,17 @@ CSS
 }
 
 .pipe-myanime {
-<<<<<<< HEAD
     margin: 0rem 0.9375rem 0rem 0.9375rem; /* 15px  */
     display: flex;
     color: #ff0000;
     font-size: 1.875rem; /* 30px  */
     font-weight: bold;
     margin-bottom: 1.25rem; /* 20px  */
-=======
-    margin: 0px 15px 0px 15px;
-    display: flex;
-    color: #ff0000;
-    font-size: 30px;
-    font-weight: bold;
-    margin-bottom: 20px;
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
 }
 
 .pipe-myanime::after {
     content: 'Animes Favoritos';
     color: rgb(255, 255, 255);
-<<<<<<< HEAD
     margin: 0 0.3125rem; /* 5px */
 }
 
@@ -1337,65 +891,34 @@ CSS
     font-weight: bold;
     text-align: center;
     margin-bottom: 0.625rem; /* 10px  */
-=======
-    margin: 0 5px;
-}
-
-#card-title-favorite {
-    font-size: 18px;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 10px;
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
 }
 
 .options-favorite {
     display: flex;
-<<<<<<< HEAD
-
-
-=======
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
     align-items: center;
     text-align: center;
     width: 100%;
     justify-content: space-between;
-<<<<<<< HEAD
-
-
 }
 
 #card-text-favorite-anime {
+<<<<<<< HEAD
+    font-size: 16px;
+=======
     font-size: 1rem; /* 16px  */
+>>>>>>> 46e88f4da2fd05d6b0ca7ff1b8f1658a3247fca4
     font-weight: bold;
     text-align: center;
     margin-bottom: 0.625rem; /* 10px */
-=======
-}
-
-#card-text-favorite-anime {
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 10px;
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
     cursor: pointer;
 }
 
 #card-text-favorite-manga {
-<<<<<<< HEAD
     margin-left: 0.9375rem; /* 15px  */
     font-size: 1rem; /* 16px */
     font-weight: bold;
     text-align: center;
     margin-bottom: 0.625rem; /* 10px  */
-=======
-    margin-left: 15px;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 10px;
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
     cursor: pointer;
 }
 
@@ -1412,24 +935,17 @@ CSS
 }
 
 .my-3 {
-<<<<<<< HEAD
     margin-left: 47.5rem; /* 760px  */
 }
 
 .btn-primeiro {
+    margin-left: 840px;
     margin-left: 52.5rem; /* 840px  */
 }
 
 footer a:hover {
     color: #ff4d4d;
     /* vermelho claro ao passar o mouse */
-=======
-    margin-left: 760px;
-}
-
-.btn-primeiro {
-    margin-left: 840px;
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
 }
 /* Responsividade das imagens do carrossel */
 .carousel-item img {
@@ -1437,73 +953,6 @@ footer a:hover {
     height: 60vh; /* altura padrão */
     object-fit: cover;
 }
-<<<<<<< HEAD
-    @media (max-width: 768px) {
-        #logo {
-          width: 120px; /* Reduzindo o tamanho do logo */
-        }
-  
-        .carousel-caption {
-          font-size: 14px;
-        }
-  
-        .carousel-inner img {
-          height: 250px; /* Ajustando a altura das imagens */
-        }
-  
-        .input-group {
-          width: 100%;
-          margin-top: 10px;
-        }
-  
-        .main-btn {
-          font-size: 12px;
-        }
-  
-        .footer .container {
-          padding: 0 15px;
-        }
-  
-        .footer h5 {
-          font-size: 16px;
-        }
-      }
-  
-      /* Responsividade para tablets */
-      @media (max-width: 1024px) {
-        .carousel-caption h2 {
-          font-size: 18px;
-        }
-  
-        .carousel-inner img {
-          height: 350px;
-        }
-  
-        .input-group {
-          width: 90%;
-        }
-  
-        .main-btn {
-          font-size: 14px;
-        }
-      }
-  
-      /* Responsividade para desktops */
-      @media (min-width: 1025px) {
-        .carousel-inner img {
-          height: 500px;
-        }
-  
-        .main-title-toppage h1 {
-          font-size: 3rem;
-        }
-  
-        .main-btn {
-          font-size: 16px;
-        }
-      }
-    }
-=======
   /* ========== RESPONSIVIDADE GERAL ========== */
 @media (max-width: 1199.98px) {
     /* Ajustes para tablets na horizontal */
@@ -1767,7 +1216,103 @@ footer a:hover {
       margin-bottom: 8px;
     }
   }
-
+/* ========== PAGINAÇÃO RESPONSIVA ========== */
+#pagination {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin: 20px 0;
+  }
+  
+  #pagination button {
+    min-width: 40px;
+    height: 40px;
+    padding: 0 10px;
+    margin: 0 2px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    color: #333;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  #pagination button:hover {
+    background-color: #f0f0f0;
+  }
+  
+  #pagination button.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+  }
+  
+  /* Ajustes para telas pequenas */
+  @media (max-width: 767.98px) {
+    #pagination {
+      gap: 3px;
+    }
+    
+    #pagination button {
+      min-width: 35px;
+      height: 35px;
+      padding: 0 8px;
+      font-size: 0.85rem;
+    }
+  }
+  
+  /* Garante que os botões não quebrem em linhas */
+  @media (max-width: 575.98px) {
+    #pagination {
+      overflow-x: auto;
+      white-space: nowrap;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      padding-bottom: 10px;
+    }
+    
+    #pagination::-webkit-scrollbar {
+      height: 5px;
+    }
+    
+    #pagination::-webkit-scrollbar-thumb {
+      background-color: rgba(0,0,0,0.2);
+      border-radius: 10px;
+    }
+    
+    #pagination button {
+      min-width: 30px;
+      height: 30px;
+      padding: 0 5px;
+      font-size: 0.8rem;
+      display: inline-block;
+      float: none;
+    }
+  }
+  
+  /* Ajuste para os botões de navegação (Anterior/Próxima) */
+  .Botoes {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+  }
+  
+  .Botoes .btn {
+    min-width: 100px;
+  }
+  
+  @media (max-width: 767.98px) {
+    .Botoes {
+      gap: 10px;
+    }
+    
+    .Botoes .btn {
+      min-width: 80px;
+      padding: 5px 10px;
+    }
+  }
 
   
 
@@ -1785,5 +1330,4 @@ footer a:hover {
 
 
 
->>>>>>> df0f54dedac33c34b89f0117bbf116dd0778ee48
   

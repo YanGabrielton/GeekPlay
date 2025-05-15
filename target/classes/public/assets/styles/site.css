@@ -11,14 +11,13 @@ body {
 }
 
 .container {
-    padding: 70px 0;
+    padding: 4.375rem 0; /* 70px  */
 }
 
 p, li {
     color: red;
-    font-size: 14px;
+    font-size: 0.875rem; /* 14px  */
 }
-
 /* Barra de nav */
 
 header, .navbar {
@@ -32,7 +31,7 @@ header, .navbar {
 }
 
 #logo {
-    width: 125px;
+    width: 7.8125rem; /* 125px  */
 }
 
 .navbar-brand {
@@ -81,14 +80,14 @@ header, .navbar {
 }
 
 #mainSlider .carousel-caption h2 {
-    font-size: 50px;
-    margin-bottom: 30px;
+    font-size: 3.125rem; /* 50px */
+    margin-bottom: 1.875rem; /* 30px  */
 }
 
 #mainSlider .carousel-caption h3 {
-    font-size: 22px;
+    font-size: 1.375rem; /* 22px  */
     font-weight: 300;
-    margin-bottom: 100px;
+    margin-bottom: 6.25rem; /* 100px */
     color: white;
 }
 
@@ -101,17 +100,18 @@ header, .navbar {
 .main-btn {
     text-transform: uppercase;
     font-family: bold;
-    margin-right: 1100px;
-    padding: 10px 20px;
+    margin-right: 68.75rem; /* 1100px */
+    padding: 0.625rem 1.25rem; /* 10px  */
     transition: .5s;
     text-decoration: none;
     color: white;
-    width: 182px;
-    height: 36px;
-    border-radius: 0px 20px;
-    border: 1px solid #ff2f00;
+    width: 11.375rem; /* 182px */
+    height: 2.25rem; /* 36px */
+    border-radius: 0rem 1.25rem; /* 0px  20px  */
+    border: 0.0625rem solid #ff2f00; /* 1px  */
     background: #f50101;
 }
+
 
 .main-btn:hover{
     text-decoration: none;
@@ -151,42 +151,40 @@ header, .navbar {
 /* about, slider */
   
     
-#mainSlider  #japanese-title{
-    font-size: 50px;
-  
+#mainSlider #japanese-title {
+    font-size: 3.125rem; /* 50px  */
     text-align: left;
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem; /* 20px  */
     color: #E27B41;
     font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    transition:.5s;
+    text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.5); /* 2px, 4px  */
+    transition: .5s;
 }
-    
-#mainSlider  #title-anime{
-    font-size: 70px;
 
+#mainSlider #title-anime {
+    font-size: 4.375rem; /* 70px  */
     font-weight: bold;
     font-style: italic;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: left;
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem; /* 20px */
     color: #ffffff;
-    font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    transition:.5s;
+    text-weight: bold;
+    text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.5); /* 2px , 4px */
+    transition: .5s;
 }
+
 
     
-#mainSlider  #type-streaming{
-    font-size: 60px;
+#mainSlider #type-streaming {
+    font-size: 3.75rem; /* 60px */
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     text-align: left;
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem; /* 20px */
     color: hsl(0, 0%, 100%);
     font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.5); /* 2px , 4px */
 }
-
 #mainSlider  .carousel-control-prev{
     position: absolute;
 }
@@ -199,27 +197,25 @@ header, .navbar {
 /* Main Top Title */
 
 .border-title {
-    border-bottom: 1px solid rgb(255, 255, 255);
-    margin-bottom: 50px;
+    border-bottom: 0.0625rem solid rgb(255, 255, 255); /* 1px */
+    margin-bottom: 3.125rem; /* 50px  */
 }
-
 
 .pipe {
     position: flex;
     justify-content: right;
     width: 50%;
-    margin-right: 20px;
-    margin-top: 50px;
+    margin-right: 1.25rem; /* 20px  */
+    margin-top: 3.125rem; /* 50px  */
     color: red;
 }
 
 .pipe:After {
     content: 'Animes';
-    font-size: 44px;
+    font-size: 2.75rem; /* 44px */
     font-weight: bold;
 
-    color: white;
-   
+    color: white;  
 }
 
 /* Cards apresentação ANIMES */
@@ -228,23 +224,19 @@ header, .navbar {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-top: 30px;
-
-    
+    margin-top: 1.875rem; /* 30px */
 }
- 
+
 .card {
     background-color: rgb(255, 255, 255);
     color: rgb(253, 253, 253);
-    padding: 20px;
+    padding: 1.25rem; /* 20px  */
     display: flex;
-    
 }
 
 .card-body {
     flex-grow: 1;
-    padding-left: 20px;
-
+    padding-left: 1.25rem; /* 20px  */
 }
 
 .btn-primary {
@@ -258,14 +250,10 @@ header, .navbar {
     border: red 1 solid;
     transition:.5s;
     text-decoration: none;
-   
-
 }
 
 .container-card .btn-primary{
     border: #fff 1 solid;
-
-
 }
 
 /* recommendation title*/
@@ -275,19 +263,16 @@ header, .navbar {
     justify-content: right;
     width: 50%;
     color: red;
- 
-    margin-bottom: 50px;
+    margin-bottom: 3.125rem; /* 50px */
 }
 
 .piperecommend:after {
     content: 'TALVEZ VOCÊ GOSTE';
-
-    font-size: 34px;
+    font-size: 2.125rem; /* 34px */
     font-family: sans-serif;
     font-weight: bold;
     color: white;
 }
-
 
 /* Recomendation bleach screen */
 
@@ -296,21 +281,21 @@ header, .navbar {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-weight: bold;
     color: white;
-    margin-bottom: 30px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-#text-recomendation {
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 40px;
-    margin-left: 45px;
-    width: 596px;
-    text-align: left;
-    filter: drop-shadow(1);
-    filter: brightness(80%);
-    color: white;
-}
+    margin-bottom: 1.875rem; /* 30px*/
+    text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.5); /* 2px , 4px */
+    }
+    
+    #text-recomendation {
+        font-size: 1.25rem; /* 20px  */
+        font-weight: 700;
+        margin-bottom: 2.5rem; /* 40px  */
+        margin-left: 2.8125rem; /* 45px  */
+        width: 37.25rem; /* 596px  */
+        text-align: left;
+        filter: drop-shadow(1);
+        filter: brightness(80%);
+        color: white;
+    }
 
 .text-recommend {
     position: absolute;
@@ -334,10 +319,11 @@ header, .navbar {
 }
 
 .recommend-image {
-    width: 1200px;
-    height: 575px;
+    width: 75rem; /* 1200px */
+    height: 35.9375rem; /* 575px */
     flex-shrink: 0;
 }
+
 
 .text-recommend {
     position: absolute;
@@ -357,13 +343,14 @@ header, .navbar {
 .container-images-recommend {
     display: flex;
     justify-content: space-between;
-    margin-top: 30px;
+    margin-top: 1.875rem; /* 30px  */
 }
 
 .container-images-recommend div {
-    flex: 1; 
-    margin: 0 5px; 
+    flex: 1;
+    margin: 0 0.3125rem; /* 5px */
 }
+
 
 .container-images-recommend img {
     width: 100%; 
@@ -371,8 +358,8 @@ header, .navbar {
 } 
 
 .img01 img, .img02 img, .img03 img, .img04 img {
-    width: 127px;
-    height: 575px;
+    width: 7.9375rem; /* 127px */
+    height: 35.9375rem; /* 575px */
     flex-shrink: 0;
     filter: brightness(60%);
     filter: drop-shadow(1);
@@ -388,56 +375,51 @@ header, .navbar {
 .container-button {
     display: flex;
     justify-content: center; /* Centraliza os botões */
-    margin-top: 20px; /* Espaço acima dos botões */
+    margin-top: 1.25rem; /* 20px Espaço acima dos botões */
 }
 
 .btn-assistir, .btn-add-list {
     display: inline-block; /* Coloca os botões juntos */
-    font-size: 18px; 
+    font-size: 1.125rem; /* 18px*/
     font-weight: bold;
-    border-radius: 180px;
+    border-radius: 11.25rem; /* 180px / */
     background: #C80000;
-    color: white; 
-    padding: 10px 20px;
-    margin: 0 10px; /* Espaçamento entre os botões */
-    margin-top: 20px;
+    color: white;
+    padding: 0.625rem 1.25rem; /* 10px , 20px */
+    margin: 0 0.625rem; /* Espaçamento entre os botões */
+    margin-top: 1.25rem;
     text-decoration: none; /* Remove o sublinhado */
-  
     transition: background-color 0.3s; /* Transição suave */
 }
-
 .btn-assistir:hover, .btn-add-list:hover {
     background-color: transparent; 
     color: rgb(255, 0, 0); 
     cursor: pointer;
-    filter: brightness(90%);
-  
+    filter: brightness(90%);  
 }
 
 /* (Title)Continue Assistindo */
 
 .main-title-toppage {
-    font-size: 36px;
+    font-size: 2.25rem; /* 36px */
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-weight: bold;
     color: rgb(255, 0, 0);
-    margin-bottom: 30px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 1.875rem; /* 30px  */
+    text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.5); /* 2px , 4px  */
 }
-
 
 .pipecontinue {
     position: flex;
     justify-content: right;
     width: 50%;
-    color: red;
- 
-    margin-bottom: 25px;
+    color: red; 
+    margin-bottom: 1.5625rem; /* 25px */
 }
 
 .pipecontinue:after {
     content: 'CONTINUE ASSISTINDO';
-    font-size: 34px;
+    font-size: 2.125rem; /* 34px */
     font-family: sans-serif;
     font-weight: bold;
     color: white;
@@ -453,16 +435,16 @@ header, .navbar {
 
 .card-watching {
     flex: 1; /* Permite que os cards ocupem o espaço disponível */
-    margin: 10px; /* Adiciona espaçamento entre os cards */
+    margin: 0.625rem; /* Adiciona espaçamento entre os cards */
 }
 
 
 .card-body-continue {
-    margin-bottom: 40px;
-    margin-right: 10px;
+    margin-bottom: 2.5rem; /* 40px  */
+    margin-right: 0.625rem; /* 10px  */
     position: relative;
-    width: 229px;
-    height: 220px;
+    width: 14.3125rem; /* 229px */
+    height: 13.75rem; /* 220px  */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -473,19 +455,19 @@ header, .navbar {
 
 .play-btn-and-texts {
     position: absolute;
-    bottom: 10px; /* Coloca os textos mais próximos da parte inferior */
+    bottom: 0.625rem; /* Coloca os textos mais próximos da parte inferior */
     left: 50%;
-    transform: translateX(-50%); 
-    text-align: center;
-    color: white; 
+transform: translateX(-50%);
+text-align: center;
+color: white;
 }
 
 .btn-play {
-  display: inline-block;
-  font-size: 24px;
-    margin-bottom: 25px;   
-    width: 42px;
-    height: 42px;
+display: inline-block;
+font-size: 1.5rem; /* 24px  */
+margin-bottom: 1.5625rem;
+width: 2.625rem; /* 42px */
+height: 2.625rem; /* 42px*/
     background-size: cover;
     border: none;
     cursor: pointer;
@@ -502,65 +484,56 @@ header, .navbar {
     transition: transform 0.3s;
     transition: box-shadow 0.3s;
     transition: color 0.3s;
-
 }
 
-
-#card-title{
-    margin-bottom: 5px;
-    font-size: 18px;
+#card-title {
+    margin-bottom: 0.3125rem; /* 5px  */
+    font-size: 1.125rem; /* 18px */
     font-weight: bold;
-   
     color: white;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    
-
+    text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.5); /* 2px , 4px  */
 }
 
-#card-text{
-        font-weight: 400;
-        filter: brightness(75%);
-        color: white;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        margin-bottom: 10px;
-        font-size: 14px;
-        white-space: nowrap; /* Impede quebra de linha */
+#card-text {
+    font-weight: 400;
+    filter: brightness(75%);
+    color: white;
+    text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.5); /* 2px , 4px */
+    margin-bottom: 0.625rem; /* 10px  */
+    font-size: 0.875rem; /* 14px  */
+    white-space: nowrap; /* Impede quebra de linha */
 }
-
 
 .card-img-top-continue {
     filter: brightness(55%);
 }
-
 
 .container-profile-screen {
     display: flex;
     flex-direction: column; /* Mantenha como coluna para telas pequenas */  
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.8);
-    padding-top: 20px; /* Espaçamento superior para o título */
+    padding-top: 1.25rem; /* 20px  Espaçamento superior para o título */
 }
 
 #quero-assistir-txt {
     color: #FFF;
     font-family: Roboto;
-    font-size: 35px;
+    font-size: 2.1875rem; /* 35px  */
     font-style: italic;
     font-weight: 700;
     line-height: normal;
-    
-  
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.5); /* 2px , 4px */
     text-align: left; /* Centraliza o texto */
-    margin-right: 500px; 
+    margin-right: 31.25rem; /* 500px  */
 }
 
 #ultimas-noticias-txt{
     color: #FFF;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    margin-right: 350px; 
+    margin-right: 21.875rem; /* 350px  */
     text-align: left;
-    font-size: 30px;
+    font-size: 1.875rem; /* 30px */
     font-style: normal;
     font-weight: 900;
     line-height: normal;
@@ -572,72 +545,59 @@ header, .navbar {
     width: 100%;
     justify-content: space-between; /* Centraliza as seções */
     flex-wrap: wrap;
-    border: #FFF solid 1px;
-
+    border: #FFF solid 0.0625rem; /* 1px / */
 }
 
- .news-right-screen {
+.news-right-screen {
     width: 50%; /* Cada seção ocupa metade da largura */
-    
     height: auto;
-    border: #fff solid 1px;
-    
+    border: #fff solid 0.0625rem; /* 1px */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px;
-    text-align: center;
+    padding: 1.25rem; /* 20px  */
 }
+    text-align: center;
 
 .choose-left-screen {
     width: 50%;
     height: auto;
-    border: #fff solid 1px;
-    
+    border:#fff solid 0.0625rem; /* 1px */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding:  1.25rem; /* 20px  */
     text-align: center;
 }
 
 .left-section-slider-choose {
     width: 100%;
-    height: 588px;
-
+    height: 36.75rem; /* 588px */
 }
 
 .choose-left-screen img {
     width: 100%;
-    height: 588px;
-    
-    margin-top: 30px;
+    height: 36.75rem; /* 588px  */
+    margin-top: 1.875rem; /* 30px  */
     object-fit: cover;
-    margin: 0 105px;
-
-  
+    margin: 0 6.5625rem; /* 105px */
 }
-
-/* img slider services */
- 
+/* img slider services */ 
 .item-service img {
     filter: brightness(85%);
 }
 
-
-
 .right-profile-screen {
     width: 100%;
-
 }
 
 /* slider choose */
 
 .slider-choose {
     width: 100%;
-    height: 588px;
+    height: 36.75rem; /* 588px  */
     margin: auto;
     position: relative;
     overflow: hidden;
@@ -652,16 +612,14 @@ header, .navbar {
     width: max-content;
     transition: 1s;
     display: flex;
-    transition: left 1.0s;
-    
+    transition: left 1.0s;    
 }
 
 .list-choose img {
         overflow: hidden;
         width: 100%; /* Alterado de 588px para 100% */
         height: 100%;
-        object-fit: cover; /* Isso deve ajudar a manter a proporção da imagem */
-        
+        object-fit: cover; /* Isso deve ajudar a manter a proporção da imagem */       
 }
 
 .buttons-choose {
@@ -670,14 +628,12 @@ header, .navbar {
     left: 5%;
     width: 90%;
     display: flex;
-    justify-content: space-between;
-  
+    justify-content: space-between;  
 }
 
 .buttons-choose button:hover {
     background-color: rgb(192, 192, 192);
 }
-
 
 .buttons-choose button {
     width: 50px;
@@ -693,11 +649,10 @@ header, .navbar {
 
 .dots {
     position: absolute;
-    bottom: 10px;
+    bottom: 0.625rem; /* 10px  */
     color: white;
     left: 0;
     width: 100%;
-
     margin: 0;
     padding: 0;
     display: flex;
@@ -705,13 +660,13 @@ header, .navbar {
 }
 
 .slider-news .dots li {
-    width: 25px; 
-    height: 25px;
-    background-color: gray; 
-    border-radius: 50%; 
+    width: 1.5625rem; /* 25px  */
+    height: 1.5625rem; /* 25px  */
+    background-color: gray;
+    border-radius: 50%;
     display: inline-block;
-    margin: 0 5px;
-    transition: transform 0.3s, background-color 0.3s; 
+    margin: 0 0.3125rem; /* 5px */
+    transition: transform 0.3s, background-color 0.3s;
 }
 
 .slider-news .dots li.active {
@@ -725,30 +680,24 @@ header, .navbar {
         align-items: center;
         justify-content: center;
         position: relative;
- 
     }
-
 
 .btn-choose-anime {
     position: absolute; 
     bottom: 10px; 
     left: 60%; 
-    top: 90%;
-    
-    width: 170px;
-    height: 40px;
+    top: 90%;    
+    width: 10.625rem; /* 170px  */
+    height: 2.5rem; /* 40px  */
     flex-shrink: 0;
-
     border: 2px solid #FA0000;
     background-color: transparent;
-    color: #FA0000;
-    
+    color: #FA0000;   
     cursor: pointer;
     z-index: 10;    
     text-align: center;
     font-family: fantasy;
 }
-
 
 .btn-choose-anime:hover {
     background-color: #FF0000;
@@ -774,7 +723,7 @@ header, .navbar {
 
 .slider-news {
     width: 100%;
-    height: 596px;
+    height: 37.25rem; /* 596px */
     margin: auto;
     position: relative;
     overflow: hidden;
@@ -793,23 +742,19 @@ header, .navbar {
     height: 100%;
     filter: brightness(75%);
     object-fit: cover;
-    transition: 0.3s;
-
-    
+    transition: 0.3s;    
 }
 
 .text-news{
     font-size: 1.0rem;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 1.25rem; /* 20px */
     font-weight: normal;
     text-decoration: none;
     filter: brightness(75%);
     transition: 0.3s;
-    color: white;
-    
+    color: white;  
 }
-
 
 .title-news {
     font-size: 1.55rem;
@@ -818,7 +763,6 @@ header, .navbar {
 }
 
 .item-news {
-
     position: relative; 
     overflow: hidden; 
     height: 100%;
@@ -826,20 +770,17 @@ header, .navbar {
 
 .container-news-text {
     position: absolute; /* Posiciona sobre a imagem */
-    bottom: 20px; 
-    left: 23%; 
+    bottom: 1.25rem; /* 20px  */
+    left: 23%;
     top: 20%;
     transform: translateX(-50%); /* Ajusta para centralizar */
-    width: 239px;
-    height: 309px;
+    width: 14.9375rem; /* 239px  */
+    height: 19.3125rem; /* 309px  */
     color: white;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background: rgba(219, 212, 212, 0.1);
-
-
-
-    padding: 10px; /* Espaçamento interno */
-    border-radius: 5px; /* Bordas arredondadas */
+    padding: 0.625rem; /* Espaçamento interno */
+    border-radius: 0.3125rem; /* Bordas arredondadas */
     text-align: center; /* Centraliza o texto */
 }
 
@@ -847,18 +788,17 @@ header, .navbar {
 
  #new-news {
     filter: brightness(55%);
-
  }
-
 
 /* Minha lista*/
 
 .main-title-mylist {
     display: flex;
     color: #ff0000;
-    font-size: 30px;
+    font-size: 1.875rem; /* 30px */
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem; /* 20px  */
+    
 }
 
 .pipe-mylist::after{
@@ -867,58 +807,52 @@ header, .navbar {
     margin: 0px;
 }
 
-.pipe-myanime{
-    margin: 0px 15px 0px 15px;
+.pipe-myanime {
+    margin: 0rem 0.9375rem 0rem 0.9375rem; /* 15px  */
     display: flex;
     color: #ff0000;
-    font-size: 30px;
+    font-size: 1.875rem; /* 30px  */
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem; /* 20px */
 }
 
 .pipe-myanime::after{
     
     content: 'Animes Favoritos'; 
     color: rgb(255, 255, 255);
-    margin: 0 5px;
+    margin: 0 0.3125rem; /* 5px  */
 }
 
 #card-title-favorite {
-    font-size: 18px;
+    font-size: 1.125rem; /* 18px*/
     font-weight: bold;
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 0.625rem; /* 10px */
 }
 
 .options-favorite {
-    display: flex;
-   
-    
+    display: flex;       
     align-items: center;
     text-align: center;
     width: 100%;
-    justify-content: space-between;
-
-  
+    justify-content: space-between;  
 }
 
 #card-text-favorite-anime {
-
-    font-size: 16px;
+    font-size: 1rem; /* 16px*/
     font-weight: bold;
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 0.625rem; /* 10px */
     cursor: pointer;
 }
 
-#card-text-favorite-manga{
-    margin-left: 15px;
-    font-size: 16px;
+#card-text-favorite-manga {
+    margin-left: 0.9375rem; /* 15px */
+    font-size: 1rem; /* 16px  */
     font-weight: bold;
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 0.625rem; /* 10px  */
     cursor: pointer;
-
 }
 
 #card-text-favorite-manga:hover {
@@ -934,9 +868,8 @@ header, .navbar {
 }
 
 .my-3 {
-    margin-left: 760px;
+    margin-left: 47.5rem; /* 760px  */
 }
-.btn-primeiro{
-    margin-left: 840px;
-    
+.btn-primeiro {
+    margin-left: 52.5rem; /* 840px */
 }
