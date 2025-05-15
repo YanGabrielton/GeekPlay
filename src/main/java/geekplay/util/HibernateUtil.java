@@ -11,8 +11,10 @@ public class HibernateUtil {
     private static SessionFactory buildSessionFactory() {
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure() // Carrega hibernate.cfg.xml
-                   //.applySetting("hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect")  // no caso no meu mysqlWorkBench ele mostra como MariaDB103DialectSELECT VERSION();
-                   .applySetting("hibernate.connection.driver_class", "org.mariadb.jdbc.Driver")  .build();
+                   // no caso no meu mysqlWorkBench ele mostra como MariaDB103Dialect SELECT VERSION();
+                   .applySetting("hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect")
+                   .applySetting("hibernate.connection.driver_class", "com.mysql.cj.jdbc.Driver")
+                     .build();
                    
                    
         try {

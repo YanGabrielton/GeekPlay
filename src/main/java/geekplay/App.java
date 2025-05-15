@@ -17,8 +17,8 @@ public class App {
              config.bundledPlugins.enableDevLogging();
           
 
-        }).start(7000);
-        app.get("/", ctx -> ctx.result("Servidor GeekPlay funcionando 🚀"));
+        }).start(7070); //a porta 7000 deu ocupada
+        app.get("/", ctx -> ctx.result("Servidor GeekPlay funcionando "));
        
         
         UsuarioDao usuarioDao = new UsuarioDao();
