@@ -8,18 +8,22 @@ import io.javalin.http.Context;
 
 public class App {
     public static void main(String[] args) {
-        // Inicializa Hibernate
+        // Inicializa Hibernate com detecção automática
         HibernateUtil.getSessionFactory();
-        //configuração seguindo a documentação do Javalin
         
+        // Configuração do servidor Javalin
         Javalin app = Javalin.create(config -> {
-            // Configurações do Javalin
-             config.bundledPlugins.enableDevLogging();
-          
-
-        }).start(7070); //a porta 7000 deu ocupada
-        app.get("/", ctx -> ctx.result("Servidor GeekPlay funcionando "));
-       
+            config.bundledPlugins.enableDevLogging(); // Ativa logs de requisições
+            config.bundledPlugins.enableCors(cors -> {
+                cors.addRule(rule -> {
+                    rule.allowHost("http://localhost:3000"); // Frontend local
+                    rule.allowHost("http://127.0.0.1:5500"); // Live Server
+                });
+            });
+        }).start(7070); // Inicia na porta 7070
+        
+        // Rota básica de saúde
+        app.get("/", ctx -> ctx.result("API GeekPlay operacional ✅"));
         
         UsuarioDao usuarioDao = new UsuarioDao();
         
@@ -28,43 +32,52 @@ public class App {
         app.get("/usuarios", ctx -> listarUsuarios(ctx, usuarioDao));
         app.get("/usuarios/{id}", ctx -> buscarUsuarioPorId(ctx, usuarioDao));
         
-        // Fecha Hibernate ao encerrar
+        // Encerramento seguro
         app.events(event -> {
             event.serverStopped(HibernateUtil::shutdown);
         });
     }
-    
-    private static void criarUsuario(Context ctx, UsuarioDao usuarioDao) {
+
+    // Método para criar usuário
+    private static void criarUsuario(Context ctx, UsuarioDao dao) {
         try {
             Usuario usuario = ctx.bodyAsClass(Usuario.class);
-            usuarioDao.salvar(usuario);
-            ctx.status(201).json(usuario);
+            dao.salvar(usuario);
+            ctx.status(201).json(usuario); // 201 Created
         } catch (Exception e) {
-            ctx.status(400).result("Erro ao criar usuário: " + e.getMessage());
+            ctx.status(400).json(error("Dados inválidos: " + e.getMessage()));
         }
     }
-    
-    private static void listarUsuarios(Context ctx, UsuarioDao usuarioDao) {
+
+    // Método para listar usuários
+    private static void listarUsuarios(Context ctx, UsuarioDao dao) {
         try {
-            ctx.json(usuarioDao.listarTodos());
+            ctx.json(dao.listarTodos()); // 200 OK
         } catch (Exception e) {
-            ctx.status(500).result("Erro ao listar usuários");
+            ctx.status(500).json(error("Erro interno ao listar usuários"));
         }
     }
-    
-    private static void buscarUsuarioPorId(Context ctx, UsuarioDao usuarioDao) {
+
+    // Método para buscar por ID
+    private static void buscarUsuarioPorId(Context ctx, UsuarioDao dao) {
         try {
             int id = Integer.parseInt(ctx.pathParam("id"));
-            Usuario usuario = usuarioDao.buscarPorId(id);
-            if (usuario != null) {
-                ctx.json(usuario);
+            Usuario usuario = dao.buscarPorId(id);
+            
+            if(usuario != null) {
+                ctx.json(usuario); // 200 OK
             } else {
-                ctx.status(404).result("Usuário não encontrado");
+                ctx.status(404).json(error("Usuário não encontrado")); // 404 Not Found
             }
         } catch (NumberFormatException e) {
-            ctx.status(400).result("ID inválido");
+            ctx.status(400).json(error("ID deve ser numérico")); // 400 Bad Request
         } catch (Exception e) {
-            ctx.status(500).result("Erro ao buscar usuário");
+            ctx.status(500).json(error("Erro na busca")); // 500 Internal Error
         }
+    }
+
+    // Método auxiliar para respostas de erro
+    private static String error(String message) {
+        return "{\"error\": \"" + message + "\"}";
     }
 }

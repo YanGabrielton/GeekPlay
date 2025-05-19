@@ -4,24 +4,85 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class HibernateUtil {
-    private static final SessionFactory sessionFactory = buildSessionFactory();
+    // Logger para registro de atividades
+    private static final Logger logger = LoggerFactory.getLogger(HibernateUtil.class);
+    
+    // Configurações para MySQL
+    private static final String MYSQL_DRIVER = "com.mysql.cj.jdbc.Driver";
+    private static final String MYSQL_DIALECT = "org.hibernate.dialect.MySQL8Dialect";
+    
+    // Configurações para MariaDB
+    private static final String MARIADB_DRIVER = "org.mariadb.jdbc.Driver";
+    private static final String MARIADB_DIALECT = "org.hibernate.dialect.MariaDB103Dialect";
+    
+    private static SessionFactory sessionFactory;
+    private static boolean usingMariaDB;
 
-    private static SessionFactory buildSessionFactory() {
-        final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
-                .configure() // Carrega hibernate.cfg.xml
-                   // no caso no meu mysqlWorkBench ele mostra como MariaDB103Dialect SELECT VERSION();
-                   .applySetting("hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect")
-                   .applySetting("hibernate.connection.driver_class", "com.mysql.cj.jdbc.Driver")
-                     .build();
-                   
-                   
+    // Bloco estático para inicialização automática
+    static {
         try {
-            return new MetadataSources(registry)
-                    .buildMetadata()
-                    .buildSessionFactory();
+            sessionFactory = buildSessionFactory(detectDatabaseType());
         } catch (Exception e) {
+            logger.error("Falha catastrófica na inicialização", e);
+            throw new ExceptionInInitializerError(e);
+        }
+    }
+
+    /**
+     * Detecta automaticamente o ambiente com base no nome do computador
+     * @return true para MariaDB (casa), false para MySQL (curso)
+     */
+    private static boolean detectDatabaseType() {
+        // Passo 1: Obter nome do computador
+        String hostname = System.getenv().getOrDefault("Yan", // Windows
+                          System.getenv().getOrDefault("HOSTNAME", "")); // Linux/Mac
+        
+        // Passo 2: Comparar com o nome do PC em casa
+        boolean isHome = hostname.equalsIgnoreCase("AsRok"); // Substitua pelo seu!
+        
+        // Passo 3: Registrar descoberta
+        logger.debug("Hostname detectado: {} → {}", hostname, 
+            isHome ? "CASA (MariaDB)" : "CURSO (MySQL)");
+        
+        return isHome;
+    }
+
+    /**
+     * Constrói a SessionFactory com base no banco detectado
+     * @param useMariaDB true para MariaDB, false para MySQL
+     */
+    private static SessionFactory buildSessionFactory(boolean useMariaDB) {
+        logger.info("Configurando para {}...", useMariaDB ? "MariaDB" : "MySQL");
+        
+        // Definir configurações dinâmicas
+        String driver = useMariaDB ? MARIADB_DRIVER : MYSQL_DRIVER;
+        String dialect = useMariaDB ? MARIADB_DIALECT : MYSQL_DIALECT;
+        String url = useMariaDB ? 
+            "jdbc:mariadb://localhost:3306/filme" : 
+            "jdbc:mysql://localhost:3306/filme";
+
+        // Construir registro de serviços
+        StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
+            .configure() // Carrega hibernate.cfg.xml
+            .applySetting("hibernate.connection.driver_class", driver)
+            .applySetting("hibernate.dialect", dialect)
+            .applySetting("hibernate.connection.url", url)
+            .build();
+
+        try {
+            SessionFactory factory = new MetadataSources(registry)
+                .buildMetadata()
+                .buildSessionFactory();
+            
+            logger.info("Conexão estabelecida com sucesso!");
+            return factory;
+            
+        } catch (Exception e) {
+            logger.error("Falha na conexão com o banco", e);
             StandardServiceRegistryBuilder.destroy(registry);
             throw new ExceptionInInitializerError(e);
         }
@@ -32,6 +93,9 @@ public class HibernateUtil {
     }
 
     public static void shutdown() {
-        getSessionFactory().close();
+        if (sessionFactory != null) {
+            logger.info("Encerrando conexões...");
+            sessionFactory.close();
+        }
     }
-} 
+}
