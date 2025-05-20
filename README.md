@@ -1,3 +1,6 @@
+Link live share
+https://prod.liveshare.vsengsaas.visualstudio.com/join?39377514F247D286EFB86DC74641FBC346E9
+
 
 # Projeto GeekPlay.
 Introdução-
