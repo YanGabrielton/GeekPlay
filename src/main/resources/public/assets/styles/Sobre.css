@@ -1,3 +1,5 @@
+
+
 /* Gerais */
 body {
     font-family: 'Roboto', sans-serif;
@@ -174,62 +176,14 @@ header, .navbar {
     display: flex;
     flex-direction: column;
 }
-footer {
-    background-color: black;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    padding: 1.875rem;
-}
-.Rodape {
-    color: rgb(255, 255, 255);
-    font-size: 0.625rem;
-}
-.paragrafo_rodape {
-    text-decoration: none;
-    color: white;
-    font-size: 0.625rem;
-}
-a {
-    text-decoration: none;
-    /* Remove a decoração de texto dos links */
-}
-.container-footer{
-   
-}
-.footer {
-    background-color: black;
-    color: white;
-    width: 100%;
-}
+/*Inicio do Footer*/
+.bg-footerCor{
+    background-color: var(--FooterheaderBg) ;
+  }
+  .text-muted {
+    color: var(--FooterHeaderText) ;
+  }
 
-footer .row {
-    flex-wrap: wrap;
-}
-
-footer .col-md-4 {
-    margin-bottom: 1.5rem;
-}
-.footer {
-    background-color: black;
-    color: white;
-    width: 100%;
-    padding: 2rem 1rem;
-    font-size: 0.875rem;
-}
-.footer h5 {
-    font-size: 1rem;
-    margin-bottom: 1rem;
-}
-.footer ul li {
-    margin-bottom: 0.5rem;
-}
-.footer small {
-    font-size: 0.75rem;
-    color: #ccc;
-}
 /* Media Queries */
 @media (max-width: 768px) {
     .container {
@@ -258,32 +212,13 @@ footer .col-md-4 {
     .nosso-email, .nosso-telefone, .gmail, .Telefone {
         font-size: 1rem; /* 16px */
     }
-/* Centralizar texto no mobile */
-@media (max-width: 767px) {
-    footer .col-md-4 {
-        text-align: center !important;
-    }
 
-    footer .col-md-4 img {
-        margin: 0 auto;
-    }
-
-    .footer ul {
-        padding-left: 0;
-    }
-}
-@media (min-width: 992px) {
-    .footer .col-md-4 {
-        text-align: left;
-    }
-}
 }
 /* Responsividade do botão menu lateral */
 @media (max-width: 991.98px) {
     .navbar-collapse {
       text-align: center;
     }
-  
     .navbar-nav {
       width: 100%;
       flex-direction: column;

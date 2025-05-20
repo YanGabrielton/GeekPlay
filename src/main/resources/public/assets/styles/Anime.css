@@ -5,7 +5,34 @@ body {
   overflow-x: hidden;
   max-width: 100%;
 }
+:root{
+  --FooterheaderBg:rgb(0, 0, 0);
+  --FooterHeaderText:#fcfbfb;
+  --CorHoverNav:rgb(245, 5, 5);
+}
+ .bg-footerCor {
+    background-color: var(--FooterheaderBg) !important;
+  }
+  
+  .text-HeaderCor {
+    color: var(--FooterHeaderText) !important;
+  }
+  
+ /* Corrige os links do menu que o Bootstrap ignora */
+ .navbar .nav-link {
+  color: var(--FooterHeaderText) !important;
+}
 
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+  color: var(--CorHoverNav) !important;
+}
+
+/* Destaque para a página ativa */
+.navbar .nav-item.active .nav-link {
+  font-weight: bold;
+  border-bottom: 2px solid var(--FooterHeaderText);
+}
 .row {
   margin: 0;
 }
@@ -975,12 +1002,23 @@ header,
   margin-left: 52.5rem; /* 840px */
 }
 
-footer a:hover {
-  color: #ff4d4d; /* vermelho claro ao passar o mouse */
+ /*Inicio do Footer*/
+ .bg-footerCor{
+  background-color: var(--FooterheaderBg) ;
 }
-footer p.small {
-  color: white !important;
+.text-muted {
+  color: var(--FooterHeaderText) ;
 }
+
+
+
+
+
+
+
+
+
+
 
 /* ========== RESPONSIVIDADE GERAL ========== */
 @media (max-width: 1199.98px) {
@@ -1218,7 +1256,6 @@ footer p.small {
   }
 }
 
-
 /* ========== BOTÕES RESPONSIVO ========== */
 @media (max-width: 767.98px) {
   .Botoes {
@@ -1230,37 +1267,3 @@ footer p.small {
     padding: 5px 10px;
   }
 }
-
-/* ========== FOOTER RESPONSIVO ========== */
-@media (max-width: 767.98px) {
-  footer .row {
-    flex-direction: column;
-    text-align: center;
-  }
-  
-  footer .col-md-4 {
-    margin-bottom: 20px;
-  }
-  
-  footer .text-md-end {
-    text-align: center !important;
-  }
-  
-  footer ul {
-    padding-left: 0;
-    list-style-type: none;
-  }
-  
-  footer li {
-    margin-bottom: 8px;
-  }
-}
-
-
-
-
-
-
-
-
-
