@@ -9,16 +9,21 @@ import java.util.List;
 
 public class UsuarioDao {
     public void salvar(Usuario usuario) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            Transaction tx = session.beginTransaction();
-            session.persist(usuario);
-            tx.commit();
+      //   Transaction tx = connection.beginTransaction(); porem eu fiz dessa forma abaixo
+      Transaction transaction = null;
+        try (Session connection = HibernateUtil.getSessionFactory().openSession()) {//Uma Session do Hibernate representa a "conversa" com o banco
+        transaction = connection.beginTransaction(); //	Começa uma transação (como no SQL: BEGIN)
+            connection.persist(usuario); //Insere o objeto usuario no banco (INSERT INTO usuario (...))
+            transaction.commit(); //Finaliza a transação
+        }catch (Exception e) {
+            if (transaction != null) transaction.rollback(); //Se der erro, desfaz a transação (evita dados errados no banco)
+            throw e;
         }
     }
     
     public Usuario buscarPorId(int id) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.find(Usuario.class, id);
+            return session.find(Usuario.class, id); //É o equivalente a SELECT * FROM usuario WHERE id = ...
         }
     }
     

@@ -38,11 +38,11 @@ public class HibernateUtil {
      */
     private static boolean detectDatabaseType() {
         // Passo 1: Obter nome do computador
-        String hostname = System.getenv().getOrDefault("Yan", // Windows
+        String hostname = System.getenv().getOrDefault("L05023964", // Windows
                           System.getenv().getOrDefault("HOSTNAME", "")); // Linux/Mac
         
         // Passo 2: Comparar com o nome do PC em casa
-        boolean isHome = hostname.equalsIgnoreCase("AsRok"); // Substitua pelo seu!
+        boolean isHome = hostname.equalsIgnoreCase("AsRok"); // Substitua pelo seu nome do computador!
         
         // Passo 3: Registrar descoberta
         logger.debug("Hostname detectado: {} → {}", hostname, 
@@ -63,7 +63,7 @@ public class HibernateUtil {
         String dialect = useMariaDB ? MARIADB_DIALECT : MYSQL_DIALECT;
         String url = useMariaDB ? 
             "jdbc:mariadb://localhost:3306/filme" : 
-            "jdbc:mysql://localhost:3306/filme";
+            "jdbc:mysql://localhost:3307/filme";
 
         // Construir registro de serviços
         StandardServiceRegistry registry = new StandardServiceRegistryBuilder()

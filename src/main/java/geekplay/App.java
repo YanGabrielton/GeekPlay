@@ -23,7 +23,7 @@ public class App {
         }).start(7070); // Inicia na porta 7070
         
         // Rota básica de saúde
-        app.get("/", ctx -> ctx.result("API GeekPlay operacional ✅"));
+        app.get("/", ctx -> ctx.result("API GeekPlay operacional rodando"));
         
         UsuarioDao usuarioDao = new UsuarioDao();
         
