@@ -204,7 +204,7 @@ a {
     color: white;
     width: 100%;
 }
-/* Rodapé responsivo */
+
 footer .row {
     flex-wrap: wrap;
 }
@@ -277,3 +277,25 @@ footer .col-md-4 {
         text-align: left;
     }
 }
+}
+/* Responsividade do botão menu lateral */
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+      text-align: center;
+    }
+  
+    .navbar-nav {
+      width: 100%;
+      flex-direction: column;
+      align-items: center; 
+      justify-content: center; 
+      gap: 10px;
+      padding: 1rem 0;
+    }
+  
+    .navbar-nav .nav-link {
+      width: 100%;
+      text-align: center;
+    }
+  }
+  
