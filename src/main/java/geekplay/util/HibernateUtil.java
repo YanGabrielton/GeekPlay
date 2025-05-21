@@ -63,7 +63,7 @@ public class HibernateUtil {
         String dialect = useMariaDB ? MARIADB_DIALECT : MYSQL_DIALECT;
         String url = useMariaDB ? 
             "jdbc:mariadb://localhost:3306/filme" : 
-            "jdbc:mysql://localhost:3307/filme";
+            "jdbc:mysql://localhost:3306/filme";
 
         // Construir registro de serviços
         StandardServiceRegistry registry = new StandardServiceRegistryBuilder()

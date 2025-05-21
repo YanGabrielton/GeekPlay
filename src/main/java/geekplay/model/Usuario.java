@@ -2,6 +2,7 @@ package geekplay.model;
 
 import jakarta.persistence.*;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "usuario")
@@ -11,23 +12,26 @@ public class Usuario {
     @Column(name = "id_usuario")
     private int id;
     
-    @Column(nullable = false, unique = true, length = 45)
+    @Column(nullable = false, unique = true, length = 100)
     private String email;
     
-    @Column(nullable = false, unique = true, length = 12)
+    @Column(nullable = false, unique = true, length = 30)
     private String nome;
     
-    @Column(nullable = false, length = 16)
+    @Column(nullable = false, length = 255)
     private String senha;
     
     @Column(name = "statusL", columnDefinition = "CHAR(1) DEFAULT 'A'")
     private char status;
     
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Favorito> favoritos;
     
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Doacao> doacoes;
+    
     
     // Construtores, getters e setters
     public Usuario() {}

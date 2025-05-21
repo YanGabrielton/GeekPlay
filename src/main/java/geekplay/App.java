@@ -5,24 +5,25 @@ import geekplay.model.Usuario;
 import geekplay.util.HibernateUtil;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
+import java.util.Map;
 
 public class App {
     public static void main(String[] args) {
         // Inicializa Hibernate com detecção automática
         HibernateUtil.getSessionFactory();
         
-        // Configuração do servidor Javalin
+    
         Javalin app = Javalin.create(config -> {
-            config.bundledPlugins.enableDevLogging(); // Ativa logs de requisições
+            config.bundledPlugins.enableDevLogging(); 
             config.bundledPlugins.enableCors(cors -> {
                 cors.addRule(rule -> {
-                    rule.allowHost("http://localhost:3000"); // Frontend local
-                    rule.allowHost("http://127.0.0.1:5500"); // Live Server
+                    rule.allowHost("http://localhost:3000"); 
+                    rule.allowHost("http://127.0.0.1:5500"); 
                 });
             });
-        }).start(7070); // Inicia na porta 7070
+        }).start(7070); 
         
-        // Rota básica de saúde
+       
         app.get("/", ctx -> ctx.result("API GeekPlay operacional rodando"));
         
         UsuarioDao usuarioDao = new UsuarioDao();
@@ -36,6 +37,16 @@ public class App {
         app.events(event -> {
             event.serverStopped(HibernateUtil::shutdown);
         });
+app.post("/login", ctx -> {
+    Usuario credenciais = ctx.bodyAsClass(Usuario.class);
+    Usuario usuario = usuarioDao.buscarPorEmail(credenciais.getEmail()); // Você precisará implementar este método no UsuarioDao
+    if (usuario != null && usuario.getSenha().equals(credenciais.getSenha())) {
+        ctx.json(usuario);
+    } else {
+        ctx.status(401).json("{\"error\": \"Credenciais inválidas\"}");
+    }
+});
+
     }
 
     // Método para criar usuário
@@ -48,6 +59,7 @@ public class App {
             ctx.status(400).json(error("Dados inválidos: " + e.getMessage()));
         }
     }
+    
 
     // Método para listar usuários
     private static void listarUsuarios(Context ctx, UsuarioDao dao) {
