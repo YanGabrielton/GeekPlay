@@ -37,15 +37,7 @@ public class App {
         app.events(event -> {
             event.serverStopped(HibernateUtil::shutdown);
         });
-app.post("/login", ctx -> {
-    Usuario credenciais = ctx.bodyAsClass(Usuario.class);
-    Usuario usuario = usuarioDao.buscarPorEmail(credenciais.getEmail()); // Você precisará implementar este método no UsuarioDao
-    if (usuario != null && usuario.getSenha().equals(credenciais.getSenha())) {
-        ctx.json(usuario);
-    } else {
-        ctx.status(401).json("{\"error\": \"Credenciais inválidas\"}");
-    }
-});
+
 
     }
 

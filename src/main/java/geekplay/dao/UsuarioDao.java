@@ -22,15 +22,7 @@ public class UsuarioDao {
     }
 
 
-    public Usuario buscarPorEmail(String email) {
-        if (email == null || email.trim().isEmpty()) return null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.createQuery("FROM Usuario WHERE email = :email", Usuario.class)
-                .setParameter("email", email.trim().toLowerCase())
-                .uniqueResult();
-        }
-    }
-
+  
     public Usuario buscarPorId(int id) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             return session.find(Usuario.class, id);
@@ -42,14 +34,5 @@ public class UsuarioDao {
             return session.createQuery("FROM Usuario", Usuario.class).list();
         }
     }
-
-    public boolean existePorEmail(String email) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            Long count = session.createQuery("SELECT COUNT(u) FROM Usuario u WHERE email = :email", Long.class)
-                .setParameter("email", email.trim().toLowerCase())
-                .uniqueResult();
-            return count != null && count > 0;
-        }
-    }
-    
+ 
 }
