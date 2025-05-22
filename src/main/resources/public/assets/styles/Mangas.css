@@ -1,358 +1,282 @@
-mangas 
-/* Gerais */
+html,
 body {
-    font-family: 'Roboto', sans-serif;
-    overflow-x: hidden;
-    background-color: black;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    margin: 0;
-   }
-  
-   :root {
-    --FooterheaderBg: rgb(0, 0, 0); /* Cor de fundo do footer (preto) */
-    --FooterHeaderText: #fcfbfb; /* Cor do texto do footer (branco) */
-    --CorHoverNav: rgb(245, 5, 5); /* Cor do hover nos links de navegação (vermelho) */
-   }
-  
-   .bg-footerCor {
+  font-family: 'Roboto', sans-serif;
+  background-color: black;
+  overflow-x: hidden;
+  max-width: 100%;
+}
+:root{
+  --FooterheaderBg:rgb(0, 0, 0);
+  --FooterHeaderText:#fcfbfb;
+  --CorHoverNav:rgb(255, 255, 255);
+}
+.small{
+    color: #fcfbfb;
+}
+ .bg-footerCor {
     background-color: var(--FooterheaderBg) !important;
-   }
-  
-   .text-HeaderCor {
-    color: var(--FooterHeaderText) !important;
-   }
-  
-   .row {
-    margin: 0;
-   }
-  
-   .container {
-    padding: 70px 15px;
-    max-width: 1200px;
-    margin: 0 auto;
-   }
-  
-   p,
-   li {
-    color: rgb(255, 0, 0);
-    font-size: 14px;
-   }
-  
-   /* Barra de nav (sem alterações relevantes para o footer) */
-   .search {
-    position: relative;
-    width: 100%;
-    max-width: 400px;
-    height: 2.5rem;
-    margin-left: auto;
-    margin-bottom: 1rem;
-   }
-  
-   @media (min-width: 992px) {
-    .search {
-     margin-left: auto;
-     margin-bottom: 0;
-    }
-   }
-  
-   .search input {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    color: #720404;
-    background: transparent;
-    border: 1px solid rgba(177, 2, 2, 0.575);
-    outline: none;
-    border-radius: 0.25rem;
-    padding: 0 0.625rem 0 2.8125rem !important;
-    backdrop-filter: blur(0.625rem);
-   }
-  
-   .search input::placeholder {
-    color: #fff;
-   }
-  
-   .search i {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 0.625rem;
-    padding-right: 0.625rem;
-    color: #fff;
-   }
-  
-   header,
-   .navbar {
-    background-color: black;
-    outline: 1px solid #950000;
-   }
-  
-   #nav-container {
-    padding-top: 0;
-    padding-bottom: 0;
-   }
-  
-   #logo {
-    width: 150px;
-   }
-  
-   .navbar-brand {
-    padding: 0;
-    color: white;
-   }
-  
-   .navbar-brand:hover {
-    color: white;
-   }
-  
-   .navbar-toggler {
-  
-   }
-  
-   .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(255, 255, 255, 0.75)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
-   }
-  
-   #navbar-links a {
-    color: #fff;
-    cursor: pointer;
-    padding: 0.5rem 1rem;
-    display: block;
-    text-align: center;
-   }
-  
-   @media (min-width: 992px) {
-    #navbar-links a {
-     display: inline-block;
-     text-align: left;
-     padding: 1rem 0.8rem;
-    }
-   }
-  
-   #navbar-links a:hover {
-    color: rgb(255, 0, 0);
-   }
-  
-   #navbar-links a .active {
-    color: rgb(255, 0, 0);
-    font-weight: bold;
-   }
-  
-   .navbar-expand-lg .navbar-nav .nav-link {
-    padding: 0.5rem 1rem;
-   }
-  
-   @media (min-width: 992px) {
-    .navbar-expand-lg .navbar-nav .nav-link {
-     padding: 1rem 0.8rem;
-    }
-   }
-  
-   /* Cards apresentação ANIMES (sem alterações relevantes para o footer) */
-   .container-card {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-top: 30px;
-   }
-  
-   @media (min-width: 768px) {
-    .container-card {
-     flex-direction: row;
-     justify-content: space-around;
-    }
-   }
-  
-   @media (min-width: 992px) {
-    .container-card {
-     justify-content: space-between;
-    }
-   }
-  
-   .card {
-    background-color: rgb(245, 243, 243);
-    color: rgb(253, 253, 253);
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-   }
-  
-   .card img {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 10px;
-   }
-  
-   .card-body {
-    flex-grow: 1;
-    padding-left: 0;
-   }
-  
-   @media (min-width: 768px) {
-    .card {
-     flex-direction: row;
-     align-items: flex-start;
-     text-align: left;
-    }
-  
-    .card img {
-     max-width: 150px;
-     margin-right: 15px;
-     margin-bottom: 0;
-    }
-  
-    .card-body {
-     padding-left: 20px;
-    }
-   }
-  
-   .btn-primary {
-    background-color: #a30000;
-    border: #C80000;
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
-   }
-  
-   .btn-primary:hover {
-    background-color: transparent;
-    color: red;
-    border: red 1 solid;
-    transition: .5s;
-    text-decoration: none;
-   }
-  
-   .container-card .btn-primary {
-    border: #fff 1 solid;
-   }
-  
-   .paragrafo_s {
-    color: white;
-    font-size: 1.563rem; /* 25px */
-    margin-top: 0.625rem; /* 10px */
-    text-align: justify;
-    padding: 1.25rem; /* 20px */
-    margin-left: 1%;
-    display: flex;
-    flex-direction: column;
-}
-footer {
-    background-color: black;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    padding: 1.875rem;
-}
-.Rodape {
-    color: rgb(255, 255, 255);
-    font-size: 0.625rem;
-}
-.paragrafo_rodape {
-    text-decoration: none;
-    color: white;
-    font-size: 0.625rem;
-}
-a {
-    text-decoration: none;
-    /* Remove a decoração de texto dos links */
-}
-.container-footer{
-   
-}
-.footer {
-    background-color: black;
-    color: white;
-    width: 100%;
-}
-/* Rodapé responsivo */
-footer .row {
-    flex-wrap: wrap;
-}
-
-footer .col-md-4 {
-    margin-bottom: 1.5rem;
-}
-.footer {
-    background-color: black;
-    color: white;
-    width: 100%;
-    padding: 2rem 1rem;
-    font-size: 0.875rem;
-}
-.footer h5 {
-    font-size: 1rem;
-    margin-bottom: 1rem;
-}
-.footer ul li {
-    margin-bottom: 0.5rem;
-}
-.footer small {
-    font-size: 0.75rem;
-    color: #ccc;
-}
-/* Media Queries */
-@media (max-width: 768px) {
-    .container {
-        padding: 20px 0;
-    }
-    .main-btn {
-        margin-right: 0;
-        width: 100%;
-    }
-    .Geek {
-        width: 100%;
-        height: auto;
-        margin-left: 0;
-    }
-}
-/* Media Queries */
-@media (max-width: 768px) {
-    .paragrafo_s {
-        font-size: 1.25rem; /* 20px */
-        padding: 1rem; /* 16px */
-        margin-left: 0;
-    }
-    .contato {
-        font-size: 1rem; /* 16px */
-    }
-    .nosso-email, .nosso-telefone, .gmail, .Telefone {
-        font-size: 1rem; /* 16px */
-    }
-/* Centralizar texto no mobile */
-@media (max-width: 767px) {
-    footer .col-md-4 {
-        text-align: center !important;
-    }
-
-    footer .col-md-4 img {
-        margin: 0 auto;
-    }
-
-    .footer ul {
-        padding-left: 0;
-    }
-}
-@media (min-width: 992px) {
-    .footer .col-md-4 {
-        text-align: left;
-    }
-}
-}
-
-.navbar-toggler-icon {
-    display: inline-block;
-    width: 1.5em;
-    height: 1.5em;
-    vertical-align: middle;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 100% 100%;
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.5%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
   }
+  
+  .text-HeaderCor {
+    color: var(--FooterHeaderText) !important;
+  }
+  
+ /* Corrige os links do menu que o Bootstrap ignora */
+ .navbar .nav-link {
+  color: var(--FooterHeaderText) !important;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+  color: var(--CorHoverNav) !important;
+}
+
+/* Destaque para a página ativa */
+.navbar .nav-item.active .nav-link {
+  font-weight: bold;
+  border-bottom: 2px solid var(--FooterHeaderText);
+}
+.row {
+  margin: 0;
+}
+
+.container {
+  padding: 4.375rem 0; /* 70px */
+}
+
+p,
+li {
+  color: red;
+  font-size: 0.875rem; /* 14px */
+}
+
+/* Barra de nav */
+
+header,
+.navbar {
+  background-color: black;
+}
+
+#nav-container {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+#logo {
+  width: 7.8125rem; /* 125px */
+}
+
+.navbar-brand {
+  padding: 0;
+  color: white;
+}
+
+.navbar-brand:hover {
+  color: white;
+}
+
+#navbar-links a {
+  color: #fff;
+  cursor: pointer;
+}
+
+#navbar-links a:hover,
+#navbar-links a .active,
+#anime-menu:active {
+  color: red;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+  padding: 1rem 0.8rem;
+}
+
+/* Slider */
+
+/* aqui e o carousel */
+#mainSlider .carousel-inner,
+#mainSlider .carousel-item {
+  height: 90vh;
+}
+
+#mainSlider .carousel-caption {
+  top: 30%;
+  text-align: center;
+}
+
+.carousel-caption .main-btn,
+.main-btn {
+  white-space: nowrap;
+  margin: 0 auto;
+  padding: 5px 10px;
+  font-size: 0.7rem;
+}
+
+#title-anime {
+  font-size: 1.2rem;
+}
+
+#japanese-title {
+  font-size: 0.9rem;
+}
+
+#type-streaming {
+  font-size: 0.8rem;
+}
+
+.border-title {
+  margin: 10px 0;
+}
+
+
+
+/* Título em japonês */
+#mainSlider .carousel-caption h3 {
+  font-size: 2rem; /* Aumentar para ficar mais visível */
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: #ff7b29; /* Cor laranja aproximada da imagem */
+  font-family: 'Noto Sans JP', sans-serif; /* Fonte com suporte a caracteres japoneses */
+}
+
+/* JUJUTSU e KAISEN */
+#mainSlider .carousel-caption h2 {
+  font-size: 3.5rem; /* Aumentado para mais destaque */
+  font-style: italic;
+  font-weight: 900; /* Bem negrito */
+  color: white;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  font-family: 'Arial Black', sans-serif; /* Aproximação visual */
+}
+
+/* Palavra ANIME */
+#mainSlider .carousel-caption .anime-label {
+  font-size: 3rem;
+  font-weight: 900;
+  color: white;
+  font-family: 'Impact', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+}
+
+
+
+/* Indicadores do carrossel */
+.carousel-indicators {
+  list-style: none;
+  text-decoration: none;
+}
+
+.carousel-indicators .active {
+  background-color: #f96565;
+}
+
+/* Filtros nas imagens */
+#imgbleach {
+  filter: brightness(70%);
+}
+
+#imgjujutsu {
+  filter: brightness(60%);
+}
+
+#imgkimetsu,
+#imgonepiece {
+  filter: brightness(40%);
+}
+
+/* Títulos no slider */
+#mainSlider #japanese-title {
+  font-size: 3.125rem;
+  text-align: left;
+  margin-bottom: 1.25rem;
+  color: #E27B41;
+  font-weight: bold;
+  text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.5);
+  transition: 0.5s;
+}
+
+#mainSlider #title-anime {
+  font-size: 4.375rem;
+  font-weight: bold;
+  font-style: italic;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: left;
+  margin-bottom: 1.25rem;
+  color: #ffffff;
+  text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.5);
+  transition: 0.5s;
+}
+
+.pipe {
+  
+  justify-content: flex-end;
+  width: 50%;
+  margin-right: 1.25rem; /* 20px */
+  margin-top: 3.125rem; /* 50px */
+  color: red;
+}
+
+.pipe::after {
+  content: 'Mangas';
+  font-size: 2.75rem; /* 44px */
+  font-weight: bold;
+  color: white;
+}
+/* correções de coisas reduntates*/
+
+/* Cards apresentação ANIMES */
+
+.container-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 1.875rem; /* 30px */
+}
+
+.card {
+  background-color: rgb(255, 255, 255);
+  color: rgb(160, 1, 1);
+  padding: 1.25rem; /* 20px */
+  display: flex;
+}
+
+
+/*  botoes da API */
+.btn-primary {
+  background-color: #a30000;
+  border: 1px solid #C80000;
+}
+
+.btn-primary:hover {
+  background-color: transparent;
+  color: red;
+  border: 1px solid red;
+  transition: 0.5s;
+  text-decoration: none;
+}
+
+.container-card .btn-primary {
+  border: 1px solid #fff;
+}
+
+/*  botoes API */
+
+.my-3 {
+  margin-left: 47.5rem; /* 760px */
+}
+
+.btn-primeiro {
+  margin-left: 52.5rem; /* 840px */
+}
+
+ /*Inicio do Footer*/
+ .bg-footerCor{
+  background-color: var(--FooterheaderBg) ;
+}
+.text-muted {
+  color: var(--FooterHeaderText) ;
+}
+
+
