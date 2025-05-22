@@ -22,7 +22,7 @@ public class Usuario {
     private String senha;
     
     @Column(name = "statusL", columnDefinition = "CHAR(1) DEFAULT 'A'")
-    private char status;
+    private Character status;
     
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     @JsonIgnore

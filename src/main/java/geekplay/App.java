@@ -32,7 +32,7 @@ public class App {
         app.post("/usuarios", ctx -> criarUsuario(ctx, usuarioDao));
         app.get("/usuarios", ctx -> listarUsuarios(ctx, usuarioDao));
         app.get("/usuarios/{id}", ctx -> buscarUsuarioPorId(ctx, usuarioDao));
-        
+        app.delete("usuarios/{id}", ctx -> deletarUsuario(ctx,usuarioDao));
         // Encerramento seguro
         app.events(event -> {
             event.serverStopped(HibernateUtil::shutdown);
@@ -51,6 +51,20 @@ public class App {
             ctx.status(400).json(error("Dados inválidos: " + e.getMessage()));
         }
     }
+
+  
+private static void deletarUsuario(Context ctx, UsuarioDao dao) {
+    try {
+        int id = Integer.parseInt(ctx.pathParam("id"));
+        dao.deletar(id);
+        ctx.status(204); // 204 No Content (sucesso sem retorno)
+    } catch (NumberFormatException e) {
+        ctx.status(400).json("{\"error\": \"ID inválido\"}");
+    } catch (Exception e) {
+        ctx.status(500).json("{\"error\": \"Erro ao deletar usuário\"}");
+    }
+}
+
     
 
     // Método para listar usuários
@@ -77,6 +91,15 @@ public class App {
             ctx.status(400).json(error("ID deve ser numérico")); // 400 Bad Request
         } catch (Exception e) {
             ctx.status(500).json(error("Erro na busca")); // 500 Internal Error
+        }
+    }
+
+
+    private static void verificarLogin(Context ctx,UsuarioDao dao){
+        try {
+            
+        } catch (Exception e) {
+           
         }
     }
 
