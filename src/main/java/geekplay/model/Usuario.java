@@ -21,7 +21,8 @@ public class Usuario {
     @Column(nullable = false, length = 255)
     private String senha;
     
-    @Column(name = "statusL", columnDefinition = "CHAR(1) DEFAULT 'A'")
+    @Column(name = "statusL", columnDefinition = "Character(1) DEFAULT 'A'" )
+   
     private Character status;
     
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
@@ -40,7 +41,8 @@ public class Usuario {
         this.email = email;
         this.nome = nome;
         this.senha = senha;
-        this.status = 'A';
+        this.status = 'A'; // Status padrão
+       
     }
     
     // Getters e Setters
@@ -68,10 +70,10 @@ public class Usuario {
     public void setSenha(String senha) { 
         this.senha = senha; 
     }
-    public char getStatus() { 
+    public Character  getStatus() { 
         return status; 
     }
-    public void setStatus(char status) { 
+    public void setStatus(Character status) { 
         this.status = status;
      }
     public List<Favorito> getFavoritos() { 
