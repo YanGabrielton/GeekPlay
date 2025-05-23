@@ -2,9 +2,14 @@ package geekplay.model;
 
 import jakarta.persistence.*;
 import java.util.List;
+
+import org.hibernate.annotations.DynamicInsert;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
+@DynamicInsert
+
 @Table(name = "usuario")
 public class Usuario {
     @Id
@@ -21,7 +26,7 @@ public class Usuario {
     @Column(nullable = false, length = 255)
     private String senha;
     
-    @Column(name = "statusL", columnDefinition = "Character(1) DEFAULT 'A'" )
+    @Column(name = "statusL", columnDefinition = "CHAR(1) DEFAULT 'A'" )
    
     private Character status;
     
@@ -41,7 +46,7 @@ public class Usuario {
         this.email = email;
         this.nome = nome;
         this.senha = senha;
-        this.status = 'A'; // Status padrão
+        // this.status = 'A';  Status padrão
        
     }
     
