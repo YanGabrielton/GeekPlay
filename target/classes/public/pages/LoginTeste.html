@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeekPlay</title>
+    <link href="https://fonts.cdnfonts.com/css/tt-fors-trial" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">                
+
+    <link rel="stylesheet" href="../assets/styles/Cadastro.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="../img/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon_io/favicon-16x16.png">
+    <link rel="icon" href="/img/favicon_io/favicon.ico">
+   
+</head>
+
+<body>
+    <div class="container" id="container">
+        <div class="formulario-container cadastro">
+            <form  action="../index.html">
+                <h1>Cadastre-se Aqui</h1>
+               
+
+                <input type="text" id="nome" name="nome" placeholder="Nome" required>
+
+                <input type="email" id="email1" name="email" placeholder="Email" required>
+
+                <input type="password" id="password1" name="password" placeholder="Senha" required>
+                <button>Cadastrar</button>
+            </form>
+
+        </div>
+        <div class="formulario-container login">
+            <form id="loginForm">
+                <h1>Entrar</h1>
+               
+
+                <input type="email" id="email" name="email" placeholder="Email" required>
+
+                <input type="password" id="password" name="password" placeholder="Senha" required>
+                <strong><a href="#">Esqueceu sua Senha ?</a></strong>
+                <button  type="button" onclick="fazerLogin()">Entrar</button>
+            </form>
+
+        </div>
+        <!-- A classe alternar fica dentro do container para mover os itens dentro dela de um
+        lado para o outro -->
+        <div class="alternar-container">
+            <div class="alternar">
+                <div class="alternar-painel alternar-esquerdo">
+                    <img src="../assets/img/GEEKPLAY (1).gif" alt="">
+                    <h1>Seja Bem-Vindo</h1>
+                    
+                    <button class="esconder" id="login">Entrar</button>
+                </div>
+                <div class="alternar-painel alternar-direito">
+                    <img src="../assets/img/GEEKPLAY (1).gif" alt="">
+                    <h1>Seja Bem-Vindo</h1>
+                    <p>Registre Seus Dados Pessoais para Navegar no nosso site</p>
+                    <button class="esconder" id="registrar">Cadastrar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+<script src="../assets/Script/loginTeste1.js" ></script>
+</body>
+
+</html>

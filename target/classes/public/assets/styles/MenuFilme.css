@@ -1,104 +1,103 @@
 
 
 * {
-    box-sizing: border-box;
-  }
-  :root{
-    --FooterheaderBg:rgb(0, 0, 0);
-    --FooterHeaderText:#fcfbfb;
-    --CorHoverNav:rgb(245, 5, 5);
+  box-sizing: border-box;
+}
+:root{
+  --FooterheaderBg:rgb(0, 0, 0);
+  --FooterHeaderText:#fcfbfb;
+  --CorHoverNav:rgb(245, 5, 5);
 
-  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+.bg-footerCor {
+  background-color: var(--FooterheaderBg) !important;
+}
+
+.text-HeaderCor {
+  color: var(--FooterHeaderText) !important;
+}
+
+/* Corrige os links do menu que o Bootstrap ignora */
+.navbar .nav-link {
+  color: var(--FooterHeaderText) !important;
+}
+
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+  color: var(--CorHoverNav) !important;
+}
+
+/* Destaque para a página ativa */
   
-  body {
-    margin: 0;
-    padding: 0;
-  }
-  .bg-footerCor {
-    background-color: var(--FooterheaderBg) !important;
-  }
-  
-  .text-HeaderCor {
-    color: var(--FooterHeaderText) !important;
-  }
-  
-  /* Corrige os links do menu que o Bootstrap ignora */
-  .navbar .nav-link {
-    color: var(--FooterHeaderText) !important;
-  }
-  
-  
-  .navbar .nav-link:hover,
-  .navbar .nav-link:focus {
-    color: var(--CorHoverNav) !important;
-  }
-  
-  /* Destaque para a página ativa */
-    
-  
-  input#search {
-    max-width: 25rem; /*400px*/
-  }
-  
+
+input#search {
+  max-width: 25rem; /*400px*/
+}
+
 /* Movie grid responsivo */
 #mainFilme {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
+display: flex;
+flex-wrap: wrap;
+gap: 1rem;
+justify-content: center;
 }
 
 /* Card custom */
 .movie {
-  background-color: #181818;
-  border-radius: 3px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  position: relative;
-  overflow: hidden; /*Esconder o Resumo dos filmes*/
-  width: 100%; /*tamanho do card que aparece os filmes*/
+background-color: #181818;
+border-radius: 3px;
+box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+position: relative;
+overflow: hidden; /*Esconder o Resumo dos filmes*/
+width: 100%; /*tamanho do card que aparece os filmes*/
 }
 
 .movie img {
-  display: flex;
-  width: 100%;
+display: flex;
+width: 100%;
 }
 
 .movie-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5rem 1rem;
-  background-color: #000;
-  color: #fff;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 0.5rem 1rem;
+background-color: #000;
+color: #fff;
 }
 
 /* Overlay descrição */
 .descricao {
-  position: absolute;
-  left: 0; right: 0; bottom: 0;
-  background-color: #fff;
-  color: #333;
-  padding: 1rem;
-  transform: translateY(100%);
-  transition: transform 0.3s ease-in-out;
-  max-height: 80%;
-  overflow-y: auto;
+position: absolute;
+left: 0; right: 0; bottom: 0;
+background-color: #fff;
+color: #333;
+padding: 1rem;
+transform: translateY(100%);
+transition: transform 0.3s ease-in-out;
+max-height: 80%;
+overflow-y: auto;
 }
 
 .movie:hover .descricao {
-  transform: translateY(0);
+transform: translateY(0);
 }
 
 
-  .social-icons a {
-    font-size: 1.25rem;
-  }
-  /*Inicio do Footer*/
-  .bg-footerCor{
-    background-color: var(--FooterheaderBg) ;
-  }
-  .text-muted {
-    color: var(--FooterHeaderText) ;
-  }
-  
-  
+.social-icons a {
+  font-size: 1.25rem;
+}
+/*Inicio do Footer*/
+.bg-footerCor{
+  background-color: var(--FooterheaderBg) ;
+}
+.text-muted {
+  color: var(--FooterHeaderText) ;
+}
+

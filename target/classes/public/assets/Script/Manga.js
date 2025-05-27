@@ -259,5 +259,3 @@ document.getElementById('btnBuscar').addEventListener('click', () => {
 // Ao carregar a página, busca os mangás da primeira página
 fetchMangas();
 
-
-

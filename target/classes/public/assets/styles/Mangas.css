@@ -127,6 +127,8 @@ header,
   margin: 10px 0;
 }
 
+
+
 /* Título em japonês */
 #mainSlider .carousel-caption h3 {
   font-size: 2rem; /* Aumentar para ficar mais visível */
@@ -277,4 +279,28 @@ header,
   color: var(--FooterHeaderText) ;
 }
 
+/* botões visiveis quando mobile*/
+@media (max-width: 768px) {
+  .Container-botoes {
+    padding: 1rem;
+  }
+
+  #pagination {
+    margin-left: 0 !important;
+    text-align: center;
+  }
+
+  .Botoes {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+/* imagens do carrossel */
+@media (max-width: 768px) {
+  #mainSlider .carousel-item img {
+    height: 75vh;
+    object-fit: cover;
+    object-position: center bottom;
+  }
+}
 
