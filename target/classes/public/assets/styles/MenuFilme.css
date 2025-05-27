@@ -27,16 +27,14 @@
     color: var(--FooterHeaderText) !important;
   }
   
+  
   .navbar .nav-link:hover,
   .navbar .nav-link:focus {
     color: var(--CorHoverNav) !important;
   }
   
   /* Destaque para a página ativa */
-  .navbar .nav-item.active .nav-link {
-    font-weight: bold;
-    border-bottom: 2px solid var(--FooterHeaderText);
-  }
+    
   
   input#search {
     max-width: 25rem; /*400px*/
