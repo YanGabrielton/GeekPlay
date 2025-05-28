@@ -53,6 +53,66 @@ form.addEventListener('submit', e => {
   pegarFilmes(term ? `${searchURL}&query=${encodeURIComponent(term)}` : API_URL);
 });
 
+let paginaAtual = 1; // Página inicial
+const btnAnterior = document.getElementById('btnAnterior');
+const btnProxima = document.getElementById('btnProxima');
+
+// Atualiza a URL e busca os filmes da página atual
+function carregarPagina(pagina) {
+  const url = `${BASE_URL}/discover/movie?include_adult=false&include_video=true&language=pt-br&page=${pagina}&sort_by=popularity.desc&${API_KEY}`;
+  pegarFilmes(url);
+}
+
+// Evento botão Próxima
+btnProxima.addEventListener('click', () => {
+  paginaAtual++;
+  carregarPagina(paginaAtual);
+  window.scrollTo(0, 0); // Rolagem para o topo
+});
+
+// Evento botão Anterior
+btnAnterior.addEventListener('click', () => {
+  if (paginaAtual > 1) {
+    paginaAtual--;
+    carregarPagina(paginaAtual);
+    window.scrollTo(0, 0); // Rolagem para o topo
+  }
+});
+
+function mostrarFilmes(data) {
+  mainFilme.innerHTML = '';
+  data.forEach(movie => {
+    const { title, poster_path, vote_average, overview } = movie;
+    const col = document.createElement('div');
+    col.className = 'col-sm-6 col-md-4 col-lg-3'; // Agora exibe 4 por linha
+    col.innerHTML = `
+      <div class="movie">
+        <img src="${IMG_URL + poster_path}" alt="${title}" title="${title}">
+        <div class="movie-info">
+          <h3>${title}</h3>
+          <span class="${getColor(vote_average)}">${vote_average}</span>
+        </div>
+        <div class="descricao">
+          <h3>Resumo</h3>
+          <p>${overview}</p>
+        </div>
+      </div>
+    `;
+    mainFilme.appendChild(col);
+  });
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

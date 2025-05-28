@@ -8,6 +8,40 @@
   --FooterHeaderText:#fcfbfb;
   --CorHoverNav:rgb(245, 5, 5);
 
+<<<<<<< HEAD
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+  }
+  .bg-footerCor {
+    background-color: var(--FooterheaderBg) !important;
+  }
+  
+  .text-HeaderCor {
+    color: var(--FooterHeaderText) !important;
+  }
+  
+  /* Corrige os links do menu que o Bootstrap ignora */
+  .navbar .nav-link {
+    color: var(--FooterHeaderText) !important;
+  }
+  
+  
+  .navbar .nav-link:hover,
+  .navbar .nav-link:focus {
+    color: var(--CorHoverNav) !important;
+  }
+  
+  /* Destaque para a página ativa */
+    
+  
+  input#search {
+    max-width: 25rem; /*400px*/
+  }
+=======
 }
 
 body {
@@ -34,6 +68,7 @@ body {
 }
 
 /* Destaque para a página ativa */
+>>>>>>> 447f21eb2a7482a6fe2e28234b2c803805e0eaa4
   
 
 input#search {
@@ -90,6 +125,22 @@ transform: translateY(0);
 }
 
 
+<<<<<<< HEAD
+  .social-icons a {
+    font-size: 1.25rem;
+  }
+  /*Inicio do Footer*/
+  .bg-footerCor{
+    background-color: var(--FooterheaderBg) ;
+  }
+  .text-muted {
+    color: var(--FooterHeaderText) ;
+  }
+
+  
+  
+  
+=======
 .social-icons a {
   font-size: 1.25rem;
 }
@@ -101,3 +152,4 @@ transform: translateY(0);
   color: var(--FooterHeaderText) ;
 }
 
+>>>>>>> 447f21eb2a7482a6fe2e28234b2c803805e0eaa4

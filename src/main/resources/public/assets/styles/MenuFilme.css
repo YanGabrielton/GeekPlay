@@ -13,6 +13,7 @@
 body {
   margin: 0;
   padding: 0;
+  background-color: #000;
 }
 .bg-footerCor {
   background-color: var(--FooterheaderBg) !important;
@@ -42,9 +43,7 @@ input#search {
 
 /* Movie grid responsivo */
 #mainFilme {
-display: flex;
-flex-wrap: wrap;
-gap: 1rem;
+width: 100%;
 justify-content: center;
 }
 
@@ -100,4 +99,105 @@ transform: translateY(0);
 .text-muted {
   color: var(--FooterHeaderText) ;
 }
+
+
+
+
+.Container-botoes {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #1e1e1e; /* Fondo oscuro */
+  border-radius: 10px;
+  color: #fff;
+}
+
+.Botoes {
+  margin-top: 10px;
+}
+
+.Botoes .btn {
+  min-width: 100px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.Botoes .btn:hover {
+  background-color: #0d6efd; /* Azul Bootstrap */
+  color: #fff;
+}
+
+#loader {
+  display: none; /* Solo se muestra mientras carga */
+  text-align: center;
+}
+
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+}
+
+.Container-botoes {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #111;
+  border-radius: 0.5rem;
+  text-align: center;
+}
+
+.Botoes {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.Botoes .btn {
+  border-color: white;
+  color: white;
+  transition: 0.3s ease;
+}
+
+.Botoes .btn:hover {
+  background-color: white;
+  color: black;
+}
+
+#pagination {
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+#loader {
+  margin-top: 1rem;
+  display: none;
+}
+
+
+
+.spinner-border {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-width: 0.3rem;
+}
+
+/* botões visiveis quando mobile*/
+@media (max-width: 768px) {
+  .Container-botoes {
+    padding: 1rem;
+  }
+
+  #pagination {
+    margin-left: 0 !important;
+    text-align: center;
+  }
+
+  .Botoes {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
 
