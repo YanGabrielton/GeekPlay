@@ -44,16 +44,26 @@ public class App {
 
     
 
-    // Método para criar usuário
-    private static void criarUsuario(Context ctx, UsuarioDao dao) {
-        try {
-            Usuario usuario = ctx.bodyAsClass(Usuario.class);
-            dao.salvar(usuario);
-            ctx.status(201).json(usuario); // 201 Created
-        } catch (Exception e) {
-            ctx.status(400).json(error("Dados inválidos: " + e.getMessage()));
-        }
+ 
+ private static void criarUsuario(Context ctx, UsuarioDao dao) {
+    try {
+        Usuario usuario = ctx.bodyAsClass(Usuario.class);
+        dao.salvar(usuario);
+        // Retorna apenas o nome do usuário, igual ao login
+        ctx.status(201).json(Map.of(
+            "success", true,
+            "usuario", Map.of("nome", usuario.getNome()) //o que vai retornar no login
+        ));
+    } catch (Exception e) {
+        e.printStackTrace();
+        ctx.status(400).json(Map.of(
+            "success", false,
+            "message", "Erro ao registrar: " + e.getMessage()
+        ));
     }
+}
+
+
 
   
 private static void deletarUsuario(Context ctx, UsuarioDao dao) {
