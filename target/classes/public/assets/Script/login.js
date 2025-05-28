@@ -26,7 +26,10 @@ async function fazerLogin() {
         const response = await fetch("http://localhost:7070/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email, senha })
+            body: JSON.stringify({
+                email: document.getElementById("email").value,
+                senha: document.getElementById("password").value
+            })
         });
         
         const data = await response.json();
