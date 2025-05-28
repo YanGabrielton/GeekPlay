@@ -13,6 +13,7 @@
   body {
     margin: 0;
     padding: 0;
+    background-color: #000;
   }
   .bg-footerCor {
     background-color: var(--FooterheaderBg) !important;
@@ -100,5 +101,7 @@
   .text-muted {
     color: var(--FooterHeaderText) ;
   }
+
+  
   
   
