@@ -1,66 +1,65 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GeekPlay</title>
+
+    <!-- Fonts e Ícones -->
     <link href="https://fonts.cdnfonts.com/css/tt-fors-trial" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
+    <!-- Estilos -->
     <link rel="stylesheet" href="../assets/styles/Cadastro.css">
+
+    <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="180x180" href="../img/favicon_io/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon_io/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon_io/favicon-16x16.png">
-    <link rel="icon" href="/img/favicon_io/favicon.ico">
-    <link rel="manifest" href="/site.webmanifest">
+    <link rel="manifest" href="../img/favicon_io/site.webmanifest">
 </head>
 
 <body>
     <div class="container" id="container">
         <div class="formulario-container cadastro">
-            <form action="../index.html">
+            <form action="../index.html" id="formCadastro">
                 <h1>Cadastre-se Aqui</h1>
-
-
-                <input type="text" id="registerNome" placeholder="Nome completo" />
-<input type="email" id="registerEmail" placeholder="Email" />
-<input type="password" id="registerPassword" placeholder="Senha" />
-<button onclick="fazerCadastro()">Cadastrar</button>
+                <input type="text" id="registerNome" placeholder="Nome completo" required />
+                <input type="email" id="email1" name="email1" placeholder="Email" required />
+                <input type="password" id="password1" name="password1" placeholder="Senha" required />
+                <button type="button" onclick="fazerRegistro()">Cadastrar</button>
             </form>
         </div>
+
         <div class="formulario-container login">
             <form id="loginForm">
                 <h1>Entrar</h1>
-                <!-- FORMULÁRIO DE LOGIN -->
-                <input type="email" id="loginEmail" placeholder="Email" />
-<input type="password" id="loginPassword" placeholder="Senha" />
-<button onclick="fazerLogin()">Login</button>
+                <input type="email" id="email" name="email" placeholder="Email" required />
+                <input type="password" id="password" name="password" placeholder="Senha" required />
+                <button  type="button" onclick="fazerLogin()">Entrar</button>
+                <a href="Filmes.html" id="esqueceuSenha">Esqueceu a senha?</a>
             </form>
-
         </div>
-        <!-- A classe alternar fica dentro do container para mover os itens dentro dela de um
-        lado para o outro -->
+
         <div class="alternar-container">
             <div class="alternar">
                 <div class="alternar-painel alternar-esquerdo">
-                    <img src="../assets/img/GEEKPLAY (1).gif" alt="">
+                    <img src="../assets/img/GEEKPLAY (1).gif" alt="Logo GeekPlay">
                     <h1>Seja Bem-Vindo</h1>
-
                     <button class="esconder" id="login">Entrar</button>
                 </div>
                 <div class="alternar-painel alternar-direito">
-                    <img src="../assets/img/GEEKPLAY (1).gif" alt="">
+                    <img src="../assets/img/GEEKPLAY (1).gif" alt="Logo GeekPlay">
                     <h1>Seja Bem-Vindo</h1>
                     <p>Registre Seus Dados Pessoais para Navegar no nosso site</p>
                     <button class="esconder" id="registrar">Cadastrar</button>
                 </div>
             </div>
-
         </div>
     </div>
+
     <script src="../assets/Script/login.js"></script>
 </body>
 
