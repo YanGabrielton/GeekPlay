@@ -6,9 +6,9 @@
     <session-factory>
         <!-- Configuração do banco de dados -->
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/filme</property><!--sempre trocar para 3307 do senac e em casa 3306-->
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3307/filme</property><!--sempre trocar para 3307 do senac e em casa 3306-->
         <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password"></property>
+        <property name="hibernate.connection.password">senac</property>
         
         <!-- Configurações do Hibernate -->
         <property name="hibernate.show_sql">true</property>

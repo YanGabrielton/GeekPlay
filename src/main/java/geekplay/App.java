@@ -33,6 +33,7 @@ public class App {
         app.get("/usuarios", ctx -> listarUsuarios(ctx, usuarioDao));
         app.get("/usuarios/{id}", ctx -> buscarUsuarioPorId(ctx, usuarioDao));
         app.delete("usuarios/{id}", ctx -> deletarUsuario(ctx,usuarioDao));
+        app.post("/login",ctx -> verificarLogin(ctx, usuarioDao));
         // Encerramento seguro
         app.events(event -> {
             event.serverStopped(HibernateUtil::shutdown);
@@ -40,6 +41,8 @@ public class App {
 
 
     }
+
+    
 
     // Método para criar usuário
     private static void criarUsuario(Context ctx, UsuarioDao dao) {
@@ -97,10 +100,30 @@ private static void deletarUsuario(Context ctx, UsuarioDao dao) {
 
     private static void verificarLogin(Context ctx,UsuarioDao dao){
         try {
-            
-        } catch (Exception e) {
-           
+           Map<String, String> credenciais = ctx.bodyAsClass(Map.class);
+           String email = credenciais.get("email");
+           String senha = credenciais.get("senha");
+           Usuario usuario = dao.verificarLogin(email, senha);
+         
+          if (usuario != null) {
+            ctx.json(Map.of(
+                "success", true,
+                "usuario", Map.of(
+                    "id", usuario.getId(),
+                    "nome", usuario.getNome(),
+                    "email", usuario.getEmail()
+                   
+                )
+            ));
+        } else {
+            ctx.status(401).json(Map.of(
+                "success", false,
+                "message", "Credenciais inválidas ou conta inativa"
+            ));
         }
+    } catch (Exception e) {
+        ctx.status(500).json(error("Erro ao processar login: " + e.getMessage()));
+    }
     }
 
     // Método auxiliar para respostas de erro

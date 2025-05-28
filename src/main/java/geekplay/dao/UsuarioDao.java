@@ -41,12 +41,15 @@ public class UsuarioDao {
     }
 
 
-    public Usuario verificarLogin(String email,String senha){
+    public Usuario verificarLogin(String email, String senha) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.createQuery("from usuario u where u.email = :email AND u.senha= :senha",Usuario.class)
-            .setParameter("email", email)
-            .setParameter("senha", senha)
-            .uniqueResult();
+            return session.createQuery(
+                "FROM Usuario WHERE email = :email AND senha = :senha AND status = 'A'", 
+                Usuario.class)
+                .setParameter("email", email)
+                .setParameter("senha", senha)
+                .uniqueResult();
+                
         }
     }
   
