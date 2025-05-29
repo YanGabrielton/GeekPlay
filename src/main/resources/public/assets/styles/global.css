@@ -1,4 +1,4 @@
-/* Seu CSS atual para 'a' (tag global de link) */
+a/* Seu CSS atual para 'a' (tag global de link) */
 a {
     margin: 0;
     background-color: #000;
@@ -196,18 +196,12 @@ footer {
 .arrows {
     position: absolute;
     top: auto;
-    /* *** CRÍTICO: AJUSTE ESTE VALOR DE 'bottom' *** */
-    /* Para alinhar com as miniaturas, que estão a 50px do fundo e têm 220px de altura. */
-    /* Tente centralizar as setas verticalmente com as miniaturas. */
-    bottom: 140px; /* Tentativa inicial: 50px (base thumbnail) + 110px (meio thumbnail) - 20px (meio seta) = 140px */
-                   /* USE AS FERRAMENTAS DO DESENVOLVEDOR PARA AJUSTAR ESTE VALOR COM PRECISÃO */
-
+    bottom: 140px;
     width: 100%;
-    /* MODIFICAÇÃO AQUI: Ajuste o padding para aproximar das bordas */
-    padding: 0 30px; /* Tente um padding menor, como 5px, ou 0px para colar nas bordas */
+    /*  Ajuste o padding para aproximar das bordas */
+    padding: 0 30px; 
     box-sizing: border-box;
     z-index: 100;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
