@@ -164,29 +164,61 @@ document.getElementById('btnAnterior').addEventListener('click', () => {
   }
 });
 
-document.getElementById('btnBuscar').addEventListener('click', () => {
-  termoBusca = document.getElementById('barraPesquisa').value.trim();
+document.getElementById('form').addEventListener('submit', (e) => {
+  e.preventDefault(); // Impede o reload da página
+  termoBusca = document.getElementById('search').value.trim(); // o ID do input no seu form é 'search'
   paginaAtual = 1;
   fetchAnimes(paginaAtual, tipoFiltro, termoBusca, faixaEtariaFiltro);
 });
 
-// Evento para dropdown de tipo de anime
-document.querySelectorAll('.tipo-opcao').forEach(item => {
-  item.addEventListener('click', event => {
-    tipoFiltro = event.target.getAttribute('data-tipo');
-    paginaAtual = 1;
-    fetchAnimes(paginaAtual, tipoFiltro, termoBusca, faixaEtariaFiltro);
-  });
-});
 
-// Evento para dropdown de faixa etária
-document.querySelectorAll('.etaria-opcao').forEach(item => {
-  item.addEventListener('click', event => {
-    faixaEtariaFiltro = event.target.getAttribute('data-rating');
-    paginaAtual = 1;
-    fetchAnimes(paginaAtual, tipoFiltro, termoBusca, faixaEtariaFiltro);
+// ---------------- DROPDOWN ANIMES ----------------
+function setupDropdownAnimes() {
+  const dropdownItems = document.querySelectorAll('#dropdownAnime + ul.dropdown-menu .dropdown-item');
+  
+  dropdownItems.forEach(item => {
+    if (item.getAttribute('href') === './Anime.html') {
+      // Item "Todos os Animes"
+      item.addEventListener('click', (e) => {
+        e.preventDefault();
+        faixaEtariaFiltro = "";
+        paginaAtual = 1;
+        
+        // Atualizar estado ativo
+        dropdownItems.forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+        
+        fetchAnimes();
+      });
+    } else {
+      // Itens com filtros específicos
+      item.addEventListener('click', (e) => {
+        e.preventDefault();
+        const rating = item.getAttribute('onclick').match(/'([^']+)'/)[1];
+        faixaEtariaFiltro = rating;
+        paginaAtual = 1;
+        
+        // Atualizar estado ativo
+        dropdownItems.forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+        
+        fetchAnimes();
+      });
+    }
   });
-});
+}
 
-// ---------------- CHAMADA INICIAL ----------------
-fetchAnimes();
+// ---------------- INICIALIZAÇÃO ----------------
+document.addEventListener('DOMContentLoaded', () => {
+  // Configurar dropdown
+  setupDropdownAnimes();
+  
+  // Marcar "Todos os Animes" como ativo por padrão
+  const todosAnimesItem = document.querySelector('#dropdownAnime + ul.dropdown-menu .dropdown-item[href="./Anime.html"]');
+  if (todosAnimesItem) {
+    todosAnimesItem.classList.add('active');
+  }
+
+  // Carregar animes inicialmente (todos)
+  fetchAnimes();
+});

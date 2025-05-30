@@ -228,6 +228,7 @@ function updatePagination(totalPages, hasNextPage) {
  * Evento para o botão "Próxima Página".
  * Ao clicar, incrementa a página atual e busca os mangás da próxima página.
  */
+
 document.getElementById('btnProxima').addEventListener('click', () => {
   paginaAtual++;
   fetchMangas(paginaAtual, tipoFiltro, termoBusca);
