@@ -5,12 +5,7 @@ let faixaEtariaFiltro = "";
 let termoBusca = "";
 
 // ---------------- FUNÇÃO PRINCIPAL ----------------
-async function fetchAnimes(
-  pagina = paginaAtual, 
-  tipo = tipoFiltro, 
-  busca = termoBusca, 
-  faixaEtaria = faixaEtariaFiltro
-) {
+async function fetchAnimes(pagina = 1, tipo = "", busca = "", faixaEtaria = "") {
   try {
     const container = document.getElementById('anime-cards-container');
     const loader = document.getElementById('loader');
@@ -24,7 +19,16 @@ async function fetchAnimes(
 
     if (busca) url += `&q=${encodeURIComponent(busca)}`;
     if (tipo) url += `&type=${tipo}`;
-    if (faixaEtaria) url += `&rating=${faixaEtaria}`;
+    if (faixaEtaria) {
+      // Mapeando as opções para os valores da API
+      const ratingMap = {
+        'pg13': 'pg13',
+        '17': 'r17',
+        '18': 'r'
+      };
+      const apiRating = ratingMap[faixaEtaria] || faixaEtaria;
+      url += `&rating=${apiRating}`;
+    }
 
     const response = await fetch(url);
     if (!response.ok) throw new Error('Erro ao buscar dados da API');
@@ -95,7 +99,7 @@ function updatePagination(totalPages, hasNextPage) {
     btnPrimeira.textContent = '1';
     btnPrimeira.addEventListener('click', () => {
       paginaAtual = 1;
-      fetchAnimes();
+      fetchAnimes(paginaAtual, tipoFiltro, termoBusca, faixaEtariaFiltro);
     });
     paginationContainer.appendChild(btnPrimeira);
 
@@ -123,7 +127,7 @@ function updatePagination(totalPages, hasNextPage) {
     if (i === paginaAtual) btnPage.classList.add('active');
     btnPage.addEventListener('click', () => {
       paginaAtual = i;
-      fetchAnimes();
+      fetchAnimes(paginaAtual, tipoFiltro, termoBusca, faixaEtariaFiltro);
     });
     paginationContainer.appendChild(btnPage);
   }
@@ -141,7 +145,7 @@ function updatePagination(totalPages, hasNextPage) {
     btnUltima.textContent = totalPages;
     btnUltima.addEventListener('click', () => {
       paginaAtual = totalPages;
-      fetchAnimes();
+      fetchAnimes(paginaAtual, tipoFiltro, termoBusca, faixaEtariaFiltro);
     });
     paginationContainer.appendChild(btnUltima);
   }
@@ -150,69 +154,39 @@ function updatePagination(totalPages, hasNextPage) {
 // ---------------- EVENTOS ----------------
 document.getElementById('btnProxima').addEventListener('click', () => {
   paginaAtual++;
-  fetchAnimes();
+  fetchAnimes(paginaAtual, tipoFiltro, termoBusca, faixaEtariaFiltro);
 });
 
 document.getElementById('btnAnterior').addEventListener('click', () => {
   if (paginaAtual > 1) {
     paginaAtual--;
-    fetchAnimes();
+    fetchAnimes(paginaAtual, tipoFiltro, termoBusca, faixaEtariaFiltro);
   }
 });
 
 document.getElementById('btnBuscar').addEventListener('click', () => {
   termoBusca = document.getElementById('barraPesquisa').value.trim();
   paginaAtual = 1;
-  fetchAnimes();
+  fetchAnimes(paginaAtual, tipoFiltro, termoBusca, faixaEtariaFiltro);
 });
 
-// ---------------- DROPDOWN ANIMES ----------------
-function setupDropdownAnimes() {
-  const dropdownItems = document.querySelectorAll('#dropdownAnime + ul.dropdown-menu .dropdown-item');
-  
-  dropdownItems.forEach(item => {
-    if (item.getAttribute('href') === './Anime.html') {
-      // Item "Todos os Animes"
-      item.addEventListener('click', (e) => {
-        e.preventDefault();
-        faixaEtariaFiltro = "";
-        paginaAtual = 1;
-        
-        // Atualizar estado ativo
-        dropdownItems.forEach(i => i.classList.remove('active'));
-        item.classList.add('active');
-        
-        fetchAnimes();
-      });
-    } else {
-      // Itens com filtros específicos
-      item.addEventListener('click', (e) => {
-        e.preventDefault();
-        const rating = item.getAttribute('onclick').match(/'([^']+)'/)[1];
-        faixaEtariaFiltro = rating;
-        paginaAtual = 1;
-        
-        // Atualizar estado ativo
-        dropdownItems.forEach(i => i.classList.remove('active'));
-        item.classList.add('active');
-        
-        fetchAnimes();
-      });
-    }
+// Evento para dropdown de tipo de anime
+document.querySelectorAll('.tipo-opcao').forEach(item => {
+  item.addEventListener('click', event => {
+    tipoFiltro = event.target.getAttribute('data-tipo');
+    paginaAtual = 1;
+    fetchAnimes(paginaAtual, tipoFiltro, termoBusca, faixaEtariaFiltro);
   });
-}
-
-// ---------------- INICIALIZAÇÃO ----------------
-document.addEventListener('DOMContentLoaded', () => {
-  // Configurar dropdown
-  setupDropdownAnimes();
-  
-  // Marcar "Todos os Animes" como ativo por padrão
-  const todosAnimesItem = document.querySelector('#dropdownAnime + ul.dropdown-menu .dropdown-item[href="./Anime.html"]');
-  if (todosAnimesItem) {
-    todosAnimesItem.classList.add('active');
-  }
-
-  // Carregar animes inicialmente (todos)
-  fetchAnimes();
 });
+
+// Evento para dropdown de faixa etária
+document.querySelectorAll('.etaria-opcao').forEach(item => {
+  item.addEventListener('click', event => {
+    faixaEtariaFiltro = event.target.getAttribute('data-rating');
+    paginaAtual = 1;
+    fetchAnimes(paginaAtual, tipoFiltro, termoBusca, faixaEtariaFiltro);
+  });
+});
+
+// ---------------- CHAMADA INICIAL ----------------
+fetchAnimes();
