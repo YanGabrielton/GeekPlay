@@ -160,11 +160,13 @@ document.getElementById('btnAnterior').addEventListener('click', () => {
   }
 });
 
-document.getElementById('btnBuscar').addEventListener('click', () => {
-  termoBusca = document.getElementById('barraPesquisa').value.trim();
+document.getElementById('form').addEventListener('submit', (e) => {
+  e.preventDefault(); // Impede o reload da página
+  termoBusca = document.getElementById('search').value.trim(); // o ID do input no seu form é 'search'
   paginaAtual = 1;
   fetchAnimes();
 });
+
 
 // ---------------- DROPDOWN ANIMES ----------------
 function setupDropdownAnimes() {
