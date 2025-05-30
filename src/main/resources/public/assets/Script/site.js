@@ -1,23 +1,16 @@
 // ---------------- VARIÁVEIS GLOBAIS ----------------
-
-// Variável que controla a página atual
 let paginaAtual = 1;
-
-// Variável que armazena o filtro de tipo selecionado (ex: "tv", "movie", etc.)
 let tipoFiltro = "";
-
-// Variável para armazenar o termo de busca digitado na barra de pesquisa
+let faixaEtariaFiltro = "";
 let termoBusca = "";
 
-/**
- * Função principal para buscar e exibir os animes da API Jikan.
- * Esta função monta a URL com base na página, filtro e termo de busca,
- * realiza a requisição, renderiza os cards e atualiza a navegação numérica.
- * @param {number} pagina - Página atual a ser exibida.
- * @param {string} tipo - Filtro para tipo de anime (ex: "tv", "movie").
- * @param {string} busca - Termo de busca para filtrar os títulos.
- */
-async function fetchAnimes(pagina = 1, tipo = "", busca = "") {
+// ---------------- FUNÇÃO PRINCIPAL ----------------
+async function fetchAnimes(
+  pagina = paginaAtual, 
+  tipo = tipoFiltro, 
+  busca = termoBusca, 
+  faixaEtaria = faixaEtariaFiltro
+) {
   try {
     const container = document.getElementById('anime-cards-container');
     const loader = document.getElementById('loader');
@@ -26,31 +19,24 @@ async function fetchAnimes(pagina = 1, tipo = "", busca = "") {
     loader.style.display = 'block';
     container.innerHTML = '';
 
+    // Montando a URL com base nos filtros
     let url = `https://api.jikan.moe/v4/anime?page=${pagina}`;
 
-    if (busca) {
-      url += `&q=${encodeURIComponent(busca)}`;
-    }
+    if (busca) url += `&q=${encodeURIComponent(busca)}`;
+    if (tipo) url += `&type=${tipo}`;
+    if (faixaEtaria) url += `&rating=${faixaEtaria}`;
 
     const response = await fetch(url);
     if (!response.ok) throw new Error('Erro ao buscar dados da API');
 
     const data = await response.json();
 
-    const paginationInfo = data.pagination;
-    const totalPages = paginationInfo.last_visible_page;
-    const hasNextPage = paginationInfo.has_next_page;
+    const totalPages = data.pagination.last_visible_page;
+    const hasNextPage = data.pagination.has_next_page;
 
-    if (pagina > totalPages) {
-      paginaAtual = totalPages;
-    }
+    if (pagina > totalPages) paginaAtual = totalPages;
 
-    const animesFiltrados = data.data.filter(anime => {
-      if (!tipo) return true;
-      return anime.type && anime.type.toLowerCase() === tipo.toLowerCase();
-    });
-
-    const limitados = animesFiltrados.slice(0, 20);
+    const limitados = data.data.slice(0, 20);
 
     if (limitados.length === 0) {
       container.innerHTML = '<p class="text-center w-100">Nenhum anime encontrado.</p>';
@@ -90,27 +76,18 @@ async function fetchAnimes(pagina = 1, tipo = "", busca = "") {
   }
 }
 
+// ---------------- PAGINAÇÃO ----------------
 function updatePagination(totalPages, hasNextPage) {
   const paginationContainer = document.getElementById('pagination');
   paginationContainer.innerHTML = '';
 
   const btnAnterior = document.getElementById('btnAnterior');
-  if (paginaAtual <= 1) {
-    btnAnterior.style.opacity = '0.5';
-    btnAnterior.style.pointerEvents = 'none';
-  } else {
-    btnAnterior.style.opacity = '1';
-    btnAnterior.style.pointerEvents = 'auto';
-  }
+  btnAnterior.style.opacity = paginaAtual <= 1 ? '0.5' : '1';
+  btnAnterior.style.pointerEvents = paginaAtual <= 1 ? 'none' : 'auto';
 
   const btnProxima = document.getElementById('btnProxima');
-  if (!hasNextPage) {
-    btnProxima.style.opacity = '0.5';
-    btnProxima.style.pointerEvents = 'none';
-  } else {
-    btnProxima.style.opacity = '1';
-    btnProxima.style.pointerEvents = 'auto';
-  }
+  btnProxima.style.opacity = !hasNextPage ? '0.5' : '1';
+  btnProxima.style.pointerEvents = !hasNextPage ? 'none' : 'auto';
 
   if (paginaAtual !== 1) {
     const btnPrimeira = document.createElement('button');
@@ -118,7 +95,7 @@ function updatePagination(totalPages, hasNextPage) {
     btnPrimeira.textContent = '1';
     btnPrimeira.addEventListener('click', () => {
       paginaAtual = 1;
-      fetchAnimes(paginaAtual, tipoFiltro, termoBusca);
+      fetchAnimes();
     });
     paginationContainer.appendChild(btnPrimeira);
 
@@ -143,12 +120,10 @@ function updatePagination(totalPages, hasNextPage) {
     const btnPage = document.createElement('button');
     btnPage.className = 'btn btn-light mx-1';
     btnPage.textContent = i;
-    if (i === paginaAtual) {
-      btnPage.classList.add('active');
-    }
+    if (i === paginaAtual) btnPage.classList.add('active');
     btnPage.addEventListener('click', () => {
       paginaAtual = i;
-      fetchAnimes(paginaAtual, tipoFiltro, termoBusca);
+      fetchAnimes();
     });
     paginationContainer.appendChild(btnPage);
   }
@@ -166,32 +141,78 @@ function updatePagination(totalPages, hasNextPage) {
     btnUltima.textContent = totalPages;
     btnUltima.addEventListener('click', () => {
       paginaAtual = totalPages;
-      fetchAnimes(paginaAtual, tipoFiltro, termoBusca);
+      fetchAnimes();
     });
     paginationContainer.appendChild(btnUltima);
   }
 }
 
 // ---------------- EVENTOS ----------------
-
 document.getElementById('btnProxima').addEventListener('click', () => {
   paginaAtual++;
-  fetchAnimes(paginaAtual, tipoFiltro, termoBusca);
+  fetchAnimes();
 });
 
 document.getElementById('btnAnterior').addEventListener('click', () => {
   if (paginaAtual > 1) {
     paginaAtual--;
-    fetchAnimes(paginaAtual, tipoFiltro, termoBusca);
+    fetchAnimes();
   }
 });
 
 document.getElementById('btnBuscar').addEventListener('click', () => {
   termoBusca = document.getElementById('barraPesquisa').value.trim();
   paginaAtual = 1;
-  fetchAnimes(paginaAtual, tipoFiltro, termoBusca);
+  fetchAnimes();
 });
 
-// ---------------- CHAMADA INICIAL ----------------
+// ---------------- DROPDOWN ANIMES ----------------
+function setupDropdownAnimes() {
+  const dropdownItems = document.querySelectorAll('#dropdownAnime + ul.dropdown-menu .dropdown-item');
+  
+  dropdownItems.forEach(item => {
+    if (item.getAttribute('href') === './Anime.html') {
+      // Item "Todos os Animes"
+      item.addEventListener('click', (e) => {
+        e.preventDefault();
+        faixaEtariaFiltro = "";
+        paginaAtual = 1;
+        
+        // Atualizar estado ativo
+        dropdownItems.forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+        
+        fetchAnimes();
+      });
+    } else {
+      // Itens com filtros específicos
+      item.addEventListener('click', (e) => {
+        e.preventDefault();
+        const rating = item.getAttribute('onclick').match(/'([^']+)'/)[1];
+        faixaEtariaFiltro = rating;
+        paginaAtual = 1;
+        
+        // Atualizar estado ativo
+        dropdownItems.forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+        
+        fetchAnimes();
+      });
+    }
+  });
+}
 
-fetchAnimes();
+// ---------------- INICIALIZAÇÃO ----------------
+document.addEventListener('DOMContentLoaded', () => {
+  // Configurar dropdown
+  setupDropdownAnimes();
+  
+  // Marcar "Todos os Animes" como ativo por padrão
+  const todosAnimesItem = document.querySelector('#dropdownAnime + ul.dropdown-menu .dropdown-item[href="./Anime.html"]');
+  if (todosAnimesItem) {
+    todosAnimesItem.classList.add('active');
+  }
+
+  // Carregar animes inicialmente (todos)
+  fetchAnimes();
+});
