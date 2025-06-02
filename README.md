@@ -1,5 +1,5 @@
-Link live share
-[https://prod.liveshare.vsengsaas.visualstudio.com/join?39377514F247D286EFB86DC74641FBC346E9](https://prod.liveshare.vsengsaas.visualstudio.com/join?03161557964FE293470D32D898E824EFC01E)
+
+[Uploading filme.sql…]()
 
 
 # Projeto GeekPlay.
