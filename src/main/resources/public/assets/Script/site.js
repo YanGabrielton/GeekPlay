@@ -222,3 +222,4 @@ document.addEventListener('DOMContentLoaded', () => {
   // Carregar animes inicialmente (todos)
   fetchAnimes();
 });
+
