@@ -17,9 +17,9 @@ public class Favorito {
     @Column(name = "id_api", nullable = false, length = 50)
     private String idApi;
     
-    @Enumerated(EnumType.STRING)
-    @Column(name = "tipo_item", nullable = false)
-    private TipoItem tipoItem;
+    
+    @Column(name = "tipo_item", nullable = false, length = 30)
+    private String tipoItem;
     
     @Column(nullable = false, length = 255)
     private String titulo;
@@ -27,7 +27,7 @@ public class Favorito {
     // Construtores, getters e setters
     public Favorito() {}
     
-    public Favorito(Usuario usuario, String idApi, TipoItem tipoItem, String titulo) {
+    public Favorito(Usuario usuario, String idApi, String tipoItem, String titulo) {
         this.usuario = usuario;
         this.idApi = idApi;
         this.tipoItem = tipoItem;
@@ -53,10 +53,10 @@ public class Favorito {
     public void setIdApi(String idApi) {
          this.idApi = idApi; 
         }
-    public TipoItem getTipoItem() { 
+    public String getTipoItem() { 
         return tipoItem; 
     }
-    public void setTipoItem(TipoItem tipoItem) {
+    public void setTipoItem(String tipoItem) {
          this.tipoItem = tipoItem; 
         }
     public String getTitulo() {
@@ -67,6 +67,6 @@ public class Favorito {
          }
 }
 
-enum TipoItem {
-    ANIME, MANGA, FILME
-}
+// enum TipoItem {
+//     ANIME, MANGA, FILME
+// }

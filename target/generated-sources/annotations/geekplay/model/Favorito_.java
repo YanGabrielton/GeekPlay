@@ -13,7 +13,7 @@ public abstract class Favorito_ {
 	/**
 	 * @see geekplay.model.Favorito#tipoItem
 	 **/
-	public static volatile SingularAttribute<Favorito, TipoItem> tipoItem;
+	public static volatile SingularAttribute<Favorito, String> tipoItem;
 	
 	/**
 	 * @see geekplay.model.Favorito#idApi

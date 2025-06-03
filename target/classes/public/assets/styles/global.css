@@ -236,6 +236,11 @@ header {
     animation: showContent 0.5s 1s linear 1 forwards;
 }
 
+.btpage{
+    text-decoration: none;
+    color: black;
+}
+
 @keyframes showContent {
     to {
         transform: translateY(0);
