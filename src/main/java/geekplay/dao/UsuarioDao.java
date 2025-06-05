@@ -52,6 +52,16 @@ public class UsuarioDao {
                 
         }
     }
+    // Método para verificar email duplicado
+public boolean existeEmail(String email) {
+    try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        return session.createQuery(
+            "SELECT COUNT(u) > 0 FROM Usuario u WHERE email = :email", 
+            Boolean.class)
+            .setParameter("email", email)
+            .uniqueResult();
+    }
+}
   
     public Usuario buscarPorId(int id) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
