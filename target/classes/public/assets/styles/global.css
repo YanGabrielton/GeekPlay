@@ -236,9 +236,28 @@ header {
     animation: showContent 0.5s 1s linear 1 forwards;
 }
 
-.btpage{
+.btpage {
     text-decoration: none;
     color: black;
+    background-color: #f5f5f5; /* fundo leve para destaque */
+    padding: 8px 16px;         /* espaço interno mais equilibrado */
+    font-size: 14px;           /* fonte mais legível */
+    font-family: sans-serif;  /* fonte mais limpa */
+    display: inline-block;
+    border: 1px solid black;
+    border-radius: 6px;
+    transition: all 0.3s ease; /* suaviza hover */
+
+    /* Centraliza opcionalmente se necessário */
+    text-align: center;
+    margin: 0 auto;
+}
+
+/* Efeito ao passar o mouse */
+.btpage:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
 }
 
 @keyframes showContent {

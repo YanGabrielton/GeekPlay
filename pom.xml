@@ -70,26 +70,20 @@
             <artifactId>jackson-databind</artifactId>
             <version>2.15.3</version>
         </dependency> 
-
-      <!-- Dependências para JWT (JSON Web Token) -->
+<!-- JWT Problema no ParseBuilder -->
 <dependency>
     <groupId>io.jsonwebtoken</groupId>
     <artifactId>jjwt-api</artifactId>
     <version>0.12.5</version>
 </dependency>
-<dependency>
-    <groupId>io.jsonwebtoken</groupId>
-    <artifactId>jjwt-impl</artifactId>
-    <version>0.12.5</version>
-    <scope>runtime</scope>
-</dependency>
-<dependency>
-    <groupId>io.jsonwebtoken</groupId>
-    <artifactId>jjwt-jackson</artifactId>
-    <version>0.12.5</version>
-    <scope>runtime</scope>
-</dependency>
 
+<!-- Jakarta Mail  -->
+<dependency>
+    <groupId>com.sun.mail</groupId>
+    <artifactId>jakarta.mail</artifactId>
+    <version>2.0.1</version>
+</dependency>
+   
 <!-- Dependência para criptografia de senhas (BCrypt) -->
 <dependency>
     <groupId>org.mindrot</groupId>

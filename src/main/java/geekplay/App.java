@@ -140,4 +140,8 @@ private static void deletarUsuario(Context ctx, UsuarioDao dao) {
     private static String error(String message) {
         return "{\"error\": \"" + message + "\"}";
     }
+
+
+
+    
 }
