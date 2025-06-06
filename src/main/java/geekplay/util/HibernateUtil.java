@@ -38,7 +38,7 @@ public class HibernateUtil {
      */
     private static boolean detectDatabaseType() {
         // Passo 1: Obter nome do computador
-        String hostname = System.getenv().getOrDefault("L05023964", // Windows
+        String hostname = System.getenv().getOrDefault("L05023964", // Windows Digitar no CMD: ECHO "%COMPUTERNAME%"
                           System.getenv().getOrDefault("HOSTNAME", "")); // Linux/Mac
         
         // Passo 2: Comparar com o nome do PC em casa
@@ -63,7 +63,7 @@ public class HibernateUtil {
         String dialect = useMariaDB ? MARIADB_DIALECT : MYSQL_DIALECT;
         String url = useMariaDB ? 
             "jdbc:mariadb://localhost:3306/filme" : 
-            "jdbc:mysql://localhost:3306/filme"; //sempre trocar para 3307 do senac e em casa 3306
+            "jdbc:mysql://localhost:3307/filme"; //sempre trocar para 3307 do senac e em casa 3306
 
         // Construir registro de serviços
         StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
