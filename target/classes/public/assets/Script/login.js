@@ -82,6 +82,30 @@ async function fazerRegistro() {
         alert("Erro na conexão com o servidor");
     }
 }
+
+async function solicitarRecuperacao() {
+     event.preventDefault();
+    const email = document.getElementById("email").value;
+    
+    const response = await fetch("http://localhost:7070/solicitar-recuperacao", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email })
+    });
+    
+    const data = await response.json();
+    document.getElementById("mensagem").textContent = data.message;
+    
+    if (data.success) {
+        // Em produção: redirecionar para página de aviso
+        console.log("Token gerado (simulação):", data.token);
+    }
+}
+
+
+
+
+
 // Função para adicionar token às requisições
 async function apiRequest(url, method = 'GET', body = null) {
     const token = localStorage.getItem('jwtToken');
@@ -102,5 +126,5 @@ async function apiRequest(url, method = 'GET', body = null) {
 
 function logout() {
     localStorage.removeItem('jwtToken');
-    window.location.href = "/login.html";
+    window.location.href = "/src/main/resources/public/pages/Login.html";
 }

@@ -1,12 +1,4 @@
-a/* Seu CSS atual para 'a' (tag global de link) */
-a {
-    margin: 0;
-    background-color: #000;
-    color: #eee;
-    font-family: Poppins;
-    font-size: 1.5rem;
-    text-decoration: none; /* Mantido aqui para links globais */
-}
+
 
 header {
     position: absolute;
@@ -17,7 +9,7 @@ header {
     justify-content: space-between;
     align-items: center;
     /* Linhas duplicadas removidas abaixo, apenas a primeira ocorrência é mantida */
-    /* width: 100rem; /* Esta largura fixa pode causar problemas em telas menores */ */
+    /* width: 100rem; /* Esta largura fixa pode causar problemas em telas menores */ 
     max-width: 100%; /* Garante que o header não ultrapasse a largura da tela */
     margin: auto; /* Centraliza o cabeçalho se 'width' for menor que 100% */
     height: 3.125rem;
@@ -45,7 +37,7 @@ header {
 }
 
 .nav li a {
-    color: #fff;
+    color: #ffffff;
     text-decoration: none;
     font-weight: 500;
     letter-spacing: 0.0625rem;

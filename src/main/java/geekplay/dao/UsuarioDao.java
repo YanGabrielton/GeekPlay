@@ -95,5 +95,31 @@ public Usuario buscarPorEmail(String email) {
             return session.createQuery("FROM Usuario", Usuario.class).list();
         }
     }
+
+    public void atualizarSenha(String email, String novaSenha) {
+    Transaction transaction = null;
+    try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        transaction = session.beginTransaction();
+        
+        // Busca o usuário por email
+        Usuario usuario = session.createQuery(
+            "FROM Usuario WHERE email = :email", Usuario.class)
+            .setParameter("email", email)
+            .uniqueResult();
+        
+        if (usuario != null) {
+            // Atualiza apenas a senha (em produção, criptografe antes!)
+            usuario.setSenha(novaSenha);
+            session.merge(usuario); // Usamos merge para atualização
+        }
+        
+        transaction.commit();
+    } catch (Exception e) {
+        if (transaction != null) {
+            transaction.rollback();
+        }
+        throw new RuntimeException("Erro ao atualizar senha", e);
+    }
+}
  
 }

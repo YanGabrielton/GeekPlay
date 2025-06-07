@@ -50,11 +50,11 @@ header,
 .navbar {
   background-color: black;
 }
-# nav-container {
+#nav-container {
   padding-top: 0;
   padding-bottom: 0;
 }
-# logo {
+#logo {
   width: 7.8125rem; /* 125px */
 }
 .navbar-brand {
@@ -68,9 +68,9 @@ header,
   color: #fff;
   cursor: pointer;
 }
-# navbar-links a:hover,
-# navbar-links a .active,
-# anime-menu:active {
+#navbar-links a:hover,
+#navbar-links a .active,
+#anime-menu:active {
   color: red;
 }
 .navbar-expand-lg .navbar-nav .nav-link {

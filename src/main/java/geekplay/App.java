@@ -36,7 +36,8 @@ public class App {
         app.post("/login", ctx -> verificarLogin(ctx, usuarioDao));
         app.post("/solicitar-recuperacao", ctx -> solicitarRecuperacaoSenha(ctx, usuarioDao));
         app.post("/redefinir-senha", ctx -> redefinirSenha(ctx, usuarioDao));
-
+        app.get("/perfil", ctx -> obterPerfil(ctx, usuarioDao));
+        app.post("/alterar-senha", ctx -> alterarSenha(ctx, usuarioDao));
         // Encerramento seguro
         app.events(event -> {
             event.serverStopped(HibernateUtil::shutdown);
@@ -156,70 +157,123 @@ public class App {
     }
 
     private static void solicitarRecuperacaoSenha(Context ctx, UsuarioDao dao) {
+        try {
+            Map<String, String> body = ctx.bodyAsClass(Map.class);
+            String email = body.get("email");
+
+            Usuario usuario = dao.buscarPorEmail(email);
+            if (usuario == null) {
+                ctx.status(404).json(Map.of(
+                        "success", false,
+                        "message", "Email não cadastrado"));
+                return;
+            }
+
+            // Gera token com validade de 1 hora
+            String token = JwtUtil.generateTokenRecovery(usuario.getEmail(), 3600000);
+
+            // Em produção: enviar email com o token
+            ctx.json(Map.of(
+                    "success", true,
+                    "message", "Instruções enviadas para seu email"));
+
+        } catch (Exception e) {
+            ctx.status(500).json(Map.of(
+                    "success", false,
+                    "message", "Erro ao solicitar recuperação"));
+        }
+    }
+
+    private static void redefinirSenha(Context ctx, UsuarioDao dao) {
+        try {
+            Map<String, String> body = ctx.bodyAsClass(Map.class);
+            String token = body.get("token");
+            String novaSenha = body.get("novaSenha");
+
+            if (!JwtUtil.validateToken(token)) {
+                ctx.status(401).json(Map.of(
+                        "success", false,
+                        "message", "Token inválido ou expirado"));
+                return;
+            }
+
+            String email = JwtUtil.getEmailFromToken(token);
+            Usuario usuario = dao.buscarPorEmail(email);
+            usuario.setSenha(novaSenha); // Em produção: criptografar!
+            dao.salvar(usuario);
+
+            ctx.json(Map.of(
+                    "success", true,
+                    "message", "Senha redefinida com sucesso"));
+
+        } catch (Exception e) {
+            ctx.status(500).json(Map.of(
+                    "success", false,
+                    "message", "Erro ao redefinir senha"));
+        }
+    }
+
+    private static void obterPerfil(Context ctx, UsuarioDao dao) {
+        try {
+            String token = ctx.header("Authorization").substring(7);
+            String email = JwtUtil.getEmailFromToken(token);
+
+            Usuario usuario = dao.buscarPorEmail(email);
+
+            // Padrão idêntico ao verificarLogin
+            ctx.json(Map.of(
+                    "success", true,
+                    "usuario", Map.of(
+                            "nome", usuario.getNome(),
+                            "email", usuario.getEmail())));
+        } catch (Exception e) {
+            // Mesmo tratamento de erro das outras rotas
+            ctx.status(401).json(Map.of(
+                    "success", false,
+                    "message", "Erro ao obter perfil: " + e.getMessage()));
+        }
+    }
+
+    private static void alterarSenha(Context ctx, UsuarioDao dao) {
     try {
         Map<String, String> body = ctx.bodyAsClass(Map.class);
-        String email = body.get("email");
+        String token = ctx.header("Authorization").substring(7);
+        String email = JwtUtil.getEmailFromToken(token);
         
-        Usuario usuario = dao.buscarPorEmail(email);
-        if (usuario == null) {
-            ctx.status(404).json(Map.of(
+        // Validações
+        if (!body.containsKey("senhaAtual") || !body.containsKey("novaSenha")) {
+            ctx.status(400).json(Map.of(
                 "success", false,
-                "message", "Email não cadastrado"
+                "message", "Dados incompletos"
             ));
             return;
         }
         
-        // Gera token com validade de 1 hora
-        String token = JwtUtil.generateTokenRecovery(usuario.getEmail(), 3600000);
-        
-        // Em produção: enviar email com o token
-        ctx.json(Map.of(
-            "success", true,
-            "message", "Instruções enviadas para seu email"
-        ));
-        
-    } catch (Exception e) {
-        ctx.status(500).json(Map.of(
-            "success", false,
-            "message", "Erro ao solicitar recuperação"
-        ));
-    }
-}
-
-private static void redefinirSenha(Context ctx, UsuarioDao dao) {
-    try {
-        Map<String, String> body = ctx.bodyAsClass(Map.class);
-        String token = body.get("token");
-        String novaSenha = body.get("novaSenha");
-        
-        if (!JwtUtil.validateToken(token)) {
+        // Verifica senha atual
+        Usuario usuario = dao.buscarPorEmail(email);
+        if (usuario == null || !usuario.getSenha().equals(body.get("senhaAtual"))) {
             ctx.status(401).json(Map.of(
                 "success", false,
-                "message", "Token inválido ou expirado"
+                "message", "Senha atual incorreta"
             ));
             return;
         }
         
-        String email = JwtUtil.getEmailFromToken(token);
-        Usuario usuario = dao.buscarPorEmail(email);
-        usuario.setSenha(novaSenha); // Em produção: criptografar!
-        dao.salvar(usuario);
+        // Atualiza usando o novo método do DAO
+        dao.atualizarSenha(email, body.get("novaSenha"));
         
         ctx.json(Map.of(
             "success", true,
-            "message", "Senha redefinida com sucesso"
+            "message", "Senha atualizada com sucesso"
         ));
         
     } catch (Exception e) {
         ctx.status(500).json(Map.of(
             "success", false,
-            "message", "Erro ao redefinir senha"
+            "message", "Erro ao alterar senha: " + e.getMessage()
         ));
     }
 }
-  
-        
-
     // Método auxiliar para respostas de erro
     private static String error(String message) {
         return "{\"error\": \"" + message + "\"}";

@@ -33,13 +33,27 @@
           
             <div class="collapse navbar-collapse justify-content-end" id="navbar-links">
               <div class="navbar-nav">
-                <a href="../index.html" class="nav-item nav-link">Home</a>
+      
                 <a href="./pages/Anime.html" class="nav-item nav-link">Animes</a>
-                <a href="./pages/sobre.html" class="nav-item nav-link">Sobre</a>
+             
                 <a href="./pages/Filmes.html" class="nav-item nav-link">Filme</a>
                 <a href="./pages/Mangas.html" class="nav-item nav-link">Manga</a>
+              
                 <a href="./pages/Login.html" class="nav-item nav-link">Login</a>
-                <a href="#" onclick="logout()" class="nav-item nav-link">sair</a>
+              
+                  <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Mais
+                    
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end bg-black " aria-labelledby="dropdownMenuLink">
+                    <li><a class="dropdown-item bg-black" href="./pages/sobre.html">Sobre</a></li>
+                    <li><a class="dropdown-item bg-black" href="./pages/Perfil.html">Perfil</a></li>
+        
+                    <li><a class="dropdown-item bg-black" href="#">Favoritos</a></li>
+                    <li><a class="dropdown-item bg-black" href="#" onclick="logout()">Sair</a></li>
+                    
+                  </ul>
+               
               </div>
             </div>
           </nav>
