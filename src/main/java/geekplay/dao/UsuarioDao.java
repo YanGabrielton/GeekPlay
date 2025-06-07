@@ -52,6 +52,7 @@ public class UsuarioDao {
                 
         }
     }
+
     // Método para verificar email duplicado
 public boolean existeEmail(String email) {
     try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -62,7 +63,27 @@ public boolean existeEmail(String email) {
             .uniqueResult();
     }
 }
-  
+
+public Usuario buscarPorEmail(String email) {
+    Transaction transaction = null;
+    try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        transaction = session.beginTransaction();
+        
+        Usuario usuario = session.createQuery(
+            "FROM Usuario WHERE email = :email", Usuario.class)
+            .setParameter("email", email)
+            .uniqueResult();
+        
+        transaction.commit();
+        return usuario;
+        
+    } catch (Exception e) {
+        if (transaction != null) {
+            transaction.rollback();
+        }
+        throw new RuntimeException("Erro ao buscar usuário por email", e);
+    }
+}
     public Usuario buscarPorId(int id) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             return session.find(Usuario.class, id);

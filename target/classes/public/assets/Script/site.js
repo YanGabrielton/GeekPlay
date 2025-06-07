@@ -24,7 +24,7 @@ async function fetchAnimes(pagina = 1, tipo = "", busca = "", faixaEtaria = "") 
       const ratingMap = {
         'pg13': 'pg13',
         '17': 'r17',
-        '18': 'r'
+        '18': 'rx'
       };
       const apiRating = ratingMap[faixaEtaria] || faixaEtaria;
       url += `&rating=${apiRating}`;

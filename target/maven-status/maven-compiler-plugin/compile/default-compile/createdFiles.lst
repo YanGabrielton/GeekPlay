@@ -1,7 +1,10 @@
+geekplay\dao\DoacaoDao.class
+geekplay\util\EmailUtil$1.class
+geekplay\dao\FavoritoDao.class
 geekplay\model\Favorito.class
-geekplay\model\TipoItem.class
 geekplay\App.class
 geekplay\model\Doacao.class
 geekplay\util\HibernateUtil.class
 geekplay\dao\UsuarioDao.class
 geekplay\model\Usuario.class
+geekplay\util\EmailUtil.class

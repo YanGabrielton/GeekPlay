@@ -32,6 +32,9 @@ async function fazerLogin() {
         });
         const data = await response.json(); 
         if (data.success) {
+        
+        localStorage.setItem('jwtToken', data.token);
+            localStorage.setItem('usuario', JSON.stringify(data.usuario));
             alert("Login bem-sucedido! Bem-vindo, " + data.usuario.nome);
             window.location.href = "/src/main/resources/public/index.html";
         } else {
@@ -78,4 +81,26 @@ async function fazerRegistro() {
         console.error("Erro durante o registro:", error);
         alert("Erro na conexão com o servidor");
     }
+}
+// Função para adicionar token às requisições
+async function apiRequest(url, method = 'GET', body = null) {
+    const token = localStorage.getItem('jwtToken');
+    const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+    };
+    
+    const config = {
+        method,
+        headers,
+        body: body ? JSON.stringify(body) : null
+    };
+    
+    const response = await fetch(url, config);
+    return response.json();
+}
+
+function logout() {
+    localStorage.removeItem('jwtToken');
+    window.location.href = "/login.html";
 }

@@ -7,7 +7,7 @@ import jakarta.mail.internet.MimeMessage;
 
 public class EmailUtil {
     // Configurações do remetente (substitua com seus dados)
-    private static final String REMETENTE = "seuemail@gmail.com";
+    private static final String REMETENTE = "suporteGeekPlay@gmail.com";
     private static final String SENHA = "sua-senha-de-app"; // Senha de app do Gmail
 
     public static void enviarEmail(String destinatario, String assunto, String corpo) {

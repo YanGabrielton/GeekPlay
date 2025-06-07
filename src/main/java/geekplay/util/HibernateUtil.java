@@ -20,8 +20,7 @@ public class HibernateUtil {
     private static final String MARIADB_DIALECT = "org.hibernate.dialect.MariaDB103Dialect";
     
     private static SessionFactory sessionFactory;
-    private static boolean usingMariaDB;
-
+    
     // Bloco estático para inicialização automática
     static {
         try {
@@ -63,7 +62,7 @@ public class HibernateUtil {
         String dialect = useMariaDB ? MARIADB_DIALECT : MYSQL_DIALECT;
         String url = useMariaDB ? 
             "jdbc:mariadb://localhost:3306/filme" : 
-            "jdbc:mysql://localhost:3307/filme"; //sempre trocar para 3307 do senac e em casa 3306
+            "jdbc:mysql://localhost:3306/filme"; //sempre trocar para 3307 do senac e em casa 3306
 
         // Construir registro de serviços
         StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
