@@ -4,11 +4,17 @@ import java.util.Properties;
 import jakarta.mail.*; // Corrigido: usar jakarta.mail (versão mais nova)
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class EmailUtil {
     // Configurações do remetente (substitua com seus dados)
-    private static final String REMETENTE = "suporteGeekPlay@gmail.com";
-    private static final String SENHA = "sua-senha-de-app"; // Senha de app do Gmail
+    private static final String REMETENTE = "suportgekplay@gmail.com";
+    private static final String SENHA = "geekplay1234"; // Senha de app do Gmail
+
+
+private static final Logger logger = LoggerFactory.getLogger(EmailUtil.class);
+// ...
 
     public static void enviarEmail(String destinatario, String assunto, String corpo) {
         // Configura propriedades do servidor SMTP
@@ -17,6 +23,7 @@ public class EmailUtil {
         props.put("mail.smtp.port", "587"); // Porta para TLS
         props.put("mail.smtp.auth", "true"); // Requer autenticação
         props.put("mail.smtp.starttls.enable", "true"); // Habilita TLS
+        
 
         // Cria sessão com autenticação
         Session session = Session.getInstance(props, new Authenticator() {
@@ -33,7 +40,9 @@ public class EmailUtil {
             message.setRecipients(
                 Message.RecipientType.TO,
                 InternetAddress.parse(destinatario) // Destinatário(s)
+                
             );
+            logger.info("E-mail enviado para: {}", destinatario);
             message.setSubject(assunto); // Assunto
             message.setText(corpo); // Corpo do e-mail
 
