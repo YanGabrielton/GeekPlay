@@ -2,6 +2,7 @@ package geekplay;
 
 import geekplay.dao.UsuarioDao;
 import geekplay.model.Usuario;
+import geekplay.util.EmailUtilOAuth;
 import geekplay.util.HibernateUtil;
 import geekplay.util.JwtUtil;
 import io.javalin.Javalin;
@@ -50,8 +51,6 @@ public class App {
             if (rotasPublicas.contains(ctx.path())) {
                 return; // Não aplica autenticação
             }
-
-            // Obtém o token do cabeçalho Authorization
             String authHeader = ctx.header("Authorization");
             if (authHeader == null || !authHeader.startsWith("Bearer ")) {
                 ctx.status(401).json(Map.of("error", "Token não fornecido"));
@@ -59,7 +58,7 @@ public class App {
                 return;
             }
 
-            // Extrai o token (remove "Bearer ")
+        
             String token = authHeader.substring(7);
 
             if (!JwtUtil.validateToken(token)) {
@@ -74,7 +73,7 @@ public class App {
         try {
             Usuario usuario = ctx.bodyAsClass(Usuario.class);
             dao.salvar(usuario);
-            // Retorna apenas o nome do usuário, igual ao login
+          
             ctx.status(201).json(Map.of(
                     "success", true,
                     "usuario", Map.of("nome", usuario.getNome()) // o que vai retornar no login
@@ -91,7 +90,7 @@ public class App {
         try {
             int id = Integer.parseInt(ctx.pathParam("id"));
             dao.deletar(id);
-            ctx.status(204); // 204 No Content (sucesso sem retorno)
+            ctx.status(204); 
         } catch (NumberFormatException e) {
             ctx.status(400).json("{\"error\": \"ID inválido\"}");
         } catch (Exception e) {
@@ -99,16 +98,16 @@ public class App {
         }
     }
 
-    // Método para listar usuários
+ 
     private static void listarUsuarios(Context ctx, UsuarioDao dao) {
         try {
-            ctx.json(dao.listarTodos()); // 200 OK
+            ctx.json(dao.listarTodos()); 
         } catch (Exception e) {
             ctx.status(500).json(error("Erro interno ao listar usuários"));
         }
     }
 
-    // Método para buscar por ID
+   
     private static void buscarUsuarioPorId(Context ctx, UsuarioDao dao) {
         try {
             int id = Integer.parseInt(ctx.pathParam("id"));
@@ -160,6 +159,7 @@ public class App {
         try {
             Map<String, String> body = ctx.bodyAsClass(Map.class);
             String email = body.get("email");
+         
 
             Usuario usuario = dao.buscarPorEmail(email);
             if (usuario == null) {
@@ -172,9 +172,14 @@ public class App {
             // Gera token com validade de 1 hora
             String token = JwtUtil.generateTokenRecovery(usuario.getEmail(), 3600000);
 
-            // Em produção: enviar email com o token
+
+
+
             ctx.json(Map.of(
                     "success", true,
+                    "token", token,
+                    "email", email,
+                    "nome", usuario.getNome(),
                     "message", "Instruções enviadas para seu email"));
 
         } catch (Exception e) {
@@ -239,8 +244,6 @@ public class App {
         Map<String, String> body = ctx.bodyAsClass(Map.class);
         String token = ctx.header("Authorization").substring(7);
         String email = JwtUtil.getEmailFromToken(token);
-        
-        // Validações
         if (!body.containsKey("senhaAtual") || !body.containsKey("novaSenha")) {
             ctx.status(400).json(Map.of(
                 "success", false,
@@ -249,7 +252,7 @@ public class App {
             return;
         }
         
-        // Verifica senha atual
+     
         Usuario usuario = dao.buscarPorEmail(email);
         if (usuario == null || !usuario.getSenha().equals(body.get("senhaAtual"))) {
             ctx.status(401).json(Map.of(
@@ -259,7 +262,7 @@ public class App {
             return;
         }
         
-        // Atualiza usando o novo método do DAO
+       
         dao.atualizarSenha(email, body.get("novaSenha"));
         
         ctx.json(Map.of(
