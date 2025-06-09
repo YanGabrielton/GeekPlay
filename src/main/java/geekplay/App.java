@@ -2,7 +2,7 @@ package geekplay;
 
 import geekplay.dao.UsuarioDao;
 import geekplay.model.Usuario;
-import geekplay.util.EmailUtilOAuth;
+import geekplay.util.EmailUtil;
 import geekplay.util.HibernateUtil;
 import geekplay.util.JwtUtil;
 import io.javalin.Javalin;
