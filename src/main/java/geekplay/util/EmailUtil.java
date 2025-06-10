@@ -9,7 +9,7 @@ import java.util.Properties;
 public class EmailUtil {
 
     private static final String REMETENTE = "suportgekplay@gmail.com";
-    private static final String SENHA_APP = "sua-senha-de-app"; // Senha de 16 dígitos do Gmail
+    private static final String SENHA_APP = "bkij aiph phpk jhoi"; // Senha de 16 dígitos do Gmail
     private static final Logger logger = LoggerFactory.getLogger(EmailUtil.class);
 
     public static void enviarEmail(String destinatario, String assunto, String corpo) {
