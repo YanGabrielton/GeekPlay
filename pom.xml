@@ -104,6 +104,7 @@
 
 
 <!-- Dependência para criptografia de senhas (BCrypt) -->
+
 <dependency>
     <groupId>org.mindrot</groupId>
     <artifactId>jbcrypt</artifactId>

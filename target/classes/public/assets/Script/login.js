@@ -1,3 +1,14 @@
+window.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get("token");
+
+    if (token) {
+        document.getElementById("token").value = token;
+    }
+});
+
+
+
 const registroBotao = document.getElementById('registrar');
 const container = document.getElementById('container');
 const loginBotao = document.getElementById('login');
@@ -101,6 +112,41 @@ async function solicitarRecuperacao() {
         console.log("Token gerado (simulação):", data.token);
     }
 }
+
+async function redefinirSenha() {
+    const novaSenha = document.getElementById("novaSenha").value.trim();
+    const token = document.getElementById("token").value.trim();
+
+    if (!novaSenha || !token) {
+        alert("Por favor, forneça a nova senha e o token.");
+        return;
+    }
+
+    try {
+        const response = await fetch("http://localhost:7070/redefinir-senha", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                token: token,
+                novaSenha: novaSenha
+            })
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+            alert("Senha redefinida com sucesso!");
+            window.location.href = "/src/main/resources/public/pages/Login.html";
+        } else {
+            alert("Erro: " + (data.message || "Não foi possível redefinir a senha."));
+        }
+
+    } catch (error) {
+        console.error("Erro durante a redefinição:", error);
+        alert("Erro na conexão com o servidor.");
+    }
+}
+
 
 
 
