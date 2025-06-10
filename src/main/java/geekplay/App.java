@@ -176,6 +176,7 @@ public class App {
 
             // Gera token com validade de 1 hora
             String token = JwtUtil.generateTokenRecovery(usuario.getEmail(), 3600000);
+            System.out.println("Token gerado: " + token);
             EmailUtil.enviarEmail(email, "Recuperação de Senha",
             "Clique aqui para redefinir sua senha:\n\n" +
             "http://localhost:3000/redefinir?token=" + token);
@@ -190,7 +191,9 @@ public class App {
                     "message", "Instruções enviadas para seu email"));
 
         } catch (Exception e) {
+            e.printStackTrace(); // Isso ajuda a descobrir o erro exato no console
             ctx.status(500).json(Map.of(
+                
                     "success", false,
                     "message", "Erro ao solicitar recuperação"));
         }

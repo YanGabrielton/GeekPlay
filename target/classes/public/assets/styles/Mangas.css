@@ -64,7 +64,7 @@ header,
 .navbar-brand:hover {
   color: white;
 }
-# navbar-links a {
+#navbar-links a {
   color: #fff;
   cursor: pointer;
 }
@@ -78,11 +78,11 @@ header,
 }
 /* Slider */
 /* aqui e o carousel */
-# mainSlider .carousel-inner,
-# mainSlider .carousel-item {
+#mainSlider .carousel-inner,
+#mainSlider .carousel-item {
   height: 90vh;
 }
-# mainSlider .carousel-caption {
+#mainSlider .carousel-caption {
   top: 30%;
   text-align: center;
 }
@@ -93,20 +93,20 @@ header,
   padding: 5px 10px;
   font-size: 0.7rem;
 }
-# title-anime {
+#title-anime {
   font-size: 1.2rem;
 }
-# japanese-title {
+#japanese-title {
   font-size: 0.9rem;
 }
-# type-streaming {
+#type-streaming {
   font-size: 0.8rem;
 }
 .border-title {
   margin: 10px 0;
 }
 /* Título em japonês */
-# mainSlider .carousel-caption h3 {
+#mainSlider .carousel-caption h3 {
   font-size: 2rem; /* Aumentar para ficar mais visível */
   font-weight: bold;
   margin-bottom: 2rem;
@@ -114,7 +114,7 @@ header,
   font-family: 'Noto Sans JP', sans-serif; /* Fonte com suporte a caracteres japoneses */
 }
 /* JUJUTSU e KAISEN */
-# mainSlider .carousel-caption h2 {
+#mainSlider .carousel-caption h2 {
   font-size: 3.5rem; /* Aumentado para mais destaque */
   font-style: italic;
   font-weight: 900; /* Bem negrito */
