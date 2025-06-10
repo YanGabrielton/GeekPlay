@@ -147,21 +147,24 @@ header, .navbar {
     display: flex;
     flex-direction: column;
     position: static;
+    margin-top: 40px;
     
 }
-.sobre_nos {
-    font-size: 1.25rem; /* 20px */
+
+.sobre_nos h1{
+    font-size: 3.40rem; /* 20px */
     font-weight: bold;
     color: rgb(255, 255, 255);
     text-align: center;
     margin-top: 2%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 /* logo lateral */
-.geekplay {
+.geekplay h2{
     font-size: 1.5rem;
     font-weight: bold;
-    color: rgb(109, 21, 21);
+    color: rgb(202, 21, 21);
     margin-left: 2%;
 }
 
