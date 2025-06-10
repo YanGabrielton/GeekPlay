@@ -2,11 +2,15 @@ package geekplay.util;
 
 import jakarta.mail.*;
 import jakarta.mail.internet.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.util.Properties;
 
 public class EmailUtil {
-    private static final String REMETENTE = "suportegekplay@gmail.com"; // Seu Gmail
-    private static final String SENHA_APP = "suaSenhaDeAppGerada"; // Senha de 16 caracteres
+
+    private static final String REMETENTE = "suportgekplay@gmail.com";
+    private static final String SENHA_APP = "sua-senha-de-app"; // Senha de 16 dígitos do Gmail
+    private static final Logger logger = LoggerFactory.getLogger(EmailUtil.class);
 
     public static void enviarEmail(String destinatario, String assunto, String corpo) {
         Properties props = new Properties();
@@ -31,9 +35,10 @@ public class EmailUtil {
             message.setText(corpo);
 
             Transport.send(message);
-            System.out.println("E-mail enviado para: " + destinatario);
+            logger.info("✅ E-mail enviado para: {}", destinatario);
         } catch (MessagingException e) {
-            throw new RuntimeException("Falha ao enviar e-mail: " + e.getMessage());
+            logger.error("❌ Falha ao enviar e-mail", e);
+            throw new RuntimeException("Erro ao enviar e-mail: " + e.getMessage(), e);
         }
     }
 }
