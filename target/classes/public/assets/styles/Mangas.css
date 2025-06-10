@@ -124,7 +124,7 @@ header,
   font-family: 'Arial Black', sans-serif; /* Aproximação visual */
 }
 /* Palavra ANIME */
-# mainSlider .carousel-caption .anime-label {
+#mainSlider .carousel-caption .anime-label {
   font-size: 3rem;
   font-weight: 900;
   color: white;
@@ -142,18 +142,18 @@ header,
   background-color: #f96565;
 }
 /* Filtros nas imagens */
-# imgbleach {
+#imgbleach {
   filter: brightness(70%);
 }
-# imgjujutsu {
+#imgjujutsu {
   filter: brightness(60%);
 }
-# imgkimetsu,
-# imgonepiece {
+#imgkimetsu,
+#imgonepiece {
   filter: brightness(40%);
 }
 /* Títulos no slider */
-# mainSlider #japanese-title {
+#mainSlider #japanese-title {
   font-size: 3.125rem;
   text-align: left;
   margin-bottom: 1.25rem;
@@ -162,7 +162,7 @@ header,
   text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.5);
   transition: 0.5s;
 }
-# mainSlider #title-anime {
+#mainSlider #title-anime {
   font-size: 4.375rem;
   font-weight: bold;
   font-style: italic;

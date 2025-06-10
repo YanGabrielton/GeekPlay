@@ -4,6 +4,7 @@ let tipoFiltro = "";
 let faixaEtariaFiltro = "";
 let termoBusca = "";
 let ultimosAnimesCarregados = [];
+let estaCarregando = false;
 
 // Mapeamento CORRETO para a API Jikan
 const CLASSIFICACOES = {
@@ -14,7 +15,17 @@ const CLASSIFICACOES = {
 };
 
 // ---------------- FUNÇÃO PRINCIPAL ----------------
-async function fetchAnimes(pagina = 1, tipo = "", busca = "", faixaEtaria = "", forcarAtualizacao = false) {
+async function fetchAnimes(
+  pagina = 1, 
+  tipo = "", 
+  busca = "", 
+  faixaEtaria = "", 
+  forcarAtualizacao = false,
+  atualizarHistorico = true
+) {
+  if (estaCarregando) return;
+  estaCarregando = true;
+  
   try {
     // Verificar se já temos esses dados (exceto quando forçar atualização)
     if (!forcarAtualizacao && pagina === paginaAtual && tipo === tipoFiltro && 
@@ -64,15 +75,148 @@ async function fetchAnimes(pagina = 1, tipo = "", busca = "", faixaEtaria = "", 
       data.pagination?.last_visible_page || 1,
       data.pagination?.has_next_page || false
     );
+    
+    // Atualizar URL sem recarregar a página
+    if (atualizarHistorico) {
+      const params = new URLSearchParams();
+      if (pagina > 1) params.set('page', pagina);
+      if (tipo) params.set('type', tipo);
+      if (faixaEtaria) params.set('rating', faixaEtaria);
+      if (busca) params.set('search', busca);
+      
+      const novaURL = `${window.location.pathname}?${params.toString()}`;
+      window.history.pushState({ 
+        pagina, 
+        tipo, 
+        busca, 
+        faixaEtaria 
+      }, '', novaURL);
+    }
 
   } catch (error) {
     console.error('Erro:', error);
     container.innerHTML = '<p class="text-center w-100">Erro ao carregar. Tente novamente.</p>';
   } finally {
     loader.style.display = 'none';
+    estaCarregando = false;
   }
 }
 
+// ---------------- MANIPULAÇÃO DO HISTÓRICO ----------------
+function setupHistoryNavigation() {
+  window.addEventListener('popstate', (event) => {
+    if (event.state) {
+      paginaAtual = event.state.pagina || 1;
+      tipoFiltro = event.state.tipo || "";
+      faixaEtariaFiltro = event.state.faixaEtaria || "";
+      termoBusca = event.state.busca || "";
+      
+      // Atualizar controles de filtro visualmente
+      updateFilterControls();
+      
+      // Carregar animes sem adicionar novo estado ao histórico
+      fetchAnimes(paginaAtual, tipoFiltro, termoBusca, faixaEtariaFiltro, true, false);
+    }
+  });
+}
+
+function updateFilterControls() {
+  // Atualizar campo de busca
+  const searchInput = document.getElementById('search');
+  if (searchInput) {
+    searchInput.value = termoBusca;
+  }
+  
+  // Atualizar dropdown de tipo
+  document.querySelectorAll('.tipo-opcao').forEach(item => {
+    item.classList.toggle('active', item.getAttribute('data-tipo') === tipoFiltro);
+  });
+  
+  // Atualizar dropdown de classificação etária
+  document.querySelectorAll('.etaria-opcao').forEach(item => {
+    item.classList.toggle('active', item.getAttribute('data-rating') === faixaEtariaFiltro);
+  });
+}
+
+// ---------------- EVENTOS ----------------
+function setupEventListeners() {
+  // Evento de busca
+  const form = document.getElementById('form');
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      termoBusca = document.getElementById('search').value.trim();
+      fetchAnimes(1, tipoFiltro, termoBusca, faixaEtariaFiltro, true);
+    });
+  }
+
+  // Botões de paginação
+  const btnAnterior = document.getElementById('btnAnterior');
+  if (btnAnterior) {
+    btnAnterior.addEventListener('click', () => {
+      if (paginaAtual > 1) {
+        fetchAnimes(paginaAtual - 1, tipoFiltro, termoBusca, faixaEtariaFiltro, true);
+      }
+    });
+  }
+
+  const btnProxima = document.getElementById('btnProxima');
+  if (btnProxima) {
+    btnProxima.addEventListener('click', () => {
+      fetchAnimes(paginaAtual + 1, tipoFiltro, termoBusca, faixaEtariaFiltro, true);
+    });
+  }
+
+  // Dropdown de filtros
+  document.querySelectorAll('.dropdown-item[onclick*="fetchAnimes"]').forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.preventDefault();
+      const match = item.getAttribute('onclick').match(/fetchAnimes\((.+)\)/);
+      if (match) {
+        const args = match[1].split(',').map(arg => arg.trim().replace(/'/g, ''));
+        args.push(true); // Forçar atualização
+        args.push(true); // Atualizar histórico
+        fetchAnimes(...args);
+      }
+    });
+  });
+}
+
+// ---------------- INICIALIZAÇÃO ----------------
+document.addEventListener('DOMContentLoaded', () => {
+  // Verificar parâmetros da URL
+  const urlParams = new URLSearchParams(window.location.search);
+  paginaAtual = parseInt(urlParams.get('page')) || 1;
+  tipoFiltro = urlParams.get('type') || "";
+  faixaEtariaFiltro = urlParams.get('rating') || "";
+  termoBusca = urlParams.get('search') || "";
+  
+  // Configurar navegação pelo histórico
+  setupHistoryNavigation();
+  
+  // Configurar eventos
+  setupEventListeners();
+  
+  // Atualizar controles com os valores atuais
+  updateFilterControls();
+  
+  // Carregar animes inicialmente (sem adicionar novo estado ao histórico)
+  fetchAnimes(paginaAtual, tipoFiltro, termoBusca, faixaEtariaFiltro, true, false);
+  
+  // Adicionar estado inicial ao histórico
+  window.history.replaceState(
+    { 
+      pagina: paginaAtual, 
+      tipo: tipoFiltro, 
+      busca: termoBusca, 
+      faixaEtaria: faixaEtariaFiltro 
+    },
+    '',
+    window.location.href
+  );
+});
+
+// ---------------- FUNÇÕES EXISTENTES (mantidas iguais) ----------------
 function renderizarAnimes(animes) {
   const container = document.getElementById('anime-cards-container');
   container.innerHTML = '';
@@ -98,19 +242,24 @@ function renderizarAnimes(animes) {
   });
 }
 
-// ---------------- PAGINAÇÃO ----------------
 function updatePagination(totalPages, hasNextPage) {
   const pagination = document.getElementById('pagination');
+  if (!pagination) return;
+  
   pagination.innerHTML = '';
 
   const btnAnterior = document.getElementById('btnAnterior');
   const btnProxima = document.getElementById('btnProxima');
 
-  btnAnterior.style.opacity = paginaAtual > 1 ? '1' : '0.5';
-  btnAnterior.style.pointerEvents = paginaAtual > 1 ? 'auto' : 'none';
+  if (btnAnterior) {
+    btnAnterior.style.opacity = paginaAtual > 1 ? '1' : '0.5';
+    btnAnterior.style.pointerEvents = paginaAtual > 1 ? 'auto' : 'none';
+  }
   
-  btnProxima.style.opacity = hasNextPage ? '1' : '0.5';
-  btnProxima.style.pointerEvents = hasNextPage ? 'auto' : 'none';
+  if (btnProxima) {
+    btnProxima.style.opacity = hasNextPage ? '1' : '0.5';
+    btnProxima.style.pointerEvents = hasNextPage ? 'auto' : 'none';
+  }
 
   if (totalPages > 1) {
     const startPage = Math.max(1, paginaAtual - 2);
@@ -155,40 +304,3 @@ function updatePagination(totalPages, hasNextPage) {
     }
   }
 }
-
-// ---------------- EVENTOS ----------------
-document.addEventListener('DOMContentLoaded', () => {
-  // Evento de busca
-  document.getElementById('form').addEventListener('submit', (e) => {
-    e.preventDefault();
-    termoBusca = document.getElementById('search').value.trim();
-    fetchAnimes(1, tipoFiltro, termoBusca, faixaEtariaFiltro, true);
-  });
-
-  // Botões de paginação
-  document.getElementById('btnAnterior').addEventListener('click', () => {
-    if (paginaAtual > 1) {
-      fetchAnimes(paginaAtual - 1, tipoFiltro, termoBusca, faixaEtariaFiltro, true);
-    }
-  });
-
-  document.getElementById('btnProxima').addEventListener('click', () => {
-    fetchAnimes(paginaAtual + 1, tipoFiltro, termoBusca, faixaEtariaFiltro, true);
-  });
-
-  // Dropdown de filtros
-  document.querySelectorAll('.dropdown-item[onclick*="fetchAnimes"]').forEach(item => {
-    item.addEventListener('click', (e) => {
-      e.preventDefault();
-      const match = item.getAttribute('onclick').match(/fetchAnimes\((.+)\)/);
-      if (match) {
-        const args = match[1].split(',').map(arg => arg.trim().replace(/'/g, ''));
-        args.push(true); // Forçar atualização
-        fetchAnimes(...args);
-      }
-    });
-  });
-
-  // Carregar inicialmente
-  fetchAnimes(1, '', '', '', true);
-});

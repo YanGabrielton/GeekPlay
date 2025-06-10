@@ -1,6 +1,9 @@
 package geekplay;
 
 import geekplay.dao.UsuarioDao;
+import geekplay.dto.AlterarSenhaDTO;
+import geekplay.dto.EmailDTO;
+import geekplay.dto.RedefinirSenhaDTO;
 import geekplay.model.Usuario;
 import geekplay.util.EmailUtil;
 import geekplay.util.HibernateUtil;
@@ -157,8 +160,10 @@ public class App {
 
     private static void solicitarRecuperacaoSenha(Context ctx, UsuarioDao dao) {
         try {
-            Map<String, String> body = ctx.bodyAsClass(Map.class);
-            String email = body.get("email");
+            // Map<String, String> body = ctx.bodyAsClass(Map.class);
+             // String email = body.get("email"); // troquei esse map para utilizar DTO mais organizado e menos erros
+             EmailDTO dto = ctx.bodyAsClass(EmailDTO.class);
+            String email = dto.getEmail();
          
 
             Usuario usuario = dao.buscarPorEmail(email);
@@ -193,9 +198,13 @@ public class App {
 
     private static void redefinirSenha(Context ctx, UsuarioDao dao) {
         try {
-            Map<String, String> body = ctx.bodyAsClass(Map.class);
-            String token = body.get("token");
-            String novaSenha = body.get("novaSenha");
+            // Map<String, String> body = ctx.bodyAsClass(Map.class);
+            // String token = body.get("token");
+            // String novaSenha = body.get("novaSenha"); // troquei esse map para utilizar DTO mais organizado e menos erros
+
+            RedefinirSenhaDTO dto = ctx.bodyAsClass(RedefinirSenhaDTO.class);
+            String token = dto.getToken();
+            String novaSenha = dto.getNovaSenha();
 
             if (!JwtUtil.validateToken(token)) {
                 ctx.status(401).json(Map.of(
@@ -243,35 +252,37 @@ public class App {
 
     private static void alterarSenha(Context ctx, UsuarioDao dao) {
     try {
-        Map<String, String> body = ctx.bodyAsClass(Map.class);
+        AlterarSenhaDTO dto = ctx.bodyAsClass(AlterarSenhaDTO.class);
+        String senhaAtual = dto.getSenhaAtual();
+        String novaSenha = dto.getNovaSenha();
+
         String token = ctx.header("Authorization").substring(7);
         String email = JwtUtil.getEmailFromToken(token);
-        if (!body.containsKey("senhaAtual") || !body.containsKey("novaSenha")) {
+
+        if (senhaAtual == null || novaSenha == null) {
             ctx.status(400).json(Map.of(
                 "success", false,
                 "message", "Dados incompletos"
             ));
             return;
         }
-        
-     
+
         Usuario usuario = dao.buscarPorEmail(email);
-        if (usuario == null || !usuario.getSenha().equals(body.get("senhaAtual"))) {
+        if (usuario == null || !usuario.getSenha().equals(senhaAtual)) {
             ctx.status(401).json(Map.of(
                 "success", false,
                 "message", "Senha atual incorreta"
             ));
             return;
         }
-        
-       
-        dao.atualizarSenha(email, body.get("novaSenha"));
-        
+
+        dao.atualizarSenha(email, novaSenha);
+
         ctx.json(Map.of(
             "success", true,
             "message", "Senha atualizada com sucesso"
         ));
-        
+
     } catch (Exception e) {
         ctx.status(500).json(Map.of(
             "success", false,
@@ -279,6 +290,7 @@ public class App {
         ));
     }
 }
+
     // Método auxiliar para respostas de erro
     private static String error(String message) {
         return "{\"error\": \"" + message + "\"}";
