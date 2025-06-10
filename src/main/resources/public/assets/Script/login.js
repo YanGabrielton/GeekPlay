@@ -95,23 +95,41 @@ async function fazerRegistro() {
 }
 
 async function solicitarRecuperacao() {
-     event.preventDefault();
-    const email = document.getElementById("email").value;
-    
-    const response = await fetch("http://localhost:7070/solicitar-recuperacao", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email })
-    });
-    
-    const data = await response.json();
-    document.getElementById("mensagem").textContent = data.message;
-    
-    if (data.success) {
-        // Em produção: redirecionar para página de aviso
-        console.log("Token gerado (simulação):", data.token);
+    const email = document.getElementById("emailRecuperacao").value.trim();
+    const mensagem = document.getElementById("mensagemRecuperacao");
+
+    if (!email) {
+        mensagem.textContent = "Por favor, insira seu email.";
+        mensagem.className = "text-danger mt-2";
+        return;
+    }
+
+    try {
+        const response = await fetch("http://localhost:7070/solicitar-recuperacao", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            mensagem.textContent = "Instruções enviadas para o e-mail: " + data.email;
+            mensagem.className = "text-success mt-2";
+
+            console.log("Token:", data.token); // Apenas para depuração local
+        } else {
+            mensagem.textContent = data.message || "Falha ao solicitar recuperação.";
+            mensagem.className = "text-danger mt-2";
+        }
+
+    } catch (error) {
+        mensagem.textContent = "Erro de conexão com o servidor.";
+        mensagem.className = "text-danger mt-2";
+        console.error("Erro:", error);
     }
 }
+
 
 async function redefinirSenha() {
     const novaSenha = document.getElementById("novaSenha").value.trim();
