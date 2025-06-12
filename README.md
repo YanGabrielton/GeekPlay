@@ -3,7 +3,7 @@ Baanco de Dados :
 [filme.zip](https://github.com/user-attachments/files/20628064/filme.zip)
 <h1 align="center"> - GeekPlay - </h1>
 
-![Imagem da Página Inicial](/src/docs/preview.png)
+
 
 <div align="center">
 
