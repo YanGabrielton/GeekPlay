@@ -112,6 +112,7 @@ src > resources-public > hibernate.cfg.xml
 ### ✅ 7. Execute o projeto
 
 Abra o projeto no Visual Studio Code (ou outro IDE Java) e inicie o servidor Javalin a partir da sua classe principal. O projeto estará disponível localmente para testes.
+App.java
 
 ---
 
