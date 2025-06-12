@@ -104,7 +104,7 @@ src > resources-public > hibernate.cfg.xml
 ```xml
 <property name="hibernate.connection.url">jdbc:mysql://localhost:3307/filme</property>
 <property name="hibernate.connection.username">root</property>
-<property name="hibernate.connection.password">senac</property>
+<property name="hibernate.connection.password"></property>
 ```
 
 ---
