@@ -69,9 +69,8 @@ src > Util > HibernateUtil.java
 2. No método `detectDatabaseType`, substitua pelo nome retornado no CMD:
 
 ```java
-if (machineName.equalsIgnoreCase("SEU_NOME_DE_MAQUINA")) {
-    return "mysql"; // ou "mariadb" dependendo do seu banco
-}
+  String hostname = System.getenv().getOrDefault("L05023964", // Windows Digitar no CMD: ECHO "%COMPUTERNAME%"
+                          System.getenv().getOrDefault("HOSTNAME",
 ```
 
 ---
