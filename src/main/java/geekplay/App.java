@@ -3,7 +3,7 @@ package geekplay;
 import geekplay.dao.UsuarioDao;
 import geekplay.dto.AlterarSenhaDTO;
 import geekplay.dto.EmailDTO;
-import geekplay.dto.RedefinirSenhaDTO;
+
 import geekplay.model.Usuario;
 import geekplay.util.EmailUtil;
 import geekplay.util.HibernateUtil;
@@ -177,10 +177,13 @@ public class App {
             // Gera token com validade de 1 hora
             String token = JwtUtil.generateTokenRecovery(usuario.getEmail(), 3600000);
             System.out.println("Token gerado: " + token);
-            EmailUtil.enviarEmail(email, "Recuperação de Senha",
-            "Clique aqui para redefinir sua senha:\n\n" +
-            "http://localhost:3000/redefinir?token=" + token);
-        
+            
+            String linkConfirmacao = "http://localhost:7070/redefinir-senha?token=" + token;
+        EmailUtil.enviarEmail(email, "Confirme a Solicitação de Recuperação de Senha",
+                "Olá, " + usuario.getNome() + ",\n\n" +
+                "Você solicitou a recuperação de sua senha. Clique no link abaixo para confirmar:\n\n" +
+                linkConfirmacao + "\n\n" +
+                "Se você não solicitou isso, ignore este e-mail.");
 
 
             ctx.json(Map.of(
@@ -200,37 +203,66 @@ public class App {
     }
 
     private static void redefinirSenha(Context ctx, UsuarioDao dao) {
-        try {
-            // Map<String, String> body = ctx.bodyAsClass(Map.class);
-            // String token = body.get("token");
-            // String novaSenha = body.get("novaSenha"); // troquei esse map para utilizar DTO mais organizado e menos erros
+    try {
+        String token = ctx.queryParam("token");
 
-            RedefinirSenhaDTO dto = ctx.bodyAsClass(RedefinirSenhaDTO.class);
-            String token = dto.getToken();
-            String novaSenha = dto.getNovaSenha();
-
-            if (!JwtUtil.validateToken(token)) {
-                ctx.status(401).json(Map.of(
-                        "success", false,
-                        "message", "Token inválido ou expirado"));
-                return;
-            }
-
-            String email = JwtUtil.getEmailFromToken(token);
-            Usuario usuario = dao.buscarPorEmail(email);
-            usuario.setSenha(novaSenha); // Em produção: criptografar!
-            dao.salvar(usuario);
-
-            ctx.json(Map.of(
-                    "success", true,
-                    "message", "Senha redefinida com sucesso"));
-
-        } catch (Exception e) {
-            ctx.status(500).json(Map.of(
-                    "success", false,
-                    "message", "Erro ao redefinir senha"));
+        if (token == null || !JwtUtil.validateToken(token)) {
+            ctx.status(401).json(Map.of(
+                "success", false,
+                "message", "Token inválido ou expirado"
+            ));
+            return;
         }
+
+        String email = JwtUtil.getEmailFromToken(token);
+        Usuario usuario = dao.buscarPorEmail(email);
+
+        if (usuario == null) {
+            ctx.status(404).json(Map.of(
+                "success", false,
+                "message", "Usuário não encontrado"
+            ));
+            return;
+        }
+
+        String novaSenha = gerarSenhaAleatoria();
+
+        usuario.setSenha(novaSenha);
+        dao.salvar(usuario);
+
+        EmailUtil.enviarEmail(email, "Senha Redefinida com Sucesso",
+                "Olá " + usuario.getNome() + ",\n\n" +
+                "Sua senha foi redefinida.\n\n" +
+                "Nova senha: " + novaSenha + "\n\n" +
+                "Recomendamos que você altere essa senha após fazer login.");
+
+        ctx.json(Map.of(
+            "success", true,
+            "message", "Senha redefinida e enviada ao e-mail"
+        ));
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        ctx.status(500).json(Map.of(
+            "success", false,
+            "message", "Erro ao redefinir senha"
+        ));
     }
+}
+
+
+private static String gerarSenhaAleatoria() {
+    String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    StringBuilder senha = new StringBuilder();
+    for (int i = 0; i < 10; i++) {
+        int index = (int) (Math.random() * caracteres.length());
+        senha.append(caracteres.charAt(index));
+    }
+    return senha.toString();
+}
+
+
+
 
     private static void obterPerfil(Context ctx, UsuarioDao dao) {
         try {
