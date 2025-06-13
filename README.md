@@ -3,12 +3,9 @@ Baanco de Dados :
 [filme.zip](https://github.com/user-attachments/files/20628064/filme.zip)
 <h1 align="center"> - GeekPlay - </h1>
 
-     <div align="center">  
-![sasukePixel](https://github.com/user-attachments/assets/6100bbe5-e415-449f-bb52-b3db5ecc2420)
-
-                                 
-</div>
-
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/6100bbe5-e415-449f-bb52-b3db5ecc2420" alt="sasukePixel" />
+</p>
 <div align="center">
 
 [![Java](https://img.shields.io/badge/Java-ED8B00.svg?style=for-the-badge&logo=java&logoColor=white)](https://www.java.com/)
