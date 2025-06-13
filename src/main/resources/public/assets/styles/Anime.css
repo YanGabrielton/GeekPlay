@@ -280,10 +280,11 @@ header,
 }
 
 .card {
-  background-color: rgb(255, 255, 255);
+  background-color: #282828;
   color: rgb(160, 1, 1);
   padding: 1.25rem; /* 20px */
   display: flex;
+  justify-content: space-between;
 }
 
 
