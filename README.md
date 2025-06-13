@@ -3,9 +3,11 @@ Baanco de Dados :
 [filme.zip](https://github.com/user-attachments/files/20628064/filme.zip)
 <h1 align="center"> - GeekPlay - </h1>
 
-                 ![sasukePixel](https://github.com/user-attachments/assets/e983cd3d-1352-4783-9f9c-6557a2df3b6f)
-                                 
+     <div align="center">  
+![sasukePixel](https://github.com/user-attachments/assets/6100bbe5-e415-449f-bb52-b3db5ecc2420)
 
+                                 
+</div>
 
 <div align="center">
 
