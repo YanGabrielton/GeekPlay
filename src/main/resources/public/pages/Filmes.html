@@ -39,27 +39,56 @@
   
           <!-- Barra de busca -->
           <form class="d-flex me-3" id="form">
-            <input id="search" class="form-control" type="search" placeholder="Buscar Filme..." aria-label="Search">
+            <input id="search" class="form-control" type="search" placeholder="Buscar..." aria-label="Search">
             <button class="btn btn-outline-light ms-2" type="submit">Buscar</button>
           </form>
   
-          <!-- Links de navegação -->
+          <!-- Links de navegação com dropdowns -->
           <ul class="navbar-nav mb-2 mb-lg-0">
-            <li class="nav-item"><a class="nav-link" href="./Anime.html">Animes</a></li>
-            <li class="nav-item active"><a class="nav-link" href="./Filmes.html">Filmes</a></li>
-            <li class="nav-item"><a class="nav-link" href="./Mangas.html">Mangás</a></li>
+            
+  
+            <!-- Dropdown Animes -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdownAnime" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Animes
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end bg-black" aria-labelledby="dropdownAnime">
+                <li><a class="dropdown-item menu-anime" href="./Anime.html">Todos os Animes</a></li>
+                <li><a class="dropdown-item menu-anime" href="#" onclick="fetchAnimes(1, '', '', 'pg13')">PG-13</a></li>
+                <li><a class="dropdown-item menu-anime" href="#" onclick="fetchAnimes(1, '', '', '17')">+17</a></li>
+                <li><a class="dropdown-item menu-anime" href="#" onclick="fetchAnimes(1, '', '', '18')">+18</a></li>
+                <li><a class="dropdown-item menu-anime" href="#" onclick="fetchAnimes(1, '', '', 'hentai')">Hentai</a></li>
+              </ul>
+            </li>
+  
+            <!-- Dropdown Mangás -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdownManga" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Mangás
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end bg-black" aria-labelledby="dropdownManga">
+                <li><a class="dropdown-item menu-manga" href="./Mangas.html">Todos os Mangás</a></li>
+                <li><a class="dropdown-item menu-manga" href="#" onclick="buscarMangas('shounen')">Shounen</a></li>
+                <li><a class="dropdown-item menu-manga" href="#" onclick="buscarMangas('seinen')">Seinen</a></li>
+                <li><a class="dropdown-item menu-manga" href="#" onclick="buscarMangas('yaoi')">Yaoi</a></li>
+              </ul>
+            </li>
+  
+            <li class="nav-item"><a class="nav-link" href="./Filmes.html">Filmes</a></li>
             <li class="nav-item"><a class="nav-link" href="./Login.html">Login</a></li>
-             <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Mais
-                    
-                  </a>
-                  <ul class="dropdown-menu dropdown-menu-end  bg-footerCor border-secondary 20px " aria-labelledby="dropdownMenuLink">
-                    <li  class="nav-item" ><a class="dropdown-item    " href="./pages/sobre.html">Sobre</a></li>
-                    <li  class="nav-item" ><a class="dropdown-item   " href="./pages/Perfil.html">Perfil</a></li>
-                    <li  class="nav-item" ><a class="dropdown-item   " href="#">Favoritos</a></li>
-                    <li  class="nav-item" ><a class="dropdown-item   " href="#" onclick="logout()">Sair</a></li>
-                    
-                  </ul>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle text-light fw-bold menu-mais" href="#" id="dropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Mais
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end menu-mais-dropdown" aria-labelledby="dropdownMenuLink">
+                <li><a class="dropdown-item text-light menu-mais-item" href="./sobre.html">Sobre</a></li>
+                <li><a class="dropdown-item text-light menu-mais-item" href="./pages/Perfil.html">Perfil</a></li>
+                <li><a class="dropdown-item text-light menu-mais-item" href="#">Favoritos</a></li>
+                <li><hr class="dropdown-divider bg-secondary"></li>
+                <li><a class="dropdown-item text-light menu-mais-item" href="#" onclick="logout()">Sair</a></li>
+              </ul>
+            </li>
           </ul>
   
         </div>

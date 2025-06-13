@@ -8,10 +8,10 @@ let estaCarregando = false;
 
 // Mapeamento CORRETO para a API Jikan
 const CLASSIFICACOES = {
-  'pg13': 'pg13',
-  '17': 'r17',
-  '18': 'r', 
-  'hentai': 'rx'
+  'pg13': 'pg',       // La API usa 'pg' para PG-13
+  '17': 'r17',        // +17
+  '18': 'r',          // +18 (Restricted)
+  'hentai': 'rx'      // Contenido adulto
 };
 
 // ---------------- FUNÇÃO PRINCIPAL ----------------
@@ -27,7 +27,7 @@ async function fetchAnimes(
   estaCarregando = true;
   
   try {
-    // Verificar se já temos esses dados (exceto quando forçar atualização)
+    // Verificar se já temos esses dados
     if (!forcarAtualizacao && pagina === paginaAtual && tipo === tipoFiltro && 
         busca === termoBusca && faixaEtaria === faixaEtariaFiltro && ultimosAnimesCarregados.length > 0) {
       return;
@@ -76,12 +76,15 @@ async function fetchAnimes(
       data.pagination?.has_next_page || false
     );
     
+    // Resaltar el filtro activo
+    highlightActiveFilter();
+    
     // Atualizar URL sem recarregar a página
     if (atualizarHistorico) {
       const params = new URLSearchParams();
       if (pagina > 1) params.set('page', pagina);
       if (tipo) params.set('type', tipo);
-      if (faixaEtaria) params.set('rating', faixaEtaria);
+      if (faixaEtaria) params.set('rating', CLASSIFICACOES[faixaEtaria] || '');
       if (busca) params.set('search', busca);
       
       const novaURL = `${window.location.pathname}?${params.toString()}`;
@@ -102,14 +105,41 @@ async function fetchAnimes(
   }
 }
 
+// ---------------- FUNCIÓN PARA RESALTAR FILTRO ACTIVO ----------------
+function highlightActiveFilter() {
+  // Remover activo de todos los items primero
+  document.querySelectorAll('.dropdown-item').forEach(item => {
+    item.classList.remove('active');
+  });
+
+  // Resaltar el filtro activo si existe
+  if (faixaEtariaFiltro) {
+    const filterMap = {
+      'pg': 'pg13',
+      'r17': '17',
+      'r': '18',
+      'rx': 'hentai'
+    };
+    
+    const filterValue = filterMap[faixaEtariaFiltro] || faixaEtariaFiltro;
+    document.querySelectorAll(`.dropdown-item[onclick*="${filterValue}"]`).forEach(item => {
+      item.classList.add('active');
+    });
+  }
+}
+
 // ---------------- MANIPULAÇÃO DO HISTÓRICO ----------------
 function setupHistoryNavigation() {
   window.addEventListener('popstate', (event) => {
     if (event.state) {
       paginaAtual = event.state.pagina || 1;
       tipoFiltro = event.state.tipo || "";
-      faixaEtariaFiltro = event.state.faixaEtaria || "";
       termoBusca = event.state.busca || "";
+      
+      // Mapeo inverso para los parámetros del historial
+      const ratingParam = event.state.faixaEtaria;
+      faixaEtariaFiltro = ratingParam ? 
+        Object.keys(CLASSIFICACOES).find(key => CLASSIFICACOES[key] === ratingParam) || "" : "";
       
       // Atualizar controles de filtro visualmente
       updateFilterControls();
@@ -126,16 +156,6 @@ function updateFilterControls() {
   if (searchInput) {
     searchInput.value = termoBusca;
   }
-  
-  // Atualizar dropdown de tipo
-  document.querySelectorAll('.tipo-opcao').forEach(item => {
-    item.classList.toggle('active', item.getAttribute('data-tipo') === tipoFiltro);
-  });
-  
-  // Atualizar dropdown de classificação etária
-  document.querySelectorAll('.etaria-opcao').forEach(item => {
-    item.classList.toggle('active', item.getAttribute('data-rating') === faixaEtariaFiltro);
-  });
 }
 
 // ---------------- EVENTOS ----------------
@@ -182,41 +202,7 @@ function setupEventListeners() {
   });
 }
 
-// ---------------- INICIALIZAÇÃO ----------------
-document.addEventListener('DOMContentLoaded', () => {
-  // Verificar parâmetros da URL
-  const urlParams = new URLSearchParams(window.location.search);
-  paginaAtual = parseInt(urlParams.get('page')) || 1;
-  tipoFiltro = urlParams.get('type') || "";
-  faixaEtariaFiltro = urlParams.get('rating') || "";
-  termoBusca = urlParams.get('search') || "";
-  
-  // Configurar navegação pelo histórico
-  setupHistoryNavigation();
-  
-  // Configurar eventos
-  setupEventListeners();
-  
-  // Atualizar controles com os valores atuais
-  updateFilterControls();
-  
-  // Carregar animes inicialmente (sem adicionar novo estado ao histórico)
-  fetchAnimes(paginaAtual, tipoFiltro, termoBusca, faixaEtariaFiltro, true, false);
-  
-  // Adicionar estado inicial ao histórico
-  window.history.replaceState(
-    { 
-      pagina: paginaAtual, 
-      tipo: tipoFiltro, 
-      busca: termoBusca, 
-      faixaEtaria: faixaEtariaFiltro 
-    },
-    '',
-    window.location.href
-  );
-});
-
-// ---------------- FUNÇÕES EXISTENTES (mantidas iguais) ----------------
+// ---------------- RENDERIZAR ANIMES ----------------
 function renderizarAnimes(animes) {
   const container = document.getElementById('anime-cards-container');
   container.innerHTML = '';
@@ -226,22 +212,31 @@ function renderizarAnimes(animes) {
     col.className = 'col-sm-12 col-md-6 col-lg-3';
     
     col.innerHTML = `
-      <div class="card mb-4 h-100">
-        <img src="${anime.images.jpg.image_url}" class="card-img-top" alt="${anime.title}">
-        <div class="card-body d-flex flex-column justify-content-between">
-          <div>
-            <h5 class="card-title">${anime.title}</h5>
-            <p class="card-text">${anime.type || 'Anime'}</p>
-            <p class="card-text"><strong>Nota:</strong> ${anime.score || 'N/A'}</p>
-          </div>
-          <a href="${anime.url}" target="_blank" class="btn btn-primary mt-2">Ver mais</a>
+    <div class="card mb-4 h-100">
+      <img src="${anime.images.jpg.image_url}" class="card-img-top" alt="${anime.title}">
+      <div class="card-body d-flex flex-column justify-content-between">
+        <div>
+          <h5 class="card-title">${anime.title}</h5>
+          <p class="card-text">${anime.type || 'Anime'}</p>
+          <p class="card-text"><strong>Nota:</strong> ${anime.score || 'N/A'}</p>
+          ${anime.rating ? `<p class="card-text"><strong>Classificação:</strong> ${anime.rating}</p>` : ''}
+        </div>
+        <div class="d-flex flex-column gap-2 mt-3">
+          <a href="${anime.url}" target="_blank" class="btn btn-primary">
+            <i class="fas fa-play-circle me-2"></i> Ver mais
+          </a>
+          <button class="btn btn-outline-warning favorite-btn" data-anime-id="${anime.mal_id}">
+            <i class="fas fa-star me-2"></i> Favoritar
+          </button>
         </div>
       </div>
+    </div>
     `;
     container.appendChild(col);
   });
 }
 
+// ---------------- PAGINAÇÃO ----------------
 function updatePagination(totalPages, hasNextPage) {
   const pagination = document.getElementById('pagination');
   if (!pagination) return;
@@ -304,3 +299,42 @@ function updatePagination(totalPages, hasNextPage) {
     }
   }
 }
+
+// ---------------- INICIALIZAÇÃO ----------------
+document.addEventListener('DOMContentLoaded', () => {
+  // Verificar parâmetros da URL
+  const urlParams = new URLSearchParams(window.location.search);
+  paginaAtual = parseInt(urlParams.get('page')) || 1;
+  tipoFiltro = urlParams.get('type') || "";
+  
+  // Mapeo inverso para los parámetros de la URL
+  const ratingParam = urlParams.get('rating');
+  faixaEtariaFiltro = ratingParam ? 
+    Object.keys(CLASSIFICACOES).find(key => CLASSIFICACOES[key] === ratingParam) || "" : "";
+    
+  termoBusca = urlParams.get('search') || "";
+  
+  // Configurar navegação pelo histórico
+  setupHistoryNavigation();
+  
+  // Configurar eventos
+  setupEventListeners();
+  
+  // Atualizar controles com os valores atuais
+  updateFilterControls();
+  
+  // Carregar animes inicialmente (sem adicionar novo estado ao histórico)
+  fetchAnimes(paginaAtual, tipoFiltro, termoBusca, faixaEtariaFiltro, true, false);
+  
+  // Adicionar estado inicial ao histórico
+  window.history.replaceState(
+    { 
+      pagina: paginaAtual, 
+      tipo: tipoFiltro, 
+      busca: termoBusca, 
+      faixaEtaria: CLASSIFICACOES[faixaEtariaFiltro] || '' 
+    },
+    '',
+    window.location.href
+  );
+});
