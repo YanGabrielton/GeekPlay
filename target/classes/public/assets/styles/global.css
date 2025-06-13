@@ -252,6 +252,7 @@ header {
     cursor: pointer;
 }
 
+
 @keyframes showContent {
     to {
         transform: translateY(0);

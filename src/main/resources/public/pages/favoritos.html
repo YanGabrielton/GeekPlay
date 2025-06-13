@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Geek Play - Favoritos</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../assets/styles/MenuFilme.css">
+  <style>
+    .movie-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+      height: 100%;
+    }
+    .movie-card:hover {
+      transform: translateY(-5px);
+    }
+    .poster-container {
+      position: relative;
+      padding-top: 150%;
+      overflow: hidden;
+    }
+    .movie-poster {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .movie-info {
+      padding: 10px;
+      background: #1a1a1a;
+    }
+    .movie-title {
+      font-size: 1rem;
+      margin: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .rating {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+    .movie-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      transform: translateY(100%);
+      transition: transform 0.3s;
+      height: 100%;
+      padding: 15px;
+      overflow-y: auto;
+    }
+    .movie-card:hover .movie-overlay {
+      transform: translateY(0);
+    }
+    .remove-favorite {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 10;
+    }
+  </style>
+</head>
+<body class="d-flex flex-column min-vh-100">
+  <header>
+    <nav class="navbar navbar-expand-lg bg-footerCor fixed-top">
+      <div class="container-fluid px-4">
+        <a class="navbar-brand me-auto" href="../index.html">
+          <img id="logo" src="../assets/img/carroselmain-anime/logoGeekPlay.png" alt="Logo Geek Play" style="height:40px;">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="mainNav">
+          <form class="d-flex me-3" id="form">
+            <input id="search" class="form-control" type="search" placeholder="Buscar Filme..." aria-label="Search">
+            <button class="btn btn-outline-light ms-2" type="submit">Buscar</button>
+          </form>
+          <ul class="navbar-nav mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="./Anime.html">Animes</a></li>
+            <li class="nav-item"><a class="nav-link" href="./Filmes.html">Filmes</a></li>
+            <li class="nav-item"><a class="nav-link" href="./Mangas.html">Mangás</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuLink" role="button" data-bs-toggle="dropdown">
+                Mais
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end bg-footerCor border-secondary">
+                <li><a class="dropdown-item" href="./sobre.html">Sobre</a></li>
+                <li><a class="dropdown-item" href="./Perfil.html">Perfil</a></li>
+                <li><a class="dropdown-item active" href="./favoritos.html">Favoritos</a></li>
+                <li><a class="dropdown-item" href="#" onclick="logout()">Sair</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="flex-fill pt-5 mt-4">
+    <div class="container my-4">
+      <div class="header mb-4">
+        <h1><i class="fas fa-heart text-danger me-2"></i> Meus Favoritos</h1>
+        <p class="text-muted">Todos os filmes que você marcou como favoritos</p>
+      </div>
+      
+      <div class="row" id="favorites-container">
+        <!-- Itens favoritos serão carregados aqui -->
+      </div>
+      
+      <div class="empty-state text-center py-5 d-none" id="empty-state">
+        <i class="fas fa-heart-broken fa-3x mb-3 text-muted"></i>
+        <h3 class="text-muted">Nenhum filme favoritado ainda</h3>
+        <p class="text-muted mb-4">Você ainda não adicionou nenhum filme aos seus favoritos.</p>
+        <a href="./Filmes.html" class="btn btn-primary">Explorar filmes</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="mt-auto bg-footerCor text-HeaderCor pt-4">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-4 mb-3">
+          <h5 class="text-uppercase">Sobre Nós</h5>
+          <p class="small">A Empresa Geek Play opera em múltiplos locais e enfrenta desafios de gestão de APIs…</p>
+        </div>
+        <div class="col-md-4 mb-3">
+          <h5 class="text-uppercase">Links Rápidos</h5>
+          <ul class="list-unstyled">
+            <li><a href="../index.html" class="text-decoration-none text-light">Início</a></li>
+            <li><a href="./Filmes.html" class="text-decoration-none text-light">Filmes</a></li>
+            <li><a href="./Mangas.html" class="text-decoration-none text-light">Mangás</a></li>
+            <li><a href="./Anime.html" class="text-decoration-none text-light">Animes</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4 mb-3 text-end">
+          <img id="logo" src="../assets/img/carroselmain-anime/logoGeekPlay.png" alt="Logo Geek Play" style="height:40px;">
+        </div>
+      </div>
+      <hr class="border-secondary">
+      <div class="d-flex justify-content-center py-2">
+        <small class="text-HeaderCor">&copy; 2025 Geek Play. Todos os direitos reservados.</small>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+  <script src="../assets/Script/favoritos.js"></script>
+</body>
+</html>

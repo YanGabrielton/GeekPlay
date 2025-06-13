@@ -30,16 +30,44 @@ body {
   transition: color 0.3s ease;
   background-color: var(--FooterheaderBg) !important;
 }
+.nav-link:hover{
+  color: #ff0000 !important;
+}
+
+/* Estilos para el menú Mais */
+.menu-mais-dropdown {
+  background-color: #000 !important;
+  border: 1px solid #333 !important;
+}
+
+.menu-mais-item {
+  background-color: transparent !important;
+  transition: color 0.2s ease-in-out !important;
+}
+
+.menu-mais-item:hover{
+  color: #ff0000 !important;
+  background-color: transparent !important;
+  transform: translateX(5px);
+}
+
+.menu-anime:hover,
+.menu-manga:hover {
+  color: #ff0000 !important;
+}
 
 
-.navbar .nav-link:hover,
-.navbar .nav-link:focus,
-.navbar .dropdown-item:hover,
-.navbar .dropdown-item:focus 
+.menu-mais {
+  transition: color 0.2s ease-in-out;
+}
 
- 
-{
-  color: var(--CorHoverNav) !important;
+.menu-mais:hover {
+  color: #ff0000 !important;
+}
+
+/* Mantener color rojo cuando el dropdown está abierto */
+.show.menu-mais {
+  color: #ff0000 !important;
 }
 
 
@@ -191,6 +219,8 @@ transform: translateY(0);
   height: 2.5rem;
   border-width: 0.3rem;
 }
+
+
 
 /* botões visiveis quando mobile*/
 @media (max-width: 768px) {

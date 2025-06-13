@@ -1,15 +1,14 @@
 package geekplay.dao;
 
-
 import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
+import org.hibernate.query.Query;
 import geekplay.model.Favorito;
 import geekplay.util.HibernateUtil;
 
 public class FavoritoDao {
+    
     public void favoritar(Favorito favorito) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -24,10 +23,20 @@ public class FavoritoDao {
 
     public List<Favorito> listarPorUsuario(int usuarioId) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.createQuery(
-                "FROM Favorito WHERE usuario.id = :usuarioId", Favorito.class)
-                .setParameter("usuarioId", usuarioId)
-                .list();
+            Query<Favorito> query = session.createQuery(
+                "FROM Favorito WHERE usuario.id = :usuarioId", Favorito.class);
+            query.setParameter("usuarioId", usuarioId);
+            return query.list();
+        }
+    }
+
+    public List<Favorito> listarPorUsuarioETipo(int usuarioId, String tipoItem) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Query<Favorito> query = session.createQuery(
+                "FROM Favorito WHERE usuario.id = :usuarioId AND tipoItem = :tipoItem", Favorito.class);
+            query.setParameter("usuarioId", usuarioId);
+            query.setParameter("tipoItem", tipoItem);
+            return query.list();
         }
     }
 
@@ -36,14 +45,14 @@ public class FavoritoDao {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             
-            int deleted = session.createQuery(
+            Query<?> query = session.createQuery(
                 "DELETE FROM Favorito WHERE usuario.id = :usuarioId " +
-                "AND idApi = :idApi AND tipoItem = :tipoItem")
-                .setParameter("usuarioId", usuarioId)
-                .setParameter("idApi", idApi)
-                .setParameter("tipoItem", tipoItem)
-                .executeUpdate();
-                
+                "AND idApi = :idApi AND tipoItem = :tipoItem");
+            query.setParameter("usuarioId", usuarioId);
+            query.setParameter("idApi", idApi);
+            query.setParameter("tipoItem", tipoItem);
+            
+            int deleted = query.executeUpdate();
             transaction.commit();
             return deleted > 0;
         } catch (Exception e) {
@@ -52,4 +61,17 @@ public class FavoritoDao {
         }
     }
     
+    public boolean isFavorito(int usuarioId, String idApi, String tipoItem) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Query<Long> query = session.createQuery(
+                "SELECT COUNT(f) FROM Favorito f WHERE " +
+                "f.usuario.id = :usuarioId AND f.idApi = :idApi AND f.tipoItem = :tipoItem", Long.class);
+            query.setParameter("usuarioId", usuarioId);
+            query.setParameter("idApi", idApi);
+            query.setParameter("tipoItem", tipoItem);
+            
+            Long count = query.uniqueResult();
+            return count != null && count > 0;
+        }
+    }
 }
