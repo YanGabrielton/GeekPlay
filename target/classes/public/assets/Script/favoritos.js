@@ -231,7 +231,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                     const response = await fetch(`http://localhost:7070/favoritos/${idApi}?tipo_item=${tipoItem}`, {
                         method: 'DELETE',
                         headers: {
-                            'Authorization': `Bearer ${token}`,
+                            'Authorization': `Bearer ${token.trim()}`,
                             'Content-Type': 'application/json'
                         }
                     });

@@ -70,7 +70,7 @@ public class App {
     
     // Verificação padrão para outras rotas
     String authHeader = ctx.header("Authorization");
-    if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+    if (authHeader == null || !authHeader.startsWith("Bearer")) {
         ctx.status(401).json(Map.of("success", false, "message", "Token não fornecido"));
         return;
     }
@@ -434,7 +434,8 @@ private static void adicionarFavorito(Context ctx, FavoritoDao dao) {
                 return;
             }
             
-            
+            // ✅ CORRETO
+            token = token.substring(7).trim();
             String email = JwtUtil.getEmailFromToken(token);
             String idApi = ctx.pathParam("idApi");
             String tipoItem = ctx.queryParam("tipo_item");
