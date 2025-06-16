@@ -5,6 +5,7 @@ let faixaEtariaFiltro = "";
 let termoBusca = "";
 let ultimosAnimesCarregados = [];
 let estaCarregando = false;
+let userFavorites = [];
 
 // Mapeamento CORRETO para a API Jikan
 const CLASSIFICACOES = {
@@ -13,6 +14,103 @@ const CLASSIFICACOES = {
   '18': 'r',          // +18 (Restricted)
   'hentai': 'rx'      // Contenido adulto
 };
+
+// ---------------- FUNÇÕES DE FAVORITOS ----------------
+async function loadUserFavorites() {
+    const token = localStorage.getItem('jwtToken');
+    if (!token) return;
+    
+    try {
+        const response = await fetch('http://localhost:7070/favoritos', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        
+        if (response.ok) {
+            const data = await response.json();
+            userFavorites = data.favoritos || [];
+        }
+    } catch (error) {
+        console.error('Erro ao carregar favoritos:', error);
+    }
+}
+
+async function toggleFavorite(itemId, itemTitle, tipoItem = 'anime') {
+    try {
+        const token = localStorage.getItem('jwtToken');
+        if (!token) {
+            alert('Você precisa estar logado para favoritar itens');
+            window.location.href = './Login.html';
+            return null;
+        }
+
+        // Tenta adicionar diretamente
+        const response = await fetch('http://localhost:7070/favoritos', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id_api: itemId.toString(),
+                tipo_item: tipoItem,
+                titulo: itemTitle
+            })
+        });
+
+        // Se já existir (status 400), remove
+        if (response.status === 400) {
+            const deleteResponse = await fetch(
+                `http://localhost:7070/favoritos/${itemId}?tipo_item=${tipoItem}`, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            
+            if (!deleteResponse.ok) throw new Error('Erro ao remover favorito');
+            
+            // Atualiza a lista local de favoritos
+            userFavorites = userFavorites.filter(fav => 
+                !(fav.id_api === itemId.toString() && fav.tipo_item === tipoItem));
+            
+            showToast('Item removido dos favoritos!', false);
+            return false;
+        }
+        
+        if (!response.ok) throw new Error('Erro ao adicionar favorito');
+        
+        // Atualiza a lista local de favoritos
+        userFavorites.push({
+            id_api: itemId.toString(),
+            tipo_item: tipoItem,
+            titulo: itemTitle
+        });
+        
+        showToast('Item adicionado aos favoritos!', true);
+        return true;
+        
+    } catch (error) {
+        console.error('Erro ao atualizar favoritos:', error);
+        showToast(error.message, false);
+        return null;
+    }
+}
+
+function showToast(message, isSuccess) {
+    const toast = document.createElement('div');
+    toast.className = `position-fixed bottom-0 end-0 p-3 ${isSuccess ? 'bg-success' : 'bg-danger'}`;
+    toast.innerHTML = `
+        <div class="toast show">
+            <div class="toast-body text-white">
+                ${message}
+            </div>
+        </div>
+    `;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 3000);
+}
 
 // ---------------- FUNÇÃO PRINCIPAL ----------------
 async function fetchAnimes(
@@ -44,6 +142,9 @@ async function fetchAnimes(
     
     loader.style.display = 'block';
     container.innerHTML = '';
+
+    // Carrega favoritos do usuário se estiver logado
+    await loadUserFavorites();
 
     // Montar URL da API
     let url = `https://api.jikan.moe/v4/anime?page=${pagina}&limit=24`;
@@ -208,12 +309,16 @@ function renderizarAnimes(animes) {
   container.innerHTML = '';
 
   animes.forEach(anime => {
+    const isFavorite = userFavorites.some(fav => 
+        fav.id_api === anime.mal_id.toString() && fav.tipo_item === 'anime');
+    
     const col = document.createElement('div');
     col.className = 'col-sm-12 col-md-6 col-lg-3';
     
     col.innerHTML = `
     <div class="card mb-4 h-100">
-      <img src="${anime.images.jpg.image_url}" class="card-img-top" alt="${anime.title}">
+      <img src="${anime.images.jpg.image_url}" class="card-img-top" alt="${anime.title}" 
+           onerror="this.src='https://via.placeholder.com/300x450?text=Poster+Indisponível'">
       <div class="card-body d-flex flex-column justify-content-between">
         <div>
           <h5 class="card-title">${anime.title}</h5>
@@ -225,14 +330,34 @@ function renderizarAnimes(animes) {
           <a href="${anime.url}" target="_blank" class="btn btn-primary">
             <i class="fas fa-play-circle me-2"></i> Ver mais
           </a>
-          <button class="btn btn-outline-warning favorite-btn" data-anime-id="${anime.mal_id}">
-            <i class="fas fa-star me-2"></i> Favoritar
+          <button class="btn ${isFavorite ? 'btn-warning' : 'btn-outline-warning'} favorite-btn" 
+                  data-anime-id="${anime.mal_id}" 
+                  data-anime-title="${anime.title}">
+            <i class="fas fa-star me-2"></i> ${isFavorite ? 'Favoritado' : 'Favoritar'}
           </button>
         </div>
       </div>
     </div>
     `;
     container.appendChild(col);
+  });
+
+  // Adiciona eventos aos botões de favorito
+  document.querySelectorAll('.favorite-btn').forEach(btn => {
+    btn.addEventListener('click', async function(e) {
+      e.preventDefault();
+      const animeId = this.getAttribute('data-anime-id');
+      const animeTitle = this.getAttribute('data-anime-title');
+      const wasAdded = await toggleFavorite(animeId, animeTitle, 'anime');
+      
+      if (wasAdded !== null) {
+        this.classList.toggle('btn-warning', wasAdded);
+        this.classList.toggle('btn-outline-warning', !wasAdded);
+        this.innerHTML = `
+          <i class="fas fa-star me-2"></i> ${wasAdded ? 'Favoritado' : 'Favoritar'}
+        `;
+      }
+    });
   });
 }
 
