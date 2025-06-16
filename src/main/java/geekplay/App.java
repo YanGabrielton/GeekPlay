@@ -57,24 +57,28 @@ public class App {
 
         app.before(ctx -> {
             // Lista de rotas que não requerem autenticação
-            List<String> rotasPublicas = List.of("/login", "/usuarios", "/public");
+                List<String> rotasPublicas = List.of("/", "/login", "/usuarios", "/solicitar-recuperacao", "/redefinir-senha");
 
-            if (rotasPublicas.contains(ctx.path())) {
-                return; // Não aplica autenticação
-            }
-            String authHeader = ctx.header("Authorization");
-            if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-                ctx.status(401).json(Map.of("error", "Token não fornecido"));
-
-                return;
-            }
-
-            String token = authHeader.substring(7);
-
-            if (!JwtUtil.validateToken(token)) {
-                ctx.status(401).json(Map.of("error", "Token inválido ou expirado"));
-                return;
-            }
+          if (rotasPublicas.contains(ctx.path())) {
+        return; // Não aplica autenticação
+    }
+    
+    // Para rotas de favoritos, deixe o próprio método tratar a autenticação
+    if (ctx.path().startsWith("/favoritos")) {
+        return;
+    }
+    
+    // Verificação padrão para outras rotas
+    String authHeader = ctx.header("Authorization");
+    if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+        ctx.status(401).json(Map.of("success", false, "message", "Token não fornecido"));
+        return;
+    }
+    
+    String token = authHeader.substring(7);
+    if (!JwtUtil.validateToken(token)) {
+        ctx.status(401).json(Map.of("success", false, "message", "Token inválido ou expirado"));
+    }
         });
 
     }
@@ -319,104 +323,109 @@ public class App {
     }
 
 
-    private static void adicionarFavorito(Context ctx, FavoritoDao dao) {
-        try {
-            String token = ctx.header("Authorization");
-            if (token == null || !token.startsWith("Bearer ")) {
-                ctx.status(401).json(Map.of("success", false, "message", "Token não fornecido"));
-                return;
-            }
-            token = token.substring(7);
-            
-            String email = JwtUtil.getEmailFromToken(token);
-            
-            Map<String, String> body = ctx.bodyAsClass(Map.class);
-            String idApi = body.get("id_api");
-            String tipoItem = body.get("tipo_item");
-            String titulo = body.get("titulo");
-            
-            if (idApi == null || tipoItem == null || titulo == null) {
-                ctx.status(400).json(Map.of("success", false, "message", "Dados incompletos"));
-                return;
-            }
-            
-            UsuarioDao usuarioDao = new UsuarioDao();
-            Usuario usuario = usuarioDao.buscarPorEmail(email);
-            
-            if (usuario == null) {
-                ctx.status(404).json(Map.of("success", false, "message", "Usuário não encontrado"));
-                return;
-            }
-            
-            // Verifica se já é favorito
-            if (dao.isFavorito(usuario.getId(), idApi, tipoItem)) {
-                ctx.status(400).json(Map.of("success", false, "message", "Item já está nos favoritos"));
-                return;
-            }
-            
-            Favorito favorito = new Favorito(usuario, idApi, tipoItem, titulo);
-            dao.favoritar(favorito);
-            
-            ctx.status(201).json(Map.of(
-                "success", true,
-                "message", "Item adicionado aos favoritos"
-            ));
-        } catch (Exception e) {
-            ctx.status(500).json(Map.of(
-                "success", false,
-                "message", "Erro ao adicionar favorito: " + e.getMessage()
-            ));
+private static void adicionarFavorito(Context ctx, FavoritoDao dao) {
+    try {
+        String token = ctx.header("Authorization");
+        if (token == null) {
+            ctx.status(401).json(Map.of("success", false, "message", "Token não fornecido"));
+            return;
         }
-    }
-    
-    private static void listarFavoritos(Context ctx, FavoritoDao dao) {
-        try {
-            String token = ctx.header("Authorization");
-            if (token == null || !token.startsWith("Bearer ")) {
-                ctx.status(401).json(Map.of("success", false, "message", "Token não fornecido"));
-                return;
-            }
-            token = token.substring(7);
-            
-            String email = JwtUtil.getEmailFromToken(token);
-            String tipoItem = ctx.queryParam("tipo_item");
-            
-            UsuarioDao usuarioDao = new UsuarioDao();
-            Usuario usuario = usuarioDao.buscarPorEmail(email);
-            
-            if (usuario == null) {
-                ctx.status(404).json(Map.of("success", false, "message", "Usuário não encontrado"));
-                return;
-            }
-            
-            List<Favorito> favoritos;
-            
-            if (tipoItem != null && !tipoItem.isEmpty()) {
-                favoritos = dao.listarPorUsuarioETipo(usuario.getId(), tipoItem);
-            } else {
-                favoritos = dao.listarPorUsuario(usuario.getId());
-            }
-            
-            List<Map<String, String>> response = favoritos.stream()
-                .map(f -> Map.of(
-                    "id_api", f.getIdApi(),
-                    "tipo_item", f.getTipoItem(),
-                    "titulo", f.getTitulo()
-                ))
-                .collect(Collectors.toList());
-            
-            ctx.json(Map.of(
-                "success", true,
-                "favoritos", response
-            ));
-        } catch (Exception e) {
-            ctx.status(500).json(Map.of(
-                "success", false,
-                "message", "Erro ao listar favoritos: " + e.getMessage()
-            ));
+
+        // Opcional: Remove "Bearer " apenas se existir
+        if (token.startsWith("Bearer ")) {
+            token = token.substring(7).trim();
         }
+
+        String email = JwtUtil.getEmailFromToken(token);
+        
+        Map<String, String> body = ctx.bodyAsClass(Map.class);
+        String idApi = body.get("id_api");
+        String tipoItem = body.get("tipo_item");
+        String titulo = body.get("titulo");
+        
+        if (idApi == null || tipoItem == null || titulo == null) {
+            ctx.status(400).json(Map.of("success", false, "message", "Dados incompletos"));
+            return;
+        }
+        
+        UsuarioDao usuarioDao = new UsuarioDao();
+        Usuario usuario = usuarioDao.buscarPorEmail(email);
+        
+        if (usuario == null) {
+            ctx.status(404).json(Map.of("success", false, "message", "Usuário não encontrado"));
+            return;
+        }
+        
+        if (dao.isFavorito(usuario.getId(), idApi, tipoItem)) {
+            ctx.status(400).json(Map.of("success", false, "message", "Item já está nos favoritos"));
+            return;
+        }
+        
+        Favorito favorito = new Favorito(usuario, idApi, tipoItem, titulo);
+        dao.favoritar(favorito);
+        
+        ctx.status(201).json(Map.of(
+            "success", true,
+            "message", "Item adicionado aos favoritos"
+        ));
+    } catch (Exception e) {
+        ctx.status(500).json(Map.of(
+            "success", false,
+            "message", "Erro ao adicionar favorito: " + e.getMessage()
+        ));
     }
+}
     
+   private static void listarFavoritos(Context ctx, FavoritoDao dao) {
+    try {
+        // 1. Verificação simplificada do token
+        String authHeader = ctx.header("Authorization");
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            ctx.status(401).json(Map.of("success", false, "message", "Token não fornecido"));
+            return;
+        }
+
+        // 2. Extrai e valida o token
+        String token = authHeader.substring(7).trim();
+        if (!JwtUtil.validateToken(token)) {
+            ctx.status(401).json(Map.of("success", false, "message", "Token inválido ou expirado"));
+            return;
+        }
+
+        // 3. Obtém o email do usuário
+        String email = JwtUtil.getEmailFromToken(token);
+        
+        // 4. Busca o usuário
+        Usuario usuario = new UsuarioDao().buscarPorEmail(email);
+        if (usuario == null) {
+            ctx.status(404).json(Map.of("success", false, "message", "Usuário não encontrado"));
+            return;
+        }
+
+        // 5. Lista favoritos (com ou sem filtro por tipo)
+        String tipoItem = ctx.queryParam("tipo_item");
+        List<Favorito> favoritos = tipoItem != null 
+            ? dao.listarPorUsuarioETipo(usuario.getId(), tipoItem)
+            : dao.listarPorUsuario(usuario.getId());
+
+        // 6. Formata resposta
+        List<Map<String, String>> response = favoritos.stream()
+            .map(f -> Map.of(
+                "id_api", f.getIdApi(),
+                "tipo_item", f.getTipoItem(),
+                "titulo", f.getTitulo()
+            ))
+            .collect(Collectors.toList());
+
+        ctx.json(Map.of("success", true, "favoritos", response));
+
+    } catch (Exception e) {
+        ctx.status(500).json(Map.of(
+            "success", false,
+            "message", "Erro ao listar favoritos: " + e.getMessage()
+        ));
+    }
+}
     private static void removerFavorito(Context ctx, FavoritoDao dao) {
         try {
             String token = ctx.header("Authorization");
@@ -424,7 +433,7 @@ public class App {
                 ctx.status(401).json(Map.of("success", false, "message", "Token não fornecido"));
                 return;
             }
-            token = token.substring(7);
+            
             
             String email = JwtUtil.getEmailFromToken(token);
             String idApi = ctx.pathParam("idApi");
@@ -464,45 +473,58 @@ public class App {
         }
     }
     
-    private static void verificarFavorito(Context ctx, FavoritoDao dao) {
-        try {
-            String token = ctx.header("Authorization");
-            if (token == null || !token.startsWith("Bearer ")) {
-                ctx.status(401).json(Map.of("success", false, "message", "Token não fornecido"));
-                return;
-            }
-            token = token.substring(7);
-            
-            String email = JwtUtil.getEmailFromToken(token);
-            String idApi = ctx.pathParam("idApi");
-            String tipoItem = ctx.queryParam("tipo_item");
-            
-            if (tipoItem == null || tipoItem.isEmpty()) {
-                ctx.status(400).json(Map.of("success", false, "message", "Parâmetro tipo_item é obrigatório"));
-                return;
-            }
-            
-            UsuarioDao usuarioDao = new UsuarioDao();
-            Usuario usuario = usuarioDao.buscarPorEmail(email);
-            
-            if (usuario == null) {
-                ctx.status(404).json(Map.of("success", false, "message", "Usuário não encontrado"));
-                return;
-            }
-            
-            boolean isFavorito = dao.isFavorito(usuario.getId(), idApi, tipoItem);
-            
-            ctx.json(Map.of(
-                "success", true,
-                "isFavorito", isFavorito
-            ));
-        } catch (Exception e) {
-            ctx.status(500).json(Map.of(
-                "success", false,
-                "message", "Erro ao verificar favorito: " + e.getMessage()
-            ));
+   private static void verificarFavorito(Context ctx, FavoritoDao dao) {
+    try {
+        // 1. Verifica o header de autorização
+        String authHeader = ctx.header("Authorization");
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            ctx.status(401).json(Map.of("success", false, "message", "Token não fornecido"));
+            return;
         }
+
+        // 2. Extrai o token
+        String token = authHeader.substring(7);
+        
+        // 3. Valida o token
+        if (!JwtUtil.validateToken(token)) {
+            ctx.status(401).json(Map.of("success", false, "message", "Token inválido ou expirado"));
+            return;
+        }
+
+        // 4. Obtém o email do usuário
+        String email = JwtUtil.getEmailFromToken(token);
+        
+        // 5. Obtém parâmetros da requisição
+        String idApi = ctx.pathParam("idApi");
+        String tipoItem = ctx.queryParam("tipo_item");
+        
+        if (tipoItem == null || tipoItem.isEmpty()) {
+            ctx.status(400).json(Map.of("success", false, "message", "Parâmetro tipo_item é obrigatório"));
+            return;
+        }
+        
+        // 6. Busca o usuário no banco
+        Usuario usuario = new UsuarioDao().buscarPorEmail(email);
+        if (usuario == null) {
+            ctx.status(404).json(Map.of("success", false, "message", "Usuário não encontrado"));
+            return;
+        }
+        
+        // 7. Verifica se é favorito
+        boolean isFavorito = dao.isFavorito(usuario.getId(), idApi, tipoItem);
+        
+        ctx.json(Map.of(
+            "success", true,
+            "isFavorito", isFavorito
+        ));
+        
+    } catch (Exception e) {
+        ctx.status(500).json(Map.of(
+            "success", false,
+            "message", "Erro ao verificar favorito: " + e.getMessage()
+        ));
     }
+}
 
     // Método auxiliar para respostas de erro
     private static String error(String message) {

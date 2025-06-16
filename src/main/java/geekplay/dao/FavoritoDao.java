@@ -61,17 +61,37 @@ public class FavoritoDao {
         }
     }
     
-    public boolean isFavorito(int usuarioId, String idApi, String tipoItem) {
+ public boolean isFavorito(int usuarioId, String idApi, String tipoItem) {
+    try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        Query<Long> query = session.createQuery(
+            "SELECT COUNT(f) FROM Favorito f WHERE " +
+            "f.usuario.id = :usuarioId AND f.idApi = :idApi AND f.tipoItem = :tipoItem", 
+            Long.class);
+        
+        query.setParameter("usuarioId", usuarioId);
+        query.setParameter("idApi", idApi);
+        query.setParameter("tipoItem", tipoItem);
+        
+        Long count = query.uniqueResult();
+        return count != null && count > 0;
+    } catch (Exception e) {
+        e.printStackTrace();
+        return false;
+    }
+}
+
+    public void removerFavoritosPorUsuario(int usuarioId) {
+        Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            Query<Long> query = session.createQuery(
-                "SELECT COUNT(f) FROM Favorito f WHERE " +
-                "f.usuario.id = :usuarioId AND f.idApi = :idApi AND f.tipoItem = :tipoItem", Long.class);
+            transaction = session.beginTransaction();
+            Query<?> query = session.createQuery(
+                "DELETE FROM Favorito WHERE usuario.id = :usuarioId");
             query.setParameter("usuarioId", usuarioId);
-            query.setParameter("idApi", idApi);
-            query.setParameter("tipoItem", tipoItem);
-            
-            Long count = query.uniqueResult();
-            return count != null && count > 0;
+            query.executeUpdate();
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) transaction.rollback();
+            throw e;
         }
     }
 }

@@ -3,6 +3,7 @@ const API_KEY = 'api_key=5e6bffe0291551af5a19b5bb46bc276a';
 const BASE_URL = 'https://api.themoviedb.org/3';
 const API_URL = `${BASE_URL}/discover/movie?include_adult=false&include_video=true&language=pt-br&page=1&sort_by=popularity.desc&${API_KEY}`;
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
+const API_BASE_URL = 'http://localhost:7070';
 
 const mainFilme = document.getElementById('mainFilme');
 const form = document.getElementById('form');
@@ -109,65 +110,55 @@ async function mostrarFilmes(data) {
     });
 }
 
-async function toggleFavorite(movieId, movieTitle) {
-  try {
-      const token = localStorage.getItem('jwtToken');
-      if (!token) {
-          alert('Você precisa estar logado para favoritar filmes');
-          window.location.href = './Login.html';
-          return null;
-      }
+async function toggleFavorite(itemId, itemTitle, tipoItem = 'filme') {
+    try {
+        const token = localStorage.getItem('jwtToken');
+        if (!token) {
+            alert('Você precisa estar logado para favoritar itens');
+            window.location.href = './Login.html';
+            return null;
+        }
 
-      // Verifica se já é favorito
-      const checkResponse = await fetch(`${API_BASE_URL}/favoritos/verificar/${movieId}?tipo_item=filme`, {
-          headers: {
-              'Authorization': `Bearer ${token}`
-          }
-      });
-      
-      if (!checkResponse.ok) throw new Error('Erro ao verificar favorito');
-      
-      const checkData = await checkResponse.json();
-      const isFavorite = checkData.isFavorito;
+        // Tenta adicionar diretamente
+        const response = await fetch('http://localhost:7070/favoritos', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id_api: itemId.toString(),
+                tipo_item: tipoItem,
+                titulo: itemTitle
+            })
+        });
 
-      if (isFavorite) {
-          // Remove dos favoritos
-          const deleteResponse = await fetch(`${API_BASE_URL}/favoritos/${movieId}?tipo_item=filme`, {
-              method: 'DELETE',
-              headers: {
-                  'Authorization': `Bearer ${token}`
-              }
-          });
-          
-          if (!deleteResponse.ok) throw new Error('Erro ao remover favorito');
-          
-          showToast('Filme removido dos favoritos!', false);
-          return false;
-      } else {
-          // Adiciona aos favoritos
-          const addResponse = await fetch(`${API_BASE_URL}/favoritos`, {
-              method: 'POST',
-              headers: {
-                  'Authorization': `Bearer ${token}`,
-                  'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({
-                  id_api: movieId,
-                  tipo_item: 'filme',
-                  titulo: movieTitle
-              })
-          });
-          
-          if (!addResponse.ok) throw new Error('Erro ao adicionar favorito');
-          
-          showToast('Filme adicionado aos favoritos!', true);
-          return true;
-      }
-  } catch (error) {
-      console.error('Erro ao atualizar favoritos:', error);
-      showToast('Erro ao atualizar favoritos', false);
-      return null;
-  }
+        // Se já existir (status 400), remove
+        if (response.status === 400) {
+            const deleteResponse = await fetch(
+                `http://localhost:7070/favoritos/${itemId}?tipo_item=${tipoItem}`, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            
+            if (!deleteResponse.ok) throw new Error('Erro ao remover favorito');
+            
+            showToast('Item removido dos favoritos!', false);
+            return false;
+        }
+        
+        if (!response.ok) throw new Error('Erro ao adicionar favorito');
+        
+        showToast('Item adicionado aos favoritos!', true);
+        return true;
+        
+    } catch (error) {
+        console.error('Erro ao atualizar favoritos:', error);
+        showToast(error.message, false);
+        return null;
+    }
 }
 function getColorClass(vote) {
     if (vote >= 7) return 'bg-success text-white';
