@@ -285,13 +285,22 @@ header,
   padding: 1.25rem; /* 20px */
   display: flex;
   justify-content: space-between;
+  color: white;
+  margin-bottom: 1.5rem;
+  margin-right: 0.75rem;   
+  margin-left: 0.75rem;
+  border-radius: 0.75rem;  
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: scale(1.02); 
 }
 
 
 /*  botoes da API */
 .btn-primary {
   background-color: #a30000;
-  border: 1px solid #C80000;
 }
 
 .btn-primary:hover {
@@ -389,7 +398,7 @@ header,
   #mainSlider .carousel-item img {
     height: 75vh;
     object-fit: cover;
-    object-position: center bottom;
+    object-position: center bottom;]
   }
   
 }
