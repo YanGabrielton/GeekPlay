@@ -123,7 +123,7 @@ App.java
 - [✍️ João Pedro silva do Prado](https://github.com/)
 - [✍️ Matheus Aparecido Santos](https://github.com/)
 - [✍️ Iago do Nascimento ](https://github.com/)
-- [✍️ Andy Eduardo](https://github.com/)
+- [✍️ Andy Eduardo](https://github.com/Andyjr-code)
 
 
 
