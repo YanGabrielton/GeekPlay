@@ -222,3 +222,4 @@ function mapearGenero(nomeGenero) {
   };
   return generos[nomeGenero.toLowerCase()] || '';
 }
+
