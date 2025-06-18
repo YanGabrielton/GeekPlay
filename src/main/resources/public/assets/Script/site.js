@@ -15,6 +15,57 @@ const CLASSIFICACOES = {
   'hentai': 'rx'      // Contenido adulto
 };
 
+// ---------------- FUNÇÕES DE EPISÓDIOS ----------------
+async function getAnimeEpisodes(animeName) {
+  try {
+    console.log(`Buscando episódios para: ${animeName}`);
+    const normalizedName = animeName.toLowerCase().replace(/\s+/g, '-');
+    const response = await fetch(`https://theanimesapi.herokuapp.com/anime/${normalizedName}`);
+    
+    if (!response.ok) {
+      throw new Error(`Erro HTTP: ${response.status}`);
+    }
+    
+    const data = await response.json();
+    console.log("Dados dos episódios recebidos:", data);
+    
+    return data.episodes || [];
+  } catch (error) {
+    console.error("Erro ao buscar episódios:", error);
+    return [];
+  }
+}
+
+async function verMaisAnime(animeId, animeTitle) {
+  try {
+    const loader = document.getElementById('loader');
+    if (loader) loader.style.display = 'block';
+    
+    // Buscar detalhes completos do anime na Jikan
+    const detalhesResponse = await fetch(`https://api.jikan.moe/v4/anime/${animeId}`);
+    const detalhesData = await detalhesResponse.json();
+    
+    // Buscar episódios na TheAnimesAPI
+    const episodes = await getAnimeEpisodes(animeTitle);
+    
+    // Salvar todos os dados para usar na página de assistir
+    localStorage.setItem("animeData", JSON.stringify({
+      id: animeId,
+      title: animeTitle,
+      details: detalhesData.data,
+      episodes: episodes
+    }));
+    
+    window.location.href = "assistir.html";
+  } catch (error) {
+    console.error('Erro ao carregar anime:', error);
+    alert("Erro ao carregar os episódios do anime");
+  } finally {
+    const loader = document.getElementById('loader');
+    if (loader) loader.style.display = 'none';
+  }
+}
+
 // ---------------- FUNÇÕES DE FAVORITOS ----------------
 async function loadUserFavorites() {
     const token = localStorage.getItem('jwtToken');
@@ -45,7 +96,6 @@ async function toggleFavorite(itemId, itemTitle, tipoItem = 'anime') {
             return null;
         }
 
-        // Tenta adicionar diretamente
         const response = await fetch('http://localhost:7070/favoritos', {
             method: 'POST',
             headers: {
@@ -59,7 +109,6 @@ async function toggleFavorite(itemId, itemTitle, tipoItem = 'anime') {
             })
         });
 
-        // Se já existir (status 400), remove
         if (response.status === 400) {
             const deleteResponse = await fetch(
                 `http://localhost:7070/favoritos/${itemId}?tipo_item=${tipoItem}`, {
@@ -71,7 +120,6 @@ async function toggleFavorite(itemId, itemTitle, tipoItem = 'anime') {
             
             if (!deleteResponse.ok) throw new Error('Erro ao remover favorito');
             
-            // Atualiza a lista local de favoritos
             userFavorites = userFavorites.filter(fav => 
                 !(fav.id_api === itemId.toString() && fav.tipo_item === tipoItem));
             
@@ -81,7 +129,6 @@ async function toggleFavorite(itemId, itemTitle, tipoItem = 'anime') {
         
         if (!response.ok) throw new Error('Erro ao adicionar favorito');
         
-        // Atualiza a lista local de favoritos
         userFavorites.push({
             id_api: itemId.toString(),
             tipo_item: tipoItem,
@@ -113,25 +160,16 @@ function showToast(message, isSuccess) {
 }
 
 // ---------------- FUNÇÃO PRINCIPAL ----------------
-async function fetchAnimes(
-  pagina = 1, 
-  tipo = "", 
-  busca = "", 
-  faixaEtaria = "", 
-  forcarAtualizacao = false,
-  atualizarHistorico = true
-) {
+async function fetchAnimes(pagina = 1, tipo = "", busca = "", faixaEtaria = "", forcarAtualizacao = false, atualizarHistorico = true) {
   if (estaCarregando) return;
   estaCarregando = true;
   
   try {
-    // Verificar se já temos esses dados
     if (!forcarAtualizacao && pagina === paginaAtual && tipo === tipoFiltro && 
         busca === termoBusca && faixaEtaria === faixaEtariaFiltro && ultimosAnimesCarregados.length > 0) {
       return;
     }
 
-    // Atualizar estado global
     paginaAtual = pagina;
     tipoFiltro = tipo;
     termoBusca = busca;
@@ -143,10 +181,8 @@ async function fetchAnimes(
     loader.style.display = 'block';
     container.innerHTML = '';
 
-    // Carrega favoritos do usuário se estiver logado
     await loadUserFavorites();
 
-    // Montar URL da API
     let url = `https://api.jikan.moe/v4/anime?page=${pagina}&limit=24`;
     
     if (busca) url += `&q=${encodeURIComponent(busca)}`;
@@ -168,19 +204,15 @@ async function fetchAnimes(
       return;
     }
 
-    // Renderizar cards
     renderizarAnimes(animes);
 
-    // Atualizar paginação
     updatePagination(
       data.pagination?.last_visible_page || 1,
       data.pagination?.has_next_page || false
     );
     
-    // Resaltar el filtro activo
     highlightActiveFilter();
     
-    // Atualizar URL sem recarregar a página
     if (atualizarHistorico) {
       const params = new URLSearchParams();
       if (pagina > 1) params.set('page', pagina);
@@ -208,12 +240,10 @@ async function fetchAnimes(
 
 // ---------------- FUNCIÓN PARA RESALTAR FILTRO ACTIVO ----------------
 function highlightActiveFilter() {
-  // Remover activo de todos los items primero
   document.querySelectorAll('.dropdown-item').forEach(item => {
     item.classList.remove('active');
   });
 
-  // Resaltar el filtro activo si existe
   if (faixaEtariaFiltro) {
     const filterMap = {
       'pg': 'pg13',
@@ -237,22 +267,17 @@ function setupHistoryNavigation() {
       tipoFiltro = event.state.tipo || "";
       termoBusca = event.state.busca || "";
       
-      // Mapeo inverso para los parámetros del historial
       const ratingParam = event.state.faixaEtaria;
       faixaEtariaFiltro = ratingParam ? 
         Object.keys(CLASSIFICACOES).find(key => CLASSIFICACOES[key] === ratingParam) || "" : "";
       
-      // Atualizar controles de filtro visualmente
       updateFilterControls();
-      
-      // Carregar animes sem adicionar novo estado ao histórico
       fetchAnimes(paginaAtual, tipoFiltro, termoBusca, faixaEtariaFiltro, true, false);
     }
   });
 }
 
 function updateFilterControls() {
-  // Atualizar campo de busca
   const searchInput = document.getElementById('search');
   if (searchInput) {
     searchInput.value = termoBusca;
@@ -261,7 +286,6 @@ function updateFilterControls() {
 
 // ---------------- EVENTOS ----------------
 function setupEventListeners() {
-  // Evento de busca
   const form = document.getElementById('form');
   if (form) {
     form.addEventListener('submit', (e) => {
@@ -271,7 +295,6 @@ function setupEventListeners() {
     });
   }
 
-  // Botões de paginação
   const btnAnterior = document.getElementById('btnAnterior');
   if (btnAnterior) {
     btnAnterior.addEventListener('click', () => {
@@ -288,15 +311,14 @@ function setupEventListeners() {
     });
   }
 
-  // Dropdown de filtros
   document.querySelectorAll('.dropdown-item[onclick*="fetchAnimes"]').forEach(item => {
     item.addEventListener('click', (e) => {
       e.preventDefault();
       const match = item.getAttribute('onclick').match(/fetchAnimes\((.+)\)/);
       if (match) {
         const args = match[1].split(',').map(arg => arg.trim().replace(/'/g, ''));
-        args.push(true); // Forçar atualização
-        args.push(true); // Atualizar histórico
+        args.push(true);
+        args.push(true);
         fetchAnimes(...args);
       }
     });
@@ -327,9 +349,11 @@ function renderizarAnimes(animes) {
           ${anime.rating ? `<p class="card-text"><strong>Classificação:</strong> ${anime.rating}</p>` : ''}
         </div>
         <div class="d-flex flex-column gap-2 mt-3">
-          <a href="${anime.url}" target="_blank" class="btn btn-primary">
-            <i class="fas fa-play-circle me-2"></i> Ver mais
-          </a>
+          <button class="btn btn-primary ver-mais-btn"
+                  data-anime-id="${anime.mal_id}"
+                  data-anime-title="${anime.title}">
+            <i class="fas fa-play-circle me-2"></i> Ver Episódios
+          </button>
           <button class="btn ${isFavorite ? 'btn-warning' : 'btn-outline-warning'} favorite-btn" 
                   data-anime-id="${anime.mal_id}" 
                   data-anime-title="${anime.title}">
@@ -342,7 +366,6 @@ function renderizarAnimes(animes) {
     container.appendChild(col);
   });
 
-  // Adiciona eventos aos botões de favorito
   document.querySelectorAll('.favorite-btn').forEach(btn => {
     btn.addEventListener('click', async function(e) {
       e.preventDefault();
@@ -357,6 +380,14 @@ function renderizarAnimes(animes) {
           <i class="fas fa-star me-2"></i> ${wasAdded ? 'Favoritado' : 'Favoritar'}
         `;
       }
+    });
+  });
+
+  document.querySelectorAll('.ver-mais-btn').forEach(btn => {
+    btn.addEventListener('click', async function() {
+      const animeId = this.getAttribute('data-anime-id');
+      const animeTitle = this.getAttribute('data-anime-title');
+      await verMaisAnime(animeId, animeTitle);
     });
   });
 }
@@ -427,31 +458,21 @@ function updatePagination(totalPages, hasNextPage) {
 
 // ---------------- INICIALIZAÇÃO ----------------
 document.addEventListener('DOMContentLoaded', () => {
-  // Verificar parâmetros da URL
   const urlParams = new URLSearchParams(window.location.search);
   paginaAtual = parseInt(urlParams.get('page')) || 1;
   tipoFiltro = urlParams.get('type') || "";
   
-  // Mapeo inverso para los parámetros de la URL
   const ratingParam = urlParams.get('rating');
   faixaEtariaFiltro = ratingParam ? 
     Object.keys(CLASSIFICACOES).find(key => CLASSIFICACOES[key] === ratingParam) || "" : "";
     
   termoBusca = urlParams.get('search') || "";
   
-  // Configurar navegação pelo histórico
   setupHistoryNavigation();
-  
-  // Configurar eventos
   setupEventListeners();
-  
-  // Atualizar controles com os valores atuais
   updateFilterControls();
-  
-  // Carregar animes inicialmente (sem adicionar novo estado ao histórico)
   fetchAnimes(paginaAtual, tipoFiltro, termoBusca, faixaEtariaFiltro, true, false);
   
-  // Adicionar estado inicial ao histórico
   window.history.replaceState(
     { 
       pagina: paginaAtual, 
