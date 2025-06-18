@@ -2,8 +2,10 @@ package geekplay;
 
 import geekplay.dao.FavoritoDao;
 import geekplay.dao.UsuarioDao;
+import geekplay.dto.AdicionarFavoritoDTO;
 import geekplay.dto.AlterarSenhaDTO;
 import geekplay.dto.EmailDTO;
+import geekplay.dto.VerificarLoginDTO;
 import geekplay.model.Favorito;
 import geekplay.model.Usuario;
 import geekplay.util.EmailUtil;
@@ -139,9 +141,10 @@ public class App {
 
     private static void verificarLogin(Context ctx, UsuarioDao dao) {
         try {
-            Map<String, String> credenciais = ctx.bodyAsClass(Map.class);
-            String email = credenciais.get("email");
-            String senha = credenciais.get("senha");
+            // Map<String, String> credenciais = ctx.bodyAsClass(Map.class);
+            VerificarLoginDTO dto = ctx.bodyAsClass(VerificarLoginDTO.class);
+            String email = dto.getEmail();
+            String senha = dto.getSenha();
             Usuario usuario = dao.verificarLogin(email, senha);
 
             if (usuario != null) {
@@ -338,10 +341,11 @@ private static void adicionarFavorito(Context ctx, FavoritoDao dao) {
 
         String email = JwtUtil.getEmailFromToken(token);
         
-        Map<String, String> body = ctx.bodyAsClass(Map.class);
-        String idApi = body.get("id_api");
-        String tipoItem = body.get("tipo_item");
-        String titulo = body.get("titulo");
+       
+        AdicionarFavoritoDTO dto = ctx.bodyAsClass(AdicionarFavoritoDTO.class);
+        String idApi = dto.getIdApi();
+        String tipoItem = dto.getTipoItem();
+        String titulo = dto.getTitulo();
         
         if (idApi == null || tipoItem == null || titulo == null) {
             ctx.status(400).json(Map.of("success", false, "message", "Dados incompletos"));
