@@ -64,7 +64,7 @@ echo %computername%
 1. Navegue até a pasta:
 
 ```
-src > Util > HibernateUtil.java
+src > java >Util > HibernateUtil.java
 ```
 
 2. No método `detectDatabaseType`, substitua pelo nome retornado no CMD:
