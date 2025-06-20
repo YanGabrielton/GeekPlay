@@ -103,10 +103,10 @@ async function toggleFavorite(itemId, itemTitle, tipoItem = 'anime') {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                id_api: itemId.toString(),
-                tipo_item: tipoItem,
-                titulo: itemTitle
-            })
+            idApi: itemId.toString(),    // ← camelCase
+            tipoItem: tipoItem,          // ← camelCase
+            titulo: itemTitle
+        })
         });
 
         if (response.status === 400) {
@@ -121,7 +121,7 @@ async function toggleFavorite(itemId, itemTitle, tipoItem = 'anime') {
             if (!deleteResponse.ok) throw new Error('Erro ao remover favorito');
             
             userFavorites = userFavorites.filter(fav => 
-                !(fav.id_api === itemId.toString() && fav.tipo_item === tipoItem));
+                !(fav.idApi === itemId.toString() && fav.tipoItem === tipoItem));
             
             showToast('Item removido dos favoritos!', false);
             return false;
@@ -130,8 +130,8 @@ async function toggleFavorite(itemId, itemTitle, tipoItem = 'anime') {
         if (!response.ok) throw new Error('Erro ao adicionar favorito');
         
         userFavorites.push({
-            id_api: itemId.toString(),
-            tipo_item: tipoItem,
+            idApi: itemId.toString(),
+            tipoItem: tipoItem,
             titulo: itemTitle
         });
         
@@ -332,7 +332,7 @@ function renderizarAnimes(animes) {
 
   animes.forEach(anime => {
     const isFavorite = userFavorites.some(fav => 
-        fav.id_api === anime.mal_id.toString() && fav.tipo_item === 'anime');
+        fav.idApi === anime.mal_id.toString() && fav.tipoItem === 'anime');
     
     const col = document.createElement('div');
     col.className = 'col-sm-12 col-md-6 col-lg-3';

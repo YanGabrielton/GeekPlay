@@ -41,10 +41,10 @@ async function toggleFavorite(itemId, itemTitle, tipoItem = 'manga') {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                id_api: itemId.toString(),
-                tipo_item: tipoItem,
-                titulo: itemTitle
-            })
+            idApi: itemId.toString(),    // ← camelCase
+            tipoItem: tipoItem,          // ← camelCase
+            titulo: itemTitle
+        })
         });
 
         if (response.status === 400) {
@@ -59,8 +59,8 @@ async function toggleFavorite(itemId, itemTitle, tipoItem = 'manga') {
             if (!deleteResponse.ok) throw new Error('Erro ao remover favorito');
             
             userFavorites = userFavorites.filter(fav => 
-                !(fav.id_api === itemId.toString() && fav.tipo_item === tipoItem));
-            
+                !(fav.idApi === itemId.toString() && fav.tipoItem === tipoItem));
+
             showToast('Mangá removido dos favoritos!', false);
             return false;
         }
@@ -68,10 +68,12 @@ async function toggleFavorite(itemId, itemTitle, tipoItem = 'manga') {
         if (!response.ok) throw new Error('Erro ao adicionar favorito');
         
         userFavorites.push({
-            id_api: itemId.toString(),
-            tipo_item: tipoItem,
+           
+            idApi: itemId.toString(),    // ← camelCase
+            tipoItem: tipoItem,          // ← camelCase
             titulo: itemTitle
-        });
+        })
+        
         
         showToast('Mangá adicionado aos favoritos!', true);
         return true;
@@ -154,7 +156,7 @@ async function carregarMangas(pagina) {
 
     dados.data.forEach(manga => {
       const isFavorite = userFavorites.some(fav => 
-          fav.id_api === manga.mal_id.toString() && fav.tipo_item === 'manga');
+          fav.idApi === manga.mal_id.toString() && fav.tipoItem === 'manga');
       
       const card = document.createElement('div');
       card.className = 'col-md-3 mb-4';

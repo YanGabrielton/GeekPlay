@@ -126,11 +126,11 @@ async function toggleFavorite(itemId, itemTitle, tipoItem = 'filme') {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                id_api: itemId.toString(),
-                tipo_item: tipoItem,
-                titulo: itemTitle
-            })
+           body: JSON.stringify({
+            idApi: itemId.toString(),    // ← camelCase
+            tipoItem: tipoItem,          // ← camelCase
+            titulo: itemTitle
+        })
         });
 
         // Se já existir (status 400), remove

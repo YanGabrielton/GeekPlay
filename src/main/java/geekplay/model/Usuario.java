@@ -34,9 +34,7 @@ public class Usuario {
     @JsonIgnore
     private List<Favorito> favoritos;
     
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
-    @JsonIgnore
-    private List<Doacao> doacoes;
+
     
     
     // Construtores, getters e setters
@@ -87,11 +85,6 @@ public class Usuario {
     public void setFavoritos(List<Favorito> favoritos) { 
         this.favoritos = favoritos;
      }
-    public List<Doacao> getDoacoes() { 
-        return doacoes; 
-    }
-    public void setDoacoes(List<Doacao> doacoes) {
-         this.doacoes = doacoes;
-         }
+ 
          
 }
