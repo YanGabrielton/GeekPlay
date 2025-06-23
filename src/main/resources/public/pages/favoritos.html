@@ -97,11 +97,13 @@
               <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuLink" role="button" data-bs-toggle="dropdown">
                 Mais
               </a>
-              <ul class="dropdown-menu dropdown-menu-end bg-footerCor border-secondary">
-                <li><a class="dropdown-item" href="./sobre.html">Sobre</a></li>
-                <li><a class="dropdown-item" href="./Perfil.html">Perfil</a></li>
-                <li><a class="dropdown-item active" href="./favoritos.html">Favoritos</a></li>
-                <li><a class="dropdown-item" href="#" onclick="logout()">Sair</a></li>
+              <ul class="dropdown-menu dropdown-menu-end menu-mais-dropdown" aria-labelledby="dropdownMenuLink">
+                <li><a class="dropdown-item text-light menu-mais-item" href="./sobre.html">Sobre</a></li>
+                <li><a class="dropdown-item text-light menu-mais-item" href="./pages/Perfil.html">Perfil</a></li>
+                <li><a class="dropdown-item text-light menu-mais-item" href="./favoritos.html">Favoritos</a></li>
+                <li><a class="dropdown-item text-light menu-mais-item" href="./Doacoes.html">Doação</a></li>
+                <li><hr class="dropdown-divider bg-secondary"></li>
+                <li><a class="dropdown-item text-light menu-mais-item" href="#" onclick="logout()">Sair</a></li>
               </ul>
             </li>
           </ul>
@@ -144,6 +146,7 @@
             <li><a href="./Filmes.html" class="text-decoration-none text-light">Filmes</a></li>
             <li><a href="./Mangas.html" class="text-decoration-none text-light">Mangás</a></li>
             <li><a href="./Anime.html" class="text-decoration-none text-light">Animes</a></li>
+            <li><a href="Doacoes.html" class="text-decoration-none text-light">Apoie-nos</a></li>
           </ul>
         </div>
         <div class="col-md-4 mb-3 text-end">
