@@ -18,6 +18,29 @@
       max-height: 400px;
       object-fit: contain;
     }
+    #form-details{
+      background-color: #282828;
+      padding: 35px;
+      border-radius: 20px;
+    }
+    #manga-title{
+      color: white;
+    }
+    #capitulos{
+      color: white;
+    }
+    #manga-details{
+      color: white;
+    }
+    #form-capitulos{
+      background-color: #282828;
+      padding: 25px;
+      border-radius: 20px;
+    }
+    #reader{
+      background-color: #282828;
+      border-radius: 20px;
+    }
   </style>
 </head>
 <body>
@@ -53,7 +76,9 @@
       <div class="col-md-4">
         <img id="manga-cover" src="" class="img-fluid rounded mb-3" alt="Capa do Mangá">
         <h1 id="manga-title" class="mb-3"></h1>
+        <form action="" id="form-details">
         <div id="manga-details" class="mb-4"></div>
+        </form>
       </div>
       <div class="col-md-8">
         <div class="reader-container mb-4" id="reader">
@@ -61,7 +86,9 @@
             <p>Selecione um capítulo para ler</p>
           </div>
         </div>
-        <h2 class="mb-3">Capítulos</h2>
+        <form action="" id="form-capitulos">
+        <h2 class="mb-3" id="capitulos">Capítulos</h2>
+        </form>
         <div class="list-group" id="chapters-container"></div>
       </div>
     </div>
@@ -81,6 +108,7 @@
             <li><a href="filmes.html" class="text-white text-decoration-none">Filmes</a></li>
             <li><a href="mangas.html" class="text-white text-decoration-none">Mangás</a></li>
             <li><a href="Anime.html" class="text-white text-decoration-none">Animes</a></li>
+            <li><a href="Doacoes.html" class="text-white text-decoration-none">Apoie-nos</a></li>
           </ul>
         </div>
         <div class="col-md-4 mb-3 text-end">
