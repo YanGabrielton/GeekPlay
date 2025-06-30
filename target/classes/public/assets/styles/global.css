@@ -252,6 +252,25 @@ header {
     cursor: pointer;
 }
 
+iframe{
+    width: 576px;
+    height: 364px;
+    border: none;
+    margin-right: 40px;
+}
+
+#video-container{
+    display: none;
+}
+#show-video-btn{
+    background: none;
+    color: white;
+    border-radius: 10px;
+    position: relative;
+    left: 1350px;
+    bottom: 450px;
+}
+
 
 @keyframes showContent {
     to {

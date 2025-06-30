@@ -15,57 +15,6 @@ const CLASSIFICACOES = {
   'hentai': 'rx'      // Contenido adulto
 };
 
-// ---------------- FUNÇÕES DE EPISÓDIOS ----------------
-async function getAnimeEpisodes(animeName) {
-  try {
-    console.log(`Buscando episódios para: ${animeName}`);
-    const normalizedName = animeName.toLowerCase().replace(/\s+/g, '-');
-    const response = await fetch(`https://theanimesapi.herokuapp.com/anime/${normalizedName}`);
-    
-    if (!response.ok) {
-      throw new Error(`Erro HTTP: ${response.status}`);
-    }
-    
-    const data = await response.json();
-    console.log("Dados dos episódios recebidos:", data);
-    
-    return data.episodes || [];
-  } catch (error) {
-    console.error("Erro ao buscar episódios:", error);
-    return [];
-  }
-}
-
-async function verMaisAnime(animeId, animeTitle) {
-  try {
-    const loader = document.getElementById('loader');
-    if (loader) loader.style.display = 'block';
-    
-    // Buscar detalhes completos do anime na Jikan
-    const detalhesResponse = await fetch(`https://api.jikan.moe/v4/anime/${animeId}`);
-    const detalhesData = await detalhesResponse.json();
-    
-    // Buscar episódios na TheAnimesAPI
-    const episodes = await getAnimeEpisodes(animeTitle);
-    
-    // Salvar todos os dados para usar na página de assistir
-    localStorage.setItem("animeData", JSON.stringify({
-      id: animeId,
-      title: animeTitle,
-      details: detalhesData.data,
-      episodes: episodes
-    }));
-    
-    window.location.href = "assistir.html";
-  } catch (error) {
-    console.error('Erro ao carregar anime:', error);
-    alert("Erro ao carregar os episódios do anime");
-  } finally {
-    const loader = document.getElementById('loader');
-    if (loader) loader.style.display = 'none';
-  }
-}
-
 // ---------------- FUNÇÕES DE FAVORITOS ----------------
 async function loadUserFavorites() {
     const token = localStorage.getItem('jwtToken');
@@ -103,8 +52,8 @@ async function toggleFavorite(itemId, itemTitle, tipoItem = 'anime') {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-            idApi: itemId.toString(),    // ← camelCase
-            tipoItem: tipoItem,          // ← camelCase
+            idApi: itemId.toString(),
+            tipoItem: tipoItem,
             titulo: itemTitle
         })
         });
@@ -150,7 +99,7 @@ function showToast(message, isSuccess) {
     toast.className = `position-fixed bottom-0 end-0 p-3 ${isSuccess ? 'bg-success' : 'bg-danger'}`;
     toast.innerHTML = `
         <div class="toast show">
-            <div class="toast-body text-white">
+            <div class="toast-body text-white'>
                 ${message}
             </div>
         </div>
@@ -352,7 +301,7 @@ function renderizarAnimes(animes) {
           <button class="btn btn-primary ver-mais-btn"
                   data-anime-id="${anime.mal_id}"
                   data-anime-title="${anime.title}">
-            <i class="fas fa-play-circle me-2"></i> Ver Episódios
+            <i class="fas fa-external-link-alt me-2"></i> Ver en MyAnimeList
           </button>
           <button class="btn ${isFavorite ? 'btn-warning' : 'btn-outline-warning'} favorite-btn" 
                   data-anime-id="${anime.mal_id}" 
@@ -384,10 +333,9 @@ function renderizarAnimes(animes) {
   });
 
   document.querySelectorAll('.ver-mais-btn').forEach(btn => {
-    btn.addEventListener('click', async function() {
+    btn.addEventListener('click', function() {
       const animeId = this.getAttribute('data-anime-id');
-      const animeTitle = this.getAttribute('data-anime-title');
-      await verMaisAnime(animeId, animeTitle);
+      window.open(`https://myanimelist.net/anime/${animeId}`, '_blank');
     });
   });
 }

@@ -28,6 +28,7 @@ main {
     flex-wrap: wrap;
     justify-content: center;
 }
+
 p, li {
     color: rgb(255, 0, 0);
     font-size: 0.875rem; /* 14px */
@@ -173,13 +174,18 @@ header, .navbar {
 /* texto */
 .paragrafo_s {
     color: white;
-    font-size: 1.563rem; /* 25px */
     margin-top: 0.625rem; /* 10px */
     text-align: justify;
     padding: 1.25rem; /* 20px */
     margin-left: 1%;
     display: flex;
     flex-direction: column;
+    font-size: 24px;
+}
+.link-footer, li{
+    text-align: left;
+    margin-right: 80px;
+    font-size: 15px;
 }
 /*Inicio do Footer*/
 .bg-footerCor{

@@ -41,8 +41,8 @@ async function toggleFavorite(itemId, itemTitle, tipoItem = 'manga') {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-            idApi: itemId.toString(),    // ← camelCase
-            tipoItem: tipoItem,          // ← camelCase
+            idApi: itemId.toString(),
+            tipoItem: tipoItem,
             titulo: itemTitle
         })
         });
@@ -68,12 +68,10 @@ async function toggleFavorite(itemId, itemTitle, tipoItem = 'manga') {
         if (!response.ok) throw new Error('Erro ao adicionar favorito');
         
         userFavorites.push({
-           
-            idApi: itemId.toString(),    // ← camelCase
-            tipoItem: tipoItem,          // ← camelCase
+            idApi: itemId.toString(),
+            tipoItem: tipoItem,
             titulo: itemTitle
         })
-        
         
         showToast('Mangá adicionado aos favoritos!', true);
         return true;
@@ -175,10 +173,10 @@ async function carregarMangas(pagina) {
                     data-manga-title="${manga.title}">
               <i class="fas fa-star me-2"></i> ${isFavorite ? 'Favoritado' : 'Favoritar'}
             </button>
-            <button  class="btn btn-outline-info ver-mais-btn"
+            <button class="btn btn-outline-info ver-mais-btn"
                     data-manga-id="${manga.mal_id}"
                     data-manga-title="${manga.title}">
-              <i class="fas fa-book-open me-2"></i> Ler Capítulos
+              <i class="fas fa-external-link-alt me-2"></i> Ver em MyAnimeList
             </button>
           </div>
         </div>
@@ -205,10 +203,9 @@ async function carregarMangas(pagina) {
     });
 
     document.querySelectorAll('.ver-mais-btn').forEach(btn => {
-      btn.addEventListener('click', async function() {
+      btn.addEventListener('click', function() {
         const mangaId = this.getAttribute('data-manga-id');
-        const mangaTitle = this.getAttribute('data-manga-title');
-        await verMaisManga(mangaId, mangaTitle);
+        window.open(`https://myanimelist.net/manga/${mangaId}`, '_blank');
       });
     });
 
@@ -220,51 +217,9 @@ async function carregarMangas(pagina) {
   }
 }
 
-async function verMaisManga(mangaId, mangaTitle) {
-  try {
-    const loader = document.getElementById('loader');
-    if (loader) loader.style.display = 'block';
-    
-    const detalhesResponse = await fetch(`https://api.jikan.moe/v4/manga/${mangaId}`);
-    const detalhesData = await detalhesResponse.json();
-    
-    const chapters = await getMangaChapters(mangaTitle);
-    
-    localStorage.setItem("mangaData", JSON.stringify({
-      id: mangaId,
-      title: mangaTitle,
-      details: detalhesData.data,
-      chapters: chapters
-    }));
-    
-    window.location.href='./LerManga.html';
-  } catch (error) {
-    console.error('Erro ao carregar mangá:', error);
-    alert("Erro ao carregar os detalhes do mangá");
-  } finally {
-    const loader = document.getElementById('loader');
-    if (loader) loader.style.display = 'none';
-  }
-}
-
-async function getMangaChapters(mangaName) {
-  try {
-    console.log(`Buscando capítulos para: ${mangaName}`);
-    const normalizedName = mangaName.toLowerCase().replace(/\s+/g, '-');
-    const response = await fetch(`https://mangahookapi.com/manga/${normalizedName}`);
-    
-    if (!response.ok) {
-      throw new Error(`Erro HTTP: ${response.status}`);
-    }
-    
-    const data = await response.json();
-    console.log("Dados dos capítulos recebidos:", data);
-    
-    return data.chapters || [];
-  } catch (error) {
-    console.error("Erro ao buscar capítulos:", error);
-    return [];
-  }
+// Función simplificada para redirigir a MyAnimeList
+function verMaisManga(mangaId) {
+  window.open(`https://myanimelist.net/manga/${mangaId}`, '_blank');
 }
 
 function mapearGenero(nomeGenero) {

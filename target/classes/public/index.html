@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="../public/assets/styles/Mangas.css">
 <!-- Bootstrap 5.3.3 JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </head>
 
 <body>
@@ -73,6 +74,15 @@
                     <div class="buttons">
                       <a class="btpage" href="./pages/Anime.html">Veja mais em Anime</a> <!-- caminho button veja mais -->
                     </div>
+                    <button id="show-video-btn">Mostrar Trailer</button>
+                    <div id="video-container">
+        <iframe
+            src="https://www.youtube.com/embed/W_l7bXqWZyY" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+        </iframe>
+    </div>
                 </div>
             </div>
             <div class="item">
@@ -228,5 +238,18 @@
 
     <script src="../public/assets/Script/script.js"></script>
     <script src="../public/assets/Script/login.js"></script>
+    <script>
+        document.getElementById('show-video-btn').addEventListener('click', function() {
+            const videoContainer = document.getElementById('video-container');
+            
+            if (videoContainer.style.display === 'none') {
+                videoContainer.style.display = 'block';
+                this.textContent = 'Ocultar Trailer';
+            } else {
+                videoContainer.style.display = 'none';
+                this.textContent = 'Mostrar ';
+            }
+        });
+    </script>
 </body>
 </html>
