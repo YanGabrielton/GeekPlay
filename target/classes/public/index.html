@@ -71,18 +71,16 @@
                     <div class="des">
                         <!-- lorem 50 -->
                         Um adolescente que ganha poderes de Shinigami (Ceifador de Almas) para proteger o mundo dos mortos-vivos chamados Hollows. Ele luta entre o mundo humano e o espiritual, enfrentando inimigos poderosos e descobrindo segredos sobre seu próprio passado.</div>
-                    <div class="buttons">
-                      <a class="btpage" href="./pages/Anime.html">Veja mais em Anime</a> <!-- caminho button veja mais -->
-                    </div>
                     <button id="show-video-btn">Mostrar Trailer</button>
-                    <div id="video-container">
-        <iframe
-            src="https://www.youtube.com/embed/fuwPuimFQkY?start=4" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen>
-        </iframe>
-    </div>
+                    <div id="video-overlay"></div>
+<div id="video-container">
+    <iframe 
+        src="https://www.youtube.com/embed/fuwPuimFQkY?autoplay=1&mute=1" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+    </iframe>
+</div>
                 </div>
             </div>
             <div class="item">
@@ -93,9 +91,16 @@
                     <div class="topic">FILME</div>
                     <div class="des">
                       Conta a história de Arthur Fleck, um homem com transtornos mentais que é maltratado pela sociedade. Após sofrer várias rejeições e injustiças, ele enlouquece e se transforma no Coringa, um símbolo do caos em Gotham City.</div>
-                    <div class="buttons">
-                        <a class="btpage" href="./pages/Filmes.html">Veja mais em Filmes</a>
-                    </div>
+                    <button id="show-video-btn-2">Mostrar Trailer</button>
+                    <div id="video-overlay-2"></div>
+<div id="video-container-2">
+    <iframe 
+        src="https://www.youtube.com/embed/jfVTJm9NilA?enablejsapi=1" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+    </iframe>
+</div>
                 </div>
             </div>
             <div class="item">
@@ -106,9 +111,6 @@
                     <div class="topic">MANHWA</div>
                     <div class="des">
                         Jaehwan, um dos poucos humanos que se recusam a fugir após o colapso do mundo. Em vez disso, ele enfrenta sozinho os perigos da Torre, determinado a descobrir a verdade por trás daquele sistema misterioso e lutar contra um destino imposto.</div>
-                    <div class="buttons">
-                      <a class="btpage" href="./pages/Mangas.html">Veja mais em Manga</a>
-                  </div>
                 </div>
             </div>
             <div class="item">
@@ -120,9 +122,16 @@
                     <div class="des">
                       O caçador mais fraco do mundo, que um dia ganha a habilidade de evoluir infinitamente ao completar missões como em um jogo. Com esse poder, ele se torna incrivelmente forte e enfrenta monstros, caçadores e segredos sombrios que ameaçam o mundo.
                     </div>
-                    <div class="buttons">
-                      <a class="btpage" href="./pages/Anime.html">Veja mais em Anime</a>/>
-                  </div>
+                  <button id="show-video-btn-3">Mostrar Trailer</button>
+                    <div id="video-overlay-3"></div>
+<div id="video-container-3">
+    <iframe 
+        src="https://www.youtube.com/embed/MWrsQmBIkhM" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+    </iframe>
+</div>
                 </div>
             </div>
             <div class="item">
@@ -133,10 +142,17 @@
                   <div class="topic">FILME</div>
                   <div class="des">
                     John Wick após ser declarado excomungado por matar dentro do Continental, um hotel neutro para assassinos. Com uma recompensa milionária por sua cabeça, ele precisa enfrentar inúmeros inimigos enquanto tenta encontrar uma forma de sobreviver e se libertar das regras da Alta Cúpula.</div>
-                  <div class="buttons">
-                    <a class="btpage" href="./pages/Filmes.html">Veja mais em Filme</a>
-                </div>
-              </div>
+                    <button id="show-video-btn-4">Mostrar Trailer</button>
+                    <div id="video-overlay-4"></div>
+<div id="video-container-4">
+    <iframe 
+        src="https://www.youtube.com/embed/CcQpYEcZXaU" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+    </iframe>
+</div>
+                  </div>
           </div>
         </div>
         <!-- list thumnail -->
@@ -247,7 +263,46 @@
                 this.textContent = 'Ocultar Trailer';
             } else {
                 videoContainer.style.display = 'none';
-                this.textContent = 'Mostrar ';
+                this.textContent = 'Mostrar Trailer ';
+            }
+        });
+    </script>
+    <script>
+        document.getElementById('show-video-btn-2').addEventListener('click', function() {
+            const videoContainer = document.getElementById('video-container-2');
+            
+            if (videoContainer.style.display === 'none') {
+                videoContainer.style.display = 'block';
+                this.textContent = 'Ocultar Trailer';
+            } else {
+                videoContainer.style.display = 'none';
+                this.textContent = 'Mostrar Trailer ';
+            }
+        });
+    </script>
+    <script>
+        document.getElementById('show-video-btn-3').addEventListener('click', function() {
+            const videoContainer = document.getElementById('video-container-3');
+            
+            if (videoContainer.style.display === 'none') {
+                videoContainer.style.display = 'block';
+                this.textContent = 'Ocultar Trailer';
+            } else {
+                videoContainer.style.display = 'none';
+                this.textContent = 'Mostrar Trailer ';
+            }
+        });
+    </script>
+    <script>
+        document.getElementById('show-video-btn-4').addEventListener('click', function() {
+            const videoContainer = document.getElementById('video-container-4');
+            
+            if (videoContainer.style.display === 'none') {
+                videoContainer.style.display = 'block';
+                this.textContent = 'Ocultar Trailer';
+            } else {
+                videoContainer.style.display = 'none';
+                this.textContent = 'Mostrar Trailer ';
             }
         });
     </script>
