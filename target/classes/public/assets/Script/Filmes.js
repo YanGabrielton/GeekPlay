@@ -26,11 +26,11 @@ function pegarFilmes(url) {
 
 async function mostrarFilmes(data) {
     mainFilme.innerHTML = '';
-    
+
     // Verifica se o usuário está logado e obtém seus favoritos
     let userFavorites = [];
     const token = localStorage.getItem('jwtToken');
-    
+
     if (token) {
         try {
             const response = await fetch('/favoritos', {
@@ -38,7 +38,7 @@ async function mostrarFilmes(data) {
                     'Authorization': `Bearer ${token}`
                 }
             });
-            
+
             if (response.ok) {
                 const favoritesData = await response.json();
                 userFavorites = favoritesData.favoritos || [];
@@ -51,10 +51,10 @@ async function mostrarFilmes(data) {
     data.forEach(movie => {
         const { id, title, poster_path, vote_average, overview } = movie;
         const isFavorite = userFavorites.some(fav => fav.id_api === id.toString() && fav.tipo_item === 'filme');
-        
+
         const col = document.createElement('div');
         col.className = 'col-sm-6 col-md-4 col-lg-3 mb-4';
-        
+
         col.innerHTML = `
             <div class="movie-card">
                 <div class="poster-container">
@@ -81,22 +81,26 @@ async function mostrarFilmes(data) {
                             </svg>
                             ${isFavorite ? 'Remover' : 'Favoritar'}
                         </button>
+                    <button class="favorite-btn btn-trailer" onclick="mostrarTrailer(${id})">
+    Assistir trailer
+</button>
+
                     </div>
                 </div>
             </div>
         `;
-        
+
         mainFilme.appendChild(col);
     });
 
     // Adiciona eventos aos botões de favorito
     document.querySelectorAll('.favorite-btn').forEach(btn => {
-        btn.addEventListener('click', async function(e) {
+        btn.addEventListener('click', async function (e) {
             e.stopPropagation();
             const movieId = this.getAttribute('data-movie-id');
             const movieTitle = this.getAttribute('data-movie-title');
             const wasAdded = await toggleFavorite(movieId, movieTitle);
-            
+
             if (wasAdded !== null) {
                 this.classList.toggle('active', wasAdded);
                 this.innerHTML = `
@@ -126,11 +130,11 @@ async function toggleFavorite(itemId, itemTitle, tipoItem = 'filme') {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
             },
-           body: JSON.stringify({
-            idApi: itemId.toString(),    // ← camelCase
-            tipoItem: tipoItem,          // ← camelCase
-            titulo: itemTitle
-        })
+            body: JSON.stringify({
+                idApi: itemId.toString(),    // ← camelCase
+                tipoItem: tipoItem,          // ← camelCase
+                titulo: itemTitle
+            })
         });
 
         // Se já existir (status 400), remove
@@ -142,18 +146,18 @@ async function toggleFavorite(itemId, itemTitle, tipoItem = 'filme') {
                     'Authorization': `Bearer ${token}`
                 }
             });
-            
+
             if (!deleteResponse.ok) throw new Error('Erro ao remover favorito');
-            
+
             showToast('Item removido dos favoritos!', false);
             return false;
         }
-        
+
         if (!response.ok) throw new Error('Erro ao adicionar favorito');
-        
+
         showToast('Item adicionado aos favoritos!', true);
         return true;
-        
+
     } catch (error) {
         console.error('Erro ao atualizar favoritos:', error);
         showToast(error.message, false);
@@ -207,3 +211,25 @@ form.addEventListener('submit', e => {
     const term = search.value.trim();
     pegarFilmes(term ? `${searchURL}&query=${encodeURIComponent(term)}` : API_URL);
 });
+// Função para o botão de assistir trailers. 
+async function mostrarTrailer(movieId) {
+    try {
+        const url = `${BASE_URL}/movie/${movieId}/videos?${API_KEY}`;
+        const response = await fetch(url);/*Essa função espera a resposta da requisição para a API*/ 
+        const data = await response.json();/*Aqui quando a resposta chega ela é convertida para JSON*/ 
+
+        // Filtra o trailer do YouTube
+        const trailer = data.results.find(video => video.type === 'Trailer' && video.site === 'YouTube');
+
+        if (trailer) {
+            const youtubeUrl = `https://www.youtube.com/watch?v=${trailer.key}`;
+            window.open(youtubeUrl, '_blank'); // abre em nova aba
+        } else {
+            alert('Trailer não dísponivel.');
+        }
+
+    } catch (error) {/*aqui está fazendo a captura do erro*/ 
+        console.error('Erro ao buscar trailer:', error);
+        alert('Não foi possível carregar o trailer.');
+    }
+}
