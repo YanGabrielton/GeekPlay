@@ -81,7 +81,7 @@ async function mostrarFilmes(data) {
                             </svg>
                             ${isFavorite ? 'Remover' : 'Favoritar'}
                         </button>
-                    <button class="favorite-btn btn-trailer" onclick="mostrarTrailer(${id})">
+                    <button class="btn-trailer" onclick="mostrarTrailer(${id})">
     Assistir trailer
 </button>
 
@@ -211,25 +211,35 @@ form.addEventListener('submit', e => {
     const term = search.value.trim();
     pegarFilmes(term ? `${searchURL}&query=${encodeURIComponent(term)}` : API_URL);
 });
-// Função para o botão de assistir trailers. 
+
 async function mostrarTrailer(movieId) {
     try {
-        const url = `${BASE_URL}/movie/${movieId}/videos?${API_KEY}`;
-        const response = await fetch(url);/*Essa função espera a resposta da requisição para a API*/ 
-        const data = await response.json();/*Aqui quando a resposta chega ela é convertida para JSON*/ 
-
-        // Filtra o trailer do YouTube
-        const trailer = data.results.find(video => video.type === 'Trailer' && video.site === 'YouTube');
-
-        if (trailer) {
-            const youtubeUrl = `https://www.youtube.com/watch?v=${trailer.key}`;
-            window.open(youtubeUrl, '_blank'); // abre em nova aba
-        } else {
-            alert('Trailer não dísponivel.');
-        }
-
-    } catch (error) {/*aqui está fazendo a captura do erro*/ 
-        console.error('Erro ao buscar trailer:', error);
-        alert('Não foi possível carregar o trailer.');
+      const url = `${BASE_URL}/movie/${movieId}/videos?${API_KEY}`;
+      const response = await fetch(url);
+      const data = await response.json();
+  
+      const trailer = data.results.find(video => video.type === 'Trailer' && video.site === 'YouTube');
+  
+      if (trailer) {
+        const youtubeUrl = `https://www.youtube.com/embed/${trailer.key}?autoplay=1`;
+        const iframe = `
+          <div class="ratio ratio-16x9">
+            <iframe src="${youtubeUrl}" frameborder="0" allowfullscreen allow="autoplay"></iframe>
+          </div>
+        `;
+  
+        document.getElementById('trailer-container').innerHTML = iframe;
+  
+        // Abrir modal manualmente usando Bootstrap 5
+        const myModal = new bootstrap.Modal(document.getElementById('exampleModalCenter'));
+        myModal.show();
+      } else {
+        alert('Trailer não disponível.');
+      }
+  
+    } catch (error) {
+      console.error('Erro ao buscar trailer:', error);
+      alert('Não foi possível carregar o trailer.');
     }
-}
+  }
+  º
