@@ -63,7 +63,7 @@
         <div class="list">
             <div class="item">
                
-                <img src="assets/img/telas de fundo carosel/39787bf5d8323a60c128fde42d0b8209.jpg">
+                <img src="../public/assets/img/telas de fundo carosel/39787bf5d8323a60c128fde42d0b8209.jpg">
                 <div class="content">
                     <div class="author">Geek Play</div>
                     <div class="title">BLEACH</div>
@@ -71,43 +71,74 @@
                     <div class="des">
                         <!-- lorem 50 -->
                         Um adolescente que ganha poderes de Shinigami (Ceifador de Almas) para proteger o mundo dos mortos-vivos chamados Hollows. Ele luta entre o mundo humano e o espiritual, enfrentando inimigos poderosos e descobrindo segredos sobre seu próprio passado.</div>
-                    <button id="show-video-btn" class="des">Mostrar Trailer</button>
-                    <div id="video-overlay"></div>
-<!-- Para cada video, modifica el div del video-container así: -->
-<div id="video-overlay"></div>
-<div id="video-container">
-    <span class="close-video">&times;</span>
-    <iframe 
-        src="https://www.youtube.com/embed/fuwPuimFQkY?autoplay=1&mute=1" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen>
-    </iframe>
-</div>
+                        <button type="button"  data-bs-toggle="modal" id="button-trailer" data-bs-target="#videoModal">
+                              Mostrar Trailer
+                   </button>
                 </div>
             </div>
+            <!-- Modal -->
+<div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="videoModalLabel">Trailer</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"  aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="video-container">
+            <iframe 
+                src="https://www.youtube.com/embed/fuwPuimFQkY?enablejsapi=1" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
             <div class="item">
-                <img src="assets/img/telas de fundo carosel/jouker.jpg">
+                <img src="../public/assets/img/telas de fundo carosel/jouker.jpg">
                 <div class="content">
                     <div class="author">Geek Play</div>
                     <div class="title">JOKER</div>
                     <div class="topic">FILME</div>
                     <div class="des">
                       Conta a história de Arthur Fleck, um homem com transtornos mentais que é maltratado pela sociedade. Após sofrer várias rejeições e injustiças, ele enlouquece e se transforma no Coringa, um símbolo do caos em Gotham City.</div>
-                    <button id="show-video-btn-2" class="des">Mostrar Trailer</button>
-                    <div id="video-overlay-2"></div>
-<div id="video-container-2">
-    <iframe 
-        src="https://www.youtube.com/embed/jfVTJm9NilA?enablejsapi=1" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen>
-    </iframe>
-</div>
-                </div>
+                <button type="button"  data-bs-toggle="modal" id="button-trailer" data-bs-target="#videoModal-2">
+                              Mostrar Trailer
+                   </button>
+                    </div>
             </div>
+            <!-- Modal -->
+<div class="modal fade" id="videoModal-2" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="videoModalLabel">Trailer</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="video-container">
+            <iframe 
+                src="https://www.youtube.com/embed/MjjPIPh6aXQ" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
             <div class="item">
-                <img src="assets/img/telas de fundo carosel/멸망 이후의 세계 _ The World After the Fall.jpg">
+                <img src="../public/assets/img/telas de fundo carosel/멸망 이후의 세계 _ The World After the Fall.jpg">
                 <div class="content">
                     <div class="author">Geek Play</div>
                     <div class="title">The World Afther The Fall</div>
@@ -117,7 +148,7 @@
                 </div>
             </div>
             <div class="item">
-                <img src="assets/img/telas de fundo carosel/Solo.jpg">
+                <img src="../public/assets/img/telas de fundo carosel/Solo.jpg">
                 <div class="content">
                     <div class="author">Geek Play</div>
                     <div class="title">SOLO LEVELING</div>
@@ -125,43 +156,77 @@
                     <div class="des">
                       O caçador mais fraco do mundo, que um dia ganha a habilidade de evoluir infinitamente ao completar missões como em um jogo. Com esse poder, ele se torna incrivelmente forte e enfrenta monstros, caçadores e segredos sombrios que ameaçam o mundo.
                     </div>
-                  <button id="show-video-btn-3" class="des">Mostrar Trailer</button>
-                    <div id="video-overlay-3"></div>
-<div id="video-container-3">
-    <iframe 
-        src="https://www.youtube.com/embed/MWrsQmBIkhM" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen>
-    </iframe>
-</div>
+                    <button type="button"  data-bs-toggle="modal" id="button-trailer" data-bs-target="#videoModal-3">
+                              Mostrar Trailer
+                   </button>
                 </div>
             </div>
+            <!-- Modal -->
+<div class="modal fade" id="videoModal-3" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="videoModalLabel">Trailer</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="video-container">
+            <iframe 
+                src="https://www.youtube.com/embed/MWrsQmBIkhM" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
             <div class="item">
-              <img src="assets/img/telas de fundo carosel/jon.jpg">
+              <img src="../public/assets/img/telas de fundo carosel/jon.jpg">
               <div class="content">
                   <div class="author">Geek Play</div>
                   <div class="title">Jon Wick Parabellum</div>
                   <div class="topic">FILME</div>
                   <div class="des">
                     John Wick após ser declarado excomungado por matar dentro do Continental, um hotel neutro para assassinos. Com uma recompensa milionária por sua cabeça, ele precisa enfrentar inúmeros inimigos enquanto tenta encontrar uma forma de sobreviver e se libertar das regras da Alta Cúpula.</div>
-                    <button id="show-video-btn-4" class="des">Mostrar Trailer</button>
-                    <div id="video-overlay-4"></div>
-<div id="video-container-4">
-    <iframe 
-        src="https://www.youtube.com/embed/CcQpYEcZXaU" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen>
-    </iframe>
-</div>
-                  </div>
+                  <button type="button"  data-bs-toggle="modal" id="button-trailer" data-bs-target="#videoModal-4">
+                              Mostrar Trailer
+                   </button>
+                </div>
           </div>
         </div>
+        <!-- Modal -->
+<div class="modal fade" id="videoModal-4" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="videoModalLabel">Trailer</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="video-container">
+            <iframe 
+                src="https://www.youtube.com/embed/CcQpYEcZXaU" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
         <!-- list thumnail -->
         <div class="thumbnail">
             <div class="item">
-                <img src="assets/img/cartaz anime/d4f053dd-bafc-4736-af83-b1b533f8c724.jpg">
+                <img src="../public/assets/img/cartaz anime/d4f053dd-bafc-4736-af83-b1b533f8c724.jpg">
                 <div class="content">
                     <div class="title">
                      
@@ -172,7 +237,7 @@
                 </div>
             </div>
             <div class="item">
-                <img src="assets/img/cartaz filmes/c421ae78-2142-4dfb-b097-4645c86e2043.jpg">
+                <img src="../public/assets/img/cartaz filmes/c421ae78-2142-4dfb-b097-4645c86e2043.jpg">
                 <div class="content">
                     <div class="title">
                       
@@ -183,7 +248,7 @@
                 </div>
             </div>
             <div class="item">
-                <img src="assets/img/cartaz manhwa/95aca51e-949f-4e60-a81f-2dd3f63250ff.jpg">
+                <img src="../public/assets/img/cartaz manhwa/95aca51e-949f-4e60-a81f-2dd3f63250ff.jpg">
                 <div class="content">
                     <div class="title">
                       
@@ -194,7 +259,7 @@
                 </div>
             </div>
             <div class="item">
-                <img src="assets/img/cartaz anime/Solo leveling.jpg">
+                <img src="../public/assets/img/cartaz anime/Solo leveling.jpg">
                 <div class="content">
                     <div class="title">
                       
@@ -205,7 +270,7 @@
                 </div>
             </div>
             <div class="item">
-              <img src="assets/img/cartaz filmes/John Wick 3_ Parabellum (2019).jpg">
+              <img src="../public/assets/img/cartaz filmes/John Wick 3_ Parabellum (2019).jpg">
               <div class="content">
                   <div class="title">
                      
@@ -257,57 +322,7 @@
 
     <script src="../public/assets/Script/script.js"></script>
     <script src="../public/assets/Script/login.js"></script>
-    <script>
-        document.getElementById('show-video-btn').addEventListener('click', function() {
-            const videoContainer = document.getElementById('video-container');
-            
-            if (videoContainer.style.display === 'none') {
-                videoContainer.style.display = 'block';
-                this.textContent = 'Ocultar Trailer';
-            } else {
-                videoContainer.style.display = 'none';
-                this.textContent = 'Mostrar Trailer ';
-            }
-        });
-    </script>
-    <script>
-        document.getElementById('show-video-btn-2').addEventListener('click', function() {
-            const videoContainer = document.getElementById('video-container-2');
-            
-            if (videoContainer.style.display === 'none') {
-                videoContainer.style.display = 'block';
-                this.textContent = 'Ocultar Trailer';
-            } else {
-                videoContainer.style.display = 'none';
-                this.textContent = 'Mostrar Trailer ';
-            }
-        });
-    </script>
-    <script>
-        document.getElementById('show-video-btn-3').addEventListener('click', function() {
-            const videoContainer = document.getElementById('video-container-3');
-            
-            if (videoContainer.style.display === 'none') {
-                videoContainer.style.display ='block';
-                this.textContent = 'Ocultar Trailer';
-            } else {
-                videoContainer.style.display = 'none';
-                this.textContent = 'Mostrar Trailer ';
-            }
-        });
-    </script>
-    <script>
-        document.getElementById('show-video-btn-4').addEventListener('click', function() {
-            const videoContainer = document.getElementById('video-container-4');
-            
-            if (videoContainer.style.display === 'none') {
-                videoContainer.style.display = 'block';
-                this.textContent = 'Ocultar Trailer';
-            } else {
-                videoContainer.style.display = 'none';
-                this.textContent = 'Mostrar Trailer ';
-            }
-        });
-    </script>
+    <!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
