@@ -214,32 +214,60 @@ form.addEventListener('submit', e => {
 
 async function mostrarTrailer(movieId) {
     try {
-      const url = `${BASE_URL}/movie/${movieId}/videos?${API_KEY}`;
-      const response = await fetch(url);
+      const trailerUrl = `${BASE_URL}/movie/${movieId}/videos?${API_KEY}`;
+      const response = await fetch(trailerUrl);
       const data = await response.json();
   
       const trailer = data.results.find(video => video.type === 'Trailer' && video.site === 'YouTube');
   
+      let trailerHTML = '';
       if (trailer) {
         const youtubeUrl = `https://www.youtube.com/embed/${trailer.key}?autoplay=1`;
-        const iframe = `
-          <div class="ratio ratio-16x9">
+        trailerHTML = `
+          <div class="ratio ratio-16x9 mb-3">
             <iframe src="${youtubeUrl}" frameborder="0" allowfullscreen allow="autoplay"></iframe>
           </div>
         `;
-  
-        document.getElementById('trailer-container').innerHTML = iframe;
-  
-        // Abrir modal manualmente usando Bootstrap 5
-        const myModal = new bootstrap.Modal(document.getElementById('exampleModalCenter'));
-        myModal.show();
       } else {
-        alert('Trailer não disponível.');
+        trailerHTML = '<p>Trailer não disponível.</p>';
       }
   
+      // Buscar provedores de streaming
+      const providerUrl = `${BASE_URL}/movie/${movieId}/watch/providers?${API_KEY}`;
+      const providerRes = await fetch(providerUrl);
+      const providerData = await providerRes.json();
+  
+      let plataformasHTML = '<p>Plataformas não encontradas.</p>';
+  
+      if (providerData.results && providerData.results.BR && providerData.results.BR.flatrate) {
+        const plataformas = providerData.results.BR.flatrate;
+  
+        plataformasHTML = `
+          <h5>Disponível em:</h5>
+          <div class="d-flex flex-wrap gap-2">
+            ${plataformas.map(p => `
+              <div class="text-center">
+                <img src="https://image.tmdb.org/t/p/w45${p.logo_path}" alt="${p.provider_name}" title="${p.provider_name}" />
+                <small class="d-block">${p.provider_name}</small>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      }
+  
+      document.getElementById('trailer-container').innerHTML = `
+        ${trailerHTML}
+        <hr>
+        ${plataformasHTML}
+      `;
+  
+      // Abre o modal
+      const myModal = new bootstrap.Modal(document.getElementById('exampleModalCenter'));
+      myModal.show();
+  
     } catch (error) {
-      console.error('Erro ao buscar trailer:', error);
-      alert('Não foi possível carregar o trailer.');
+      console.error('Erro ao buscar trailer ou plataformas:', error);
+      alert('Erro ao carregar trailer ou plataformas de streaming.');
     }
   }
-  º
+  
