@@ -247,6 +247,7 @@ header {
     height: 450px; /* Altura fija (ajustable) */
     border: none;
     margin: 0; /* Elimina el margen derecho */
+    
 }
 
 /* Oscurece el fondo cuando el video está visible */
