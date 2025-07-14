@@ -19,6 +19,6 @@
         <!-- Mapeamento das entidades -->
         <mapping class="geekplay.model.Usuario"/>
         <mapping class="geekplay.model.Favorito"/>
-        <mapping class="geekplay.model.Doacao"/>
+       
     </session-factory>
 </hibernate-configuration>
