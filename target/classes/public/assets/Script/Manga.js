@@ -97,31 +97,35 @@ function showToast(message, isSuccess) {
     setTimeout(() => toast.remove(), 3000);
 }
 
-// Función para mapear géneros a sus IDs en la API
+// Função para mapear gêneros a seus IDs na API
 function mapearGenero(nomeGenero) {
     const generos = {
         'shounen': 27,
         'seinen': 42,
         'yaoi': 28,
-        'ação': 1,       // ID para "Action"
-        'comedia': 4,     // ID para "Comedy"
+        'ação': 1,
+        'comedia': 4,
         'aventura': 2,
         'fantasia': 10,
         'sci-fi': 24,
         'romance': 22,
-        'drama': 8
+        'drama': 8,
+        'terror': 14,
+        'horror': 14,
+        'suspense': 45
     };
     return generos[nomeGenero.toLowerCase()] || '';
 }
 
-// Función para buscar mangás por género
+// Função para buscar mangás por gênero
 function buscarMangas(genero) {
     generoSelecionado = genero;
+    termoBusca = "";
     paginaAtual = 1;
     carregarMangas(paginaAtual);
 }
 
-// Función principal para cargar mangás
+// Função principal para carregar mangás
 async function carregarMangas(pagina) {
     const container = document.getElementById('anime-cards-container');
     const loader = document.getElementById('loader');
@@ -182,7 +186,7 @@ async function carregarMangas(pagina) {
             container.appendChild(card);
         });
 
-        // Event listeners para botones de favoritos
+        // Event listeners para botões de favoritos
         document.querySelectorAll('.favorite-btn').forEach(btn => {
             btn.addEventListener('click', async function(e) {
                 e.preventDefault();
@@ -200,7 +204,7 @@ async function carregarMangas(pagina) {
             });
         });
 
-        // Event listeners para botones "Ver más"
+        // Event listeners para botões "Ver mais"
         document.querySelectorAll('.ver-mais-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 const mangaId = this.getAttribute('data-manga-id');
@@ -216,12 +220,12 @@ async function carregarMangas(pagina) {
     }
 }
 
-// Event listeners cuando el DOM está cargado
+// Event listeners quando o DOM está carregado
 document.addEventListener('DOMContentLoaded', () => {
     loadUserFavorites();
     carregarMangas(paginaAtual);
 
-    // Buscar mangás por término de búsqueda
+    // Buscar mangás por termo de busca
     document.getElementById('form').addEventListener('submit', (e) => {
         e.preventDefault();
         termoBusca = document.getElementById('search').value.trim();
@@ -230,7 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
         carregarMangas(paginaAtual);
     });
 
-    // Paginación
+    // Paginação
     document.getElementById('btnProxima').addEventListener('click', () => {
         paginaAtual++;
         carregarMangas(paginaAtual);
@@ -242,4 +246,4 @@ document.addEventListener('DOMContentLoaded', () => {
             carregarMangas(paginaAtual);
         }
     });
-}); 
+});

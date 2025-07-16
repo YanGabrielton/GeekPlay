@@ -15,7 +15,10 @@ const CLASSIFICACOES = {
   '18': 'r',          // +18 (Restricted)
   'hentai': 'rx',     // Contenido adulto
   'acao': 1,          // Género de acción
-  'comedia': 4        // Género de comedia
+  'comedia': 4,       // Género de comedia
+  'romance': 22,      // Género romance
+  'terror': 14,       // Género terror/horror
+  'suspense': 45      // Género suspense
 };
 
 // ---------------- FUNÇÕES DE FAVORITOS ----------------
@@ -116,6 +119,9 @@ async function fetchAnimes(pagina = 1, tipo = "", busca = "", filtro = "", forca
     if (estaCarregando) return;
     estaCarregando = true;
     
+    const container = document.getElementById('anime-cards-container');
+    const loader = document.getElementById('loader');
+    
     try {
         // Determinar si el filtro es de clasificación o género
         let faixaEtaria = "";
@@ -123,7 +129,7 @@ async function fetchAnimes(pagina = 1, tipo = "", busca = "", filtro = "", forca
         
         if (['pg13', '17', '18', 'hentai'].includes(filtro)) {
             faixaEtaria = filtro;
-        } else if (['acao', 'comedia'].includes(filtro)) {
+        } else if (['acao', 'comedia', 'romance', 'terror', 'suspense'].includes(filtro)) {
             genero = filtro;
         }
 
@@ -139,9 +145,6 @@ async function fetchAnimes(pagina = 1, tipo = "", busca = "", filtro = "", forca
         faixaEtariaFiltro = faixaEtaria;
         generoFiltro = genero;
 
-        const container = document.getElementById('anime-cards-container');
-        const loader = document.getElementById('loader');
-        
         loader.style.display = 'block';
         container.innerHTML = '';
 
@@ -152,11 +155,9 @@ async function fetchAnimes(pagina = 1, tipo = "", busca = "", filtro = "", forca
         if (busca) url += `&q=${encodeURIComponent(busca)}`;
         if (tipo) url += `&type=${tipo}`;
         if (faixaEtaria && CLASSIFICACOES[faixaEtaria]) {
-            // Si es una clasificación por edad
             url += `&rating=${CLASSIFICACOES[faixaEtaria]}`;
         }
         if (genero && CLASSIFICACOES[genero]) {
-            // Si es un género
             url += `&genres=${CLASSIFICACOES[genero]}`;
         }
 
@@ -210,68 +211,14 @@ async function fetchAnimes(pagina = 1, tipo = "", busca = "", filtro = "", forca
 
 // ---------------- FUNÇÃO PARA DESTACAR FILTRO ATIVO ----------------
 function highlightActiveFilter(filtroAtivo) {
-    // Remover todas as classes ativas primeiro
     document.querySelectorAll('.menu-anime').forEach(item => {
         item.classList.remove('active');
     });
 
-    // Adicionar classe ativa ao filtro atual
     if (filtroAtivo) {
         const itensAtivos = document.querySelectorAll(`.menu-anime[onclick*="${filtroAtivo}"]`);
         itensAtivos.forEach(item => {
             item.classList.add('active');
-        });
-    }
-}
-
-// ---------------- MANIPULAÇÃO DO HISTÓRICO ----------------
-function setupHistoryNavigation() {
-    window.addEventListener('popstate', (event) => {
-        if (event.state) {
-            paginaAtual = event.state.pagina || 1;
-            tipoFiltro = event.state.tipo || "";
-            termoBusca = event.state.busca || "";
-            
-            const filtro = event.state.filtro || "";
-            highlightActiveFilter(filtro);
-            
-            updateFilterControls();
-            fetchAnimes(paginaAtual, tipoFiltro, termoBusca, filtro, true, false);
-        }
-    });
-}
-
-function updateFilterControls() {
-    const searchInput = document.getElementById('search');
-    if (searchInput) {
-        searchInput.value = termoBusca;
-    }
-}
-
-// ---------------- EVENTOS ----------------
-function setupEventListeners() {
-    const form = document.getElementById('form');
-    if (form) {
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            termoBusca = document.getElementById('search').value.trim();
-            fetchAnimes(1, tipoFiltro, termoBusca, '', true);
-        });
-    }
-
-    const btnAnterior = document.getElementById('btnAnterior');
-    if (btnAnterior) {
-        btnAnterior.addEventListener('click', () => {
-            if (paginaAtual > 1) {
-                fetchAnimes(paginaAtual - 1, tipoFiltro, termoBusca, generoFiltro || faixaEtariaFiltro, true);
-            }
-        });
-    }
-
-    const btnProxima = document.getElementById('btnProxima');
-    if (btnProxima) {
-        btnProxima.addEventListener('click', () => {
-            fetchAnimes(paginaAtual + 1, tipoFiltro, termoBusca, generoFiltro || faixaEtariaFiltro, true);
         });
     }
 }
@@ -406,6 +353,58 @@ function updatePagination(totalPages, hasNextPage) {
     }
 }
 
+// ---------------- MANIPULAÇÃO DO HISTÓRICO ----------------
+function setupHistoryNavigation() {
+    window.addEventListener('popstate', (event) => {
+        if (event.state) {
+            paginaAtual = event.state.pagina || 1;
+            tipoFiltro = event.state.tipo || "";
+            termoBusca = event.state.busca || "";
+            
+            const filtro = event.state.filtro || "";
+            highlightActiveFilter(filtro);
+            
+            updateFilterControls();
+            fetchAnimes(paginaAtual, tipoFiltro, termoBusca, filtro, true, false);
+        }
+    });
+}
+
+function updateFilterControls() {
+    const searchInput = document.getElementById('search');
+    if (searchInput) {
+        searchInput.value = termoBusca;
+    }
+}
+
+// ---------------- EVENTOS ----------------
+function setupEventListeners() {
+    const form = document.getElementById('form');
+    if (form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            termoBusca = document.getElementById('search').value.trim();
+            fetchAnimes(1, tipoFiltro, termoBusca, '', true);
+        });
+    }
+
+    const btnAnterior = document.getElementById('btnAnterior');
+    if (btnAnterior) {
+        btnAnterior.addEventListener('click', () => {
+            if (paginaAtual > 1) {
+                fetchAnimes(paginaAtual - 1, tipoFiltro, termoBusca, generoFiltro || faixaEtariaFiltro, true);
+            }
+        });
+    }
+
+    const btnProxima = document.getElementById('btnProxima');
+    if (btnProxima) {
+        btnProxima.addEventListener('click', () => {
+            fetchAnimes(paginaAtual + 1, tipoFiltro, termoBusca, generoFiltro || faixaEtariaFiltro, true);
+        });
+    }
+}
+
 // ---------------- INICIALIZAÇÃO ----------------
 document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -415,7 +414,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const ratingParam = urlParams.get('rating');
     const genreParam = urlParams.get('genre');
     
-    // Determinar qué tipo de filtro está activo
     let filtroAtivo = '';
     if (ratingParam) {
         filtroAtivo = Object.keys(CLASSIFICACOES).find(key => CLASSIFICACOES[key] === ratingParam) || '';
