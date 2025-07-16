@@ -25,6 +25,7 @@ public class HibernateUtil {
     static {
         try {
             sessionFactory = buildSessionFactory(detectDatabaseType());
+            logger.info("SessionFactory criada com sucesso!");
         } catch (Exception e) {
             logger.error("Falha catastrófica na inicialização", e);
             throw new ExceptionInInitializerError(e);
