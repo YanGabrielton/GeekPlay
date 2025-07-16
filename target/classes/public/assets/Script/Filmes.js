@@ -174,8 +174,8 @@ function showToast(message, isSuccess) {
     const toast = document.createElement('div');
     toast.className = `position-fixed bottom-0 end-0 p-3 ${isSuccess ? 'bg-success' : 'bg-danger'}`;
     toast.innerHTML = `
-        <div class="toast show">
-            <div class="toast-body text-white">
+        <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-body ${isSuccess ? 'bg-success' : 'bg-danger'} text-white rounded">
                 ${message}
             </div>
         </div>

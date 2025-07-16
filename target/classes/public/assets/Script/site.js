@@ -52,10 +52,10 @@ async function toggleFavorite(itemId, itemTitle, tipoItem = 'anime') {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-            idApi: itemId.toString(),
-            tipoItem: tipoItem,
-            titulo: itemTitle
-        })
+                idApi: itemId.toString(),
+                tipoItem: tipoItem,
+                titulo: itemTitle
+            })
         });
 
         if (response.status === 400) {
@@ -72,7 +72,7 @@ async function toggleFavorite(itemId, itemTitle, tipoItem = 'anime') {
             userFavorites = userFavorites.filter(fav => 
                 !(fav.idApi === itemId.toString() && fav.tipoItem === tipoItem));
             
-            showToast('Item removido dos favoritos!', false);
+            showToast('Anime removido dos favoritos!', false);
             return false;
         }
         
@@ -84,28 +84,38 @@ async function toggleFavorite(itemId, itemTitle, tipoItem = 'anime') {
             titulo: itemTitle
         });
         
-        showToast('Item adicionado aos favoritos!', true);
+        showToast('Anime adicionado aos favoritos!', true);
         return true;
         
     } catch (error) {
         console.error('Erro ao atualizar favoritos:', error);
-        showToast(error.message, false);
+        showToast('Erro: ' + error.message, false);
         return null;
     }
 }
 
 function showToast(message, isSuccess) {
+    // Remove toasts antigos
+    const oldToasts = document.querySelectorAll('.custom-toast');
+    oldToasts.forEach(toast => toast.remove());
+
     const toast = document.createElement('div');
-    toast.className = `position-fixed bottom-0 end-0 p-3 ${isSuccess ? 'bg-success' : 'bg-danger'}`;
+    toast.className = `custom-toast position-fixed bottom-0 end-0 p-3`;
+    toast.style.zIndex = '9999';
+    
     toast.innerHTML = `
-        <div class="toast show">
-            <div class="toast-body text-white'>
+        <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-body ${isSuccess ? 'bg-success' : 'bg-danger'} text-white rounded">
                 ${message}
             </div>
         </div>
     `;
+    
     document.body.appendChild(toast);
-    setTimeout(() => toast.remove(), 3000);
+    
+    setTimeout(() => {
+        toast.remove();
+    }, 3000);
 }
 
 // ---------------- FUNÇÃO PRINCIPAL ----------------

@@ -37,7 +37,7 @@ public class HibernateUtil {
      */
     private static boolean detectDatabaseType() {
         // Passo 1: Obter nome do computador
-        String hostname = System.getenv().getOrDefault("L05023912", // Windows Digitar no CMD: ECHO "%COMPUTERNAME%"
+        String hostname = System.getenv().getOrDefault("L05023964", // Windows Digitar no CMD: ECHO "%COMPUTERNAME%"
                           System.getenv().getOrDefault("HOSTNAME", "")); // Linux/Mac
         
         // Passo 2: Comparar com o nome do PC em casa
