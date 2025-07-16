@@ -9,7 +9,6 @@ body {
 /* Navbar */
 .navbar {
     background-color: #000 !important;
-    border-bottom: 1px solid rgb(255, 0, 0);
 }
 
 .navbar-brand img {
@@ -21,8 +20,13 @@ body {
 }
 
 .nav-link {
-    color: rgb(255, 0, 0) !important;
+    color: white !important;
     transition: opacity 0.3s ease;
+}
+
+#userDropdown{
+    color: white;
+    border: 1px solid white;
 }
 
 .nav-link:hover {
@@ -31,11 +35,14 @@ body {
 
 .dropdown-menu {
     background-color: #000 !important;
-    border: 1px solid rgb(255, 0, 0);
+}
+
+header{
+    border: 1px solid white;
 }
 
 .dropdown-item {
-    color: rgb(255, 0, 0) !important;
+    color: white !important;
 }
 
 .dropdown-item:hover {
@@ -96,11 +103,11 @@ body {
 /* Footer */
 footer {
     background-color: #000;
-    border-top: 1px solid rgb(255, 0, 0);
+    border-top: 1px solid white;
 }
 
 footer a {
-    color: rgb(255, 0, 0) !important;
+    color: white !important;
     transition: opacity 0.3s ease;
 }
 
@@ -110,7 +117,27 @@ footer a:hover {
 }
 
 footer hr {
-    border-color: rgb(255, 0, 0);
+    border-color: white;
+}
+
+.h6{
+    color: white;
+}
+
+.text-decoration-none{
+    color: white;
+}
+
+.menu-conta{
+    color: white;
+}
+
+#footer_baixo{
+    color: white;
+}
+
+#descricao{
+    color: white;
 }
 
 /* Responsividade */
