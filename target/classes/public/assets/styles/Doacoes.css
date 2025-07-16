@@ -59,7 +59,7 @@ header{
 }
 
 .btn-outline-danger:hover {
-    background-color: #eee4;
+    background-color: rgb(255, 0, 0);
     color: #000;
 }
 
