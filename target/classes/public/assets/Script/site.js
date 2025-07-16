@@ -107,13 +107,13 @@ function showToast(message, isSuccess) {
     toast.style.zIndex = '9999';
     
     toast.innerHTML = `
-<<<<<<< HEAD
+
         <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-body ${isSuccess ? 'bg-success' : 'bg-danger'} text-white rounded">
-=======
+
         <div class="toast show">
             <div class="toast-body text-white">
->>>>>>> dcc88261170a782fd3a81cbf8ec98aac710570bb
+
                 ${message}
             </div>
         </div>
