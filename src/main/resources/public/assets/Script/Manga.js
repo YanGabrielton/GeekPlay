@@ -107,136 +107,149 @@ function showToast(message, isSuccess) {
     }, 3000);
 }
 
-// Eventos
-document.addEventListener('DOMContentLoaded', () => {
-  loadUserFavorites();
-  carregarMangas(paginaAtual);
+// Función para mapear géneros a sus IDs en la API
+function mapearGenero(nomeGenero) {
+    const generos = {
+        'shounen': 27,
+        'seinen': 42,
+        'yaoi': 28,
+        'ação': 1,       // ID para "Action"
+        'comedia': 4,     // ID para "Comedy"
+        'aventura': 2,
+        'fantasia': 10,
+        'sci-fi': 24,
+        'romance': 22,
+        'drama': 8
+    };
+    return generos[nomeGenero.toLowerCase()] || '';
+}
 
-  document.getElementById('form').addEventListener('submit', (e) => {
-    e.preventDefault();
-    termoBusca = document.getElementById('search').value.trim();
+// Función para buscar mangás por género
+function buscarMangas(genero) {
+    generoSelecionado = genero;
     paginaAtual = 1;
     carregarMangas(paginaAtual);
-  });
-
-  document.getElementById('btnProxima').addEventListener('click', () => {
-    paginaAtual++;
-    carregarMangas(paginaAtual);
-  });
-
-  document.getElementById('btnAnterior').addEventListener('click', () => {
-    if (paginaAtual > 1) {
-      paginaAtual--;
-      carregarMangas(paginaAtual);
-    }
-  });
-});
-
-function buscarMangas(genero) {
-  generoSelecionado = genero;
-  paginaAtual = 1;
-  carregarMangas(paginaAtual);
 }
 
+// Función principal para cargar mangás
 async function carregarMangas(pagina) {
-  const container = document.getElementById('anime-cards-container');
-  const loader = document.getElementById('loader');
-  container.innerHTML = '';
-  loader.style.display = 'block';
+    const container = document.getElementById('anime-cards-container');
+    const loader = document.getElementById('loader');
+    container.innerHTML = '';
+    loader.style.display = 'block';
 
-  await loadUserFavorites();
+    await loadUserFavorites();
 
-  try {
-    let url = `https://api.jikan.moe/v4/manga?page=${pagina}&limit=12&order_by=popularity`;
-    if (termoBusca) {
-      url = `https://api.jikan.moe/v4/manga?q=${termoBusca}&page=${pagina}&limit=12`;
-    } else if (generoSelecionado) {
-      url += `&genres=${mapearGenero(generoSelecionado)}`;
-    }
-
-    const resposta = await fetch(url);
-    const dados = await resposta.json();
-
-    if (!dados.data.length) {
-      container.innerHTML = '<p class="text-center text-light">Nenhum resultado encontrado.</p>';
-      return;
-    }
-
-    dados.data.forEach(manga => {
-      const isFavorite = userFavorites.some(fav => 
-          fav.idApi === manga.mal_id.toString() && fav.tipoItem === 'manga');
-      
-      const card = document.createElement('div');
-      card.className = 'col-md-3 mb-4';
-      card.innerHTML = `
-      <div class="card bg-dark text-white h-100">
-        <img src="${manga.images.jpg.image_url}" class="card-img-top" alt="${manga.title}"
-             onerror="this.src='https://via.placeholder.com/300x450?text=Poster+Indisponível'">
-        <div class="card-body d-flex flex-column justify-content-between">
-          <div>
-            <h5 class="card-title">${manga.title}</h5>
-            <p class="card-text">Score: ${manga.score || "N/A"}</p>
-          </div>
-          <div class="d-flex flex-column gap-2 mt-3">
-            <button class="btn ${isFavorite ? 'btn-warning' : 'btn-outline-warning'} favorite-btn" 
-                    data-manga-id="${manga.mal_id}" 
-                    data-manga-title="${manga.title}">
-              <i class="fas fa-star me-2"></i> ${isFavorite ? 'Favoritado' : 'Favoritar'}
-            </button>
-            <button class="btn btn-outline-info ver-mais-btn"
-                    data-manga-id="${manga.mal_id}"
-                    data-manga-title="${manga.title}">
-              <i class="fas fa-external-link-alt me-2"></i> Ver em MyAnimeList
-            </button>
-          </div>
-        </div>
-      </div>
-      `;
-      container.appendChild(card);
-    });
-
-    document.querySelectorAll('.favorite-btn').forEach(btn => {
-      btn.addEventListener('click', async function(e) {
-        e.preventDefault();
-        const mangaId = this.getAttribute('data-manga-id');
-        const mangaTitle = this.getAttribute('data-manga-title');
-        const wasAdded = await toggleFavorite(mangaId, mangaTitle, 'manga');
+    try {
+        let url = `https://api.jikan.moe/v4/manga?page=${pagina}&limit=12&order_by=popularity`;
         
-        if (wasAdded !== null) {
-          this.classList.toggle('btn-warning', wasAdded);
-          this.classList.toggle('btn-outline-warning', !wasAdded);
-          this.innerHTML = `
-            <i class="fas fa-star me-2"></i> ${wasAdded ? 'Favoritado' : 'Favoritar'}
-          `;
+        if (termoBusca) {
+            url = `https://api.jikan.moe/v4/manga?q=${termoBusca}&page=${pagina}&limit=12`;
+        } else if (generoSelecionado) {
+            const generoId = mapearGenero(generoSelecionado);
+            if (generoId) {
+                url += `&genres=${generoId}`;
+            }
         }
-      });
+
+        const resposta = await fetch(url);
+        const dados = await resposta.json();
+
+        if (!dados.data || !dados.data.length) {
+            container.innerHTML = '<p class="text-center text-light">Nenhum resultado encontrado.</p>';
+            return;
+        }
+
+        dados.data.forEach(manga => {
+            const isFavorite = userFavorites.some(fav => 
+                fav.idApi === manga.mal_id.toString() && fav.tipoItem === 'manga');
+            
+            const card = document.createElement('div');
+            card.className = 'col-md-3 mb-4';
+            card.innerHTML = `
+                <div class="card bg-dark text-white h-100">
+                    <img src="${manga.images?.jpg?.image_url || 'https://via.placeholder.com/300x450?text=Poster+Indisponível'}" 
+                         class="card-img-top" alt="${manga.title}">
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <div>
+                            <h5 class="card-title">${manga.title}</h5>
+                            <p class="card-text">Score: ${manga.score || "N/A"}</p>
+                        </div>
+                        <div class="d-flex flex-column gap-2 mt-3">
+                            <button class="btn ${isFavorite ? 'btn-warning' : 'btn-outline-warning'} favorite-btn" 
+                                    data-manga-id="${manga.mal_id}" 
+                                    data-manga-title="${manga.title}">
+                                <i class="fas fa-star me-2"></i> ${isFavorite ? 'Favoritado' : 'Favoritar'}
+                            </button>
+                            <button class="btn btn-outline-info ver-mais-btn"
+                                    data-manga-id="${manga.mal_id}">
+                                <i class="fas fa-external-link-alt me-2"></i> Ver em MyAnimeList
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+
+        // Event listeners para botones de favoritos
+        document.querySelectorAll('.favorite-btn').forEach(btn => {
+            btn.addEventListener('click', async function(e) {
+                e.preventDefault();
+                const mangaId = this.getAttribute('data-manga-id');
+                const mangaTitle = this.getAttribute('data-manga-title');
+                const wasAdded = await toggleFavorite(mangaId, mangaTitle, 'manga');
+                
+                if (wasAdded !== null) {
+                    this.classList.toggle('btn-warning', wasAdded);
+                    this.classList.toggle('btn-outline-warning', !wasAdded);
+                    this.innerHTML = `
+                        <i class="fas fa-star me-2"></i> ${wasAdded ? 'Favoritado' : 'Favoritar'}
+                    `;
+                }
+            });
+        });
+
+        // Event listeners para botones "Ver más"
+        document.querySelectorAll('.ver-mais-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const mangaId = this.getAttribute('data-manga-id');
+                window.open(`https://myanimelist.net/manga/${mangaId}`, '_blank');
+            });
+        });
+
+    } catch (erro) {
+        console.error('Erro:', erro);
+        container.innerHTML = '<p class="text-center text-danger">Erro ao carregar os dados.</p>';
+    } finally {
+        loader.style.display = 'none';
+    }
+}
+
+// Event listeners cuando el DOM está cargado
+document.addEventListener('DOMContentLoaded', () => {
+    loadUserFavorites();
+    carregarMangas(paginaAtual);
+
+    // Buscar mangás por término de búsqueda
+    document.getElementById('form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        termoBusca = document.getElementById('search').value.trim();
+        paginaAtual = 1;
+        generoSelecionado = "";
+        carregarMangas(paginaAtual);
     });
 
-    document.querySelectorAll('.ver-mais-btn').forEach(btn => {
-      btn.addEventListener('click', function() {
-        const mangaId = this.getAttribute('data-manga-id');
-        window.open(`https://myanimelist.net/manga/${mangaId}`, '_blank');
-      });
+    // Paginación
+    document.getElementById('btnProxima').addEventListener('click', () => {
+        paginaAtual++;
+        carregarMangas(paginaAtual);
     });
 
-  } catch (erro) {
-    console.error('Erro:', erro);
-    container.innerHTML = '<p class="text-center text-danger">Erro ao carregar os dados.</p>';
-  } finally {
-    loader.style.display = 'none';
-  }
-}
-
-// Función simplificada para redirigir a MyAnimeList
-function verMaisManga(mangaId) {
-  window.open(`https://myanimelist.net/manga/${mangaId}`, '_blank');
-}
-
-function mapearGenero(nomeGenero) {
-  const generos = {
-    shounen: 27,
-    seinen: 42,
-    yaoi: 28
-  };
-  return generos[nomeGenero.toLowerCase()] || '';
-}
+    document.getElementById('btnAnterior').addEventListener('click', () => {
+        if (paginaAtual > 1) {
+            paginaAtual--;
+            carregarMangas(paginaAtual);
+        }
+    });
+}); 
