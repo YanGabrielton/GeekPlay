@@ -1,4 +1,3 @@
-
 const API_KEY = 'api_key=5e6bffe0291551af5a19b5bb46bc276a';
 const BASE_URL = 'https://api.themoviedb.org/3';
 const API_URL = `${BASE_URL}/discover/movie?include_adult=false&include_video=true&language=pt-br&page=1&sort_by=popularity.desc&${API_KEY}`;
@@ -16,6 +15,11 @@ const btnProxima = document.getElementById('btnProxima');
 
 // Carrega os filmes iniciais
 pegarFilmes(API_URL);
+
+function buscarFilmesPorGenero(generoId) {
+    const url = `${BASE_URL}/discover/movie?${API_KEY}&with_genres=${generoId}&language=pt-br&sort_by=popularity.desc`;
+    pegarFilmes(url);
+}
 
 function pegarFilmes(url) {
     fetch(url)
@@ -81,10 +85,9 @@ async function mostrarFilmes(data) {
                             </svg>
                             ${isFavorite ? 'Remover' : 'Favoritar'}
                         </button>
-                    <button class="btn-trailer" onclick="mostrarTrailer(${id})">
-    Assistir trailer
-</button>
-
+                        <button class="btn-trailer" onclick="mostrarTrailer(${id})">
+                            Assistir trailer
+                        </button>
                     </div>
                 </div>
             </div>
@@ -131,8 +134,8 @@ async function toggleFavorite(itemId, itemTitle, tipoItem = 'filme') {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                idApi: itemId.toString(),    // ← camelCase
-                tipoItem: tipoItem,          // ← camelCase
+                idApi: itemId.toString(),
+                tipoItem: tipoItem,
                 titulo: itemTitle
             })
         });
@@ -164,6 +167,7 @@ async function toggleFavorite(itemId, itemTitle, tipoItem = 'filme') {
         return null;
     }
 }
+
 function getColorClass(vote) {
     if (vote >= 7) return 'bg-success text-white';
     if (vote >= 5) return 'bg-warning text-dark';
@@ -174,8 +178,8 @@ function showToast(message, isSuccess) {
     const toast = document.createElement('div');
     toast.className = `position-fixed bottom-0 end-0 p-3 ${isSuccess ? 'bg-success' : 'bg-danger'}`;
     toast.innerHTML = `
-        <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-body ${isSuccess ? 'bg-success' : 'bg-danger'} text-white rounded">
+        <div class="toast show">
+            <div class="toast-body text-white">
                 ${message}
             </div>
         </div>
@@ -269,5 +273,4 @@ async function mostrarTrailer(movieId) {
       console.error('Erro ao buscar trailer ou plataformas:', error);
       alert('Erro ao carregar trailer ou plataformas de streaming.');
     }
-  }
-  
+}
