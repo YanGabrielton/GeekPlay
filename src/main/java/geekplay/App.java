@@ -189,7 +189,7 @@ public class App {
             // Gera token com validade de 1 hora
             String token = JwtUtil.generateTokenRecovery(usuario.getEmail(), 3600000);
             System.out.println("Token gerado: " + token);
-
+            
             String linkConfirmacao = "http://localhost:7070/redefinir-senha?token=" + token;
             EmailUtil.enviarEmail(email, "Confirme a Solicitação de Recuperação de Senha",
                     "Olá, " + usuario.getNome() + ",\n\n" +
