@@ -13,6 +13,8 @@ import geekplay.util.HibernateUtil;
 import geekplay.util.JwtUtil;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
+import io.javalin.http.staticfiles.Location;
+
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.List;
@@ -23,16 +25,34 @@ public class App {
         HibernateUtil.getSessionFactory();
 
         Javalin app = Javalin.create(config -> {
+
+                config.staticFiles.add(staticFileConfig -> {
+        staticFileConfig.hostedPath = "/";
+        staticFileConfig.directory = "public";
+        staticFileConfig.precompress = false;
+        staticFileConfig.location = Location.CLASSPATH; // obrigatório
+    });
+
             config.bundledPlugins.enableDevLogging();
             config.bundledPlugins.enableCors(cors -> {
                 cors.addRule(rule -> {
                     rule.allowHost("http://localhost:3000");
-                    rule.allowHost("http://127.0.0.1:5500");
+                    rule.allowHost("http://127.0.0.1:5501");
                 });
             });
         }).start(7070);
 
-        app.get("/", ctx -> ctx.result("API GeekPlay operacional rodando"));
+        //Rotas de Navegação
+        app.get("/pg-login", ctx -> ctx.redirect("/pages/Login.html"));
+        app.get("/pg-index", ctx -> ctx.redirect("/index.html"));
+        app.get("/pg-mangas", ctx -> ctx.redirect("/pages/Mangas.html"));
+        app.get("/pg-animes", ctx -> ctx.redirect("/pages/Anime.html"));
+        app.get("/pg-filmes", ctx -> ctx.redirect("/pages/Filmes.html"));
+        app.get("/pg-sobre", ctx -> ctx.redirect("/pages/Sobre.html"));
+    
+        app.get("/pg-perfil", ctx -> ctx.redirect("/pages/Perfil.html"));
+        app.get("/pg-favoritos", ctx -> ctx.redirect("/pages/Favoritos.html"));
+        app.get("/pg-recuperar-senha", ctx -> ctx.redirect("/pages/redefinir-senha.html"));
 
         UsuarioDao usuarioDao = new UsuarioDao();
         FavoritoDao favoritoDao = new FavoritoDao();
@@ -59,8 +79,13 @@ public class App {
 
         app.before(ctx -> {
             // Lista de rotas que não requerem autenticação
-                List<String> rotasPublicas = List.of("/", "/login", "/usuarios", "/solicitar-recuperacao", "/redefinir-senha");
+                List<String> rotasPublicas = List.of("/", "/login", "/usuarios", "/solicitar-recuperacao", "/redefinir-senha","/pg-login", "/favoritos/verificar/{idApi}", "/favoritos");
 
+                    
+// Libera arquivos estáticos como .css, .js, .png, etc
+if (ctx.path().startsWith("/assets") || ctx.path().endsWith(".css") || ctx.path().endsWith(".js") || ctx.path().endsWith(".png") || ctx.path().endsWith(".jpg") || ctx.path().endsWith(".html")) {
+    return;
+}
           if (rotasPublicas.contains(ctx.path())) {
         return; // Não aplica autenticação
     }
@@ -159,6 +184,7 @@ public class App {
                                 "email", usuario.getEmail()
 
                         )));
+                        
             } else {
                 ctx.status(401).json(Map.of(
                         "success", false,
@@ -190,7 +216,7 @@ public class App {
             String token = JwtUtil.generateTokenRecovery(usuario.getEmail(), 3600000);
             System.out.println("Token gerado: " + token);
             
-            String linkConfirmacao = "http://localhost:7070/redefinir-senha?token=" + token;
+            String linkConfirmacao = "http://localhost:7070/pg-recuperar-senha?token=" + token;
             EmailUtil.enviarEmail(email, "Confirme a Solicitação de Recuperação de Senha",
                     "Olá, " + usuario.getNome() + ",\n\n" +
                             "Você solicitou a recuperação de sua senha. Clique no link abaixo para confirmar:\n\n" +

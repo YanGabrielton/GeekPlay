@@ -13,6 +13,7 @@ public class EmailUtil {
     private static final Logger logger = LoggerFactory.getLogger(EmailUtil.class);
 
     public static void enviarEmail(String destinatario, String assunto, String corpo) {
+        logger.info("Enviando e-mail para: {}", destinatario);
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.port", "587");
