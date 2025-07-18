@@ -43,8 +43,16 @@ public class App {
         }).start(7070);
         // Rotas de Navegação
         app.get("/pg-login", ctx -> ctx.redirect("/pages/login.html"));
-          app.get("/pg-recuperar-senha", ctx -> ctx.redirect("/pages/redefinir-senha.html"));
-        app.get("/", ctx -> ctx.result("API GeekPlay operacional rodando"));
+        app.get("/pg-recuperar-senha", ctx -> ctx.redirect("/pages/redefinir-senha.html"));
+        app.get("/pg-index", ctx -> ctx.redirect("/index.html"));
+        app.get("/pg-mangas", ctx -> ctx.redirect("/pages/Mangas.html"));
+        app.get("/pg-animes", ctx -> ctx.redirect("/pages/Anime.html"));
+        app.get("/pg-filmes", ctx -> ctx.redirect("/pages/Filmes.html"));
+        app.get("/pg-sobre", ctx -> ctx.redirect("/pages/Sobre.html"));
+        app.get("/pg-perfil", ctx -> ctx.redirect("/pages/Perfil.html"));
+        app.get("/pg-favoritos", ctx -> ctx.redirect("/pages/Favoritos.html"));
+   
+
 
         UsuarioDao usuarioDao = new UsuarioDao();
         FavoritoDao favoritoDao = new FavoritoDao();
@@ -72,9 +80,9 @@ public class App {
 
         app.before(ctx -> {
             // Lista de rotas que não requerem autenticação
-                List<String> rotasPublicas = List.of("/", "/login", "/usuarios", "/solicitar-recuperacao", "/redefinir-senha");
+                List<String> rotasPublicas = List.of("/", "/login", "/usuarios", "/solicitar-recuperacao", "/redefinir-senha","/pg-login");
 
-                // Libera arquivos estáticos como .css, .js, .png, etc
+               // Libera arquivos estáticos como .css, .js, .png, etc
 if (ctx.path().startsWith("/assets") || ctx.path().endsWith(".css") || ctx.path().endsWith(".js") || ctx.path().endsWith(".png") || ctx.path().endsWith(".jpg") || ctx.path().endsWith(".html")) {
     return;
 }

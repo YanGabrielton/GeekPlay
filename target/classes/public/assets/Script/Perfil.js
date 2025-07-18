@@ -75,6 +75,7 @@ async function alterarSenha() {
     const novaSenha = document.getElementById('novaSenha').value;
     const confirmarSenha = document.getElementById('confirmarSenha').value;
     const mensagem = document.getElementById('mensagem');
+    const mensagemDiv = document.getElementById('mensagem');
 
     // Resetar mensagem
     mensagem.textContent = '';
@@ -120,12 +121,24 @@ async function alterarSenha() {
 
         const data = await response.json();
         addDebugLog('Resposta do servidor:', data);
+    
 
         if (data.success) {
             // Limpa os campos após sucesso
             document.getElementById('senhaAtual').value = '';
             document.getElementById('novaSenha').value = '';
             document.getElementById('confirmarSenha').value = '';
+               
+                mensagemDiv.innerHTML = `
+                    <div class="alert alert-success">
+                        <i class="fas fa-check-circle me-2"></i>
+                        ${data.message} Redirecionando para login...
+                    </div>
+                `;
+                
+                setTimeout(() => {
+                    window.location.href = '/pg-login';
+                }, 2000);
             
             // Mostra mensagem de sucesso
             mensagem.textContent = "Senha alterada com sucesso!";
@@ -141,6 +154,14 @@ async function alterarSenha() {
             mensagem.textContent = data.message || "Erro ao alterar senha";
             mensagem.className = "alert alert-danger";
             addDebugLog('Erro ao alterar senha:', data.message);
+         
+                mensagemDiv.innerHTML = `
+                    <div class="alert alert-danger">
+                        <i class="fas fa-exclamation-circle me-2"></i>
+                        ${data.message}
+                    </div>
+                `;
+          
         }
     } catch (error) {
         mensagem.textContent = "Erro na comunicação com o servidor";
