@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 import java.util.List;
 
 public class App {
+    
     public static void main(String[] args) {
         // Inicializa Hibernate com detecção automática
         HibernateUtil.getSessionFactory();
@@ -41,7 +42,7 @@ public class App {
          
         }).start(7070);
         // Rotas de Navegação
-        app.get("/pages/login.html", ctx -> ctx.redirect("/pages/login.html"));
+        app.get("/pg-login", ctx -> ctx.redirect("/pages/login.html"));
           app.get("/pg-recuperar-senha", ctx -> ctx.redirect("/pages/redefinir-senha.html"));
         app.get("/", ctx -> ctx.result("API GeekPlay operacional rodando"));
 
@@ -210,7 +211,7 @@ if (ctx.path().startsWith("/assets") || ctx.path().endsWith(".css") || ctx.path(
             String token = JwtUtil.generateTokenRecovery(usuario.getEmail(), 3600000);
             System.out.println("Token gerado: " + token);
             
-            String linkConfirmacao = "http://localhost:7070/pg-recuperar-senha?token=" + token;
+            String linkConfirmacao = "http://localhost:7070/pages/redefinir-senha.html?token=" + token;
             EmailUtil.enviarEmail(email, "Confirme a Solicitação de Recuperação de Senha",
                     "Olá, " + usuario.getNome() + ",\n\n" +
                             "Você solicitou a recuperação de sua senha. Clique no link abaixo para confirmar:\n\n" +
@@ -237,7 +238,7 @@ if (ctx.path().startsWith("/assets") || ctx.path().endsWith(".css") || ctx.path(
 private static void redefinirSenha(Context ctx, UsuarioDao dao) {
     try {
         String token = ctx.queryParam("token");
-        
+        System.out.println("[INFO] Token Encontrado: " + token);
         if (token == null || token.isEmpty()) {
             ctx.status(401).json(Map.of("success", false, "message", "Token não fornecido"));
             return;
@@ -328,7 +329,7 @@ private static void redefinirSenha(Context ctx, UsuarioDao dao) {
 
             String token = ctx.header("Authorization").substring(7);
             String email = JwtUtil.getEmailFromToken(token);
-
+            System.out.println("Senha Alterada com Sucesso: " + novaSenha);
             if (senhaAtual == null || novaSenha == null) {
                 ctx.status(400).json(Map.of(
                         "success", false,

@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 `;
                 
                 setTimeout(() => {
-                    window.location.href = '/pages/login.html';
+                    window.location.href = '/pg-login';
                 }, 2000);
             } else {
                 mensagemDiv.innerHTML = `
