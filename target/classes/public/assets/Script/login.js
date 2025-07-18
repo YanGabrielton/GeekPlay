@@ -141,7 +141,7 @@ async function redefinirSenha() {
     }
 
     try {
-        const response = await fetch("http://localhost:7070/redefinir-senha", {
+        const response = await fetch("http://localhost:7070/pages/redefinir-senha.html", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({

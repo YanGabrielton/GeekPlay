@@ -5,6 +5,7 @@ import geekplay.dao.UsuarioDao;
 import geekplay.dto.AdicionarFavoritoDTO;
 import geekplay.dto.AlterarSenhaDTO;
 import geekplay.dto.EmailDTO;
+import geekplay.dto.RedefinirSenhaDTO;
 import geekplay.dto.VerificarLoginDTO;
 import geekplay.model.Favorito;
 import geekplay.model.Usuario;
@@ -23,20 +24,30 @@ public class App {
         HibernateUtil.getSessionFactory();
 
         Javalin app = Javalin.create(config -> {
+
+          
+    config.staticFiles.add(staticFileConfig -> {
+        staticFileConfig.hostedPath = "/";
+        staticFileConfig.directory = "public";
+        staticFileConfig.precompress = false;
+    });
             config.bundledPlugins.enableDevLogging();
             config.bundledPlugins.enableCors(cors -> {
                 cors.addRule(rule -> {
                     rule.allowHost("http://localhost:3000");
-                    rule.allowHost("http://127.0.0.1:5500");
+                    rule.allowHost("http://127.0.0.1:5501");
                 });
             });
+         
         }).start(7070);
-
+        // Rotas de Navegação
+        app.get("/pages/login.html", ctx -> ctx.redirect("/pages/login.html"));
+          app.get("/pg-recuperar-senha", ctx -> ctx.redirect("/pages/redefinir-senha.html"));
         app.get("/", ctx -> ctx.result("API GeekPlay operacional rodando"));
 
         UsuarioDao usuarioDao = new UsuarioDao();
         FavoritoDao favoritoDao = new FavoritoDao();
-
+        
         // Rotas CRUD
         app.post("/usuarios", ctx -> criarUsuario(ctx, usuarioDao));
         app.get("/usuarios", ctx -> listarUsuarios(ctx, usuarioDao));
@@ -45,9 +56,10 @@ public class App {
         app.post("/login", ctx -> verificarLogin(ctx, usuarioDao));
         app.post("/solicitar-recuperacao", ctx -> solicitarRecuperacaoSenha(ctx, usuarioDao));
         app.post("/redefinir-senha", ctx -> redefinirSenha(ctx, usuarioDao));
+        
         app.get("/perfil", ctx -> obterPerfil(ctx, usuarioDao));
         app.post("/alterar-senha", ctx -> alterarSenha(ctx, usuarioDao));
-
+        app.post("/gerar-senha-aleatoria", ctx -> {String senha = gerarSenhaAleatoria();ctx.json(Map.of("success", true, "senha", senha));});
         app.post("/favoritos", ctx -> adicionarFavorito(ctx, favoritoDao));
         app.get("/favoritos", ctx -> listarFavoritos(ctx, favoritoDao));
         app.delete("/favoritos/{idApi}", ctx -> removerFavorito(ctx, favoritoDao));
@@ -61,6 +73,10 @@ public class App {
             // Lista de rotas que não requerem autenticação
                 List<String> rotasPublicas = List.of("/", "/login", "/usuarios", "/solicitar-recuperacao", "/redefinir-senha");
 
+                // Libera arquivos estáticos como .css, .js, .png, etc
+if (ctx.path().startsWith("/assets") || ctx.path().endsWith(".css") || ctx.path().endsWith(".js") || ctx.path().endsWith(".png") || ctx.path().endsWith(".jpg") || ctx.path().endsWith(".html")) {
+    return;
+}
           if (rotasPublicas.contains(ctx.path())) {
         return; // Não aplica autenticação
     }
@@ -169,6 +185,10 @@ public class App {
         }
 
     }
+    public static void voidTestarMudarSenha(Context ctx, UsuarioDao dao){
+        ctx.redirect("/pages/redefinir-senha.html");
+
+    };
 
     private static void solicitarRecuperacaoSenha(Context ctx, UsuarioDao dao) {
         try {
@@ -190,7 +210,7 @@ public class App {
             String token = JwtUtil.generateTokenRecovery(usuario.getEmail(), 3600000);
             System.out.println("Token gerado: " + token);
             
-            String linkConfirmacao = "http://localhost:7070/redefinir-senha?token=" + token;
+            String linkConfirmacao = "http://localhost:7070/pg-recuperar-senha?token=" + token;
             EmailUtil.enviarEmail(email, "Confirme a Solicitação de Recuperação de Senha",
                     "Olá, " + usuario.getNome() + ",\n\n" +
                             "Você solicitou a recuperação de sua senha. Clique no link abaixo para confirmar:\n\n" +
@@ -213,49 +233,61 @@ public class App {
         }
     }
 
-    private static void redefinirSenha(Context ctx, UsuarioDao dao) {
-        try {
-            String token = ctx.queryParam("token");
-
-            if (token == null || !JwtUtil.validateToken(token)) {
-                ctx.status(401).json(Map.of(
-                        "success", false,
-                        "message", "Token inválido ou expirado"));
-                return;
-            }
-
-            String email = JwtUtil.getEmailFromToken(token);
-            Usuario usuario = dao.buscarPorEmail(email);
-
-            if (usuario == null) {
-                ctx.status(404).json(Map.of(
-                        "success", false,
-                        "message", "Usuário não encontrado"));
-                return;
-            }
-
-            String novaSenha = gerarSenhaAleatoria();
-
-            usuario.setSenha(novaSenha);
-            dao.salvar(usuario);
-
-            EmailUtil.enviarEmail(email, "Senha Redefinida com Sucesso",
-                    "Olá " + usuario.getNome() + ",\n\n" +
-                            "Sua senha foi redefinida.\n\n" +
-                            "Nova senha: " + novaSenha + "\n\n" +
-                            "Recomendamos que você altere essa senha após fazer login.");
-
-            ctx.json(Map.of(
-                    "success", true,
-                    "message", "Senha redefinida e enviada ao e-mail"));
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            ctx.status(500).json(Map.of(
-                    "success", false,
-                    "message", "Erro ao redefinir senha"));
+   // Método redefinirSenha atualizado
+private static void redefinirSenha(Context ctx, UsuarioDao dao) {
+    try {
+        String token = ctx.queryParam("token");
+        
+        if (token == null || token.isEmpty()) {
+            ctx.status(401).json(Map.of("success", false, "message", "Token não fornecido"));
+            return;
         }
+
+        String email = JwtUtil.getEmailFromToken(token);
+        System.out.println("[REDEFINIR SENHA] Usuário: " + email + " | Token: " + token);
+
+        if (!JwtUtil.validateToken(token)) {
+            ctx.status(401).json(Map.of("success", false, "message", "Token inválido ou expirado"));
+            return;
+        }
+
+        RedefinirSenhaDTO dto = ctx.bodyAsClass(RedefinirSenhaDTO.class);
+        String novaSenha = dto.getNovaSenha();
+        String confirmarSenha = dto.getConfirmarSenha();
+
+        if (novaSenha == null || novaSenha.isEmpty() || confirmarSenha == null || confirmarSenha.isEmpty()) {
+            ctx.status(400).json(Map.of("success", false, "message", "Preencha ambos os campos de senha"));
+            return;
+        }
+
+        if (!novaSenha.equals(confirmarSenha)) {
+            ctx.status(400).json(Map.of("success", false, "message", "As senhas não coincidem"));
+            return;
+        }
+
+        if (novaSenha.length() < 6) {
+            ctx.status(400).json(Map.of("success", false, "message", "A senha deve ter no mínimo 6 caracteres"));
+            return;
+        }
+
+        Usuario usuario = dao.buscarPorEmail(email);
+        if (usuario == null) {
+            ctx.status(404).json(Map.of("success", false, "message", "Usuário não encontrado"));
+            return;
+        }
+
+        dao.atualizarSenha(email, novaSenha);
+        System.out.println("[SENHA ALTERADA] Para: " + email + " | Nova senha: " + novaSenha);
+
+        ctx.json(Map.of("success", true, "message", "Senha redefinida com sucesso"));
+
+    } catch (Exception e) {
+        System.err.println("[ERRO CRÍTICO] " + e.getMessage());
+        e.printStackTrace();
+        ctx.status(500).json(Map.of("success", false, "message", "Erro interno ao redefinir senha"));
     }
+}
+
 
     private static String gerarSenhaAleatoria() {
         String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
