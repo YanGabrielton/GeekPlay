@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     // Verifica se o usuário está logado
     const token = localStorage.getItem('jwtToken');
     if (!token) {
-        window.location.href = './Login.html';
+        window.location.href = '/pg-login';
         return;
     }
 
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     function handleAuthError() {
         localStorage.removeItem('jwtToken');
         alert('Sessão expirada. Por favor, faça login novamente.');
-        window.location.href = './Login.html';
+        window.location.href = '/pg-login';
     }
 
     // Carrega os favoritos

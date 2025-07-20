@@ -47,7 +47,7 @@ async function fazerLogin() {
         localStorage.setItem('jwtToken', data.token);
             localStorage.setItem('usuario', JSON.stringify(data.usuario));
             alert("Login bem-sucedido! Bem-vindo, " + data.usuario.nome);
-            window.location.href = "/src/main/resources/public/index.html";
+            window.location.href = "/pg-index";
         } else {
             alert("Erro: " + data.message);
         }
@@ -83,7 +83,7 @@ async function fazerRegistro() {
 
         if (response.ok && data.success) {
             alert("Registro bem-sucedido! Bem-vindo, " + data.usuario.nome);
-            window.location.href = "/src/main/resources/public/index.html";
+            window.location.href = "/pg-index";
         } else {
             alert("Erro: " + (data.message || "Erro desconhecido ao registrar."));
         }
@@ -154,7 +154,7 @@ async function redefinirSenha() {
 
         if (response.ok && data.success) {
             alert("Senha redefinida com sucesso!");
-            window.location.href = "/src/main/resources/public/pages/Login.html";
+            window.location.href = "/pg-login";
         } else {
             alert("Erro: " + (data.message || "Não foi possível redefinir a senha."));
         }
@@ -190,7 +190,8 @@ async function apiRequest(url, method = 'GET', body = null) {
 
 function logout() {
     localStorage.removeItem('jwtToken');
-    window.location.href = "/src/main/resources/public/pages/Login.html";
+    window.location.href = "/pg-login";
+    alert("Você foi desconectado com sucesso.");
 }
 
 

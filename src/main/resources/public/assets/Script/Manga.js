@@ -30,7 +30,7 @@ async function toggleFavorite(itemId, itemTitle, tipoItem = 'anime') {
         const token = localStorage.getItem('jwtToken');
         if (!token) {
             alert('Você precisa estar logado para favoritar itens');
-            window.location.href = './Login.html';
+            window.location.href = '/pg-login';
             return null;
         }
 

@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     if (!token) {
         addDebugLog('Token JWT não encontrado, redirecionando para login...');
-        window.location.href = '/login.html';
+        window.location.href = '/pg-login';
         return;
     }
 
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     } catch (error) {
         addDebugLog('Erro ao carregar perfil:', error.message);
         alert('Erro ao carregar perfil: ' + error.message);
-        window.location.href = '/login.html';
+        window.location.href = '/pg-login';
     }
 });
 
@@ -174,5 +174,5 @@ async function alterarSenha() {
 function logout() {
     addDebugLog('Iniciando logout...');
     localStorage.removeItem('jwtToken');
-    window.location.href = '/src/main/resources/public/pages/Login.html';
+    window.location.href = '/pg-login';
 }

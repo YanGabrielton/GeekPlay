@@ -14,6 +14,8 @@ import geekplay.util.HibernateUtil;
 import geekplay.util.JwtUtil;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
+import io.javalin.http.staticfiles.Location;
+
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.List;
@@ -31,6 +33,7 @@ public class App {
         staticFileConfig.hostedPath = "/";
         staticFileConfig.directory = "public";
         staticFileConfig.precompress = false;
+        staticFileConfig.location = Location.CLASSPATH; // obrigatório
     });
             config.bundledPlugins.enableDevLogging();
             config.bundledPlugins.enableCors(cors -> {
@@ -42,7 +45,7 @@ public class App {
          
         }).start(7070);
         // Rotas de Navegação
-        app.get("/pg-login", ctx -> ctx.redirect("/pages/login.html"));
+        app.get("/pg-login", ctx -> ctx.redirect("/pages/Login.html"));
         app.get("/pg-recuperar-senha", ctx -> ctx.redirect("/pages/redefinir-senha.html"));
         app.get("/pg-index", ctx -> ctx.redirect("/index.html"));
         app.get("/pg-mangas", ctx -> ctx.redirect("/pages/Mangas.html"));
@@ -50,7 +53,8 @@ public class App {
         app.get("/pg-filmes", ctx -> ctx.redirect("/pages/Filmes.html"));
         app.get("/pg-sobre", ctx -> ctx.redirect("/pages/Sobre.html"));
         app.get("/pg-perfil", ctx -> ctx.redirect("/pages/Perfil.html"));
-        app.get("/pg-favoritos", ctx -> ctx.redirect("/pages/Favoritos.html"));
+        app.get("/pg-doacao", ctx -> ctx.redirect("/pages/Doacoes.html"));
+        app.get("/pg-favoritos", ctx -> ctx.redirect("/pages/favoritos.html"));
    
 
 
@@ -471,53 +475,53 @@ private static void adicionarFavorito(Context ctx, FavoritoDao dao) {
         ));
     }
 }
-    private static void removerFavorito(Context ctx, FavoritoDao dao) {
-        try {
-            String token = ctx.header("Authorization");
-            if (token == null || !token.startsWith("Bearer ")) {
-                ctx.status(401).json(Map.of("success", false, "message", "Token não fornecido"));
-                return;
-            }
-            
-            // ✅ CORRETO
-            token = token.substring(7).trim();
-            String email = JwtUtil.getEmailFromToken(token);
-            String idApi = ctx.pathParam("idApi");
-            String tipoItem = ctx.queryParam("tipo_item");
-            
-            if (tipoItem == null || tipoItem.isEmpty()) {
-                ctx.status(400).json(Map.of("success", false, "message", "Parâmetro tipo_item é obrigatório"));
-                return;
-            }
-            
-            UsuarioDao usuarioDao = new UsuarioDao();
-            Usuario usuario = usuarioDao.buscarPorEmail(email);
-            
-            if (usuario == null) {
-                ctx.status(404).json(Map.of("success", false, "message", "Usuário não encontrado"));
-                return;
-            }
-            
-            boolean removido = dao.removerFavorito(usuario.getId(), idApi, tipoItem);
-            
-            if (removido) {
-                ctx.json(Map.of(
-                    "success", true,
-                    "message", "Item removido dos favoritos"
-                ));
-            } else {
-                ctx.status(404).json(Map.of(
-                    "success", false,
-                    "message", "Favorito não encontrado"
-                ));
-            }
-        } catch (Exception e) {
-            ctx.status(500).json(Map.of(
+   private static void removerFavorito(Context ctx, FavoritoDao dao) {
+    try {
+        String token = ctx.header("Authorization");
+        if (token == null || !token.startsWith("Bearer ")) {
+            ctx.status(401).json(Map.of("success", false, "message", "Token não fornecido"));
+            return;
+        }
+
+        token = token.substring(7).trim();
+        String email = JwtUtil.getEmailFromToken(token);
+        String idApi = ctx.pathParam("idApi");
+        String tipoItem = ctx.queryParam("tipo_item");
+
+        if (tipoItem == null || tipoItem.isEmpty()) {
+            ctx.status(400).json(Map.of("success", false, "message", "Parâmetro tipo_item é obrigatório"));
+            return;
+        }
+
+        UsuarioDao usuarioDao = new UsuarioDao();
+        Usuario usuario = usuarioDao.buscarPorEmail(email);
+
+        if (usuario == null) {
+            ctx.status(404).json(Map.of("success", false, "message", "Usuário não encontrado"));
+            return;
+        }
+
+        boolean removido = dao.removerFavorito(usuario.getId(), idApi, tipoItem);
+
+        if (removido) {
+            ctx.status(200).json(Map.of( // ✅ Corrigido aqui
+                "success", true,
+                "message", "Item removido dos favoritos"
+            ));
+        } else {
+            ctx.status(404).json(Map.of(
                 "success", false,
-                "message", "Erro ao remover favorito: " + e.getMessage()
+                "message", "Favorito não encontrado"
             ));
         }
+    } catch (Exception e) {
+        ctx.status(500).json(Map.of(
+            "success", false,
+            "message", "Erro ao remover favorito: " + e.getMessage()
+        ));
     }
+}
+
     
    private static void verificarFavorito(Context ctx, FavoritoDao dao) {
     try {
