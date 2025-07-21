@@ -61,9 +61,12 @@ async function fazerRegistro() {
     const nome = document.getElementById("registerNome").value.trim();
     const email = document.getElementById("email1").value.trim();
     const senha = document.getElementById("password1").value.trim();
+    const mensagem = document.getElementById("mensagem"); // Corrigido
 
+    // Validação de campos obrigatórios
     if (!nome || !email || !senha) {
-        alert("Por favor, preencha todos os campos.");
+        mensagem.textContent = "Por favor, preencha todos os campos.";
+        mensagem.className = "mensagem alert alert-warning mt-3 text-center";
         return;
     }
 
@@ -71,36 +74,44 @@ async function fazerRegistro() {
         const response = await fetch("http://localhost:7070/usuarios", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            // mesmo padrão do fazerLogin:
-            body: JSON.stringify({
-                nome: document.getElementById("registerNome").value,
-                email: document.getElementById("email1").value,
-                senha: document.getElementById("password1").value
-            })
+            body: JSON.stringify({ nome, email, senha })
         });
 
         const data = await response.json();
 
-
-        if (response.ok && data.success && senha.length >= 6) {
-             localStorage.setItem('usuario', JSON.stringify(data.usuario));
+        if (response.ok && data.success) {
+            mensagem.textContent = ""; // limpa mensagens anteriores
+            alert("Registro bem-sucedido! seja bem-vindo, " + data.usuario.nome);
+            localStorage.setItem('usuario', JSON.stringify(data.usuario));
             localStorage.setItem('jwtToken', data.token);
-            alert("Registro bem-sucedido! Bem-vindo, " + data.usuario.nome);
-            
             window.location.href = "/pg-index";
         } else {
-            
-            mensagem.textContent = "A senha deve ter pelo menos 6 caracteres";
-            mensagem.className = "alert alert-danger";
-            addDebugLog('Validação falhou: Senha muito curta');
-            return;
+            // Mensagens de erro específicas do back-end
+            if (data.message) {
+                mensagem.textContent = data.message;
+
+                if (data.message.includes("senha")) {
+                    mensagem.className = "mensagem alert alert-danger mt-3 text-center";
+                } else if (data.message.includes("Nome")) {
+                    mensagem.className = "mensagem alert alert-warning mt-3 text-center";
+                } else if (data.message.includes("E-mail")) {
+                    mensagem.className = "mensagem alert alert-warning mt-3 text-center";
+                } else {
+                    mensagem.className = "mensagem alert alert-danger mt-3 text-center";
+                }
+            } else {
+                mensagem.textContent = "Erro desconhecido ao registrar.";
+                mensagem.className = "mensagem alert alert-danger mt-3 text-center";
+            }
         }
 
     } catch (error) {
         console.error("Erro durante o registro:", error);
-        
+        mensagem.textContent = "Erro de conexão com o servidor.";
+        mensagem.className = "mensagem alert alert-danger mt-3 text-center";
     }
 }
+
 
 async function solicitarRecuperacao() {
     const email = document.getElementById("emailRecuperacao").value.trim();

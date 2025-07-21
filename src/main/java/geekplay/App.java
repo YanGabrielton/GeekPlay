@@ -115,21 +115,56 @@ if (ctx.path().startsWith("/assets") || ctx.path().endsWith(".css") || ctx.path(
     }
 
     private static void criarUsuario(Context ctx, UsuarioDao dao) {
-        try {
-            Usuario usuario = ctx.bodyAsClass(Usuario.class);
-            dao.salvar(usuario);
+    try {
+        Usuario usuario = ctx.bodyAsClass(Usuario.class);
 
-            ctx.status(201).json(Map.of(
-                    "success", true,
-                    "usuario", Map.of("nome", usuario.getNome()) // o que vai retornar no login
-            ));
-        } catch (Exception e) {
-            e.printStackTrace();
+        UsuarioDao usuarioDao = new UsuarioDao();
+
+        // Verifica se o email já está cadastrado
+        if (usuarioDao.emailExiste(usuario.getEmail())) {
             ctx.status(400).json(Map.of(
-                    "success", false,
-                    "message", "Erro ao registrar: " + e.getMessage()));
+                "success", false,
+                "message", "E-mail já cadastrado."
+            ));
+            return;
         }
+
+        // Verifica se o nome de usuário já existe
+        if (usuarioDao.nomeExiste(usuario.getNome())) {
+            ctx.status(400).json(Map.of(
+                "success", false,
+                "message", "Nome de usuário já está em uso."
+            ));
+            return;
+        }
+
+        // Verifica se a senha é válida
+        if (usuario.getSenha().length() < 6) {
+            ctx.status(400).json(Map.of(
+                "success", false,
+                "message", "A senha deve ter pelo menos 6 caracteres."
+            ));
+            return;
+        }
+
+        // Salva no banco
+        dao.salvar(usuario);
+
+        // Retorna sucesso e nome
+        ctx.status(201).json(Map.of(
+            "success", true,
+            "usuario", Map.of("nome", usuario.getNome())
+        ));
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        ctx.status(500).json(Map.of(
+            "success", false,
+            "message", "Erro ao registrar: " + e.getMessage()
+        ));
     }
+}
+
 
     private static void deletarUsuario(Context ctx, UsuarioDao dao) {
         try {

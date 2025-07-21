@@ -9,34 +9,49 @@ import java.util.List;
 
 public class UsuarioDao {
     // Método para salvar um usuário
-  public void salvar(Usuario usuario) {
-    Transaction transaction = null;
-    Session session = null;
+    public void salvar(Usuario usuario) {
+        Transaction transaction = null;
+        Session session = null;
 
-    try {
-        session = HibernateUtil.getSessionFactory().openSession();
-        transaction = session.beginTransaction();
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            transaction = session.beginTransaction();
 
-        session.persist(usuario);  // salva o usuário
-        transaction.commit();      // commita com segurança
+            session.persist(usuario); // salva o usuário
+            transaction.commit(); // commita com segurança
 
-    } catch (Exception e) {
-        if (transaction != null && transaction.getStatus().canRollback()) {
-            transaction.rollback();
-        }
-        throw e; // propaga o erro corretamente
-    } finally {
-        if (session != null && session.isOpen()) {
-            session.close(); // fecha somente depois de tudo
+        } catch (Exception e) {
+            if (transaction != null && transaction.getStatus().canRollback()) {
+                transaction.rollback();
+            }
+            throw e; // propaga o erro corretamente
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close(); // fecha somente depois de tudo
+            }
         }
     }
-}
 
+    public boolean emailExiste(String email) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            return session.createQuery("from Usuario where email = :email")
+                    .setParameter("email", email)
+                    .uniqueResult() != null;
+        }
+    }
+
+    public boolean nomeExiste(String nome) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            return session.createQuery("from Usuario where nome = :nome")
+                    .setParameter("nome", nome)
+                    .uniqueResult() != null;
+        }
+    }
 
     public void deletar(int id) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction();  
+            transaction = session.beginTransaction();
             // 1. Busca o usuário pelo ID
             Usuario usuario = session.find(Usuario.class, id);
             if (usuario != null) {
@@ -52,40 +67,39 @@ public class UsuarioDao {
         }
     }
 
-
     public Usuario verificarLogin(String email, String senha) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             return session.createQuery(
-                "FROM Usuario WHERE email = :email AND senha = :senha AND status = 'A'", 
-                Usuario.class)
-                .setParameter("email", email)
-                .setParameter("senha", senha)
-                .uniqueResult();
-                
+                    "FROM Usuario WHERE email = :email AND senha = :senha AND status = 'A'",
+                    Usuario.class)
+                    .setParameter("email", email)
+                    .setParameter("senha", senha)
+                    .uniqueResult();
+
         }
     }
 
     // Método para verificar email duplicado
-public boolean existeEmail(String email) {
-    try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-        return session.createQuery(
-            "SELECT COUNT(u) > 0 FROM Usuario u WHERE email = :email", 
-            Boolean.class)
-            .setParameter("email", email)
-            .uniqueResult();
+    public boolean existeEmail(String email) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            return session.createQuery(
+                    "SELECT COUNT(u) > 0 FROM Usuario u WHERE email = :email",
+                    Boolean.class)
+                    .setParameter("email", email)
+                    .uniqueResult();
+        }
     }
-}
 
-public Usuario buscarPorEmail(String email) {
-    try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-        return session.createQuery(
-            "FROM Usuario WHERE email = :email", Usuario.class)
-            .setParameter("email", email)
-            .uniqueResult();
-    } catch (Exception e) {
-        throw new RuntimeException("Erro ao buscar usuário por email", e);
+    public Usuario buscarPorEmail(String email) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            return session.createQuery(
+                    "FROM Usuario WHERE email = :email", Usuario.class)
+                    .setParameter("email", email)
+                    .uniqueResult();
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao buscar usuário por email", e);
+        }
     }
-}
 
     public Usuario buscarPorId(int id) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -100,29 +114,29 @@ public Usuario buscarPorEmail(String email) {
     }
 
     public void atualizarSenha(String email, String novaSenha) {
-    Transaction transaction = null;
-    try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-        transaction = session.beginTransaction();
-        
-        // Busca o usuário por email
-        Usuario usuario = session.createQuery(
-            "FROM Usuario WHERE email = :email", Usuario.class)
-            .setParameter("email", email)
-            .uniqueResult();
-        
-        if (usuario != null) {
-            // Atualiza apenas a senha (em produção, criptografe antes!)
-            usuario.setSenha(novaSenha);
-            session.merge(usuario); // Usamos merge para atualização
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+
+            // Busca o usuário por email
+            Usuario usuario = session.createQuery(
+                    "FROM Usuario WHERE email = :email", Usuario.class)
+                    .setParameter("email", email)
+                    .uniqueResult();
+
+            if (usuario != null) {
+                // Atualiza apenas a senha (em produção, criptografe antes!)
+                usuario.setSenha(novaSenha);
+                session.merge(usuario); // Usamos merge para atualização
+            }
+
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            throw new RuntimeException("Erro ao atualizar senha", e);
         }
-        
-        transaction.commit();
-    } catch (Exception e) {
-        if (transaction != null) {
-            transaction.rollback();
-        }
-        throw new RuntimeException("Erro ao atualizar senha", e);
     }
-}
- 
+
 }
