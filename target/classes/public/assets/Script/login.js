@@ -41,10 +41,10 @@ async function fazerLogin() {
                 senha: document.getElementById("password").value
             })
         });
-        const data = await response.json(); 
+        const data = await response.json();
         if (data.success) {
-        
-        localStorage.setItem('jwtToken', data.token);
+
+            localStorage.setItem('jwtToken', data.token);
             localStorage.setItem('usuario', JSON.stringify(data.usuario));
             alert("Login bem-sucedido! Bem-vindo, " + data.usuario.nome);
             window.location.href = "/pg-index";
@@ -58,7 +58,7 @@ async function fazerLogin() {
 }
 
 async function fazerRegistro() {
-    const nome  = document.getElementById("registerNome").value.trim();
+    const nome = document.getElementById("registerNome").value.trim();
     const email = document.getElementById("email1").value.trim();
     const senha = document.getElementById("password1").value.trim();
 
@@ -81,16 +81,24 @@ async function fazerRegistro() {
 
         const data = await response.json();
 
-        if (response.ok && data.success) {
+
+        if (response.ok && data.success && senha.length >= 6) {
+             localStorage.setItem('usuario', JSON.stringify(data.usuario));
+            localStorage.setItem('jwtToken', data.token);
             alert("Registro bem-sucedido! Bem-vindo, " + data.usuario.nome);
+            
             window.location.href = "/pg-index";
         } else {
-            alert("Erro: " + (data.message || "Erro desconhecido ao registrar."));
+            
+            mensagem.textContent = "A senha deve ter pelo menos 6 caracteres";
+            mensagem.className = "alert alert-danger";
+            addDebugLog('Validação falhou: Senha muito curta');
+            return;
         }
 
     } catch (error) {
         console.error("Erro durante o registro:", error);
-        alert("Erro na conexão com o servidor");
+        
     }
 }
 
@@ -177,13 +185,13 @@ async function apiRequest(url, method = 'GET', body = null) {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
     };
-    
+
     const config = {
         method,
         headers,
         body: body ? JSON.stringify(body) : null
     };
-    
+
     const response = await fetch(url, config);
     return response.json();
 }

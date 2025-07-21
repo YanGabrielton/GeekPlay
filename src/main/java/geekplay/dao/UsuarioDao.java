@@ -9,17 +9,29 @@ import java.util.List;
 
 public class UsuarioDao {
     // Método para salvar um usuário
-    public void salvar(Usuario usuario) {
-        Transaction transaction = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction();
-            session.persist(usuario);
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) transaction.rollback();
-            throw e;
+  public void salvar(Usuario usuario) {
+    Transaction transaction = null;
+    Session session = null;
+
+    try {
+        session = HibernateUtil.getSessionFactory().openSession();
+        transaction = session.beginTransaction();
+
+        session.persist(usuario);  // salva o usuário
+        transaction.commit();      // commita com segurança
+
+    } catch (Exception e) {
+        if (transaction != null && transaction.getStatus().canRollback()) {
+            transaction.rollback();
+        }
+        throw e; // propaga o erro corretamente
+    } finally {
+        if (session != null && session.isOpen()) {
+            session.close(); // fecha somente depois de tudo
         }
     }
+}
+
 
     public void deletar(int id) {
         Transaction transaction = null;
