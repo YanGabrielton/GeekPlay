@@ -72,6 +72,8 @@ public class App {
         
         app.get("/perfil", ctx -> obterPerfil(ctx, usuarioDao));
         app.post("/alterar-senha", ctx -> alterarSenha(ctx, usuarioDao));
+        // app.put("/usuarios/excluir", ctx -> excluirUsuario(ctx, new UsuarioDao()));
+
         app.post("/gerar-senha-aleatoria", ctx -> {String senha = gerarSenhaAleatoria();ctx.json(Map.of("success", true, "senha", senha));});
         app.post("/favoritos", ctx -> adicionarFavorito(ctx, favoritoDao));
         app.get("/favoritos", ctx -> listarFavoritos(ctx, favoritoDao));
@@ -113,6 +115,33 @@ if (ctx.path().startsWith("/assets") || ctx.path().endsWith(".css") || ctx.path(
         });
 
     }
+//     private static void excluirUsuario(Context ctx, UsuarioDao dao) {
+//     try {
+//         String token = ctx.header("Authorization");
+
+//         if (token == null || !token.startsWith("Bearer ")) {
+//             ctx.status(401).json(Map.of("success", false, "message", "Token não fornecido"));
+//             return;
+//         }
+
+//         String email = JwtUtil.getEmailFromToken(token.substring(7));
+//         Usuario usuario = dao.buscarPorEmail(email);
+
+//         if (usuario == null) {
+//             ctx.status(404).json(Map.of("success", false, "message", "Usuário não encontrado"));
+//             return;
+//         }
+
+//         usuario.setStatus("I");
+//         dao.atualizar(usuario);
+
+//         ctx.status(200).json(Map.of("success", true, "message", "Conta desativada com sucesso"));
+//     } catch (Exception e) {
+//         e.printStackTrace();
+//         ctx.status(500).json(Map.of("success", false, "message", "Erro ao desativar conta: " + e.getMessage()));
+//     }
+// }
+
 
     private static void criarUsuario(Context ctx, UsuarioDao dao) {
     try {
