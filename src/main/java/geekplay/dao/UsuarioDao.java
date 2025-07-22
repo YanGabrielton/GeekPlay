@@ -33,20 +33,23 @@ public class UsuarioDao {
     }
 
     public boolean emailExiste(String email) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.createQuery("from Usuario where email = :email")
-                    .setParameter("email", email)
-                    .uniqueResult() != null;
-        }
+    try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        List<?> resultados = session.createQuery("from Usuario where email = :email")
+                                    .setParameter("email", email)
+                                    .getResultList();
+        return !resultados.isEmpty();
     }
+}
 
-    public boolean nomeExiste(String nome) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.createQuery("from Usuario where nome = :nome")
-                    .setParameter("nome", nome)
-                    .uniqueResult() != null;
-        }
+public boolean nomeExiste(String nome) {
+    try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        List<?> resultados = session.createQuery("from Usuario where nome = :nome")
+                                    .setParameter("nome", nome)
+                                    .getResultList();
+        return !resultados.isEmpty();
     }
+}
+
 
     public void deletar(int id) {
         Transaction transaction = null;
