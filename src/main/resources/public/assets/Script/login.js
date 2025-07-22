@@ -69,6 +69,18 @@ async function fazerRegistro() {
         mensagem.className = "mensagem alert alert-warning mt-3 text-center";
         return;
     }
+    
+    // ✅ 2. Validação de formato e domínio do e-mail
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const dominiosPermitidos = ["gmail.com", "hotmail.com", "yahoo.com", "outlook.com"];
+    const dominioEmail = email.split("@")[1];
+
+    if (!emailRegex.test(email) || !dominiosPermitidos.includes(dominioEmail)) {
+        mensagem.textContent = "Digite um e-mail válido dos domínios permitidos (gmail, hotmail, yahoo, outlook).";
+        mensagem.className = "mensagem alert alert-warning mt-3 text-center";
+        return;
+    }
+
 
     try {
         const response = await fetch("http://localhost:7070/usuarios", {
