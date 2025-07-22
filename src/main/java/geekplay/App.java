@@ -119,11 +119,12 @@ if (ctx.path().startsWith("/assets") || ctx.path().endsWith(".css") || ctx.path(
         Usuario usuario = ctx.bodyAsClass(Usuario.class);
 
         UsuarioDao usuarioDao = new UsuarioDao();
-
+String token = JwtUtil.generateToken(usuario.getEmail());
         // Verifica se o email já está cadastrado
         if (usuarioDao.emailExiste(usuario.getEmail())) {
             ctx.status(400).json(Map.of(
                 "success", false,
+                
                 "message", "E-mail já cadastrado."
             ));
             return;
@@ -153,6 +154,7 @@ if (ctx.path().startsWith("/assets") || ctx.path().endsWith(".css") || ctx.path(
         // Retorna sucesso e nome
         ctx.status(201).json(Map.of(
             "success", true,
+            "token",token,
             "usuario", Map.of("nome", usuario.getNome())
         ));
 
