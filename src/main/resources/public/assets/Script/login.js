@@ -21,41 +21,49 @@ registroBotao.addEventListener('click', () => {
 loginBotao.addEventListener('click', () => {
     container.classList.remove("active");
 });
-
-// Função de login melhorada
 async function fazerLogin() {
     const email = document.getElementById("email").value.trim();
     const senha = document.getElementById("password").value.trim();
+    const mensagem = document.getElementById("mensagemLogin");
 
-    // Validação de campos vazios
     if (!email || !senha) {
-        alert("Por favor, preencha todos os campos.");
+        mensagem.textContent = "Por favor, preencha todos os campos.";
+        mensagem.className = "mensagem alert alert-warning mt-3 text-center";
         return;
     }
+
     try {
         const response = await fetch("http://localhost:7070/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                email: document.getElementById("email").value,
-                senha: document.getElementById("password").value
-            })
+            body: JSON.stringify({ email, senha })
         });
-        const data = await response.json();
-        if (data.success) {
 
-            localStorage.setItem('jwtToken', data.token);
-            localStorage.setItem('usuario', JSON.stringify(data.usuario));
-            alert("Login bem-sucedido! Bem-vindo, " + data.usuario.nome);
+        const data = await response.json();
+
+        // ✅ Verifica sucesso com base no JSON recebido, não apenas no status HTTP
+        if (data.success === true) {
+            localStorage.setItem("jwtToken", data.token);
+            localStorage.setItem("usuario", JSON.stringify(data.usuario));
+
+          alert(`${data.message} ${data.usuario.nome}`);
+
+
+            // ✅ Redireciona após o alert
             window.location.href = "/pg-index";
         } else {
-            alert("Erro: " + data.message);
+            // ⚠️ Mostra mensagem vinda do servidor
+            mensagem.textContent = data.message || "Login falhou. Verifique seus dados.";
+            mensagem.className = "mensagem alert alert-danger mt-3 text-center";
         }
+
     } catch (error) {
-        alert("Erro na conexão com o servidor");
         console.error("Erro:", error);
+        mensagem.textContent = "Erro na conexão com o servidor.";
+        mensagem.className = "mensagem alert alert-danger mt-3 text-center";
     }
 }
+
 
 async function fazerRegistro() {
     const nome = document.getElementById("registerNome").value.trim();

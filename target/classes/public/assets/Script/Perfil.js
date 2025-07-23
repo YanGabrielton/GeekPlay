@@ -171,42 +171,36 @@ async function alterarSenha() {
 }
 
 
-// async function excluirConta() {
-//     const confirmacao = confirm("Tem certeza que deseja excluir sua conta? Essa ação é irreversível.");
-//     if (!confirmacao) return;
+async function excluirConta() {
+    const confirmacao = confirm("Tem certeza que deseja excluir sua conta?");
+    if (!confirmacao) return;
 
-//     const token = localStorage.getItem("jwtToken");
-//     if (!token) {
-//         alert("Você precisa estar logado.");
-//         window.location.href = "/pg-login";
-//         return;
-//     }
+    const token = localStorage.getItem("jwtToken");
 
-//     try {
-//         const response = await fetch("http://localhost:7070/usuarios/excluir", {
-//             method: "PUT",
-//             headers: {
-//                 "Authorization": `Bearer ${token}`
-//             }
-//         });
+    try {
+        const response = await fetch("http://localhost:7070/usuarios/excluir", {
+            method: "PUT",
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        });
 
-//         const data = await response.json();
+        const data = await response.json();
 
-//         if (response.ok && data.success) {
-//             alert("Sua conta foi desativada com sucesso.");
-//             localStorage.clear();
-//             window.location.href = "/pg-login";
-//         } else {
-//             document.getElementById("mensagem").textContent = data.message || "Erro ao excluir conta.";
-//             document.getElementById("mensagem").className = "alert alert-danger mt-3 text-center";
-//         }
-//     } catch (error) {
-//         console.error("Erro ao excluir conta:", error);
-//         document.getElementById("mensagem").textContent = "Erro de conexão com o servidor.";
-//         document.getElementById("mensagem").className = "alert alert-danger mt-3 text-center";
-//     }
-// }
-
+        if (response.ok && data.success) {
+            alert("Conta desativada com sucesso!");
+            localStorage.clear();
+            window.location.href = "/pg-login";
+        } else {
+            document.getElementById("mensagem").textContent = data.message || "Erro ao desativar conta.";
+            document.getElementById("mensagem").className = "alert alert-danger mt-3 text-center";
+        }
+    } catch (error) {
+        console.error("Erro ao excluir conta:", error);
+        document.getElementById("mensagem").textContent = "Erro de conexão com o servidor.";
+        document.getElementById("mensagem").className = "alert alert-danger mt-3 text-center";
+    }
+}
 
 
 

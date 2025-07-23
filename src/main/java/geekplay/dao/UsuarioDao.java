@@ -5,9 +5,13 @@ import geekplay.util.HibernateUtil;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.List;
 
 public class UsuarioDao {
+      private static final Logger logger = LoggerFactory.getLogger(HibernateUtil.class);
     // Método para salvar um usuário
     public void salvar(Usuario usuario) {
         Transaction transaction = null;
@@ -16,8 +20,9 @@ public class UsuarioDao {
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
-
+                
             session.persist(usuario); // salva o usuário
+             logger.info("Usuario salvo com sucesso: {}", usuario.getNome());
             transaction.commit(); // commita com segurança
 
         } catch (Exception e) {
@@ -32,43 +37,51 @@ public class UsuarioDao {
         }
     }
 
-    public boolean emailExiste(String email) {
+  public boolean emailExiste(String email) {
     try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-        List<?> resultados = session.createQuery("from Usuario where email = :email")
-                                    .setParameter("email", email)
-                                    .getResultList();
+        List<Usuario> resultados = session.createQuery(
+                "from Usuario where email = :email", Usuario.class)
+                .setParameter("email", email)
+                .getResultList();
+
+        logger.info("Verificando se o email existe: {}", email);
+
         return !resultados.isEmpty();
     }
 }
 
 public boolean nomeExiste(String nome) {
     try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-        List<?> resultados = session.createQuery("from Usuario where nome = :nome")
-                                    .setParameter("nome", nome)
-                                    .getResultList();
+        List<Usuario> resultados = session.createQuery(
+                "from Usuario where nome = :nome", Usuario.class)
+                .setParameter("nome", nome)
+                .getResultList();
+
+        logger.info("Verificando se o nome existe: {}", nome);
+
         return !resultados.isEmpty();
     }
 }
 
 
-    public void deletar(int id) {
-        Transaction transaction = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction();
-            // 1. Busca o usuário pelo ID
-            Usuario usuario = session.find(Usuario.class, id);
-            if (usuario != null) {
-                // 2. Remove o usuário do banco
-                session.remove(usuario);
-            }
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            throw e;
-        }
+   public void atualizar(Usuario usuario) {
+    Transaction tx = null;
+    try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+          logger.info("Dados Antes de  Atualizar: {}", usuario.getNome(),usuario.getEmail(),usuario.getStatus());
+        tx = session.beginTransaction();
+        session.merge(usuario); // ✅ CORRETO em Hibernate 6.x
+        logger.info("Dados Depois de Atualizar: {}", usuario.getNome(),usuario.getEmail(),usuario.getStatus());
+         // Atualiza o usuário
+        tx.commit();
+       
+    } catch (Exception e) {
+        if (tx != null) tx.rollback();
+        throw e;
     }
+}
+
+
+
 
     public Usuario verificarLogin(String email, String senha) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
