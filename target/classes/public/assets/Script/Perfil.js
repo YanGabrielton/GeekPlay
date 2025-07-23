@@ -187,18 +187,28 @@ async function excluirConta() {
 
         const data = await response.json();
 
-        if (response.ok && data.success) {
-            alert("Conta desativada com sucesso!");
+        if (data.success === true) {
+            // ✅ Mostra mensagem de sucesso e faz logout
+            const mensagem = document.getElementById("mensagem");
+            mensagem.textContent = data.message;
+            mensagem.className = "alert alert-success mt-3 text-center";
+
+            // ✅ Limpa dados e redireciona para o login após pequena pausa (ex: 1.5s)
             localStorage.clear();
-            window.location.href = "/pg-login";
+            setTimeout(() => {
+                window.location.href = "/pg-login";
+            }, 1500); 
         } else {
-            document.getElementById("mensagem").textContent = data.message || "Erro ao desativar conta.";
-            document.getElementById("mensagem").className = "alert alert-danger mt-3 text-center";
+            // ⚠️ Mostra mensagem de erro
+            const mensagem = document.getElementById("mensagem");
+            mensagem.textContent = data.message || "Erro ao desativar conta.";
+            mensagem.className = "alert alert-danger mt-3 text-center";
         }
     } catch (error) {
         console.error("Erro ao excluir conta:", error);
-        document.getElementById("mensagem").textContent = "Erro de conexão com o servidor.";
-        document.getElementById("mensagem").className = "alert alert-danger mt-3 text-center";
+        const mensagem = document.getElementById("mensagem");
+        mensagem.textContent = "Erro de conexão com o servidor.";
+        mensagem.className = "alert alert-danger mt-3 text-center";
     }
 }
 

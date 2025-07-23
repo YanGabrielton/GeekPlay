@@ -245,17 +245,17 @@ private static void excluirUsuario(Context ctx, UsuarioDao dao) {
         // ✅ Gera token após a verificação e reativação (se necessário)
         String token = JwtUtil.generateToken(usuario.getEmail());
 
-        // ✅ Retorna resposta de sucesso
-        ctx.json(Map.of(
-            "success", true,
-            "message", "Login realizado com sucesso",
-            "token", token,
-            "usuario", Map.of(
-                "id", usuario.getId(),
-                "nome", usuario.getNome(),
-                "email", usuario.getEmail()
-            )
-        ));
+     ctx.status(200).json(Map.of(
+    "success", true,
+    "message", "Login realizado com sucesso",
+    "token", token,
+    "usuario", Map.of(
+        "id", usuario.getId(),
+        "nome", usuario.getNome(),
+        "email", usuario.getEmail()
+    )
+));
+
 
     } catch (Exception e) {
         e.printStackTrace();
