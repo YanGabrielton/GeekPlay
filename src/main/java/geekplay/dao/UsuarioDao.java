@@ -86,7 +86,7 @@ public boolean nomeExiste(String nome) {
     public Usuario verificarLogin(String email, String senha) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             return session.createQuery(
-                    "FROM Usuario WHERE email = :email AND senha = :senha AND status = 'A'",
+                    "FROM Usuario WHERE email = :email AND senha = :senha ",
                     Usuario.class)
                     .setParameter("email", email)
                     .setParameter("senha", senha)
