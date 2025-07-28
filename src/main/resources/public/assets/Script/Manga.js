@@ -1,10 +1,269 @@
-// Variáveis globais
+// Variables globales
 let paginaAtual = 1;
-let generoSelecionado = "";
+let tipoFiltro = "";
+let faixaEtariaFiltro = "";
+let generoFiltro = "";
 let termoBusca = "";
+let ultimosMangasCarregados = [];
+let estaCarregando = false;
 let userFavorites = [];
 
-// Funções de favoritos
+// Mapeo de géneros a IDs de la API
+function mapearGenero(nomeGenero) {
+    const generos = {
+        'shounen': 27,
+        'seinen': 42,
+        'yaoi': 28,
+        'acao': 1,
+        'comedia': 4,
+        'aventura': 2,
+        'fantasia': 10,
+        'sci-fi': 24,
+        'romance': 22,
+        'drama': 8
+    };
+    return generos[nomeGenero.toLowerCase()] || '';
+}
+
+// Función para buscar mangás por género
+function buscarMangas(genero) {
+    generoFiltro = genero;
+    paginaAtual = 1;
+    fetchMangas(paginaAtual, tipoFiltro, termoBusca, generoFiltro, true);
+}
+
+// Función principal para cargar mangás
+async function fetchMangas(pagina = 1, tipo = "", busca = "", filtro = "", forcarAtualizacao = false, atualizarHistorico = true) {
+    if (estaCarregando) return;
+    estaCarregando = true;
+    
+    try {
+        let genero = "";
+        if (filtro) {
+            genero = filtro;
+        }
+
+        if (!forcarAtualizacao && pagina === paginaAtual && tipo === tipoFiltro && 
+            busca === termoBusca && genero === generoFiltro && 
+            ultimosMangasCarregados.length > 0) {
+            return;
+        }
+
+        paginaAtual = pagina;
+        tipoFiltro = tipo;
+        termoBusca = busca;
+        generoFiltro = genero;
+
+        const container = document.getElementById('anime-cards-container');
+        const loader = document.getElementById('loader');
+        
+        loader.style.display = 'block';
+        container.innerHTML = '';
+
+        await loadUserFavorites();
+
+        let url = `https://api.jikan.moe/v4/manga?page=${pagina}&limit=24`;
+        
+        if (busca) url += `&q=${encodeURIComponent(busca)}`;
+        if (tipo) url += `&type=${tipo}`;
+        if (genero) {
+            const generoId = mapearGenero(genero);
+            if (generoId) {
+                url += `&genres=${generoId}`;
+            }
+        }
+
+        const response = await fetch(url);
+        if (!response.ok) throw new Error('Erro na API');
+        
+        const data = await response.json();
+        const mangas = data.data || [];
+        ultimosMangasCarregados = mangas;
+
+        if (mangas.length === 0) {
+            container.innerHTML = '<p class="text-center w-100">Nenhum mangá encontrado.</p>';
+            updatePagination(0, false);
+            return;
+        }
+
+        renderizarMangas(mangas);
+
+        updatePagination(
+            data.pagination?.last_visible_page || 1,
+            data.pagination?.has_next_page || false
+        );
+        
+        highlightActiveFilter(filtro);
+        
+        if (atualizarHistorico) {
+            const params = new URLSearchParams();
+            if (pagina > 1) params.set('page', pagina);
+            if (tipo) params.set('type', tipo);
+            if (genero) params.set('genre', genero);
+            if (busca) params.set('search', busca);
+            
+            const novaURL = `${window.location.pathname}?${params.toString()}`;
+            window.history.pushState({ 
+                pagina, 
+                tipo, 
+                busca, 
+                filtro
+            }, '', novaURL);
+        }
+
+    } catch (error) {
+        console.error('Erro:', error);
+        container.innerHTML = '<p class="text-center w-100">Erro ao carregar. Tente novamente.</p>';
+    } finally {
+        loader.style.display = 'none';
+        estaCarregando = false;
+    }
+}
+
+// Función para renderizar los mangás
+function renderizarMangas(mangas) {
+    const container = document.getElementById('anime-cards-container');
+    container.innerHTML = '';
+
+    mangas.forEach(manga => {
+        const isFavorite = userFavorites.some(fav => 
+            fav.idApi === manga.mal_id.toString() && fav.tipoItem === 'manga');
+        
+        const col = document.createElement('div');
+        col.className = 'col-sm-12 col-md-6 col-lg-3 mb-4';
+        
+        col.innerHTML = `
+        <div class="card bg-dark text-white h-100">
+            <img src="${manga.images?.jpg?.image_url || 'https://via.placeholder.com/300x450?text=Poster+Indisponível'}" 
+                 class="card-img-top" alt="${manga.title}">
+            <div class="card-body d-flex flex-column justify-content-between">
+                <div>
+                    <h5 class="card-title">${manga.title}</h5>
+                    <p class="card-text">Score: ${manga.score || "N/A"}</p>
+                </div>
+                <div class="d-flex flex-column gap-2 mt-3">
+                    <button class="btn ${isFavorite ? 'btn-warning' : 'btn-outline-warning'} favorite-btn" 
+                            data-manga-id="${manga.mal_id}" 
+                            data-manga-title="${manga.title}">
+                        <i class="fas fa-star me-2"></i> ${isFavorite ? 'Favoritado' : 'Favoritar'}
+                    </button>
+                    <button class="btn btn-outline-info ver-mais-btn"
+                            data-manga-id="${manga.mal_id}">
+                        <i class="fas fa-external-link-alt me-2"></i> Ver em MyAnimeList
+                    </button>
+                </div>
+            </div>
+        </div>
+        `;
+        container.appendChild(col);
+    });
+
+    // Event listeners para botones de favoritos
+    document.querySelectorAll('.favorite-btn').forEach(btn => {
+        btn.addEventListener('click', async function(e) {
+            e.preventDefault();
+            const mangaId = this.getAttribute('data-manga-id');
+            const mangaTitle = this.getAttribute('data-manga-title');
+            const wasAdded = await toggleFavorite(mangaId, mangaTitle, 'manga');
+            
+            if (wasAdded !== null) {
+                this.classList.toggle('btn-warning', wasAdded);
+                this.classList.toggle('btn-outline-warning', !wasAdded);
+                this.innerHTML = `
+                    <i class="fas fa-star me-2"></i> ${wasAdded ? 'Favoritado' : 'Favoritar'}
+                `;
+            }
+        });
+    });
+
+    // Event listeners para botones "Ver más"
+    document.querySelectorAll('.ver-mais-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const mangaId = this.getAttribute('data-manga-id');
+            window.open(`https://myanimelist.net/manga/${mangaId}`, '_blank');
+        });
+    });
+}
+
+// Función para actualizar la paginación
+function updatePagination(totalPages, hasNextPage) {
+    const pagination = document.getElementById('pagination');
+    if (!pagination) return;
+    
+    pagination.innerHTML = '';
+
+    const btnAnterior = document.getElementById('btnAnterior');
+    const btnProxima = document.getElementById('btnProxima');
+
+    if (btnAnterior) {
+        btnAnterior.style.opacity = paginaAtual > 1 ? '1' : '0.5';
+        btnAnterior.style.pointerEvents = paginaAtual > 1 ? 'auto' : 'none';
+    }
+    
+    if (btnProxima) {
+        btnProxima.style.opacity = hasNextPage ? '1' : '0.5';
+        btnProxima.style.pointerEvents = hasNextPage ? 'auto' : 'none';
+    }
+
+    if (totalPages > 1) {
+        const startPage = Math.max(1, paginaAtual - 2);
+        const endPage = Math.min(totalPages, startPage + 4);
+        
+        if (startPage > 1) {
+            const btn1 = document.createElement('button');
+            btn1.className = 'btn btn-light mx-1';
+            btn1.textContent = '1';
+            btn1.onclick = () => fetchMangas(1, tipoFiltro, termoBusca, generoFiltro, true);
+            pagination.appendChild(btn1);
+            
+            if (startPage > 2) {
+                const ellipsis = document.createElement('span');
+                ellipsis.className = 'mx-1';
+                ellipsis.textContent = '...';
+                pagination.appendChild(ellipsis);
+            }
+        }
+        
+        for (let i = startPage; i <= endPage; i++) {
+            const btn = document.createElement('button');
+            btn.className = `btn mx-1 ${i === paginaAtual ? 'btn-primary' : 'btn-light'}`;
+            btn.textContent = i;
+            btn.onclick = () => fetchMangas(i, tipoFiltro, termoBusca, generoFiltro, true);
+            pagination.appendChild(btn);
+        }
+        
+        if (endPage < totalPages) {
+            if (endPage < totalPages - 1) {
+                const ellipsis = document.createElement('span');
+                ellipsis.className = 'mx-1';
+                ellipsis.textContent = '...';
+                pagination.appendChild(ellipsis);
+            }
+            
+            const btnLast = document.createElement('button');
+            btnLast.className = 'btn btn-light mx-1';
+            btnLast.textContent = totalPages;
+            btnLast.onclick = () => fetchMangas(totalPages, tipoFiltro, termoBusca, generoFiltro, true);
+            pagination.appendChild(btnLast);
+        }
+    }
+}
+
+// Función para resaltar el filtro activo
+function highlightActiveFilter(filtroAtivo) {
+    document.querySelectorAll('.btn-outline-light').forEach(item => {
+        item.classList.remove('active');
+    });
+
+    if (filtroAtivo) {
+        const itensAtivos = document.querySelectorAll(`.btn-outline-light[onclick*="${filtroAtivo}"]`);
+        itensAtivos.forEach(item => {
+            item.classList.add('active');
+        });
+    }
+}
+
+// Funciones de favoritos
 async function loadUserFavorites() {
     const token = localStorage.getItem('jwtToken');
     if (!token) return;
@@ -25,7 +284,7 @@ async function loadUserFavorites() {
     }
 }
 
-async function toggleFavorite(itemId, itemTitle, tipoItem = 'anime') {
+async function toggleFavorite(itemId, itemTitle, tipoItem = 'manga') {
     try {
         const token = localStorage.getItem('jwtToken');
         if (!token) {
@@ -84,7 +343,6 @@ async function toggleFavorite(itemId, itemTitle, tipoItem = 'anime') {
 }
 
 function showToast(message, isSuccess) {
-    // Remove toasts antigos
     const oldToasts = document.querySelectorAll('.custom-toast');
     oldToasts.forEach(toast => toast.remove());
 
@@ -107,149 +365,79 @@ function showToast(message, isSuccess) {
     }, 3000);
 }
 
-// Función para mapear géneros a sus IDs en la API
-function mapearGenero(nomeGenero) {
-    const generos = {
-        'shounen': 27,
-        'seinen': 42,
-        'yaoi': 28,
-        'ação': 1,       // ID para "Action"
-        'comedia': 4,     // ID para "Comedy"
-        'aventura': 2,
-        'fantasia': 10,
-        'sci-fi': 24,
-        'romance': 22,
-        'drama': 8
-    };
-    return generos[nomeGenero.toLowerCase()] || '';
-}
-
-// Función para buscar mangás por género
-function buscarMangas(genero) {
-    generoSelecionado = genero;
-    paginaAtual = 1;
-    carregarMangas(paginaAtual);
-}
-
-// Función principal para cargar mangás
-async function carregarMangas(pagina) {
-    const container = document.getElementById('anime-cards-container');
-    const loader = document.getElementById('loader');
-    container.innerHTML = '';
-    loader.style.display = 'block';
-
-    await loadUserFavorites();
-
-    try {
-        let url = `https://api.jikan.moe/v4/manga?page=${pagina}&limit=12&order_by=popularity`;
-        
-        if (termoBusca) {
-            url = `https://api.jikan.moe/v4/manga?q=${termoBusca}&page=${pagina}&limit=12`;
-        } else if (generoSelecionado) {
-            const generoId = mapearGenero(generoSelecionado);
-            if (generoId) {
-                url += `&genres=${generoId}`;
-            }
-        }
-
-        const resposta = await fetch(url);
-        const dados = await resposta.json();
-
-        if (!dados.data || !dados.data.length) {
-            container.innerHTML = '<p class="text-center text-light">Nenhum resultado encontrado.</p>';
-            return;
-        }
-
-        dados.data.forEach(manga => {
-            const isFavorite = userFavorites.some(fav => 
-                fav.idApi === manga.mal_id.toString() && fav.tipoItem === 'manga');
+// Manejo del historial
+function setupHistoryNavigation() {
+    window.addEventListener('popstate', (event) => {
+        if (event.state) {
+            paginaAtual = event.state.pagina || 1;
+            tipoFiltro = event.state.tipo || "";
+            termoBusca = event.state.busca || "";
             
-            const card = document.createElement('div');
-            card.className = 'col-md-3 mb-4';
-            card.innerHTML = `
-                <div class="card bg-dark text-white h-100">
-                    <img src="${manga.images?.jpg?.image_url || 'https://via.placeholder.com/300x450?text=Poster+Indisponível'}" 
-                         class="card-img-top" alt="${manga.title}">
-                    <div class="card-body d-flex flex-column justify-content-between">
-                        <div>
-                            <h5 class="card-title">${manga.title}</h5>
-                            <p class="card-text">Score: ${manga.score || "N/A"}</p>
-                        </div>
-                        <div class="d-flex flex-column gap-2 mt-3">
-                            <button class="btn ${isFavorite ? 'btn-warning' : 'btn-outline-warning'} favorite-btn" 
-                                    data-manga-id="${manga.mal_id}" 
-                                    data-manga-title="${manga.title}">
-                                <i class="fas fa-star me-2"></i> ${isFavorite ? 'Favoritado' : 'Favoritar'}
-                            </button>
-                            <button class="btn btn-outline-info ver-mais-btn"
-                                    data-manga-id="${manga.mal_id}">
-                                <i class="fas fa-external-link-alt me-2"></i> Ver em MyAnimeList
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `;
-            container.appendChild(card);
-        });
+            const filtro = event.state.filtro || "";
+            highlightActiveFilter(filtro);
+            
+            updateFilterControls();
+            fetchMangas(paginaAtual, tipoFiltro, termoBusca, filtro, true, false);
+        }
+    });
+}
 
-        // Event listeners para botones de favoritos
-        document.querySelectorAll('.favorite-btn').forEach(btn => {
-            btn.addEventListener('click', async function(e) {
-                e.preventDefault();
-                const mangaId = this.getAttribute('data-manga-id');
-                const mangaTitle = this.getAttribute('data-manga-title');
-                const wasAdded = await toggleFavorite(mangaId, mangaTitle, 'manga');
-                
-                if (wasAdded !== null) {
-                    this.classList.toggle('btn-warning', wasAdded);
-                    this.classList.toggle('btn-outline-warning', !wasAdded);
-                    this.innerHTML = `
-                        <i class="fas fa-star me-2"></i> ${wasAdded ? 'Favoritado' : 'Favoritar'}
-                    `;
-                }
-            });
-        });
-
-        // Event listeners para botones "Ver más"
-        document.querySelectorAll('.ver-mais-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const mangaId = this.getAttribute('data-manga-id');
-                window.open(`https://myanimelist.net/manga/${mangaId}`, '_blank');
-            });
-        });
-
-    } catch (erro) {
-        console.error('Erro:', erro);
-        container.innerHTML = '<p class="text-center text-danger">Erro ao carregar os dados.</p>';
-    } finally {
-        loader.style.display = 'none';
+function updateFilterControls() {
+    const searchInput = document.getElementById('search');
+    if (searchInput) {
+        searchInput.value = termoBusca;
     }
 }
 
-// Event listeners cuando el DOM está cargado
+// Configuración de event listeners
+function setupEventListeners() {
+    const form = document.getElementById('form');
+    if (form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            termoBusca = document.getElementById('search').value.trim();
+            fetchMangas(1, tipoFiltro, termoBusca, '', true);
+        });
+    }
+
+    const btnAnterior = document.getElementById('btnAnterior');
+    if (btnAnterior) {
+        btnAnterior.addEventListener('click', () => {
+            if (paginaAtual > 1) {
+                fetchMangas(paginaAtual - 1, tipoFiltro, termoBusca, generoFiltro, true);
+            }
+        });
+    }
+
+    const btnProxima = document.getElementById('btnProxima');
+    if (btnProxima) {
+        btnProxima.addEventListener('click', () => {
+            fetchMangas(paginaAtual + 1, tipoFiltro, termoBusca, generoFiltro, true);
+        });
+    }
+}
+
+// Inicialización
 document.addEventListener('DOMContentLoaded', () => {
-    loadUserFavorites();
-    carregarMangas(paginaAtual);
-
-    // Buscar mangás por término de búsqueda
-    document.getElementById('form').addEventListener('submit', (e) => {
-        e.preventDefault();
-        termoBusca = document.getElementById('search').value.trim();
-        paginaAtual = 1;
-        generoSelecionado = "";
-        carregarMangas(paginaAtual);
-    });
-
-    // Paginación
-    document.getElementById('btnProxima').addEventListener('click', () => {
-        paginaAtual++;
-        carregarMangas(paginaAtual);
-    });
-
-    document.getElementById('btnAnterior').addEventListener('click', () => {
-        if (paginaAtual > 1) {
-            paginaAtual--;
-            carregarMangas(paginaAtual);
-        }
-    });
-}); 
+    const urlParams = new URLSearchParams(window.location.search);
+    paginaAtual = parseInt(urlParams.get('page')) || 1;
+    tipoFiltro = urlParams.get('type') || "";
+    generoFiltro = urlParams.get('genre') || "";
+    termoBusca = urlParams.get('search') || "";
+    
+    setupHistoryNavigation();
+    setupEventListeners();
+    updateFilterControls();
+    fetchMangas(paginaAtual, tipoFiltro, termoBusca, generoFiltro, true, false);
+    
+    window.history.replaceState(
+        { 
+            pagina: paginaAtual, 
+            tipo: tipoFiltro, 
+            busca: termoBusca, 
+            filtro: generoFiltro
+        },
+        '',
+        window.location.href
+    );
+});
