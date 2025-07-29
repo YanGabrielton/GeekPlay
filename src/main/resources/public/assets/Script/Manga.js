@@ -389,7 +389,7 @@ function updateFilterControls() {
     }
 }
 
-// Configuración de event listeners
+// Configuração
 function setupEventListeners() {
     const form = document.getElementById('form');
     if (form) {
@@ -417,7 +417,7 @@ function setupEventListeners() {
     }
 }
 
-// Inicialización
+// Inicialização
 document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     paginaAtual = parseInt(urlParams.get('page')) || 1;
