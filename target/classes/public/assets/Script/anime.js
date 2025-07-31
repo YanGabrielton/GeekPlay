@@ -1,4 +1,5 @@
-// ---------------- VARIÁVEIS GLOBAIS ----------------
+const API_BASE_URL = 'http://localhost:7070';
+
 let paginaAtual = 1;
 let tipoFiltro = "";
 let faixaEtariaFiltro = "";
@@ -8,23 +9,21 @@ let ultimosAnimesCarregados = [];
 let estaCarregando = false;
 let userFavorites = [];
 
-// Mapeamento para a API Jikan
 const CLASSIFICACOES = {
-  'pg13': 'pg',       // La API usa 'pg' para PG-13
-  '17': 'r17',        // +17
-  '18': 'r',          // +18 (Restricted)
-  'hentai': 'rx',     // Contenido adulto
-  'acao': 1,          // Género de acción
-  'comedia': 4        // Género de comedia
+  'pg13': 'pg',
+  '17': 'r17',
+  '18': 'r',
+  'hentai': 'rx',
+  'acao': 1,
+  'comedia': 4
 };
 
-// ---------------- FUNÇÕES DE FAVORITOS ----------------
 async function loadUserFavorites() {
     const token = localStorage.getItem('jwtToken');
     if (!token) return;
     
     try {
-        const response = await fetch('http://localhost:7070/favoritos', {
+        const response = await fetch(`${API_BASE_URL}/favoritos`, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -48,7 +47,7 @@ async function toggleFavorite(itemId, itemTitle, tipoItem = 'anime') {
             return null;
         }
 
-        const response = await fetch('http://localhost:7070/favoritos', {
+        const response = await fetch(`${API_BASE_URL}/favoritos`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -63,7 +62,7 @@ async function toggleFavorite(itemId, itemTitle, tipoItem = 'anime') {
 
         if (response.status === 400) {
             const deleteResponse = await fetch(
-                `http://localhost:7070/favoritos/${itemId}?tipo_item=${tipoItem}`, {
+                `${API_BASE_URL}/favoritos/${itemId}?tipo_item=${tipoItem}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -98,7 +97,6 @@ async function toggleFavorite(itemId, itemTitle, tipoItem = 'anime') {
 }
 
 function showToast(message, isSuccess) {
-    // Remove toasts antigos
     const oldToasts = document.querySelectorAll('.custom-toast');
     oldToasts.forEach(toast => toast.remove());
 
@@ -121,13 +119,11 @@ function showToast(message, isSuccess) {
     }, 3000);
 }
 
-// ---------------- FUNÇÃO PRINCIPAL ----------------
 async function fetchAnimes(pagina = 1, tipo = "", busca = "", filtro = "", forcarAtualizacao = false, atualizarHistorico = true) {
     if (estaCarregando) return;
     estaCarregando = true;
     
     try {
-        // Determinar si el filtro es de clasificación o género
         let faixaEtaria = "";
         let genero = "";
         
@@ -162,11 +158,9 @@ async function fetchAnimes(pagina = 1, tipo = "", busca = "", filtro = "", forca
         if (busca) url += `&q=${encodeURIComponent(busca)}`;
         if (tipo) url += `&type=${tipo}`;
         if (faixaEtaria && CLASSIFICACOES[faixaEtaria]) {
-            // Si es una clasificación por edad
             url += `&rating=${CLASSIFICACOES[faixaEtaria]}`;
         }
         if (genero && CLASSIFICACOES[genero]) {
-            // Si es un género
             url += `&genres=${CLASSIFICACOES[genero]}`;
         }
 
@@ -218,14 +212,11 @@ async function fetchAnimes(pagina = 1, tipo = "", busca = "", filtro = "", forca
     }
 }
 
-// ---------------- FUNÇÃO PARA DESTACAR FILTRO ATIVO ----------------
 function highlightActiveFilter(filtroAtivo) {
-    // Remover todas as classes ativas primeiro
     document.querySelectorAll('.menu-anime').forEach(item => {
         item.classList.remove('active');
     });
 
-    // Adicionar classe ativa ao filtro atual
     if (filtroAtivo) {
         const itensAtivos = document.querySelectorAll(`.menu-anime[onclick*="${filtroAtivo}"]`);
         itensAtivos.forEach(item => {
@@ -234,7 +225,6 @@ function highlightActiveFilter(filtroAtivo) {
     }
 }
 
-// ---------------- MANIPULAÇÃO DO HISTÓRICO ----------------
 function setupHistoryNavigation() {
     window.addEventListener('popstate', (event) => {
         if (event.state) {
@@ -258,7 +248,6 @@ function updateFilterControls() {
     }
 }
 
-// ---------------- EVENTOS ----------------
 function setupEventListeners() {
     const form = document.getElementById('form');
     if (form) {
@@ -286,7 +275,6 @@ function setupEventListeners() {
     }
 }
 
-// ---------------- RENDERIZAR ANIMES ----------------
 function renderizarAnimes(animes) {
     const container = document.getElementById('anime-cards-container');
     container.innerHTML = '';
@@ -352,7 +340,6 @@ function renderizarAnimes(animes) {
     });
 }
 
-// ---------------- PAGINAÇÃO ----------------
 function updatePagination(totalPages, hasNextPage) {
     const pagination = document.getElementById('pagination');
     if (!pagination) return;
@@ -416,7 +403,6 @@ function updatePagination(totalPages, hasNextPage) {
     }
 }
 
-// ---------------- INICIALIZAÇÃO ----------------
 document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     paginaAtual = parseInt(urlParams.get('page')) || 1;
@@ -425,7 +411,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const ratingParam = urlParams.get('rating');
     const genreParam = urlParams.get('genre');
     
-    // Determinar qué tipo de filtro está activo
     let filtroAtivo = '';
     if (ratingParam) {
         filtroAtivo = Object.keys(CLASSIFICACOES).find(key => CLASSIFICACOES[key] === ratingParam) || '';

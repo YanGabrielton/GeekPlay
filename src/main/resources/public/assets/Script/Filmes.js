@@ -1,8 +1,8 @@
+const API_BASE_URL = 'http://localhost:7070';
 const API_KEY = 'api_key=5e6bffe0291551af5a19b5bb46bc276a';
 const BASE_URL = 'https://api.themoviedb.org/3';
 const API_URL = `${BASE_URL}/discover/movie?include_adult=false&include_video=true&language=pt-br&page=1&sort_by=popularity.desc&${API_KEY}`;
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
-const API_BASE_URL = 'http://localhost:7070';
 
 const mainFilme = document.getElementById('mainFilme');
 const form = document.getElementById('form');
@@ -13,7 +13,6 @@ let paginaAtual = 1;
 const btnAnterior = document.getElementById('btnAnterior');
 const btnProxima = document.getElementById('btnProxima');
 
-// Carrega os filmes iniciais
 pegarFilmes(API_URL);
 
 function buscarFilmesPorGenero(generoId) {
@@ -31,13 +30,12 @@ function pegarFilmes(url) {
 async function mostrarFilmes(data) {
     mainFilme.innerHTML = '';
 
-    // Verifica se o usuário está logado e obtém seus favoritos
     let userFavorites = [];
     const token = localStorage.getItem('jwtToken');
 
     if (token) {
         try {
-            const response = await fetch('/favoritos', {
+            const response = await fetch(`${API_BASE_URL}/favoritos`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -96,7 +94,6 @@ async function mostrarFilmes(data) {
         mainFilme.appendChild(col);
     });
 
-    // Adiciona eventos aos botões de favorito
     document.querySelectorAll('.favorite-btn').forEach(btn => {
         btn.addEventListener('click', async function (e) {
             e.stopPropagation();
@@ -126,8 +123,7 @@ async function toggleFavorite(itemId, itemTitle, tipoItem = 'filme') {
             return null;
         }
 
-        // Tenta adicionar diretamente
-        const response = await fetch('http://localhost:7070/favoritos', {
+        const response = await fetch(`${API_BASE_URL}/favoritos`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -140,10 +136,9 @@ async function toggleFavorite(itemId, itemTitle, tipoItem = 'filme') {
             })
         });
 
-        // Se já existir (status 400), remove
         if (response.status === 400) {
             const deleteResponse = await fetch(
-                `http://localhost:7070/favoritos/${itemId}?tipo_item=${tipoItem}`, {
+                `${API_BASE_URL}/favoritos/${itemId}?tipo_item=${tipoItem}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -188,13 +183,11 @@ function showToast(message, isSuccess) {
     setTimeout(() => toast.remove(), 3000);
 }
 
-// Paginação
 function carregarPagina(pagina) {
     const url = `${BASE_URL}/discover/movie?include_adult=false&include_video=true&language=pt-br&page=${pagina}&sort_by=popularity.desc&${API_KEY}`;
     pegarFilmes(url);
 }
 
-// Eventos de paginação
 btnProxima.addEventListener('click', () => {
     paginaAtual++;
     carregarPagina(paginaAtual);
@@ -209,7 +202,6 @@ btnAnterior.addEventListener('click', () => {
     }
 });
 
-// Busca
 form.addEventListener('submit', e => {
     e.preventDefault();
     const term = search.value.trim();
@@ -236,7 +228,6 @@ async function mostrarTrailer(movieId) {
         trailerHTML = '<p>Trailer não disponível.</p>';
       }
   
-      // Buscar provedores de streaming
       const providerUrl = `${BASE_URL}/movie/${movieId}/watch/providers?${API_KEY}`;
       const providerRes = await fetch(providerUrl);
       const providerData = await providerRes.json();
@@ -265,7 +256,6 @@ async function mostrarTrailer(movieId) {
         ${plataformasHTML}
       `;
   
-      // Abre o modal
       const myModal = new bootstrap.Modal(document.getElementById('exampleModalCenter'));
       myModal.show();
   

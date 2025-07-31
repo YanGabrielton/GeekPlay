@@ -1,4 +1,5 @@
-// Variables globales
+const API_BASE_URL = 'http://localhost:7070';
+
 let paginaAtual = 1;
 let tipoFiltro = "";
 let faixaEtariaFiltro = "";
@@ -8,7 +9,6 @@ let ultimosMangasCarregados = [];
 let estaCarregando = false;
 let userFavorites = [];
 
-// Mapeo de géneros a IDs de la API
 function mapearGenero(nomeGenero) {
     const generos = {
         'shounen': 27,
@@ -25,14 +25,12 @@ function mapearGenero(nomeGenero) {
     return generos[nomeGenero.toLowerCase()] || '';
 }
 
-// Función para buscar mangás por género
 function buscarMangas(genero) {
     generoFiltro = genero;
     paginaAtual = 1;
     fetchMangas(paginaAtual, tipoFiltro, termoBusca, generoFiltro, true);
 }
 
-// Función principal para cargar mangás
 async function fetchMangas(pagina = 1, tipo = "", busca = "", filtro = "", forcarAtualizacao = false, atualizarHistorico = true) {
     if (estaCarregando) return;
     estaCarregando = true;
@@ -120,7 +118,6 @@ async function fetchMangas(pagina = 1, tipo = "", busca = "", filtro = "", forca
     }
 }
 
-// Función para renderizar los mangás
 function renderizarMangas(mangas) {
     const container = document.getElementById('anime-cards-container');
     container.innerHTML = '';
@@ -158,7 +155,6 @@ function renderizarMangas(mangas) {
         container.appendChild(col);
     });
 
-    // Event listeners para botones de favoritos
     document.querySelectorAll('.favorite-btn').forEach(btn => {
         btn.addEventListener('click', async function(e) {
             e.preventDefault();
@@ -176,7 +172,6 @@ function renderizarMangas(mangas) {
         });
     });
 
-    // Event listeners para botones "Ver más"
     document.querySelectorAll('.ver-mais-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             const mangaId = this.getAttribute('data-manga-id');
@@ -185,7 +180,6 @@ function renderizarMangas(mangas) {
     });
 }
 
-// Función para actualizar la paginación
 function updatePagination(totalPages, hasNextPage) {
     const pagination = document.getElementById('pagination');
     if (!pagination) return;
@@ -249,7 +243,6 @@ function updatePagination(totalPages, hasNextPage) {
     }
 }
 
-// Función para resaltar el filtro activo
 function highlightActiveFilter(filtroAtivo) {
     document.querySelectorAll('.btn-outline-light').forEach(item => {
         item.classList.remove('active');
@@ -263,13 +256,12 @@ function highlightActiveFilter(filtroAtivo) {
     }
 }
 
-// Funciones de favoritos
 async function loadUserFavorites() {
     const token = localStorage.getItem('jwtToken');
     if (!token) return;
     
     try {
-        const response = await fetch('http://localhost:7070/favoritos', {
+        const response = await fetch(`${API_BASE_URL}/favoritos`, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -293,7 +285,7 @@ async function toggleFavorite(itemId, itemTitle, tipoItem = 'manga') {
             return null;
         }
 
-        const response = await fetch('http://localhost:7070/favoritos', {
+        const response = await fetch(`${API_BASE_URL}/favoritos`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -308,7 +300,7 @@ async function toggleFavorite(itemId, itemTitle, tipoItem = 'manga') {
 
         if (response.status === 400) {
             const deleteResponse = await fetch(
-                `http://localhost:7070/favoritos/${itemId}?tipo_item=${tipoItem}`, {
+                `${API_BASE_URL}/favoritos/${itemId}?tipo_item=${tipoItem}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -365,7 +357,6 @@ function showToast(message, isSuccess) {
     }, 3000);
 }
 
-// Manejo del historial
 function setupHistoryNavigation() {
     window.addEventListener('popstate', (event) => {
         if (event.state) {
@@ -389,7 +380,6 @@ function updateFilterControls() {
     }
 }
 
-// Configuração
 function setupEventListeners() {
     const form = document.getElementById('form');
     if (form) {
@@ -417,7 +407,6 @@ function setupEventListeners() {
     }
 }
 
-// Inicialização
 document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     paginaAtual = parseInt(urlParams.get('page')) || 1;

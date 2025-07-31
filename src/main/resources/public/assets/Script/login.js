@@ -1,3 +1,5 @@
+const API_BASE_URL = 'http://localhost:7070';
+
 window.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get("token");
@@ -7,13 +9,10 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-
-
 const registroBotao = document.getElementById('registrar');
 const container = document.getElementById('container');
 const loginBotao = document.getElementById('login');
 
-// Funções para alternar entre login e registro
 registroBotao.addEventListener('click', () => {
     container.classList.add("active");
 });
@@ -21,6 +20,7 @@ registroBotao.addEventListener('click', () => {
 loginBotao.addEventListener('click', () => {
     container.classList.remove("active");
 });
+
 async function fazerLogin() {
     const email = document.getElementById("email").value.trim();
     const senha = document.getElementById("password").value.trim();
@@ -33,7 +33,7 @@ async function fazerLogin() {
     }
 
     try {
-        const response = await fetch("http://localhost:7070/login", {
+        const response = await fetch(`${API_BASE_URL}/login`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email, senha })
@@ -41,22 +41,15 @@ async function fazerLogin() {
 
         const data = await response.json();
 
-        // ✅ Verifica sucesso com base no JSON recebido, não apenas no status HTTP
         if (data.success === true) {
             localStorage.setItem("jwtToken", data.token);
             localStorage.setItem("usuario", JSON.stringify(data.usuario));
-
-          alert(`${data.message} ${data.usuario.nome}`);
-
-
-            // ✅ Redireciona após o alert
+            alert(`${data.message} ${data.usuario.nome}`);
             window.location.href = "/pg-index";
         } else {
-            // ⚠️ Mostra mensagem vinda do servidor
             mensagem.textContent = data.message || "Login falhou. Verifique seus dados.";
             mensagem.className = "mensagem alert alert-danger mt-3 text-center";
         }
-
     } catch (error) {
         console.error("Erro:", error);
         mensagem.textContent = "Erro na conexão com o servidor.";
@@ -64,21 +57,18 @@ async function fazerLogin() {
     }
 }
 
-
 async function fazerRegistro() {
     const nome = document.getElementById("registerNome").value.trim();
     const email = document.getElementById("email1").value.trim();
     const senha = document.getElementById("password1").value.trim();
-    const mensagem = document.getElementById("mensagem"); // Corrigido
+    const mensagem = document.getElementById("mensagem");
 
-    // Validação de campos obrigatórios
     if (!nome || !email || !senha) {
         mensagem.textContent = "Por favor, preencha todos os campos.";
         mensagem.className = "mensagem alert alert-warning mt-3 text-center";
         return;
     }
     
-    // ✅ 2. Validação de formato e domínio do e-mail
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const dominiosPermitidos = ["gmail.com", "hotmail.com", "yahoo.com", "outlook.com"];
     const dominioEmail = email.split("@")[1];
@@ -89,9 +79,8 @@ async function fazerRegistro() {
         return;
     }
 
-
     try {
-        const response = await fetch("http://localhost:7070/usuarios", {
+        const response = await fetch(`${API_BASE_URL}/usuarios`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ nome, email, senha })
@@ -100,16 +89,14 @@ async function fazerRegistro() {
         const data = await response.json();
 
         if (response.ok && data.success) {
-            mensagem.textContent = ""; // limpa mensagens anteriores
+            mensagem.textContent = "";
             alert("Registro bem-sucedido! seja bem-vindo, " + data.usuario.nome);
             localStorage.setItem('usuario', JSON.stringify(data.usuario));
             localStorage.setItem('jwtToken', data.token);
             window.location.href = "/pg-index";
         } else {
-            // Mensagens de erro específicas do back-end
             if (data.message) {
                 mensagem.textContent = data.message;
-
                 if (data.message.includes("senha")) {
                     mensagem.className = "mensagem alert alert-danger mt-3 text-center";
                 } else if (data.message.includes("Nome")) {
@@ -124,14 +111,12 @@ async function fazerRegistro() {
                 mensagem.className = "mensagem alert alert-danger mt-3 text-center";
             }
         }
-
     } catch (error) {
         console.error("Erro durante o registro:", error);
         mensagem.textContent = "Erro de conexão com o servidor.";
         mensagem.className = "mensagem alert alert-danger mt-3 text-center";
     }
 }
-
 
 async function solicitarRecuperacao() {
     const email = document.getElementById("emailRecuperacao").value.trim();
@@ -144,7 +129,7 @@ async function solicitarRecuperacao() {
     }
 
     try {
-        const response = await fetch("http://localhost:7070/solicitar-recuperacao", {
+        const response = await fetch(`${API_BASE_URL}/solicitar-recuperacao`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email })
@@ -155,20 +140,17 @@ async function solicitarRecuperacao() {
         if (data.success) {
             mensagem.textContent = "Instruções enviadas para o e-mail: " + data.email;
             mensagem.className = "text-success mt-2";
-
-            console.log("Token:", data.token); // Apenas para depuração local
+            console.log("Token:", data.token);
         } else {
             mensagem.textContent = data.message || "Falha ao solicitar recuperação.";
             mensagem.className = "text-danger mt-2";
         }
-
     } catch (error) {
         mensagem.textContent = "Erro de conexão com o servidor.";
         mensagem.className = "text-danger mt-2";
         console.error("Erro:", error);
     }
 }
-
 
 async function redefinirSenha() {
     const novaSenha = document.getElementById("novaSenha").value.trim();
@@ -180,7 +162,7 @@ async function redefinirSenha() {
     }
 
     try {
-        const response = await fetch("http://localhost:7070/pages/redefinir-senha.html", {
+        const response = await fetch(`${API_BASE_URL}/pages/redefinir-senha.html`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -197,19 +179,12 @@ async function redefinirSenha() {
         } else {
             alert("Erro: " + (data.message || "Não foi possível redefinir a senha."));
         }
-
     } catch (error) {
         console.error("Erro durante a redefinição:", error);
         alert("Erro na conexão com o servidor.");
     }
 }
 
-
-
-
-
-
-// Função para adicionar token às requisições
 async function apiRequest(url, method = 'GET', body = null) {
     const token = localStorage.getItem('jwtToken');
     const headers = {
@@ -232,17 +207,3 @@ function logout() {
     window.location.href = "/pg-login";
     alert("Você foi desconectado com sucesso.");
 }
-
-
-
-
-
-// async function post(url, body){
-//   return await fetch(`${url}`, {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify(body),
-//   });
-// }

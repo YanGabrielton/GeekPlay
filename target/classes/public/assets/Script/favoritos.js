@@ -1,15 +1,15 @@
+const API_BASE_URL = 'http://localhost:7070';
+
 document.addEventListener('DOMContentLoaded', async function() {
     const favoritesContainer = document.getElementById('favorites-container');
     const emptyState = document.getElementById('empty-state');
 
-    // Verifica se o usuário está logado
     const token = localStorage.getItem('jwtToken');
     if (!token) {
         window.location.href = '/pg-login';
         return;
     }
 
-    // Funções auxiliares
     function showEmptyState() {
         emptyState.classList.remove('d-none');
         favoritesContainer.innerHTML = '';
@@ -25,12 +25,11 @@ document.addEventListener('DOMContentLoaded', async function() {
         window.location.href = '/pg-login';
     }
 
-    // Carrega os favoritos
     async function loadFavorites() {
         try {
             showLoading(true);
             
-            const response = await fetch('http://localhost:7070/favoritos', {
+            const response = await fetch(`${API_BASE_URL}/favoritos`, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json'
@@ -57,7 +56,6 @@ document.addEventListener('DOMContentLoaded', async function() {
             hideEmptyState();
             favoritesContainer.innerHTML = '';
 
-            // Carrega detalhes de cada favorito
             await Promise.all(favorites.map(async fav => {
                 try {
                     let itemDetails = {};
@@ -109,7 +107,6 @@ document.addEventListener('DOMContentLoaded', async function() {
         }
     }
 
-    // Funções para carregar detalhes específicos
     async function loadMovieDetails(id) {
         const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=5e6bffe0291551af5a19b5bb46bc276a&language=pt-BR`);
         if (!response.ok) throw new Error('Erro ao buscar filme');
@@ -151,7 +148,6 @@ document.addEventListener('DOMContentLoaded', async function() {
         };
     }
 
-    // Exibe um item na tela
     function displayFavoriteItem(item) {
         const col = document.createElement('div');
         col.className = 'col-sm-6 col-md-4 col-lg-3 mb-4';
@@ -191,7 +187,6 @@ document.addEventListener('DOMContentLoaded', async function() {
         favoritesContainer.appendChild(col);
     }
 
-    // Utilitários
     function formatType(type) {
         const types = {
             'filme': 'Filme',
@@ -217,7 +212,6 @@ document.addEventListener('DOMContentLoaded', async function() {
         }
     }
 
-    // Event Listeners
     function addRemoveEventListeners() {
         document.querySelectorAll('.remove-favorite').forEach(button => {
             button.addEventListener('click', async function() {
@@ -228,7 +222,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                 
                 try {
                     showLoading(true);
-                    const response = await fetch(`http://localhost:7070/favoritos/${idApi}?tipo_item=${tipoItem}`, {
+                    const response = await fetch(`${API_BASE_URL}/favoritos/${idApi}?tipo_item=${tipoItem}`, {
                         method: 'DELETE',
                         headers: {
                             'Authorization': `Bearer ${token.trim()}`,
@@ -272,7 +266,6 @@ document.addEventListener('DOMContentLoaded', async function() {
         }
     }
 
-    // Inicialização
     loadFavorites();
     setupSearch();
 });
