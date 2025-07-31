@@ -120,31 +120,20 @@ footer hr {
     border-color: white;
 }
 
-.h6{
-    color: white;
-}
-
-.text-decoration-none{
-    color: white;
-}
-
-.menu-conta{
-    color: white;
-}
-
-#footer_baixo{
-    color: white;
-}
-
-#descricao{
-    color: white;
-}
-
+.h6,
+.text-decoration-none,
+.menu-conta,
 .mb-3,
 .mb-4,
 .lead{
     color: white;
 }
+
+#footer_baixo,
+#descricao{
+    color: white;
+}
+
 /* Responsividade */
 @media (max-width: 768px) {
     .navbar-collapse {
