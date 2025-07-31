@@ -50,7 +50,7 @@ public class App {
         app.get("/pg-mangas", ctx -> ctx.redirect("/pages/Mangas.html"));
         app.get("/pg-animes", ctx -> ctx.redirect("/pages/Anime.html"));
         app.get("/pg-filmes", ctx -> ctx.redirect("/pages/Filmes.html"));
-        app.get("/pg-sobre", ctx -> ctx.redirect("/pages/Sobre.html"));
+        app.get("/pg-sobre", ctx -> ctx.redirect("/pages/sobre.html"));
         app.get("/pg-perfil", ctx -> ctx.redirect("/pages/Perfil.html"));
         app.get("/pg-doacao", ctx -> ctx.redirect("/pages/Doacoes.html"));
         app.get("/pg-favoritos", ctx -> ctx.redirect("/pages/favoritos.html"));

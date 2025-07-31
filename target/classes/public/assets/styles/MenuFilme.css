@@ -347,6 +347,10 @@ transform: translateY(0);
   stroke: #ff4757;
 }
 
+#pagination{
+  
+}
+
 /* Responsividade */
 @media (max-width: 768px) {
   .movie-overlay {
