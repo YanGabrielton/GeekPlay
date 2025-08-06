@@ -363,3 +363,8 @@ transform: translateY(0);
     font-size: 14px;
   }
 }
+
+
+.hidden {
+    display: none !important;
+}

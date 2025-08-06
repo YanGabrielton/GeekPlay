@@ -13,6 +13,7 @@ const registroBotao = document.getElementById('registrar');
 const container = document.getElementById('container');
 const loginBotao = document.getElementById('login');
 
+
 registroBotao.addEventListener('click', () => {
     container.classList.add("active");
 });
@@ -46,6 +47,12 @@ async function fazerLogin() {
             localStorage.setItem("usuario", JSON.stringify(data.usuario));
             alert(`${data.message} ${data.usuario.nome}`);
             window.location.href = "/pg-index";
+              loginPages.classList.add("hidden");
+
+
+           
+
+
         } else {
             mensagem.textContent = data.message || "Login falhou. Verifique seus dados.";
             mensagem.className = "mensagem alert alert-danger mt-3 text-center";

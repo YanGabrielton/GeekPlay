@@ -395,7 +395,7 @@ header,
   #mainSlider .carousel-item img {
     height: 75vh;
     object-fit: cover;
-    object-position: center bottom;]
+    object-position: center bottom;
   }
   
 }
@@ -418,3 +418,6 @@ header,
 
 
 
+.hidden {
+    display: none !important;
+}

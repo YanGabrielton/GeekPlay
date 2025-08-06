@@ -557,7 +557,7 @@ height: 2.625rem; /* 42px*/
     align-items: center;
     padding: 1.25rem; /* 20px  */
 }
-    text-align: center;
+ 
 
 .choose-left-screen {
     width: 50%;
@@ -871,4 +871,9 @@ height: 2.625rem; /* 42px*/
 }
 .btn-primeiro {
     margin-left: 52.5rem; /* 840px */
+}
+
+
+.hidden {
+    display: none !important;
 }

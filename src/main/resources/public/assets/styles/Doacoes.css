@@ -149,3 +149,7 @@ footer hr {
         margin-right: 50px;
     }
 }
+
+.hidden {
+    display: none !important;
+}

@@ -455,4 +455,7 @@ header,
     height: 1.2em;
 }
 
+.hidden {
+    display: none !important;
+}
 

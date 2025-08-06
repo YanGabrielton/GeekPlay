@@ -208,3 +208,6 @@ input[type="text"] {
     transform: translateX(200%);
 }
 
+.hidden {
+    display: none !important;
+}

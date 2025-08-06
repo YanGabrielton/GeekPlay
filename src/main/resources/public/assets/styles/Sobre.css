@@ -245,3 +245,7 @@ header, .navbar {
     }
   }
   
+
+  .hidden {
+    display: none !important;
+}
